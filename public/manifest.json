@@ -1,0 +1,12 @@
+{ "name": "CloudAlls Ecosystem",
+  "short_name": "CloudAlls",
+  "description": "Next-generation enterprise digital ecosystem and innovation lab.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0f172a",
+  "theme_color": "#0f172a",
+  "orientation": "portrait-primary",
+  "icons": [{ "src": "/assets/img/icon-192x192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
+    { "src": "/assets/img/icon-512x512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ]
+}

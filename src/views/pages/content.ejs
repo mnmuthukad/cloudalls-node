@@ -1,0 +1,24 @@
+<%- include('../layouts/header', { pageTitle, pageDescription, pageKeywords, canonicalUrl, pageImage, settings, currentPage, socialLinks, schemaPhone }) %>
+<section class="container-fluid bg-dark text-white py-5" style="background: radial-gradient(circle at 80% 20%, rgba(37,99,235,.35), transparent 38%), #0f172a;">
+  <div class="container py-5">
+    <p class="text-uppercase fw-bold text-info small ls-1 mb-3"><%= page.eyebrow %></p>
+    <h1 class="display-3 fw-black ls-tight mb-4" style="max-width: 900px;"><%= page.hero %></h1>
+    <p class="lead text-white-50 mb-0" style="max-width: 760px;">CloudAlls combines practical engineering, responsible AI, and clear communication to create systems people can trust.</p>
+  </div>
+</section>
+<section class="container py-5">
+  <div class="row g-4">
+    <% page.sections.forEach((section, index) => { %>
+    <article class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="<%= index * 60 %>">
+      <div class="h-100 p-4 rounded-4 border bg-white shadow-sm">
+        <span class="text-primary fw-bold small"><%= String(index + 1).padStart(2, '0') %></span>
+        <h2 class="h4 fw-bold mt-3"><%= section.heading %></h2>
+        <p class="text-secondary mb-0"><%= section.body %></p>
+        <% if (section.bullets?.length) { %><ul class="text-secondary mt-3 mb-0 ps-3"><% section.bullets.forEach(item => { %><li class="mb-2"><%= item %></li><% }); %></ul><% } %>
+      </div>
+    </article>
+    <% }); %>
+  </div>
+</section>
+<section class="container pb-5"><div class="p-5 rounded-4 bg-light border text-center"><h2 class="h3 fw-bold">Ready to make the next system clearer?</h2><p class="text-secondary mb-4">Tell us what you are building, improving, or trying to understand.</p><a class="btn btn-primary btn-lg" href="/contact">Start a conversation</a></div></section>
+<%- include('../layouts/footer', { settings, footerMenus, waLink }) %>

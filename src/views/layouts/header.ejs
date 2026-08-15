@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title><%= pageTitle %></title>
+  <meta name="description" content="<%= pageDescription %>">
+  <meta name="keywords" content="<%= pageKeywords %>">
+  <link rel="canonical" href="<%= canonicalUrl %>">
+  <% if (settings.gsc_verification) { %><meta name="google-site-verification" content="<%= settings.gsc_verification %>"><% } %>
+  <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
+  <link rel="icon" type="image/png" href="/assets/img/favicon.png">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#0f172a">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="<%= canonicalUrl %>">
+  <meta property="og:title" content="<%= pageTitle %>">
+  <meta property="og:description" content="<%= pageDescription %>">
+  <meta property="og:image" content="<%= pageImage %>">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preload" href="/assets/fonts/inter-v20-latin-regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="preload" href="/assets/css/fontawesome.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="/assets/css/fontawesome.min.css"></noscript>
+  <link rel="preload" href="/assets/css/aos.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="/assets/css/aos.css"></noscript>
+  <script type="application/ld+json" nonce="<%= cspNonce %>"><%- JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: 'CloudAlls',
+    url: canonicalUrl,
+    logo: `${canonicalUrl.replace(/\/$/, '')}/assets/img/logo.png`,
+    description: pageDescription,
+    address: { '@type': 'PostalAddress', addressLocality: 'Kerala', addressCountry: 'IN' },
+    contactPoint: { '@type': 'ContactPoint', telephone: schemaPhone, contactType: 'customer service' },
+    sameAs: socialLinks
+  }) %></script>
+</head>
+<body>
+<a class="skip-link" href="#main-content">Skip to main content</a>
+<nav class="navbar navbar-expand-lg fixed-top glass-nav py-2" id="mainNav" aria-label="Primary navigation">
+  <div class="container">
+    <a class="navbar-brand d-flex align-items-center" href="/" aria-label="CloudAlls home"><%- settings.logo_code || '<span class="fw-bold text-dark">CloudAlls</span>' %></a>
+    <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle primary navigation"><span class="fa-solid fa-bars-staggered fs-4 text-primary" aria-hidden="true"></span></button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto align-items-center gap-lg-4 mt-3 mt-lg-0">
+        <li class="nav-item"><a class="nav-link fw-semibold hover-primary <%= currentPage === 'index' ? 'active text-primary' : 'text-secondary' %>" href="/">Home</a></li>
+        <li class="nav-item"><a class="nav-link fw-semibold hover-primary <%= currentPage === 'about' ? 'active text-primary' : 'text-secondary' %>" href="/about">About Us</a></li>
+        <li class="nav-item"><a class="nav-link fw-semibold hover-primary <%= currentPage === 'expertise' ? 'active text-primary' : 'text-secondary' %>" href="/expertise">Expertise</a></li>
+        <li class="nav-item"><a class="nav-link fw-semibold hover-primary" href="https://academy.cloudalls.com" target="_blank" rel="noopener noreferrer">Academy</a></li>
+        <li class="nav-item"><a class="nav-link fw-semibold hover-primary <%= currentPage === 'contact' ? 'active text-primary' : 'text-secondary' %>" href="/contact">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<main id="main-content" tabindex="-1">

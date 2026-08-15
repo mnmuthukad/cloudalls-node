@@ -1,0 +1,29 @@
+{
+  "id": 1,
+  "gsc_verification": "",
+  "logo_code": "<svg width=\"150\" height=\"40\" viewBox=\"0 0 200 40\" xmlns=\"http://www.w3.org/2000/svg\"><g transform=\"translate(0, 5)\"><circle cx=\"16\" cy=\"24\" r=\"12\" fill=\"#0ea5e9\" opacity=\"0.9\"/><circle cx=\"28\" cy=\"14\" r=\"14\" fill=\"#7C3AED\" opacity=\"0.9\"/><circle cx=\"40\" cy=\"24\" r=\"12\" fill=\"#2563EB\" opacity=\"0.9\"/></g><text x=\"65\" y=\"34\" font-family=\"Inter, sans-serif\" font-size=\"24\" font-weight=\"800\" fill=\"#0f172a\" letter-spacing=\"-0.5\">Cloud<tspan fill=\"#2563EB\">Alls</tspan></text></svg>",
+  "whatsapp": "+91 9048208135",
+  "contact_number": "+91 904 820 8135",
+  "email": "info@cloudalls.com",
+  "company_address": "Kerala, India",
+  "working_hours": "Mon-Fri: 9:00 AM - 6:00 PM",
+  "linkedin": "https://www.linkedin.com/company/cloudalls",
+  "x_link": "https://x.com/cloudalls",
+  "instagram": "https://www.instagram.com/cloudalls.ai",
+  "youtube": "https://youtube.com/@cloudalls",
+  "reddit": "https://reddit.com/r/cloudalls",
+  "discord": "https://discord.gg/your-invite-link",
+  "github": "https://github.com/cloudalls-lab",
+  "updated_at": "2026-04-23 15:19:57",
+  "brand_divisions": [
+    { "id": 1, "name": "Foundry" },
+    { "id": 2, "name": "Intelligence" },
+    { "id": 3, "name": "Infrastructure" },
+    { "id": 4, "name": "Studio" },
+    { "id": 5, "name": "Growth" },
+    { "id": 6, "name": "Operations" },
+    { "id": 7, "name": "Academy" },
+    { "id": 8, "name": "Labs" },
+    { "id": 9, "name": "Hub" }
+  ]
+}

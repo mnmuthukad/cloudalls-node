@@ -1,0 +1,63 @@
+</main>
+<footer class="footer-premium pt-0 mt-auto bg-white text-dark border-top border-secondary border-opacity-10 text-start w-100 position-relative z-1" aria-label="Site footer">
+  <% const divisions = Array.isArray(settings.brand_divisions) ? settings.brand_divisions.filter(item => item && item.name) : []; %>
+  <% if (divisions.length) { %>
+  <div class="sub-brand-marquee bg-white border-bottom border-secondary border-opacity-10 mb-3" style="padding: 0.5rem 0;" aria-label="CloudAlls divisions">
+    <div class="sub-brand-track align-items-center">
+      <% [...divisions, ...divisions].forEach((division) => { %>
+        <div class="sub-brand-item px-4"><div class="brand-pill d-flex align-items-center justify-content-center bg-white border border-secondary border-opacity-10 rounded-pill shadow-sm px-4 py-2"><span class="text-secondary fw-bold text-uppercase ls-1" style="font-size: 0.75rem;"><%= division.name %></span></div></div>
+      <% }); %>
+    </div>
+  </div>
+  <% } %>
+  <div class="container pb-3">
+    <div class="row align-items-center border-bottom border-secondary border-opacity-10 pb-3 mb-3 gy-3">
+      <div class="col-lg-5 col-md-12 d-flex flex-column align-items-center align-items-lg-start text-center text-lg-start">
+        <a href="/" class="text-decoration-none hover-lift d-inline-block mb-1" aria-label="CloudAlls home"><%- settings.logo_code || '<span class="fw-bold text-dark">CloudAlls</span>' %></a>
+        <p class="text-secondary small mb-0 fw-medium" style="max-width: 320px;">Organizing the New Tech Culture.</p>
+      </div>
+      <div class="col-lg-7 col-md-12 text-center text-lg-end">
+        <h2 class="fw-bold text-uppercase text-muted small mb-2" style="letter-spacing: 1px;">System Gateways</h2>
+        <div class="row g-2 justify-content-center justify-content-lg-end m-0">
+          <div class="col-12 col-lg-auto px-0 px-lg-1"><a href="/client/login" class="btn btn-sm rounded-pill fw-bold px-3 py-2 gateway-btn btn-client w-100"><i class="fa-solid fa-door-open me-2 opacity-75" aria-hidden="true"></i>Client Portal</a></div>
+          <div class="col-6 col-lg-auto ps-0 pe-1 px-lg-1"><a href="/login" class="btn btn-sm rounded-pill fw-bold px-3 py-2 gateway-btn btn-dev w-100"><i class="fa-solid fa-shield-halved me-2 opacity-75" aria-hidden="true"></i>Official Portal</a></div>
+          <div class="col-6 col-lg-auto pe-0 ps-1 px-lg-1"><a href="https://admin.cloudalls.com/login" class="btn btn-sm rounded-pill fw-bold px-3 py-2 gateway-btn btn-admin w-100" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-crown me-2 opacity-75" aria-hidden="true"></i>Admin Portal</a></div>
+        </div>
+      </div>
+    </div>
+    <nav class="row gy-4 w-100 mx-0 mb-3 justify-content-between" aria-label="Footer navigation">
+      <% Object.entries(footerMenus).forEach(([title, links]) => { %>
+      <div class="col-6 col-md-4 col-lg-2">
+        <h2 class="fw-black mb-3 text-dark text-uppercase ls-1 h6" style="font-size: 0.8rem;"><%= title %></h2>
+        <ul class="list-unstyled d-flex flex-column gap-2 small fw-medium mb-0">
+          <% Object.entries(links).forEach(([url, item]) => { const label = typeof item === 'string' ? item : item.label; const badge = typeof item === 'string' ? '' : (item.badge || ''); %>
+          <li><a href="<%= url %>" class="footer-link d-flex align-items-center gap-3"><%= label %><% if (badge) { %><span class="beta-icon badge rounded-pill ms-1"><%= badge %></span><% } %></a></li>
+          <% }); %>
+        </ul>
+      </div>
+      <% }); %>
+    </nav>
+    <div class="border-top pt-3 mt-2 border-secondary border-opacity-10">
+      <div class="row align-items-center gy-3 text-center text-lg-start">
+        <div class="col-lg-6"><div class="d-flex flex-column flex-md-row align-items-center justify-content-center justify-content-lg-start gap-3 gap-md-4 small text-muted fw-medium"><span class="d-flex align-items-center gap-2 text-nowrap"><i class="fa-solid fa-location-dot text-secondary" aria-hidden="true"></i><%= settings.company_address || 'Kerala, India' %></span><span class="d-none d-md-block text-secondary opacity-25">|</span><a href="tel:<%= settings.contact_number || '' %>" class="text-decoration-none text-muted hover-primary d-flex align-items-center gap-2 text-nowrap"><i class="fa-solid fa-phone text-secondary" aria-hidden="true"></i><%= settings.contact_number || '+91 904 820 8135' %></a><span class="d-none d-md-block text-secondary opacity-25">|</span><a href="mailto:<%= settings.email || 'info@cloudalls.com' %>" class="text-decoration-none text-muted hover-primary d-flex align-items-center gap-2 text-nowrap"><i class="fa-solid fa-envelope text-secondary" aria-hidden="true"></i><%= settings.email || 'info@cloudalls.com' %></a></div></div>
+        <div class="col-lg-6"><div class="d-flex gap-2 justify-content-center justify-content-lg-end flex-wrap">
+          <% const socials = [['github','GitHub','fa-github'],['linkedin','LinkedIn','fa-linkedin-in'],['x_link','X (Twitter)','fa-x-twitter'],['youtube','YouTube','fa-youtube'],['instagram','Instagram','fa-instagram'],['discord','Discord','fa-discord'],['reddit','Reddit','fa-reddit-alien']]; %>
+          <% socials.forEach(([key, label, icon]) => { if (settings[key]) { %><a href="<%= settings[key] %>" class="social-btn" target="_blank" rel="noopener noreferrer" aria-label="<%= label %>" title="<%= label %>"><i class="fa-brands <%= icon %>" aria-hidden="true"></i></a><% } }); %>
+          <a href="https://wa.me/<%= waLink %>?text=Hello%20CloudAlls!" class="social-btn" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" title="WhatsApp"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i></a>
+        </div></div>
+      </div>
+      <div class="border-top pt-3 mt-3 border-secondary border-opacity-10"><div class="d-flex flex-column flex-lg-row justify-content-between align-items-center small text-muted text-center text-lg-start"><div class="mb-3 mb-lg-0 d-flex flex-column flex-md-row align-items-center justify-content-center gap-2 gap-md-3"><span>&copy; <%= new Date().getFullYear() %> CloudAlls Ecosystem</span><span class="d-none d-md-block text-secondary opacity-25">|</span><span>All Rights Reserved</span></div><div class="d-flex flex-column flex-md-row align-items-center justify-content-center gap-3"><button id="pwaInstallBtn" type="button" aria-label="Install CloudAlls app" class="btn btn-dark btn-sm rounded-pill fw-bold px-3 py-2 d-none align-items-center gap-2 shadow-sm hover-lift border border-secondary border-opacity-25" style="font-size: 0.75rem; letter-spacing: 0.5px;"><i class="fa-brands fa-apple fs-6" aria-hidden="true"></i><i class="fa-brands fa-android fs-6 text-success" aria-hidden="true"></i><i class="fa-brands fa-windows fs-6 text-info" aria-hidden="true"></i>Install App</button><div class="d-flex align-items-center gap-2 border-md-start ps-md-3 border-secondary border-opacity-25"><span>Engineered in India</span><img src="/assets/img/flags/in.svg" alt="India Flag" width="24" height="18" loading="lazy" decoding="async" class="rounded shadow-sm d-inline-block"></div></div></div></div>
+    </div>
+  </div>
+</footer>
+<button id="backToTop" class="back-to-top" type="button" aria-label="Back to top" title="Back to top"><i class="fa-solid fa-arrow-up" aria-hidden="true"></i></button>
+<a href="https://wa.me/<%= waLink %>?text=Hello%20CloudAlls!" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp" title="Chat on WhatsApp"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i></a>
+<div id="cookie-banner" class="position-fixed bottom-0 start-0 w-100 p-3" role="region" aria-label="Cookie preferences" aria-live="polite" style="z-index: 1050; display: none;"><div class="container"><div class="row justify-content-center"><div class="col-lg-10"><div class="bg-dark text-white p-4 rounded-4 shadow-lg border border-secondary border-opacity-25 d-flex flex-column flex-md-row align-items-center justify-content-between gap-3" style="backdrop-filter: blur(15px); background-color: rgba(33, 37, 41, 0.95) !important;"><div class="d-flex align-items-start gap-3"><i class="fa-solid fa-cookie-bite text-warning fs-2 mt-1" aria-hidden="true"></i><div><h2 class="h6 fw-bold mb-1">We value your privacy</h2><p class="small text-white-50 mb-0" style="line-height: 1.5;">We use cookies to enhance your experience. By clicking “Accept”, you agree to our <a href="https://legal.cloudalls.com/#privacy" target="_blank" rel="noopener noreferrer" class="text-warning text-decoration-underline">Privacy Policy</a>.</p></div></div><div class="d-flex gap-2 shrink-0 mt-3 mt-md-0"><button id="btn-decline" type="button" class="btn btn-outline-light btn-sm rounded-pill px-4 fw-bold">Decline</button><button id="btn-accept" type="button" class="btn btn-primary btn-sm rounded-pill px-4 fw-bold shadow">Accept</button></div></div></div></div></div></div>
+<script src="/assets/js/bootstrap.bundle.min.js" defer></script>
+<script src="/assets/js/aos.js" defer></script>
+<script src="/assets/js/script.js" defer></script>
+<script nonce="<%= cspNonce %>">
+if ('serviceWorker' in navigator) window.addEventListener('load', () => navigator.serviceWorker.register('/sw.js').catch(() => {}));
+</script>
+</body>
+</html>

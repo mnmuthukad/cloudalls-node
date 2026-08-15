@@ -1,0 +1,8 @@
+<%- include('../layouts/header', { pageTitle: pageTitle || 'Service error', pageDescription: 'CloudAlls is temporarily unable to complete this request.' }) %>
+<section class="container py-5 text-center">
+  <p class="display-1 fw-bold text-danger">500</p>
+  <h1 class="h2">Something went wrong</h1>
+  <p class="text-secondary">The system could not complete this request. Please try again shortly.</p>
+  <a class="btn btn-primary" href="/">Return home</a>
+</section>
+<%- include('../layouts/footer') %>
