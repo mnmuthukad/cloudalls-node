@@ -1,0 +1,66 @@
+[
+  {
+    "id": 1,
+    "name": "Foundry",
+    "tagline": "Forging Scalable Software Ecosystems",
+    "svg_code": null,
+    "display_order": 1,
+    "status": "Active"
+  },
+  {
+    "id": 2,
+    "name": "Intelligence",
+    "tagline": "Deploying Cognitive Models",
+    "svg_code": null,
+    "display_order": 2,
+    "status": "Active"
+  },
+  {
+    "id": 3,
+    "name": "Infrastructure",
+    "tagline": "Securing the Physical Network",
+    "svg_code": null,
+    "display_order": 3,
+    "status": "Active"
+  },
+  {
+    "id": 4,
+    "name": "Studio",
+    "tagline": "Crafting High-End Brand Narratives",
+    "svg_code": null,
+    "display_order": 4,
+    "status": "Active"
+  },
+  {
+    "id": 5,
+    "name": "Growth",
+    "tagline": "Data-Driven Market Expansion",
+    "svg_code": null,
+    "display_order": 5,
+    "status": "Active"
+  },
+  {
+    "id": 6,
+    "name": "Operations",
+    "tagline": "Executing Seamless Corporate Management",
+    "svg_code": null,
+    "display_order": 6,
+    "status": "Active"
+  },
+  {
+    "id": 7,
+    "name": "Academy",
+    "tagline": "Training the Next Generation",
+    "svg_code": null,
+    "display_order": 7,
+    "status": "Active"
+  },
+  {
+    "id": 8,
+    "name": "Labs",
+    "tagline": "Pioneering Deep Tech R&D",
+    "svg_code": null,
+    "display_order": 8,
+    "status": "Active"
+  }
+]

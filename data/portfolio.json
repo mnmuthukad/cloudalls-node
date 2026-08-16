@@ -1,0 +1,28 @@
+[
+  {
+    "id": 2,
+    "title": "FinPuls Next-Gen Banking App",
+    "slug": "finpulse-banking-app",
+    "client_name": "FinPulse Solutions",
+    "expertise_id": 2,
+    "short_desc": "A cross-platform Flutter MVP that processes over 10,000 daily transactions with bank-grade security and a unified UI/UX.",
+    "full_content": "<p class=\"lead\">FinPulse approached CloudAlls with a massive challenge: Build a secure, hyper-fast mobile banking MVP capable of handling thousands of micro-transactions, and launch it on both iOS and Android within 4 months.</p>\r\n\r\n<h4 class=\"mt-5 mb-3\">The Architectural Challenge</h4>\r\n<p>In the fintech space, trust is built on speed and security. The legacy approach of building two separate native apps would have drained the client's startup capital and delayed their time-to-market. Furthermore, the UI needed to feel native and fluid, avoiding the \"clunky\" feel of older hybrid frameworks.</p>\r\n\r\n<h4 class=\"mt-5 mb-3\">Our Ecosystem Solution</h4>\r\n<p>We engineered a highly scalable cross-platform architecture using <strong>Google's Flutter</strong>. This single-codebase strategy allowed our team to:</p>\r\n<ul>\r\n    <li>Cut development costs by 40% while maintaining native-level performance at 60 FPS.</li>\r\n    <li>Implement biometric authentication (FaceID/TouchID) seamlessly across both platforms.</li>\r\n    <li>Build a custom API gateway to connect the mobile frontend to their legacy banking servers securely.</li>\r\n</ul>\r\n\r\n<h4 class=\"mt-5 mb-3\">The Blueprint Results</h4>\r\n<p>Within 14 weeks, FinPulse was live on the App Store and Google Play. The app now handles over <strong>10,000 daily transactions</strong> with zero downtime, and the client successfully secured their Series A funding based on the strength of this MVP.</p>",
+    "image_url": "https://images.unsplash.com/photo-1563986768494-4dee2763ff3f?q=80&w=1000&auto=format&fit=crop",
+    "live_link": null,
+    "status": "Published",
+    "created_at": "2026-02-24 00:51:44"
+  },
+  {
+    "id": 3,
+    "title": "Cloud ERP for Nexus Logistics",
+    "slug": "nexus-cloud-erp",
+    "client_name": "Nexus Global Logistics",
+    "expertise_id": 1,
+    "short_desc": "A custom cloud-based ERP system connecting 50+ warehouses with real-time supply chain tracking and automated reporting.",
+    "full_content": "<p class=\"lead\">Nexus Global was operating on an outdated, on-premise software system that was causing daily data bottlenecks across their 50+ international warehouses. They needed a complete digital transformation.</p><p>\r\n\r\n</p><h4 class=\"mt-5 mb-3\">The Architectural Challenge</h4><p>\r\n</p><p>Supply chain management requires absolute real-time precision. When a container leaves a port in Mumbai, the dashboard in Dubai needs to update instantly. Their existing system relied on manual batch updates, leading to a 12-hour delay in inventory visibility.</p><p>\r\n\r\n</p><h4 class=\"mt-5 mb-3\">Our Ecosystem Solution</h4><p>\r\n</p><p>CloudAlls architects designed a full-stack, cloud-native Enterprise Resource Planning (ERP) platform. We moved them away from heavy on-premise servers and deployed a distributed, highly available web application.</p><p>\r\n</p><p><br></p><p>\r\n\r\n</p><h4 class=\"mt-5 mb-3\">The Blueprint Results</h4><p>\r\n</p><p>The new CloudAlls ERP eliminated data bottlenecks completely. Nexus Logistics reported a <strong>35% increase in operational efficiency</strong> and a massive reduction in manual data-entry errors within the first month of deployment.</p>",
+    "image_url": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1000&auto=format&fit=crop",
+    "live_link": "",
+    "status": "Published",
+    "created_at": "2026-02-24 00:53:59"
+  }
+]

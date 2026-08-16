@@ -1,0 +1,303 @@
+{
+  "directory": [
+    {
+      "id": 1,
+      "link": "/terms",
+      "icon": "fa-file-contract",
+      "title": "Terms of Service",
+      "description": "The master agreement governing the use of our digital platforms.",
+      "color_class": "text-primary bg-primary",
+      "display_order": 1
+    },
+    {
+      "id": 2,
+      "link": "/privacy",
+      "icon": "fa-shield-halved",
+      "title": "Privacy & Data Policy",
+      "description": "How we collect, encrypt, and handle your corporate and personal data.",
+      "color_class": "text-success bg-success",
+      "display_order": 2
+    },
+    {
+      "id": 3,
+      "link": "/security",
+      "icon": "fa-server",
+      "title": "Security & SLA",
+      "description": "Infrastructure standards, uptime guarantees, and incident response.",
+      "color_class": "text-warning bg-warning",
+      "display_order": 3
+    },
+    {
+      "id": 4,
+      "link": "/aup",
+      "icon": "fa-ban",
+      "title": "Acceptable Use (AUP)",
+      "description": "Prohibited content, API limits, and strict platform rules.",
+      "color_class": "text-danger bg-danger",
+      "display_order": 4
+    },
+    {
+      "id": 5,
+      "link": "/ethics",
+      "icon": "fa-leaf",
+      "title": "Slavery & Ethics",
+      "description": "Our commitment to the UN Global Compact and supply chain integrity.",
+      "color_class": "text-success bg-success",
+      "display_order": 5
+    },
+    {
+      "id": 6,
+      "link": "/accessibility",
+      "icon": "fa-universal-access",
+      "title": "Accessibility",
+      "description": "WCAG 2.1 compliance and our digital inclusion engineering standards.",
+      "color_class": "text-info bg-info",
+      "display_order": 6
+    }
+  ],
+  "documents": [
+    {
+      "id": 1,
+      "slug": "terms",
+      "title": "Terms of Service",
+      "version": "v2.1",
+      "effective_date": "2026-01-15",
+      "content": "<h5 class=\"fw-bold text-dark mt-4\">1. Acceptance of Terms</h5><p class=\"text-secondary\">By accessing and using the CloudAlls digital ecosystem, client portal, or associated APIs, you agree to be bound by these Terms of Service. If you do not agree, please disconnect from our infrastructure immediately.</p><h5 class=\"fw-bold text-dark mt-4\">2. Enterprise License & Usage</h5><p class=\"text-secondary\">CloudAlls grants you a limited, non-exclusive, non-transferable license to access our proprietary software. You are strictly prohibited from reverse-engineering, decompiling, or attempting to extract the source code of our AI models or backend architecture.</p><h5 class=\"fw-bold text-dark mt-4\">3. Payment & Billing Cycles</h5><p class=\"text-secondary\">All enterprise SaaS subscriptions and retainer invoices are due within <strong>Net 15 days</strong> of issuance. Failure to settle accounts may result in automated suspension of portal access and API routing.</p><h5 class=\"fw-bold text-dark mt-4\">4. Limitation of Liability</h5><p class=\"text-secondary\">CloudAlls shall not be liable for any indirect, incidental, special, consequential, or punitive damages, including loss of profits, data, or business goodwill, arising out of your use of our software ecosystem.</p>"
+    },
+    {
+      "id": 2,
+      "slug": "privacy",
+      "title": "Privacy & Data Policy",
+      "version": "v3.0",
+      "effective_date": "2026-02-01",
+      "content": "<h5 class=\"fw-bold text-dark mt-4\">1. Global Compliance Standard</h5><p class=\"text-secondary\">CloudAlls is fully compliant with the European Union General Data Protection Regulation (<strong>GDPR</strong>) and the India Digital Personal Data Protection Act (<strong>DPDP</strong>). We treat your personal and corporate data with the highest level of cryptographic security.</p><h5 class=\"fw-bold text-dark mt-4\">2. Data Collection & Telemetry</h5><p class=\"text-secondary\">We collect essential telemetry data, IP addresses, browser footprints, and account credentials necessary to provide you with secure access to our portal. We <strong>never</strong> sell your personal data to third-party data brokers.</p><h5 class=\"fw-bold text-dark mt-4\">3. Data Storage & Encryption</h5><p class=\"text-secondary\">All sensitive information, including litigation notes, passwords, and API keys, are encrypted at rest using AES-256-CBC encryption. Active databases are housed in ISO 27001-certified data centers across Mumbai and Frankfurt.</p><h5 class=\"fw-bold text-dark mt-4\">4. Your Rights (Data Subject Requests)</h5><p class=\"text-secondary\">Under global privacy laws, you have the \"Right to be Forgotten\". You may request the export, modification, or complete deletion of your personal data from our servers. Please use the <strong><a href=\"/data-requests\" class=\"text-primary text-decoration-none fw-bold\">DSR Form</a></strong> located in this Legal Center to initiate a formal request.</p>"
+    },
+    {
+      "id": 3,
+      "slug": "cookies",
+      "title": "Cookie & Tracking Policy",
+      "version": "v1.2",
+      "effective_date": "2025-11-20",
+      "content": "<h5 class=\"fw-bold text-dark mt-4\">1. Session Management</h5><p class=\"text-secondary\">Cookies are small text files stored on your device. They are essential for maintaining secure user sessions and preventing Cross-Site Request Forgery (CSRF) attacks.</p><h5 class=\"fw-bold text-dark mt-4\">2. Essential vs. Non-Essential Cookies</h5><ul class=\"text-secondary\"><li class=\"mb-2\"><strong>Essential Cookies:</strong> Used for authenticating your login and keeping your session secure. The portal cannot function without these.</li><li><strong>Analytics Cookies:</strong> We use anonymized telemetry (without storing PII) to monitor dashboard performance and page load speeds.</li></ul><h5 class=\"fw-bold text-dark mt-4\">3. Managing Your Preferences</h5><p class=\"text-secondary\">You can instruct your browser to refuse all cookies. However, if you do not accept essential session cookies, you will be unable to log into the Admin or Client dashboards.</p>"
+    },
+    {
+      "id": 4,
+      "slug": "security",
+      "title": "Security & SLA Matrix",
+      "version": "v4.0",
+      "effective_date": "2026-03-01",
+      "content": "<h5 class=\"fw-bold text-dark mt-4\">1. Uptime Guarantee</h5><p class=\"text-secondary\">We guarantee a <strong>99.9% uptime</strong> for all enterprise-tier clients. Scheduled maintenance will be communicated at least 48 hours in advance via the internal broadcasting system.</p><h5 class=\"fw-bold text-dark mt-4\">2. Incident Response</h5><p class=\"text-secondary\">In the event of a critical Severity 1 (P1) outage, our NOC (Network Operations Center) guarantees a preliminary response and diagnostic initiation within <strong>15 minutes</strong>.</p><h5 class=\"fw-bold text-dark mt-4\">3. Penetration Testing</h5><p class=\"text-secondary\">Our infrastructure undergoes bi-annual third-party penetration testing. Executive summaries of these reports are available to Enterprise clients under a signed NDA.</p>"
+    },
+    {
+      "id": 5,
+      "slug": "aup",
+      "title": "Acceptable Use Policy",
+      "version": "v1.5",
+      "effective_date": "2026-01-01",
+      "content": "<h5 class=\"fw-bold text-dark mt-4\">1. Prohibited Activities</h5><p class=\"text-secondary\">Users of the CloudAlls network may not engage in activities that are illegal, infringe on the rights of others, or interfere with our infrastructure. This includes, but is not limited to: DDoS attacks, malware distribution, phishing, and cryptojacking.</p><h5 class=\"fw-bold text-dark mt-4\">2. API Rate Limiting</h5><p class=\"text-secondary\">To protect network integrity, all API endpoints are strictly rate-limited. Intentional attempts to bypass these limits will result in immediate API key revocation and permanent IP bans.</p>"
+    },
+    {
+      "id": 6,
+      "slug": "ethics",
+      "title": "Modern Slavery & Ethics",
+      "version": "v1.0",
+      "effective_date": "2025-01-01",
+      "content": "<h5 class=\"fw-bold text-dark mt-4\">1. UN Global Compact</h5><p class=\"text-secondary\">CloudAlls supports the Ten Principles of the United Nations Global Compact on human rights, labor, environment, and anti-corruption.</p><h5 class=\"fw-bold text-dark mt-4\">2. Supply Chain Integrity</h5><p class=\"text-secondary\">We maintain a zero-tolerance approach to modern slavery and are committed to complying with the <strong>UK Modern Slavery Act 2015</strong> in all global dealings.</p>"
+    },
+    {
+      "id": 7,
+      "slug": "accessibility",
+      "title": "Web Accessibility Statement (WCAG)",
+      "version": "v1.1",
+      "effective_date": "2026-01-01",
+      "content": "<p class=\"text-secondary mb-4\" style=\"font-size: 1.05rem; line-height: 1.7;\">CloudAlls is continuously actively taking steps to improve the accessibility of our corporate ecosystem and the software platforms we build for our enterprise clients. We are committed to adhering to the <strong>Web Content Accessibility Guidelines (WCAG) 2.1 Level AA</strong> standards.</p><h5 class=\"fw-bold text-dark mt-5 mb-3\">Current Architectural Measures</h5><ul class=\"text-secondary mb-4\" style=\"line-height: 1.8;\"><li><strong>Semantic HTML:</strong> We utilize strict, semantic HTML5 structure to ensure seamless parsing by screen readers and assistive technologies.</li><li><strong>Color Contrast:</strong> All brand colors and UI elements are heavily audited to meet required WCAG contrast ratios for visually impaired users.</li><li><strong>Keyboard Navigation:</strong> The CloudAlls admin and client dashboards are fully navigable using keyboard-only inputs, without requiring a mouse.</li><li><strong>Reduced Motion:</strong> We respect the OS-level <code>prefers-reduced-motion</code> media query, automatically disabling heavy parallax or structural animations for sensitive users.</li></ul><h5 class=\"fw-bold text-dark mt-5 mb-3\">Feedback & Support</h5><p class=\"text-secondary mb-4\">Accessibility is an ongoing engineering effort. If you encounter any barriers while using our platforms, or require an alternative format for our documentation, please contact our compliance team immediately.</p><div class=\"bg-light rounded-3 p-4 border border-secondary border-opacity-10 text-center\"><i class=\"fa-solid fa-universal-access text-info fs-2 mb-3\"></i><h6 class=\"fw-bold text-dark mb-1\">Accessibility Operations Desk</h6><a href=\"mailto:accessibility@cloudalls.com\" class=\"text-info text-decoration-none fw-bold\">accessibility@cloudalls.com</a></div>"
+    }
+  ],
+  "compliancePillars": [
+    {
+      "id": 1,
+      "icon": "fa-user-lock",
+      "title": "Data Sovereignty",
+      "description": "Your data remains yours. We ensure strict compliance and boundary control.",
+      "display_order": 1
+    },
+    {
+      "id": 2,
+      "icon": "fa-file-signature",
+      "title": "Routine Audits",
+      "description": "Bi-annual third-party penetration testing and mandatory security audits.",
+      "display_order": 2
+    },
+    {
+      "id": 3,
+      "icon": "fa-eye-slash",
+      "title": "Privacy by Design",
+      "description": "Privacy is embedded into our software architecture from the first line of code.",
+      "display_order": 3
+    },
+    {
+      "id": 4,
+      "icon": "fa-scale-balanced",
+      "title": "Absolute Transparency",
+      "description": "Open reporting on uptime, legal requests, and ethical supply chain operations.",
+      "display_order": 4
+    }
+  ],
+  "crisisResponse": [
+    {
+      "id": 1,
+      "step_number": 1,
+      "title": "Immediate Mitigation",
+      "color": "danger",
+      "description": "Isolating the incident and securing the digital core within 15 minutes of detection via automated NOC telemetry."
+    },
+    {
+      "id": 2,
+      "step_number": 2,
+      "title": "Client Communication",
+      "color": "warning",
+      "description": "Publishing transparent Incident Reports (IR) via our Developer Status page and secure CRM channels."
+    },
+    {
+      "id": 3,
+      "step_number": 3,
+      "title": "Post-Mortem Analysis",
+      "color": "success",
+      "description": "Deploying architectural patches and updating our core security blueprints to ensure zero reoccurrence."
+    }
+  ],
+  "frameworks": [
+    {
+      "jurisdiction": "India",
+      "region_code": "IN",
+      "framework_name": "Digital Personal Data Protection Act, 2023",
+      "authority": "Ministry of Electronics and Information Technology / Parliament of India",
+      "framework_type": "Law",
+      "scope_summary": "India’s digital personal-data framework. Applicability, commencement, notices, rights, transfers, and obligations depend on the facts, notified provisions, and applicable rules.",
+      "review_status": "Monitor",
+      "source_url": "https://www.meity.gov.in/static/uploads/2024/06/2bf1f0e9f04e6fb4f8fef35e82c42aa5.pdf",
+      "last_reviewed": "2026-08-14",
+      "display_order": 1
+    },
+    {
+      "jurisdiction": "India",
+      "region_code": "IN",
+      "framework_name": "Digital Personal Data Protection Rules, 2025",
+      "authority": "Ministry of Electronics and Information Technology",
+      "framework_type": "Regulator Guidance",
+      "scope_summary": "Rules and implementation detail should be reviewed with the Act and the organization’s processing activities before relying on them.",
+      "review_status": "Monitor",
+      "source_url": "https://www.meity.gov.in/documents/act-and-policies/digital-personal-data-protection-rules-2025-gDOxUjMtQWa?pageTitle=Digital-Personal-Data-Protection-Rules-2025",
+      "last_reviewed": "2026-08-14",
+      "display_order": 2
+    },
+    {
+      "jurisdiction": "India",
+      "region_code": "IN",
+      "framework_name": "CERT-In Directions and incident-response guidance",
+      "authority": "Indian Computer Emergency Response Team",
+      "framework_type": "Regulator Guidance",
+      "scope_summary": "Cybersecurity incident handling, reporting, logging, and technical controls may apply according to the organization, system, incident, and current CERT-In directions.",
+      "review_status": "Reference",
+      "source_url": "https://www.cert-in.org.in/",
+      "last_reviewed": "2026-08-14",
+      "display_order": 3
+    },
+    {
+      "jurisdiction": "United Kingdom",
+      "region_code": "UK",
+      "framework_name": "UK GDPR and Data Protection Act 2018",
+      "authority": "Information Commissioner’s Office / UK Parliament",
+      "framework_type": "Law",
+      "scope_summary": "UK personal-data processing requires a scoped assessment of lawful basis, transparency, minimisation, rights, security, retention, processors, and international transfers.",
+      "review_status": "Monitor",
+      "source_url": "https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/",
+      "last_reviewed": "2026-08-14",
+      "display_order": 4
+    },
+    {
+      "jurisdiction": "United Kingdom",
+      "region_code": "UK",
+      "framework_name": "Privacy and Electronic Communications Regulations (PECR)",
+      "authority": "Information Commissioner’s Office",
+      "framework_type": "Law",
+      "scope_summary": "Cookies, similar technologies, electronic marketing, and communications require a fact-specific review of notice, consent, exemptions, and record keeping.",
+      "review_status": "Monitor",
+      "source_url": "https://ico.org.uk/for-organisations/direct-marketing-and-privacy-and-electronic-communications/guide-to-pecr/cookies-and-similar-technologies/",
+      "last_reviewed": "2026-08-14",
+      "display_order": 5
+    },
+    {
+      "jurisdiction": "United States",
+      "region_code": "US",
+      "framework_name": "FTC privacy and data-security principles",
+      "authority": "Federal Trade Commission",
+      "framework_type": "Regulator Guidance",
+      "scope_summary": "Businesses should substantiate privacy and security representations and maintain safeguards appropriate to the nature of the data they hold. US requirements also vary by sector, state, and activity.",
+      "review_status": "Reference",
+      "source_url": "https://www.ftc.gov/business-guidance/privacy-security",
+      "last_reviewed": "2026-08-14",
+      "display_order": 6
+    },
+    {
+      "jurisdiction": "United States — California",
+      "region_code": "US-CA",
+      "framework_name": "California Consumer Privacy Act / California Privacy Rights Act",
+      "authority": "California Privacy Protection Agency",
+      "framework_type": "Law",
+      "scope_summary": "California privacy rights and business obligations depend on thresholds, data categories, purposes, consumer status, and the organization’s role.",
+      "review_status": "Monitor",
+      "source_url": "https://privacy.ca.gov/california-privacy-rights/rights-under-the-california-consumer-privacy-act/",
+      "last_reviewed": "2026-08-14",
+      "display_order": 7
+    },
+    {
+      "jurisdiction": "United States / Global",
+      "region_code": "US-GLOBAL",
+      "framework_name": "AI Risk Management Framework",
+      "authority": "National Institute of Standards and Technology",
+      "framework_type": "Standards Framework",
+      "scope_summary": "NIST AI RMF is voluntary guidance for managing AI risks and incorporating trustworthiness into AI design, development, use, and evaluation. It is not a legal certification.",
+      "review_status": "Reference",
+      "source_url": "https://www.nist.gov/itl/ai-risk-management-framework",
+      "last_reviewed": "2026-08-14",
+      "display_order": 8
+    },
+    {
+      "jurisdiction": "Global",
+      "region_code": "GLOBAL",
+      "framework_name": "UN Global Compact Ten Principles",
+      "authority": "United Nations Global Compact",
+      "framework_type": "Principles",
+      "scope_summary": "Principles-based guidance covering human rights, labour, environment, and anti-corruption. It is not a CloudAlls legal certification or a substitute for local law.",
+      "review_status": "Reference",
+      "source_url": "https://unglobalcompact.org/what-is-gc/mission/principles",
+      "last_reviewed": "2026-08-14",
+      "display_order": 9
+    },
+    {
+      "jurisdiction": "Global",
+      "region_code": "GLOBAL",
+      "framework_name": "Guiding Principles on Business and Human Rights",
+      "authority": "United Nations Office of the High Commissioner for Human Rights",
+      "framework_type": "Principles",
+      "scope_summary": "The Protect, Respect and Remedy framework is a global reference for preventing and addressing adverse human-rights impacts involving business activity.",
+      "review_status": "Reference",
+      "source_url": "https://www.ohchr.org/en/publications/reference-publications/guiding-principles-business-and-human-rights",
+      "last_reviewed": "2026-08-14",
+      "display_order": 10
+    },
+    {
+      "jurisdiction": "Global",
+      "region_code": "GLOBAL",
+      "framework_name": "Recommendation on the Ethics of Artificial Intelligence",
+      "authority": "UNESCO",
+      "framework_type": "Principles",
+      "scope_summary": "A global normative reference for human dignity, human rights, fairness, transparency, environmental responsibility, and accountable AI governance.",
+      "review_status": "Reference",
+      "source_url": "https://www.unesco.org/en/artificial-intelligence/recommendation-ethics",
+      "last_reviewed": "2026-08-14",
+      "display_order": 11
+    }
+  ]
+}

@@ -1,0 +1,57 @@
+[
+  {
+    "id": 1,
+    "client_name": "Arjun Radhakrishnan",
+    "client_role": "Founder, K Tech Solutions",
+    "expertise_id": 1,
+    "review_text": "CloudAlls completely transformed our legacy systems. Their architectural approach to our custom software platform was brilliant. The team in Kerala truly understands global enterprise standards and delivered a highly scalable product.",
+    "rating": 5,
+    "client_image": "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=256&auto=format&fit=crop",
+    "status": "Published",
+    "created_at": "2026-02-23 23:17:11"
+  },
+  {
+    "id": 2,
+    "client_name": "Priya Menon",
+    "client_role": "Operations Director, Nex Retail (Trivandrum)",
+    "expertise_id": 10,
+    "review_text": "We needed a robust Zero-Trust security network and an automated CCTV setup for our new commercial space. CloudAlls delivered a flawless, highly secure physical ecosystem. Absolute professionals from blueprint to installation.",
+    "rating": 5,
+    "client_image": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=256&auto=format&fit=crop",
+    "status": "Published",
+    "created_at": "2026-02-23 23:19:28"
+  },
+  {
+    "id": 3,
+    "client_name": "Rohan Gupta",
+    "client_role": "CTO, FinPul (Bangalore)",
+    "expertise_id": 2,
+    "review_text": "The cross-platform Flutter MVP they built for our fintech startup was deployed in record time. It looks stunning and performs natively on both iOS and Android. CloudAlls is easily the best engineering partner we've worked with.",
+    "rating": 5,
+    "client_image": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=256&auto=format&fit=crop",
+    "status": "Published",
+    "created_at": "2026-02-23 23:21:09"
+  },
+  {
+    "id": 4,
+    "client_name": "Ananya Sharma",
+    "client_role": "Marketing Head, Zenitha Ventures (Mumbai)",
+    "expertise_id": 7,
+    "review_text": "Bridging our digital UI/UX with high-end physical print materials was a challenge until we found CloudAlls. They handled our entire brand identity seamlessly, from pixel-perfect app wireframes to premium physical book bindings.",
+    "rating": 4,
+    "client_image": "https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=256&auto=format&fit=crop",
+    "status": "Published",
+    "created_at": "2026-02-23 23:22:17"
+  },
+  {
+    "id": 5,
+    "client_name": "Marcus Sterling",
+    "client_role": "CEO, Sterling Logistics (Texas, USA)",
+    "expertise_id": 5,
+    "review_text": "Finding a reliable R&D partner for custom IoT hardware and software integration is incredibly tough. Despite the time zone difference, CloudAlls managed our entire product development lifecycle with incredible precision and agile execution.",
+    "rating": 5,
+    "client_image": "https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=256&auto=format&fit=crop",
+    "status": "Published",
+    "created_at": "2026-02-23 23:23:29"
+  }
+]

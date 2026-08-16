@@ -1,0 +1,245 @@
+[
+  {
+    "id": 1,
+    "question": "What is the \"CloudAlls Ecosystem\" approach?",
+    "answer": "The Ecosystem approach means we don't just build isolated apps or websites. We architect interconnected digital environments where your custom software, physical hardware, cybersecurity, and marketing pipelines work together as a single, highly scalable organism.",
+    "expertise_id": null,
+    "display_order": 1,
+    "status": "Published",
+    "created_at": "2026-04-18 06:32:06"
+  },
+  {
+    "id": 2,
+    "question": "What is your standard project onboarding process?",
+    "answer": "Our onboarding begins with a comprehensive technical discovery session, followed by an architectural blueprinting phase. Once the technical specifications, timelines, and security matrices are approved by your team, we initiate agile development sprints.",
+    "expertise_id": null,
+    "display_order": 2,
+    "status": "Published",
+    "created_at": "2026-04-18 06:32:06"
+  },
+  {
+    "id": 3,
+    "question": "Do you provide post-deployment support and SLAs?",
+    "answer": "Yes, we offer tiered Service Level Agreements (SLAs) for all enterprise deployments. This includes 24/7 server monitoring, routine cybersecurity patches, and priority bug resolution through our dedicated support desk.",
+    "expertise_id": null,
+    "display_order": 3,
+    "status": "Published",
+    "created_at": "2026-04-18 06:32:06"
+  },
+  {
+    "id": 4,
+    "question": "What tech stack do you use for enterprise web applications?",
+    "answer": "We utilize a modern, highly scalable tech stack featuring PHP/Laravel or Node.js for robust backend processing, React or Vue.js for fluid frontend interfaces, and AWS/GCP for cloud-native deployment.",
+    "expertise_id": 1,
+    "display_order": 10,
+    "status": "Published",
+    "created_at": "2026-04-18 06:32:06"
+  },
+  {
+    "id": 5,
+    "question": "Can your software integrate with our existing legacy ERP systems?",
+    "answer": "Yes, our engineering team specializes in building custom API gateways and middleware that securely bridge the gap between modern cloud interfaces and legacy on-premise databases without risking data loss.",
+    "expertise_id": 1,
+    "display_order": 11,
+    "status": "Published",
+    "created_at": "2026-04-18 06:32:06"
+  },
+  {
+    "id": 6,
+    "question": "Why do you recommend Flutter for MVP mobile app development?",
+    "answer": "Flutter allows us to use a single codebase to compile natively for both iOS and Android. This drastically reduces development time and costs by up to 40% while maintaining fluid 60FPS performance, making it the perfect strategic choice for MVPs.",
+    "expertise_id": 2,
+    "display_order": 20,
+    "status": "Published",
+    "created_at": "2026-04-18 06:32:06"
+  },
+  {
+    "id": 7,
+    "question": "Will my mobile app work offline?",
+    "answer": "Depending on your project requirements, we can architect local-first data caching utilizing SQLite or Hive. This ensures core app functionalities remain accessible offline, automatically syncing to the cloud once connectivity is restored.",
+    "expertise_id": 2,
+    "display_order": 21,
+    "status": "Published",
+    "created_at": "2026-04-18 06:32:06"
+  },
+  {
+    "id": 8,
+    "question": "How secure is my data when integrating AI?",
+    "answer": "Security is our core priority. For sensitive enterprise projects, we implement Localized AI Models or Private RAG (Retrieval-Augmented Generation) architectures. Your proprietary data never leaves your secure server and is never used to train public AI models.",
+    "expertise_id": 3,
+    "display_order": 30,
+    "status": "Published",
+    "created_at": "2026-04-18 06:32:06"
+  },
+  {
+    "id": 9,
+    "question": "Can AI Agents automate our internal HR or Finance workflows?",
+    "answer": "Absolutely. We architect \"Agentic AI\" workflows that can autonomously process invoices, screen initial resumes, and route support tickets based on contextual understanding, drastically reducing manual operational overhead.",
+    "expertise_id": 3,
+    "display_order": 31,
+    "status": "Published",
+    "created_at": "2026-04-18 06:32:06"
+  },
+  {
+    "id": 10,
+    "question": "What does a Technical Feasibility Study involve?",
+    "answer": "Our feasibility studies assess the market viability, necessary technology stack, regulatory compliance, and estimated infrastructure costs of a proposed deep-tech product before you commit heavy capital to full-scale development.",
+    "expertise_id": 4,
+    "display_order": 40,
+    "status": "Published",
+    "created_at": "2026-04-18 06:32:06"
+  },
+  {
+    "id": 11,
+    "question": "Can you help us build a Proof of Concept (PoC) for investors?",
+    "answer": "Yes, our R&D division frequently partners with startups and venture capitalists to build rapid, functional PoCs and interactive wireframes designed specifically to validate ideas and secure seed funding.",
+    "expertise_id": 4,
+    "display_order": 41,
+    "status": "Published",
+    "created_at": "2026-04-18 06:32:06"
+  },
+  {
+    "id": 12,
+    "question": "What is your approach to the product development lifecycle?",
+    "answer": "We utilize Agile methodology. We break the product down into bi-weekly sprints, allowing us to deliver functional software or hardware increments regularly. This ensures continuous client feedback and rapid pivot capabilities.",
+    "expertise_id": 5,
+    "display_order": 50,
+    "status": "Published",
+    "created_at": "2026-04-18 06:32:06"
+  },
+  {
+    "id": 13,
+    "question": "Do you handle both software and hardware product development?",
+    "answer": "Yes. CloudAlls is uniquely positioned to handle end-to-end product development, managing both the digital software architecture and the physical hardware prototyping under one roof to ensure perfect integration.",
+    "expertise_id": 5,
+    "display_order": 51,
+    "status": "Published",
+    "created_at": "2026-04-18 06:32:06"
+  },
+  {
+    "id": 14,
+    "question": "Can you integrate custom hardware with existing mobile apps?",
+    "answer": "Absolutely. We specialize in bridging physical and digital worlds. Whether it's IoT sensors, biometric scanners, or custom controller boards, we can blueprint and build the firmware and APIs needed to connect them to your software ecosystem.",
+    "expertise_id": 6,
+    "display_order": 60,
+    "status": "Published",
+    "created_at": "2026-04-18 06:32:06"
+  },
+  {
+    "id": 15,
+    "question": "Do you provide custom workstations for high-end rendering or AI training?",
+    "answer": "Yes, we source, assemble, and optimize custom enterprise-grade PC builds and local server racks tailored specifically for heavy computational workloads like 3D rendering, video post-production, and local machine learning.",
+    "expertise_id": 6,
+    "display_order": 61,
+    "status": "Published",
+    "created_at": "2026-04-18 06:32:06"
+  },
+  {
+    "id": 16,
+    "question": "Does your UI/UX design process include user testing?",
+    "answer": "Yes, our UI/UX methodology relies heavily on interactive wireframing and A/B testing to ensure intuitive user flows before any actual code is written, saving significant development time down the line.",
+    "expertise_id": 7,
+    "display_order": 70,
+    "status": "Published",
+    "created_at": "2026-04-18 06:32:06"
+  },
+  {
+    "id": 17,
+    "question": "Can you handle bulk corporate printing and branding materials?",
+    "answer": "We manage the entire lifecycle from digital logo design to the physical delivery of high-quality corporate branding materials, including bound brochures, ID cards, custom notepads, and large-scale event flex banners.",
+    "expertise_id": 7,
+    "display_order": 71,
+    "status": "Published",
+    "created_at": "2026-04-18 06:32:06"
+  },
+  {
+    "id": 18,
+    "question": "Do you provide video production for corporate training or marketing?",
+    "answer": "Yes, our creative studio handles end-to-end media production. This includes scriptwriting, on-location corporate shoots, post-production editing, and integrating premium 3D motion graphics.",
+    "expertise_id": 8,
+    "display_order": 80,
+    "status": "Published",
+    "created_at": "2026-04-18 06:32:06"
+  },
+  {
+    "id": 19,
+    "question": "What are the deliverables for a standard product photography shoot?",
+    "answer": "You will receive high-resolution, color-graded raw files alongside web-optimized, compressed formats ready for immediate deployment on your e-commerce platform, digital catalog, or social media channels.",
+    "expertise_id": 8,
+    "display_order": 81,
+    "status": "Published",
+    "created_at": "2026-04-18 06:32:06"
+  },
+  {
+    "id": 20,
+    "question": "How do you measure the ROI of your digital marketing campaigns?",
+    "answer": "We implement closed-loop analytics. By connecting Google Ads, Meta Pixels, and your custom CRM, we track a user from their first ad click all the way to the final signed invoice, providing 100% transparent ROI metrics.",
+    "expertise_id": 9,
+    "display_order": 90,
+    "status": "Published",
+    "created_at": "2026-04-18 06:32:06"
+  },
+  {
+    "id": 21,
+    "question": "Do you handle SEO as part of the initial web development?",
+    "answer": "Yes, technical SEO (site speed, schema markup, mobile-first optimization) is baked into our web architecture from day one. We also offer ongoing content-driven SEO retainers to ensure long-term organic growth.",
+    "expertise_id": 9,
+    "display_order": 91,
+    "status": "Published",
+    "created_at": "2026-04-18 06:32:06"
+  },
+  {
+    "id": 22,
+    "question": "What is Zero-Trust Architecture in the context of office automation?",
+    "answer": "Zero-Trust means assuming your network is always at risk. We micro-segment your smart office devices (like IoT lighting and CCTV) away from your core financial and operational servers to prevent lateral cyber-attacks.",
+    "expertise_id": 10,
+    "display_order": 100,
+    "status": "Published",
+    "created_at": "2026-04-18 06:32:06"
+  },
+  {
+    "id": 23,
+    "question": "Can we monitor our CCTV and access control from a single dashboard?",
+    "answer": "Yes, we unify your IP-CCTV streams, environmental sensors, and biometric access logs into a single, encrypted digital portal accessible via mobile or desktop for total situational awareness.",
+    "expertise_id": 10,
+    "display_order": 101,
+    "status": "Published",
+    "created_at": "2026-04-18 06:32:06"
+  },
+  {
+    "id": 24,
+    "question": "Do you handle tech summit and corporate event coordination?",
+    "answer": "We provide end-to-end event operations, from developing digital ticketing gateways and RSVP CRMs to handling physical venue logistics, A/V setups, and live-streaming infrastructure.",
+    "expertise_id": 11,
+    "display_order": 110,
+    "status": "Published",
+    "created_at": "2026-04-18 06:32:06"
+  },
+  {
+    "id": 25,
+    "question": "What does your business management consulting involve?",
+    "answer": "We deploy experienced fractional operations managers to analyze your internal bottlenecks, implement lean agile workflows, and train your staff on adopting new enterprise software systems.",
+    "expertise_id": 11,
+    "display_order": 111,
+    "status": "Published",
+    "created_at": "2026-04-18 06:32:06"
+  },
+  {
+    "id": 26,
+    "question": "Are your academy programs suitable for corporate team upskilling?",
+    "answer": "Yes, we offer tailored corporate masterclasses designed to upskill your existing workforce in modern development frameworks, cloud infrastructure management, and AI workflow integration.",
+    "expertise_id": 12,
+    "display_order": 120,
+    "status": "Published",
+    "created_at": "2026-04-18 06:32:06"
+  },
+  {
+    "id": 27,
+    "question": "Do you hire directly from your internship programs?",
+    "answer": "We view our Academy and intensive internship programs as our primary recruitment pipeline. Top-performing interns are frequently offered full-time engineering or design roles within the CloudAlls Ecosystem.",
+    "expertise_id": 12,
+    "display_order": 121,
+    "status": "Published",
+    "created_at": "2026-04-18 06:32:06"
+  }
+]
