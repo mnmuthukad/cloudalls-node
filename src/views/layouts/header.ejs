@@ -6,6 +6,7 @@
   <title><%= pageTitle %></title>
   <meta name="description" content="<%= pageDescription %>">
   <meta name="keywords" content="<%= pageKeywords %>">
+  <meta name="robots" content="<%= canonicalUrl.includes('z.cloudalls.com') ? 'noindex, nofollow, noarchive' : 'index, follow, max-image-preview:large' %>">
   <link rel="canonical" href="<%= canonicalUrl %>">
   <% if (settings.gsc_verification) { %><meta name="google-site-verification" content="<%= settings.gsc_verification %>"><% } %>
   <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
@@ -13,11 +14,16 @@
   <link rel="manifest" href="/manifest.json">
   <meta name="theme-color" content="#071426">
   <meta property="og:type" content="website">
+  <meta property="og:site_name" content="CloudAlls">
+  <meta property="og:locale" content="en_IN">
   <meta property="og:url" content="<%= canonicalUrl %>">
   <meta property="og:title" content="<%= pageTitle %>">
   <meta property="og:description" content="<%= pageDescription %>">
   <meta property="og:image" content="<%= pageImage %>">
   <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="<%= pageTitle %>">
+  <meta name="twitter:description" content="<%= pageDescription %>">
+  <meta name="twitter:image" content="<%= pageImage %>">
   <link rel="preload" href="/assets/fonts/inter-v20-latin-regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
   <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
   <link rel="stylesheet" href="/assets/css/style.css?v=direct-links-academy-20260816">
