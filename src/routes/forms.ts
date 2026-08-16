@@ -150,9 +150,9 @@ formsRouter.get("/careers", async (_req, res, next) => {
   } catch (error) { next(error); }
 });
 
-formsRouter.get("/careers_details", async (req, res, next) => {
+formsRouter.get("/careers/:id", async (req, res, next) => {
   try {
-    const jobId = Number(req.query.id);
+    const jobId = Number(req.params.id);
     const careers = await getActiveCareers();
     const job = careers.find(item => item.id === jobId);
     if (!job) {
@@ -160,31 +160,46 @@ formsRouter.get("/careers_details", async (req, res, next) => {
       return;
     }
     res.render("pages/career-detail", {
-      ...buildLayoutData({ currentPage: "careers", pageTitle: `${job.title} | Careers at CloudAlls`, pageDescription: job.description ? job.description.replace(/<[^>]*>/g, "").slice(0, 155) : "Join CloudAlls.", canonicalUrl: `/careers_details?id=${job.id}` }),
+      ...buildLayoutData({ currentPage: "careers", pageTitle: `${job.title} | Careers at CloudAlls`, pageDescription: job.description ? job.description.replace(/<[^>]*>/g, "").slice(0, 155) : "Join CloudAlls.", canonicalUrl: `/careers/${job.id}` }),
       job,
       formStatus: typeof req.query.status === "string" ? req.query.status : "",
     });
   } catch (error) { next(error); }
 });
 
-formsRouter.post("/careers_details", formLimiter, async (req, res) => {
+formsRouter.get("/careers_details", (req, res) => {
   const jobId = Number(req.query.id);
+  if (!Number.isFinite(jobId)) {
+    res.redirect(301, "/careers");
+    return;
+  }
+  const status = typeof req.query.status === "string" ? `?status=${encodeURIComponent(req.query.status)}` : "";
+  res.redirect(301, `/careers/${jobId}${status}`);
+});
+
+formsRouter.post("/careers_details", (req, res) => {
+  const jobId = Number(req.query.id);
+  res.redirect(307, Number.isFinite(jobId) ? `/careers/${jobId}` : "/careers");
+});
+
+formsRouter.post("/careers/:id", formLimiter, async (req, res) => {
+  const jobId = Number(req.params.id);
   const careers = await getActiveCareers();
   const job = careers.find(item => item.id === jobId);
   const parsed = jobSchema.safeParse(req.body);
   const roleExpired = Boolean(job?.end_date && String(job.end_date).slice(0, 10) < new Date().toISOString().slice(0, 10));
   if (!job || roleExpired || !parsed.success) {
     const status = roleExpired ? "closed" : "error";
-    res.redirect(`/careers_details?id=${Number.isFinite(jobId) ? jobId : 0}&status=${status}`);
+    res.redirect(`/careers/${Number.isFinite(jobId) ? jobId : 0}?status=${status}`);
     return;
   }
   if (isBot(parsed.data.bot_trap)) {
     rotateCsrf(req);
-    res.redirect(`/careers_details?id=${job.id}&status=success`);
+    res.redirect(`/careers/${job.id}?status=success`);
     return;
   }
   if (!(await passesVerification(req, parsed.data.recaptcha_token, "job_application"))) {
-    res.redirect(`/careers_details?id=${job.id}&status=error&msg=verification`);
+    res.redirect(`/careers/${job.id}?status=error&msg=verification`);
     return;
   }
   try {
@@ -192,10 +207,10 @@ formsRouter.post("/careers_details", formLimiter, async (req, res) => {
     await insertJobApplication(input);
     void notifySubmission("job_application", input);
     rotateCsrf(req);
-    res.redirect(`/careers_details?id=${job.id}&status=success`);
+    res.redirect(`/careers/${job.id}?status=success`);
   } catch (error) {
     console.error("CAREER_FORM_ERROR", error);
-    res.redirect(`/careers_details?id=${job.id}&status=error`);
+    res.redirect(`/careers/${job.id}?status=error`);
   }
 });
 

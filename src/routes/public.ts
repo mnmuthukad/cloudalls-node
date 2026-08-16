@@ -76,19 +76,24 @@ publicRouter.get("/expertise", async (_req, res, next) => {
   } catch (error) { next(error); }
 });
 
-publicRouter.get("/expertise_details", async (req, res, next) => {
+publicRouter.get("/expertise/:slug", async (req, res, next) => {
   try {
-    const slug = typeof req.query.slug === "string" ? req.query.slug : "";
+    const slug = req.params.slug;
     const expertise = await getExpertiseBySlug(slug);
     if (!expertise) {
-      res.status(404).render("errors/404", buildLayoutData({ pageTitle: "Expertise not found", canonicalUrl: "/expertise_details" }));
+      res.status(404).render("errors/404", buildLayoutData({ pageTitle: "Expertise not found", canonicalUrl: "/expertise" }));
       return;
     }
     res.render("pages/expertise-detail", {
-      ...buildLayoutData({ currentPage: "expertise", pageTitle: `${expertise.title} | CloudAlls Expertise`, pageDescription: expertise.short_description || "CloudAlls expertise.", canonicalUrl: `/expertise_details?slug=${encodeURIComponent(expertise.slug)}` }),
+      ...buildLayoutData({ currentPage: "expertise", pageTitle: `${expertise.title} | CloudAlls Expertise`, pageDescription: expertise.short_description || "CloudAlls expertise.", canonicalUrl: `/expertise/${encodeURIComponent(expertise.slug)}` }),
       expertise,
     });
   } catch (error) { next(error); }
+});
+
+publicRouter.get("/expertise_details", (req, res) => {
+  const slug = typeof req.query.slug === "string" ? req.query.slug : "";
+  res.redirect(301, slug ? `/expertise/${encodeURIComponent(slug)}` : "/expertise");
 });
 
 publicRouter.get("/insights", async (_req, res, next) => {
@@ -98,17 +103,22 @@ publicRouter.get("/insights", async (_req, res, next) => {
   } catch (error) { next(error); }
 });
 
-publicRouter.get("/insight_details", async (req, res, next) => {
+publicRouter.get("/insights/:slug", async (req, res, next) => {
   try {
-    const slug = typeof req.query.slug === "string" ? req.query.slug : "";
+    const slug = req.params.slug;
     const insights = await getPublishedInsights();
     const insight = insights.find(item => item.slug === slug);
     if (!insight) {
-      res.status(404).render("errors/404", buildLayoutData({ pageTitle: "Insight not found", canonicalUrl: "/insight_details" }));
+      res.status(404).render("errors/404", buildLayoutData({ pageTitle: "Insight not found", canonicalUrl: "/insights" }));
       return;
     }
-    res.render("pages/insight-detail", { ...buildLayoutData({ currentPage: "insights", pageTitle: insight.meta_title || `${insight.title} | CloudAlls`, pageDescription: insight.meta_description || insight.excerpt || "CloudAlls insight.", pageKeywords: insight.meta_keywords || "CloudAlls insights", canonicalUrl: `/insight_details?slug=${encodeURIComponent(insight.slug)}`, pageImage: insight.image_url || undefined }), insight });
+    res.render("pages/insight-detail", { ...buildLayoutData({ currentPage: "insights", pageTitle: insight.meta_title || `${insight.title} | CloudAlls`, pageDescription: insight.meta_description || insight.excerpt || "CloudAlls insight.", pageKeywords: insight.meta_keywords || "CloudAlls insights", canonicalUrl: `/insights/${encodeURIComponent(insight.slug)}`, pageImage: insight.image_url || undefined }), insight });
   } catch (error) { next(error); }
+});
+
+publicRouter.get("/insight_details", (req, res) => {
+  const slug = typeof req.query.slug === "string" ? req.query.slug : "";
+  res.redirect(301, slug ? `/insights/${encodeURIComponent(slug)}` : "/insights");
 });
 
 publicRouter.get("/portfolio", async (_req, res, next) => {
@@ -118,17 +128,22 @@ publicRouter.get("/portfolio", async (_req, res, next) => {
   } catch (error) { next(error); }
 });
 
-publicRouter.get("/portfolio_details", async (req, res, next) => {
+publicRouter.get("/portfolio/:slug", async (req, res, next) => {
   try {
-    const slug = typeof req.query.slug === "string" ? req.query.slug : "";
+    const slug = req.params.slug;
     const portfolios = await getPublishedPortfolios();
     const portfolio = portfolios.find(item => item.slug === slug);
     if (!portfolio) {
-      res.status(404).render("errors/404", buildLayoutData({ pageTitle: "Case study not found", canonicalUrl: "/portfolio_details" }));
+      res.status(404).render("errors/404", buildLayoutData({ pageTitle: "Case study not found", canonicalUrl: "/portfolio" }));
       return;
     }
-    res.render("pages/portfolio-detail", { ...buildLayoutData({ currentPage: "portfolio", pageTitle: `${portfolio.title} | CloudAlls Case Study`, pageDescription: portfolio.short_desc || "CloudAlls case study.", canonicalUrl: `/portfolio_details?slug=${encodeURIComponent(portfolio.slug)}`, pageImage: portfolio.image_url || undefined }), portfolio });
+    res.render("pages/portfolio-detail", { ...buildLayoutData({ currentPage: "portfolio", pageTitle: `${portfolio.title} | CloudAlls Case Study`, pageDescription: portfolio.short_desc || "CloudAlls case study.", canonicalUrl: `/portfolio/${encodeURIComponent(portfolio.slug)}`, pageImage: portfolio.image_url || undefined }), portfolio });
   } catch (error) { next(error); }
+});
+
+publicRouter.get("/portfolio_details", (req, res) => {
+  const slug = typeof req.query.slug === "string" ? req.query.slug : "";
+  res.redirect(301, slug ? `/portfolio/${encodeURIComponent(slug)}` : "/portfolio");
 });
 
 publicRouter.get("/faq", async (_req, res, next) => {
@@ -193,10 +208,10 @@ publicRouter.get("/sitemap.xml", async (_req, res, next) => {
     const add = (path: string, lastmod?: string | null) => entries.set(path, lastmod ? String(lastmod).slice(0, 10) : undefined);
 
     ["/", ...Object.keys(pages).map(slug => `/${slug}`), "/insights", "/portfolio", "/contact", "/careers", "/partnership", "/testimonials", "/legal", "/terms", "/privacy", "/security", "/aup", "/ethics", "/accessibility", "/data-requests"].forEach(path => add(path));
-    expertise.forEach(item => add(`/expertise_details?slug=${encodeURIComponent(item.slug)}`));
-    insights.forEach(item => add(`/insight_details?slug=${encodeURIComponent(item.slug)}`, item.created_at));
-    portfolios.forEach(item => add(`/portfolio_details?slug=${encodeURIComponent(item.slug)}`));
-    careers.filter(item => !item.end_date || String(item.end_date).slice(0, 10) >= today).forEach(item => add(`/careers_details?id=${encodeURIComponent(String(item.id))}`, item.start_date));
+    expertise.forEach(item => add(`/expertise/${encodeURIComponent(item.slug)}`));
+    insights.forEach(item => add(`/insights/${encodeURIComponent(item.slug)}`, item.created_at));
+    portfolios.forEach(item => add(`/portfolio/${encodeURIComponent(item.slug)}`));
+    careers.filter(item => !item.end_date || String(item.end_date).slice(0, 10) >= today).forEach(item => add(`/careers/${encodeURIComponent(String(item.id))}`, item.start_date));
 
     const escapeXml = (value: string) => value.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/\"/g, "&quot;").replace(/'/g, "&apos;");
     const base = env.APP_URL.replace(/\/$/, "");
