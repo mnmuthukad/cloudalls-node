@@ -1,4 +1,76 @@
 <%- include('../layouts/header', { pageTitle, pageDescription, pageKeywords, canonicalUrl, pageImage, settings, currentPage, socialLinks, schemaPhone }) %>
-<section class="container-fluid bg-dark text-white py-5" style="background:radial-gradient(circle at 80% 20%,rgba(37,99,235,.35),transparent 38%),#0f172a;"><div class="container py-5"><p class="text-uppercase fw-bold text-info small ls-1 mb-3">Brand system</p><h1 class="display-3 fw-black ls-tight mb-4">A connected ecosystem of distinct capabilities.</h1><p class="lead text-white-50 mb-0" style="max-width:760px;">The CloudAlls divisions bring software, intelligence, infrastructure, creative systems, growth, operations, learning, and research into one coherent operating model.</p></div></section>
-<section class="container py-5"><div class="row g-4"><% divisions.forEach((division, index) => { %><article class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="<%= index * 45 %>"><div class="h-100 p-4 rounded-4 border bg-white shadow-sm"><span class="text-primary fw-bold small"><%= String(index + 1).padStart(2, '0') %></span><h2 class="h4 fw-bold mt-3 mb-2"><%= division.name %></h2><p class="text-secondary mb-0"><%= division.tagline %></p></div></article><% }); %></div><div class="mt-5 p-5 rounded-4 bg-light border text-center"><h2 class="h3 fw-bold">Need the whole system?</h2><p class="text-secondary mb-4">Start with one clear conversation and let the right CloudAlls capabilities connect around it.</p><a class="btn btn-primary btn-lg rounded-pill px-4" href="/contact">Start a conversation</a></div></section>
+
+<section class="container-fluid bg-dark text-white py-5" style="background:radial-gradient(circle at 82% 18%,rgba(37,99,235,.42),transparent 36%),radial-gradient(circle at 12% 80%,rgba(124,58,237,.25),transparent 32%),#0f172a;">
+  <div class="container py-lg-5">
+    <div class="row align-items-end g-5">
+      <div class="col-lg-8">
+        <p class="text-uppercase fw-bold text-info small ls-1 mb-3">Brand system &amp; media kit</p>
+        <h1 class="display-3 fw-black ls-tight mb-4">Make CloudAlls recognizable at a glance.</h1>
+        <p class="lead text-white-50 mb-0" style="max-width:780px;">Use the CloudAlls identity to communicate a connected ecosystem of engineering, intelligence, infrastructure, creative systems, growth, operations, learning, and research.</p>
+      </div>
+      <div class="col-lg-4 text-lg-end">
+        <a class="btn btn-light btn-lg rounded-pill px-4 me-2 mb-2" href="#download">Download assets</a>
+        <a class="btn btn-outline-light btn-lg rounded-pill px-4 mb-2" href="/contact">Media enquiry</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="container py-5" id="download">
+  <div class="row align-items-end g-4 mb-4">
+    <div class="col-lg-8">
+      <p class="section-kicker mb-3">Official downloads</p>
+      <h2 class="display-6 fw-bold mb-3">One identity, ready for every surface.</h2>
+      <p class="text-secondary lead mb-0">Choose the lockup that matches the background and available space. Use the original SVG files whenever possible so the mark remains sharp at every size.</p>
+    </div>
+    <div class="col-lg-4 text-lg-end"><span class="badge rounded-pill text-bg-light border px-3 py-2">SVG · transparent · scalable</span></div>
+  </div>
+  <div class="row g-4">
+    <div class="col-lg-6">
+      <article class="brand-asset-card h-100 border rounded-4 overflow-hidden shadow-sm">
+        <div class="brand-asset-preview bg-white d-flex align-items-center justify-content-center p-5"><img src="/assets/brand/cloudalls-logo.svg" alt="CloudAlls primary logo" class="img-fluid" style="max-width:300px;width:100%;height:auto;"></div>
+        <div class="p-4"><div class="d-flex justify-content-between align-items-start gap-3"><div><p class="text-uppercase small fw-bold text-primary mb-2">Primary lockup</p><h3 class="h4 fw-bold mb-2">CloudAlls logo</h3><p class="text-secondary mb-0">For websites, documents, presentations, and light backgrounds.</p></div><a class="btn btn-primary rounded-pill flex-shrink-0" href="/assets/brand/cloudalls-logo.svg" download="cloudalls-logo.svg" aria-label="Download the CloudAlls primary logo">Download</a></div></div>
+      </article>
+    </div>
+    <div class="col-lg-6">
+      <article class="brand-asset-card h-100 border rounded-4 overflow-hidden shadow-sm">
+        <div class="brand-asset-preview bg-dark d-flex align-items-center justify-content-center p-5"><img src="/assets/brand/cloudalls-logo-white.svg" alt="CloudAlls light logo" class="img-fluid" style="max-width:300px;width:100%;height:auto;"></div>
+        <div class="p-4"><div class="d-flex justify-content-between align-items-start gap-3"><div><p class="text-uppercase small fw-bold text-primary mb-2">Light lockup</p><h3 class="h4 fw-bold mb-2">Dark-background logo</h3><p class="text-secondary mb-0">For dark hero sections, video frames, events, and high-contrast layouts.</p></div><a class="btn btn-dark rounded-pill flex-shrink-0" href="/assets/brand/cloudalls-logo-white.svg" download="cloudalls-logo-white.svg" aria-label="Download the CloudAlls light logo">Download</a></div></div>
+      </article>
+    </div>
+    <div class="col-lg-4">
+      <article class="brand-asset-card h-100 border rounded-4 overflow-hidden shadow-sm">
+        <div class="brand-asset-preview bg-light d-flex align-items-center justify-content-center p-4" style="min-height:180px;"><img src="/assets/brand/cloudalls-mark.svg" alt="CloudAlls circular mark" width="96" height="96"></div>
+        <div class="p-4"><p class="text-uppercase small fw-bold text-primary mb-2">Compact mark</p><h3 class="h4 fw-bold mb-2">Circular symbol</h3><p class="text-secondary mb-3">For favicons, avatars, app icons, and small square placements.</p><a class="btn btn-outline-dark rounded-pill" href="/assets/brand/cloudalls-mark.svg" download="cloudalls-mark.svg">Download mark</a></div>
+      </article>
+    </div>
+    <div class="col-lg-8">
+      <article class="h-100 rounded-4 p-4 p-lg-5 bg-light border">
+        <p class="section-kicker mb-3">Current identity</p>
+        <div class="bg-white rounded-4 border p-4 p-lg-5 mb-4 d-flex align-items-center justify-content-center" style="min-height:180px;"><%- settings.logo_code %></div>
+        <div class="row g-3 small text-secondary"><div class="col-sm-4"><strong class="d-block text-dark">Primary blue</strong>#2563EB</div><div class="col-sm-4"><strong class="d-block text-dark">Sky accent</strong>#0EA5E9</div><div class="col-sm-4"><strong class="d-block text-dark">Violet accent</strong>#7C3AED</div></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="editorial-section bg-light border-top border-bottom">
+  <div class="container">
+    <div class="row align-items-end g-4 mb-5"><div class="col-lg-8"><p class="section-kicker mb-3">Usage principles</p><h2 class="display-6 fw-bold mb-3">Protect the clarity of the system.</h2><p class="text-secondary lead mb-0">The identity works because it is simple, open, and connected. Keep the logo legible and let the surrounding design create the energy.</p></div></div>
+    <div class="row g-4">
+      <div class="col-md-6 col-lg-3"><div class="enterprise-card h-100"><span class="home-proof-index">01</span><h3 class="h5 fw-bold mt-3">Keep clear space</h3><p class="text-secondary mb-0">Leave breathing room around the lockup. Do not place text, borders, or busy imagery against the mark.</p></div></div>
+      <div class="col-md-6 col-lg-3"><div class="enterprise-card h-100"><span class="home-proof-index">02</span><h3 class="h5 fw-bold mt-3">Use contrast</h3><p class="text-secondary mb-0">Use the primary lockup on light surfaces and the light lockup on dark surfaces.</p></div></div>
+      <div class="col-md-6 col-lg-3"><div class="enterprise-card h-100"><span class="home-proof-index">03</span><h3 class="h5 fw-bold mt-3">Respect proportions</h3><p class="text-secondary mb-0">Scale the full logo uniformly. Never stretch, rotate, crop, recolour, or rebuild the circles.</p></div></div>
+      <div class="col-md-6 col-lg-3"><div class="enterprise-card h-100"><span class="home-proof-index">04</span><h3 class="h5 fw-bold mt-3">Choose the right lockup</h3><p class="text-secondary mb-0">Use the circular mark only where the available space cannot support the complete CloudAlls wordmark.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="container py-5">
+  <div class="row align-items-end g-4 mb-5"><div class="col-lg-8"><p class="section-kicker mb-3">The ecosystem</p><h2 class="display-6 fw-bold mb-3">Distinct capabilities. One connected standard.</h2><p class="text-secondary lead mb-0">Every division has a clear role, but the value comes from how the capabilities connect around the problem.</p></div><div class="col-lg-4 text-lg-end"><a class="btn btn-outline-dark rounded-pill px-4" href="/expertise">Explore expertise <i class="fa-solid fa-arrow-right ms-2" aria-hidden="true"></i></a></div></div>
+  <div class="row g-4"><% divisions.forEach((division, index) => { %><article class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="<%= index * 45 %>"><div class="h-100 p-4 rounded-4 border bg-white shadow-sm"><span class="text-primary fw-bold small"><%= String(index + 1).padStart(2, '0') %></span><h3 class="h4 fw-bold mt-3 mb-2"><%= division.name %></h3><p class="text-secondary mb-0"><%= division.tagline %></p></div></article><% }); %></div>
+</section>
+
+<section class="container pb-5"><div class="rounded-4 p-5 text-center text-white" style="background:linear-gradient(135deg,#0f172a,#1d4ed8);"><p class="text-uppercase fw-bold text-info small ls-1 mb-3">Press, partnerships, and approved use</p><h2 class="display-6 fw-bold mb-3">Need a specific format or usage review?</h2><p class="lead text-white-50 mb-4 mx-auto" style="max-width:680px;">Tell us how you plan to use the CloudAlls identity and our team can share the right asset, context, or approval path.</p><a class="btn btn-light btn-lg rounded-pill px-4" href="/contact">Contact CloudAlls <i class="fa-solid fa-arrow-right ms-2" aria-hidden="true"></i></a></div></section>
+
 <%- include('../layouts/footer', { settings, footerMenus, waLink }) %>
