@@ -234,6 +234,9 @@ html { scroll-behavior: smooth; }
 .sub-brand-marquee::after { right: 0; background: linear-gradient(to left, #ffffff, transparent); }
 .sub-brand-track { display: inline-flex; animation: scrollSubBrands 40s linear infinite; }
 .sub-brand-item { width: 250px; flex-shrink: 0; }
+.brand-pill { min-height: 2.75rem; color: #475569 !important; background: #ffffff !important; }
+.brand-pill > span { color: #475569 !important; opacity: 1 !important; }
+.brand-pill:hover { border-color: #93c5fd !important; box-shadow: 0 8px 20px rgba(15, 23, 42, .08) !important; }
 @keyframes scrollSubBrands { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
 /* Forbidden Usage Boxes */
