@@ -4,7 +4,11 @@ import { z } from "zod";
 import { buildLayoutData } from "../services/layout.service.js";
 import { getActiveCareers, getActiveExpertise } from "../services/content.service.js";
 import { insertContactInquiry, insertDsrRequest, insertJobApplication, insertPartnershipApplication } from "../services/response.service.js";
-import { formLimiter } from "../middleware/security.js";
+import { notifySubmission } from "../services/notification.service.js";
+import { formLimiter, verifyRecaptcha } from "../middleware/security.js";
+
+const botTrap = z.string().max(0).optional().default("");
+const recaptchaToken = z.string().max(4096).optional().default("");
 
 const contactSchema = z.object({
   name: z.string().trim().min(1).max(150),
@@ -12,6 +16,9 @@ const contactSchema = z.object({
   email: z.string().trim().email().max(320),
   service: z.string().trim().min(1).max(150),
   message: z.string().trim().min(1).max(5000),
+  legal_consent: z.literal("on"),
+  bot_trap: botTrap,
+  recaptcha_token: recaptchaToken,
 });
 
 const partnershipSchema = z.object({
@@ -20,6 +27,8 @@ const partnershipSchema = z.object({
   email: z.string().trim().email().max(320),
   partner_tier: z.enum(["Standard Partner", "Pro Partner", "Academic Partner"]),
   proposal: z.string().trim().min(1).max(10000),
+  bot_trap: botTrap,
+  recaptcha_token: recaptchaToken,
 });
 
 const jobSchema = z.object({
@@ -29,6 +38,8 @@ const jobSchema = z.object({
   phone: z.string().trim().min(6).max(30),
   portfolio_url: z.string().trim().url().max(500),
   cover_letter: z.string().trim().min(1).max(10000),
+  bot_trap: botTrap,
+  recaptcha_token: recaptchaToken,
 });
 
 const dsrSchema = z.object({
@@ -36,10 +47,22 @@ const dsrSchema = z.object({
   requester_email: z.string().trim().email().max(320),
   request_type: z.enum(["Access", "Modification", "Deletion", "Portability", "Objection", "Other"]),
   specific_details: z.string().trim().min(1).max(10000),
+  legal_consent: z.literal("on"),
+  bot_trap: botTrap,
+  recaptcha_token: recaptchaToken,
 });
 
 function rotateCsrf(req: Request): void {
   req.session.csrfToken = crypto.randomBytes(32).toString("hex");
+}
+
+async function passesVerification(req: Request, token: string, action: string): Promise<boolean> {
+  const result = await verifyRecaptcha(req, token, action);
+  return result.valid;
+}
+
+function isBot(trapValue: string): boolean {
+  return Boolean(trapValue.trim());
 }
 
 export const formsRouter = Router();
@@ -62,8 +85,19 @@ formsRouter.post("/contact", formLimiter, async (req, res) => {
     res.redirect("/contact?status=error&msg=invalid");
     return;
   }
+  if (isBot(parsed.data.bot_trap)) {
+    rotateCsrf(req);
+    res.redirect("/contact?status=success");
+    return;
+  }
+  if (!(await passesVerification(req, parsed.data.recaptcha_token, "contact"))) {
+    res.redirect("/contact?status=error&msg=verification");
+    return;
+  }
   try {
-    await insertContactInquiry(parsed.data);
+    const input = { name: parsed.data.name, email: parsed.data.email, whatsapp: parsed.data.whatsapp, service: parsed.data.service, message: parsed.data.message };
+    await insertContactInquiry(input);
+    void notifySubmission("contact", input);
     rotateCsrf(req);
     res.redirect("/contact?status=success");
   } catch (error) {
@@ -85,8 +119,19 @@ formsRouter.post("/process-partnership", formLimiter, async (req, res) => {
     res.redirect("/partnership?status=error&msg=invalid#apply");
     return;
   }
+  if (isBot(parsed.data.bot_trap)) {
+    rotateCsrf(req);
+    res.redirect("/partnership?status=success#apply");
+    return;
+  }
+  if (!(await passesVerification(req, parsed.data.recaptcha_token, "partnership"))) {
+    res.redirect("/partnership?status=error&msg=verification#apply");
+    return;
+  }
   try {
-    await insertPartnershipApplication({ company: parsed.data.company_name, website: parsed.data.website, tier: parsed.data.partner_tier, email: parsed.data.email, proposal: parsed.data.proposal });
+    const input = { company: parsed.data.company_name, website: parsed.data.website, tier: parsed.data.partner_tier, email: parsed.data.email, proposal: parsed.data.proposal };
+    await insertPartnershipApplication(input);
+    void notifySubmission("partnership", input);
     rotateCsrf(req);
     res.redirect("/partnership?status=success#apply");
   } catch (error) {
@@ -133,8 +178,19 @@ formsRouter.post("/careers_details", formLimiter, async (req, res) => {
     res.redirect(`/careers_details?id=${Number.isFinite(jobId) ? jobId : 0}&status=${status}`);
     return;
   }
+  if (isBot(parsed.data.bot_trap)) {
+    rotateCsrf(req);
+    res.redirect(`/careers_details?id=${job.id}&status=success`);
+    return;
+  }
+  if (!(await passesVerification(req, parsed.data.recaptcha_token, "job_application"))) {
+    res.redirect(`/careers_details?id=${job.id}&status=error&msg=verification`);
+    return;
+  }
   try {
-    await insertJobApplication({ jobId: job.id, jobTitle: job.title, firstName: parsed.data.first_name, lastName: parsed.data.last_name, email: parsed.data.email, phone: parsed.data.phone, portfolioUrl: parsed.data.portfolio_url, coverLetter: parsed.data.cover_letter });
+    const input = { jobId: job.id, jobTitle: job.title, firstName: parsed.data.first_name, lastName: parsed.data.last_name, email: parsed.data.email, phone: parsed.data.phone, portfolioUrl: parsed.data.portfolio_url, coverLetter: parsed.data.cover_letter };
+    await insertJobApplication(input);
+    void notifySubmission("job_application", input);
     rotateCsrf(req);
     res.redirect(`/careers_details?id=${job.id}&status=success`);
   } catch (error) {
@@ -156,14 +212,25 @@ formsRouter.post("/data-requests", formLimiter, async (req, res) => {
     res.redirect("/data-requests?status=error");
     return;
   }
+  if (isBot(parsed.data.bot_trap)) {
+    rotateCsrf(req);
+    res.redirect("/data-requests?status=success");
+    return;
+  }
+  if (!(await passesVerification(req, parsed.data.recaptcha_token, "dsr"))) {
+    res.redirect("/data-requests?status=error&msg=verification");
+    return;
+  }
   try {
-    await insertDsrRequest({
+    const input = {
       requesterName: parsed.data.requester_name,
       requesterEmail: parsed.data.requester_email,
       requestType: parsed.data.request_type,
       specificDetails: parsed.data.specific_details,
       requestIp: req.ip || "unknown",
-    });
+    };
+    await insertDsrRequest(input);
+    void notifySubmission("dsr", input);
     rotateCsrf(req);
     res.redirect("/data-requests?status=success");
   } catch (error) {

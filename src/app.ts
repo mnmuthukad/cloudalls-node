@@ -21,7 +21,7 @@ export function createApp() {
   const viewsDir = path.join(__dirname, "views");
 
   app.disable("x-powered-by");
-  app.set("trust proxy", 1);
+  app.set("trust proxy", env.TRUST_PROXY_HOPS);
   app.set("view engine", "ejs");
   app.set("views", viewsDir);
 
@@ -35,7 +35,12 @@ export function createApp() {
     if (env.APP_URL.includes("z.cloudalls.com")) res.setHeader("X-Robots-Tag", "noindex, nofollow, noarchive");
     next();
   });
-  app.use(compression());
+  app.use(compression({ threshold: 1024, level: 6 }));
+  app.use((req, res, next) => {
+    req.setTimeout(15000);
+    res.setTimeout(15000);
+    next();
+  });
   app.use(morgan(env.NODE_ENV === "production" ? "combined" : "dev"));
   app.use(express.urlencoded({ extended: true, limit: "2mb" }));
   app.use(express.json({ limit: "2mb" }));
@@ -64,7 +69,7 @@ export function createApp() {
     },
   }));
 
-  app.get("/healthz", async (_req, res) => {
+  app.get("/healthz", async (req, res) => {
     const probe = async (pool: ReturnType<typeof getPublicDb>) => {
       if (!pool) return { configured: false, reachable: false };
       try {
@@ -75,7 +80,13 @@ export function createApp() {
       }
     };
     const [publicDatabase, responsesDatabase] = await Promise.all([probe(getPublicDb()), probe(getResponsesDb())]);
-    res.status(200).json({ ok: true, service: "cloudalls-node", database: { public: publicDatabase, responses: responsesDatabase } });
+    const ready = (!publicDatabase.configured || publicDatabase.reachable) && (!responsesDatabase.configured || responsesDatabase.reachable);
+    const suppliedToken = req.get("x-health-token") || "";
+    const tokenMatches = Boolean(env.HEALTH_DETAILS_TOKEN && suppliedToken && suppliedToken.length === env.HEALTH_DETAILS_TOKEN.length && crypto.timingSafeEqual(Buffer.from(suppliedToken), Buffer.from(env.HEALTH_DETAILS_TOKEN)));
+    const wantsReadiness = req.query.ready === "1" || tokenMatches;
+    const response: Record<string, unknown> = { ok: true, service: "cloudalls-node", ready };
+    if (tokenMatches) response.database = { public: publicDatabase, responses: responsesDatabase };
+    res.status(wantsReadiness && !ready ? 503 : 200).json(response);
   });
 
   app.get("/", (_req, res) => {

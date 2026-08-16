@@ -59,6 +59,7 @@ html { scroll-behavior: smooth; }
 .counter-value { display: inline-block; transition: color 0.3s ease, text-shadow 0.3s ease; }
 .text-primary .counter-value { text-shadow: 0 0 10px rgba(37, 99, 235, 0.2); }
 .custom-placeholder::placeholder { opacity: 0.1; }
+.bot-trap { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; overflow: hidden; }
 
 /* =========================================
    2. TYPOGRAPHY & UTILITIES

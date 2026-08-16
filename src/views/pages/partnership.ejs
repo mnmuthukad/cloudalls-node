@@ -1,4 +1,4 @@
-<%- include('../layouts/header', { pageTitle, pageDescription, pageKeywords, canonicalUrl, pageImage, settings, currentPage, socialLinks, schemaPhone }) %>
+<%- include('../layouts/header', { pageTitle, pageDescription, pageKeywords, canonicalUrl, pageImage, settings, currentPage, socialLinks, schemaPhone, recaptchaSiteKey }) %>
 <section class="container-fluid bg-dark text-white py-5">
   <div class="container py-5">
     <p class="text-uppercase fw-bold text-info small ls-1 mb-3">Alliances and ecosystem</p>
@@ -95,9 +95,11 @@
           </div>
         <% } %>
         <div class="p-4 p-md-5 bg-white border rounded-4 shadow-sm">
-          <form action="/process-partnership" method="post">
+          <form action="/process-partnership" method="post" data-recaptcha-action="partnership">
             <input type="hidden" name="action_apply_partnership" value="1">
             <input type="hidden" name="csrf_token" value="<%= csrfToken %>">
+            <input type="hidden" name="recaptcha_token" value="">
+            <input class="bot-trap" type="text" name="bot_trap" tabindex="-1" autocomplete="off" aria-hidden="true">
             <div class="row g-4">
               <div class="col-md-6"><label class="form-label small fw-bold text-muted text-uppercase" for="company-name">Company name</label><input class="form-control py-3" id="company-name" name="company_name" maxlength="200" required></div>
               <div class="col-md-6"><label class="form-label small fw-bold text-muted text-uppercase" for="company-website">Corporate website</label><input class="form-control py-3" id="company-website" name="website" type="url" placeholder="https://" maxlength="500" required></div>

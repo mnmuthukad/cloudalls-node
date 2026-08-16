@@ -36,6 +36,7 @@ export const generalLimiter = rateLimit({
   limit: 300,
   standardHeaders: "draft-8",
   legacyHeaders: false,
+  skip: req => req.path === "/healthz",
   message: "Too many requests. Please try again later.",
 });
 
@@ -68,6 +69,45 @@ export function csrfMiddleware(req: Request, res: Response, next: NextFunction):
     return;
   }
   next();
+}
+
+interface RecaptchaResponse {
+  success?: boolean;
+  action?: string;
+  score?: number;
+}
+
+function isRecaptchaResponse(value: unknown): value is RecaptchaResponse {
+  return typeof value === "object" && value !== null;
+}
+
+export async function verifyRecaptcha(req: Request, token: string, expectedAction: string): Promise<{ enabled: boolean; valid: boolean }> {
+  const enabled = env.RECAPTCHA_REQUIRED || Boolean(env.RECAPTCHA_SECRET_KEY);
+  if (!enabled) return { enabled: false, valid: true };
+  if (!env.RECAPTCHA_SECRET_KEY || !token) return { enabled: true, valid: false };
+
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 4000);
+  try {
+    const body = new URLSearchParams({ secret: env.RECAPTCHA_SECRET_KEY, response: token });
+    const response = await fetch("https://www.google.com/recaptcha/api/siteverify", {
+      method: "POST",
+      headers: { "content-type": "application/x-www-form-urlencoded" },
+      body,
+      signal: controller.signal,
+    });
+    if (!response.ok) return { enabled: true, valid: false };
+    const result: unknown = await response.json();
+    if (!isRecaptchaResponse(result) || result.success !== true) return { enabled: true, valid: false };
+    if (result.action && result.action !== expectedAction) return { enabled: true, valid: false };
+    if (typeof result.score === "number" && result.score < 0.5) return { enabled: true, valid: false };
+    return { enabled: true, valid: true };
+  } catch (error) {
+    console.error("RECAPTCHA_VERIFY_ERROR", error instanceof Error ? error.message : "unknown error");
+    return { enabled: true, valid: false };
+  } finally {
+    clearTimeout(timeout);
+  }
 }
 
 export function secureCookieOptions() {

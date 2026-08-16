@@ -38,6 +38,7 @@
     "@types/morgan": "^1.9.10",
     "@types/multer": "^2.0.0",
     "@types/node": "^24.7.2",
+    "@types/nodemailer": "^8.0.1",
     "@types/sanitize-html": "^2.16.1",
     "tsx": "^4.20.3",
     "typescript": "^5.9.3"

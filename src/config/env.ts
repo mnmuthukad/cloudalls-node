@@ -7,6 +7,8 @@ const envSchema = z.object({
   NODE_ENV: z.enum(["development", "test", "production"]).default("development"),
   PORT: z.coerce.number().int().positive().default(3000),
   APP_URL: z.string().url().default("http://localhost:3000"),
+  TRUST_PROXY_HOPS: z.coerce.number().int().min(0).max(5).default(1),
+  HEALTH_DETAILS_TOKEN: optionalString,
   SESSION_SECRET: z.string().min(32).default("development-only-change-this-session-secret-32"),
   DB_HOST: optionalString,
   DB_PORT: z.coerce.number().int().positive().default(3306),
@@ -23,6 +25,7 @@ const envSchema = z.object({
   SMTP_FROM: optionalString,
   RECAPTCHA_SITE_KEY: optionalString,
   RECAPTCHA_SECRET_KEY: optionalString,
+  RECAPTCHA_REQUIRED: z.enum(["true", "false"]).default("false").transform(value => value === "true"),
   MAX_UPLOAD_MB: z.coerce.number().positive().max(25).default(8),
 }).superRefine((value, ctx) => {
   if (value.NODE_ENV !== "production") return;
@@ -35,11 +38,20 @@ const envSchema = z.object({
     });
   }
 
-  if (/localhost|127\.0\.0\.1/.test(value.APP_URL)) {
+  if (/localhost|127\\.0\\.0\\.1/.test(value.APP_URL)) {
     ctx.addIssue({
       code: z.ZodIssueCode.custom,
       path: ["APP_URL"],
       message: "Production APP_URL must use the deployed HTTPS hostname.",
+    });
+  }
+
+  const recaptchaPartiallyConfigured = Boolean(value.RECAPTCHA_SITE_KEY) !== Boolean(value.RECAPTCHA_SECRET_KEY);
+  if (recaptchaPartiallyConfigured || (value.RECAPTCHA_REQUIRED && (!value.RECAPTCHA_SITE_KEY || !value.RECAPTCHA_SECRET_KEY))) {
+    ctx.addIssue({
+      code: z.ZodIssueCode.custom,
+      path: ["RECAPTCHA_SITE_KEY"],
+      message: "RECAPTCHA_SITE_KEY and RECAPTCHA_SECRET_KEY must be configured together when CAPTCHA is enabled.",
     });
   }
 });

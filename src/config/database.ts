@@ -14,10 +14,11 @@ function createPool(database: string, user: string, password: string): Pool {
     charset: "utf8mb4",
     timezone: "+05:30",
     waitForConnections: true,
-    connectionLimit: 10,
-    maxIdle: 5,
-    idleTimeout: 60000,
-    queueLimit: 0,
+    connectionLimit: 8,
+    maxIdle: 4,
+    idleTimeout: 30000,
+    queueLimit: 24,
+    connectTimeout: 5000,
     enableKeepAlive: true,
   });
 }

@@ -13,6 +13,7 @@ export interface LayoutData {
   socialLinks: string[];
   schemaPhone: string;
   waLink: string;
+  recaptchaSiteKey: string;
 }
 
 const footerMenus: LayoutData["footerMenus"] = {
@@ -43,5 +44,6 @@ export function buildLayoutData(input: Partial<Pick<LayoutData, "currentPage" | 
     socialLinks,
     schemaPhone: String(settings.contact_number || "+91 90482 08135"),
     waLink: normalizeWhatsApp(settings.whatsapp || settings.contact_number || "+91 90482 08135"),
+    recaptchaSiteKey: env.RECAPTCHA_SITE_KEY,
   };
 }

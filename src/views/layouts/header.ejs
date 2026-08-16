@@ -20,7 +20,36 @@
   <meta name="twitter:card" content="summary_large_image">
   <link rel="preload" href="/assets/fonts/inter-v20-latin-regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
   <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
-  <link rel="stylesheet" href="/assets/css/style.css?v=mobile-overflow-fix-20260816">
+  <link rel="stylesheet" href="/assets/css/style.css?v=production-hardening-20260816">
+  <% if (recaptchaSiteKey) { %>
+  <script src="https://www.google.com/recaptcha/api.js?render=<%= recaptchaSiteKey %>" nonce="<%= cspNonce %>" defer></script>
+  <script nonce="<%= cspNonce %>">
+    document.addEventListener('DOMContentLoaded', function () {
+      document.querySelectorAll('form[data-recaptcha-action]').forEach(function (form) {
+        form.addEventListener('submit', function (event) {
+          if (form.dataset.recaptchaPending === 'true') return;
+          event.preventDefault();
+          form.dataset.recaptchaPending = 'true';
+          if (!window.grecaptcha) {
+            form.dataset.recaptchaPending = 'false';
+            window.alert('Security verification is unavailable. Please refresh the page and try again.');
+            return;
+          }
+          window.grecaptcha.ready(function () {
+            window.grecaptcha.execute('<%= recaptchaSiteKey %>', { action: form.dataset.recaptchaAction || 'form' }).then(function (token) {
+              var field = form.querySelector('input[name="recaptcha_token"]');
+              if (field) field.value = token;
+              HTMLFormElement.prototype.submit.call(form);
+            }).catch(function () {
+              form.dataset.recaptchaPending = 'false';
+              window.alert('Security verification could not be completed. Please refresh the page and try again.');
+            });
+          });
+        });
+      });
+    });
+  </script>
+  <% } %>
   <link rel="preload" href="/assets/css/fontawesome.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link rel="stylesheet" href="/assets/css/fontawesome.min.css"></noscript>
   <link rel="preload" href="/assets/css/aos.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
