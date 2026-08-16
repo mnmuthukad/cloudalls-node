@@ -21,7 +21,7 @@ const footerMenus: LayoutData["footerMenus"] = {
   Ecosystem: { "/labs": { label: "Labs", badge: "BETA" }, "/resources": "Developer Hub", "/engineering": "Engineering & Trust" },
   Resources: { "/portfolio": "Case Studies", "/insights": "Insights & Blog", "/testimonials": "Client Perspectives", "/events": "Events & Webinars" },
   "Impact & Talent": { "/media": "News & Impact", "/careers": "Career & Internship", "/responsibility": "Social Responsibility" },
-  Platform: { "/expertise": "Expertise", "/methodology": "Methodology", "/pricing": "Pricing Plans" },
+  Platform: { "/expertise": "Expertise", "/methodology": "Methodology", "/pricing": "Pricing Plans", "https://academy.cloudalls.com/": { label: "Academy", badge: "External" } },
   Support: { "/faq": "Help & FAQ", "/legal": "Legal Center", "/data-requests": "Data requests", "/brand": "Brand Assets" },
 };
 
