@@ -4,7 +4,7 @@ const ASSETS_TO_CACHE = [
   '/assets/js/script.js',
   '/manifest.json',
 ];
-const SECURE_ROUTES = ['/login', '/client/', '/corp/', '/dev/', '/finance/', '/system/', '/shared/', '/process-', '/careers_details'];
+const SECURE_ROUTES = ['/login', '/client/', '/corp/', '/dev/', '/finance/', '/system/', '/shared/', '/process-', '/careers/'];
 
 self.addEventListener('install', (event) => {
   event.waitUntil(
