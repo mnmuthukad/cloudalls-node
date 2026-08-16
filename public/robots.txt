@@ -1,11 +1,2 @@
 User-agent: *
-Allow: /
-
-# Auth-gated areas (admin panel, client/corp/finance portals, etc.) are
-# intentionally NOT listed here. Listing them just hands attackers a map of
-# where to knock. They're already unreachable to crawlers because they sit
-# behind a login (see core/security/functions.php: requirePermission()) and
-# should also send `X-Robots-Tag: noindex` from the app itself, which keeps
-# them out of search results without ever naming the paths publicly.
-
-Sitemap: https://www.cloudalls.com/sitemap.xml
+Disallow: /
