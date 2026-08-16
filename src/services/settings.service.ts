@@ -39,14 +39,16 @@ let cachedSettings: SiteSettings | null = null;
 
 function sanitizeLogoMarkup(value: unknown): string {
   return sanitizeHtml(String(value || fallbackSettings.logo_code), {
-    allowedTags: ["span", "svg", "path", "g", "circle", "rect", "title"],
+    allowedTags: ["span", "svg", "path", "g", "circle", "rect", "title", "text", "tspan"],
     allowedAttributes: {
       span: ["class"],
-      svg: ["class", "viewBox", "width", "height", "fill", "xmlns", "role", "aria-label"],
+      svg: ["class", "viewBox", "width", "height", "fill", "xmlns", "role", "aria-label", "focusable"],
       path: ["d", "fill", "stroke", "stroke-width"],
-      g: ["fill", "stroke"],
-      circle: ["cx", "cy", "r", "fill"],
-      rect: ["x", "y", "width", "height", "rx", "fill"],
+      g: ["fill", "stroke", "transform", "opacity"],
+      circle: ["cx", "cy", "r", "fill", "opacity", "stroke", "stroke-width"],
+      rect: ["x", "y", "width", "height", "rx", "fill", "opacity", "stroke", "stroke-width"],
+      text: ["x", "y", "fill", "font-family", "font-size", "font-weight", "letter-spacing", "text-anchor"],
+      tspan: ["x", "y", "fill", "font-family", "font-size", "font-weight", "letter-spacing"],
     },
     allowedSchemes: [],
     disallowedTagsMode: "discard",
