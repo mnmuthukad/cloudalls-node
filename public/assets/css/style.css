@@ -791,3 +791,14 @@ footer .cloudalls-wordmark svg { width: 170px; height: 34px; }
 @media (prefers-reduced-motion: reduce) {
   .home-proof-tile, .home-capability-panel, .home-question-list a { transition: none; }
 }
+
+@media (max-width: 767.98px) {
+  .footer-contact-row > .col-lg-7 > .d-flex {
+    align-items: center !important;
+    text-align: center;
+  }
+
+  .footer-contact-row > .col-lg-5 > .d-flex {
+    justify-content: center;
+  }
+}
