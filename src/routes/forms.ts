@@ -18,7 +18,7 @@ const partnershipSchema = z.object({
   company_name: z.string().trim().min(1).max(200),
   website: z.string().trim().url().max(500),
   email: z.string().trim().email().max(320),
-  partner_tier: z.enum(["Standard Partner", "Pro Partner", "Strategic Partner"]),
+  partner_tier: z.enum(["Standard Partner", "Pro Partner", "Academic Partner"]),
   proposal: z.string().trim().min(1).max(10000),
 });
 
@@ -127,8 +127,10 @@ formsRouter.post("/careers_details", formLimiter, async (req, res) => {
   const careers = await getActiveCareers();
   const job = careers.find(item => item.id === jobId);
   const parsed = jobSchema.safeParse(req.body);
-  if (!job || !parsed.success) {
-    res.redirect(`/careers_details?id=${Number.isFinite(jobId) ? jobId : 0}&status=error`);
+  const roleExpired = Boolean(job?.end_date && String(job.end_date).slice(0, 10) < new Date().toISOString().slice(0, 10));
+  if (!job || roleExpired || !parsed.success) {
+    const status = roleExpired ? "closed" : "error";
+    res.redirect(`/careers_details?id=${Number.isFinite(jobId) ? jobId : 0}&status=${status}`);
     return;
   }
   try {
