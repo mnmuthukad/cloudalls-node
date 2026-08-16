@@ -30,6 +30,11 @@ export function createApp() {
     next();
   });
   app.use(securityHeaders);
+  app.use((_req, res, next) => {
+    res.setHeader("Permissions-Policy", "accelerometer=(), autoplay=(), camera=(), clipboard-read=(), clipboard-write=(), geolocation=(), gyroscope=(), hid=(), interest-cohort=(), magnetometer=(), microphone=(), payment=(), publickey-credentials-get=(), screen-wake-lock=(), serial=(), sync-xhr=(), usb=()");
+    if (env.APP_URL.includes("z.cloudalls.com")) res.setHeader("X-Robots-Tag", "noindex, nofollow, noarchive");
+    next();
+  });
   app.use(compression());
   app.use(morgan(env.NODE_ENV === "production" ? "combined" : "dev"));
   app.use(express.urlencoded({ extended: true, limit: "2mb" }));
@@ -37,6 +42,12 @@ export function createApp() {
   app.use(createSessionMiddleware());
   app.use(generalLimiter);
   app.use(csrfMiddleware);
+
+  app.get("/robots.txt", (_req, res) => {
+    const staging = env.APP_URL.includes("z.cloudalls.com") || env.NODE_ENV !== "production";
+    const body = staging ? "User-agent: *\nDisallow: /\n" : `User-agent: *\nAllow: /\nSitemap: ${env.APP_URL.replace(/\/$/, "")}/sitemap.xml\n`;
+    res.type("text/plain").send(body);
+  });
 
   app.use(express.static(publicDir, {
     etag: true,
