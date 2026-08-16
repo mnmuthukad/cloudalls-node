@@ -7,6 +7,7 @@ import morgan from "morgan";
 import { createSessionMiddleware } from "./middleware/session.js";
 import { csrfMiddleware, generalLimiter, securityHeaders } from "./middleware/security.js";
 import { env } from "./config/env.js";
+import { getPublicDb, getResponsesDb } from "./config/database.js";
 import { buildLayoutData } from "./services/layout.service.js";
 import { publicRouter } from "./routes/public.js";
 import { formsRouter } from "./routes/forms.js";
@@ -52,8 +53,18 @@ export function createApp() {
     },
   }));
 
-  app.get("/healthz", (_req, res) => {
-    res.status(200).json({ ok: true, service: "cloudalls-node" });
+  app.get("/healthz", async (_req, res) => {
+    const probe = async (pool: ReturnType<typeof getPublicDb>) => {
+      if (!pool) return { configured: false, reachable: false };
+      try {
+        await pool.query("SELECT 1");
+        return { configured: true, reachable: true };
+      } catch {
+        return { configured: true, reachable: false };
+      }
+    };
+    const [publicDatabase, responsesDatabase] = await Promise.all([probe(getPublicDb()), probe(getResponsesDb())]);
+    res.status(200).json({ ok: true, service: "cloudalls-node", database: { public: publicDatabase, responses: responsesDatabase } });
   });
 
   app.get("/", (_req, res) => {

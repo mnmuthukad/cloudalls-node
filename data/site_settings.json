@@ -11,10 +11,8 @@
   "x_link": "https://x.com/cloudalls",
   "instagram": "https://www.instagram.com/cloudalls.ai",
   "youtube": "https://youtube.com/@cloudalls",
-  "reddit": "https://reddit.com/r/cloudalls",
-  "discord": "https://discord.gg/your-invite-link",
   "github": "https://github.com/cloudalls-lab",
-  "updated_at": "2026-04-23 15:19:57",
+  "updated_at": "2026-08-16",
   "brand_divisions": [
     { "id": 1, "name": "Foundry" },
     { "id": 2, "name": "Intelligence" },
@@ -23,7 +21,6 @@
     { "id": 5, "name": "Growth" },
     { "id": 6, "name": "Operations" },
     { "id": 7, "name": "Academy" },
-    { "id": 8, "name": "Labs" },
-    { "id": 9, "name": "Hub" }
+    { "id": 8, "name": "Labs" }
   ]
 }

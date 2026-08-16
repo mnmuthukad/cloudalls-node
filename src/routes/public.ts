@@ -1,6 +1,7 @@
 import { Router, type Request, type Response } from "express";
+import { env } from "../config/env.js";
 import { buildLayoutData } from "../services/layout.service.js";
-import { getActiveBrandDivisions, getActiveExpertise, getExpertiseBySlug, getLegalDirectory, getLegalDocumentBySlug, getPublishedFaqs, getPublishedInsights, getPublishedPortfolios, getPublishedTestimonials } from "../services/content.service.js";
+import { getActiveBrandDivisions, getActiveExpertise, getExpertiseBySlug, getLegalCompliancePillars, getLegalCrisisResponse, getLegalDirectory, getLegalDocumentBySlug, getLegalFrameworks, getPublishedFaqs, getPublishedInsights, getPublishedPortfolios, getPublishedTestimonials } from "../services/content.service.js";
 
 interface PageSection {
   heading: string;
@@ -297,8 +298,8 @@ publicRouter.get("/brand", async (_req, res, next) => {
 
 publicRouter.get("/legal", async (_req, res, next) => {
   try {
-    const directory = await getLegalDirectory();
-    res.render("pages/legal-center", { ...buildLayoutData({ currentPage: "legal", pageTitle: "Legal Center | CloudAlls", pageDescription: "CloudAlls terms, privacy, security, acceptable use, ethics, accessibility, and data rights.", canonicalUrl: "/legal" }), directory });
+    const [directory, pillars, crisisResponse, frameworks] = await Promise.all([getLegalDirectory(), getLegalCompliancePillars(), getLegalCrisisResponse(), getLegalFrameworks()]);
+    res.render("pages/legal-center", { ...buildLayoutData({ currentPage: "legal", pageTitle: "Legal Center | CloudAlls", pageDescription: "CloudAlls terms, privacy, security, acceptable use, ethics, accessibility, data rights, and jurisdiction-aware trust references.", canonicalUrl: "/legal" }), directory, pillars, crisisResponse, frameworks });
   } catch (error) { next(error); }
 });
 
@@ -324,9 +325,7 @@ for (const slug of Object.keys(pages)) {
 
 publicRouter.get("/sitemap.xml", (_req, res) => {
   const urls = ["/", ...Object.keys(pages).map(slug => `/${slug}`), "/insights", "/portfolio", "/contact", "/careers", "/partnership", "/testimonials", "/legal", "/terms", "/privacy", "/security", "/aup", "/ethics", "/accessibility", "/data-requests"];
-  const base = "https://www.cloudalls.com";
+  const base = env.APP_URL.replace(/\/$/, "");
   const xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${urls.map(url => `<url><loc>${base}${url}</loc></url>`).join("")}</urlset>`;
   res.type("application/xml").send(xml);
 });
-
-publicRouter.get("/privacy", (_req, res) => res.redirect(302, "https://legal.cloudalls.com/#privacy"));

@@ -18,10 +18,10 @@ export interface LayoutData {
 const footerMenus: LayoutData["footerMenus"] = {
   Company: { "/about": "About CloudAlls", "/partnership": "Partner Network", "/investors": "Investor Relations" },
   Ecosystem: { "/labs": { label: "Labs", badge: "BETA" }, "/resources": "Developer Hub", "/engineering": "Engineering & Trust" },
-  Resources: { "/portfolio": "Case Studies", "/insights": "Insights & Blog", "/events": "Events & Webinars" },
+  Resources: { "/portfolio": "Case Studies", "/insights": "Insights & Blog", "/testimonials": "Client Perspectives", "/events": "Events & Webinars" },
   "Impact & Talent": { "/media": "News & Impact", "/careers": "Career & Internship", "/responsibility": "Social Responsibility" },
   Platform: { "/expertise": "Expertise", "/methodology": "Methodology", "/pricing": "Pricing Plans" },
-  Support: { "/faq": "Help & FAQ", "https://legal.cloudalls.com/": "Legal Center", "/brand": "Brand Assets" },
+  Support: { "/faq": "Help & FAQ", "/legal": "Legal Center", "/data-requests": "Data requests", "/brand": "Brand Assets" },
 };
 
 export function buildLayoutData(input: Partial<Pick<LayoutData, "currentPage" | "pageTitle" | "pageDescription" | "pageKeywords" | "pageImage" | "canonicalUrl">> = {}): LayoutData {

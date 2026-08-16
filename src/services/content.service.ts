@@ -222,3 +222,70 @@ export async function getLegalDocumentBySlug(slug: string): Promise<LegalDocumen
     return null;
   }
 }
+
+
+export interface LegalCompliancePillarRow extends RowDataPacket {
+  id: number;
+  icon: string;
+  title: string;
+  description: string;
+  display_order: number;
+}
+
+export interface LegalCrisisResponseRow extends RowDataPacket {
+  id: number;
+  step_number: number;
+  title: string;
+  color: string;
+  description: string;
+}
+
+export interface LegalFrameworkRow extends RowDataPacket {
+  id: number;
+  jurisdiction: string;
+  region_code: string;
+  framework_name: string;
+  authority: string;
+  framework_type: string;
+  scope_summary: string;
+  review_status: string;
+  source_url: string;
+  last_reviewed: string;
+  display_order: number;
+}
+
+export async function getLegalCompliancePillars(): Promise<LegalCompliancePillarRow[]> {
+  const db = getPublicDb();
+  if (!db) return [];
+  try {
+    const [rows] = await db.query<LegalCompliancePillarRow[]>("SELECT id,icon,title,description,display_order FROM legal_compliance_pillars ORDER BY display_order ASC, id ASC");
+    return rows;
+  } catch (error) {
+    console.error("PUBLIC_DB legal compliance pillars query failed", error);
+    return [];
+  }
+}
+
+export async function getLegalCrisisResponse(): Promise<LegalCrisisResponseRow[]> {
+  const db = getPublicDb();
+  if (!db) return [];
+  try {
+    const [rows] = await db.query<LegalCrisisResponseRow[]>("SELECT id,step_number,title,color,description FROM legal_crisis_response ORDER BY step_number ASC, id ASC");
+    return rows;
+  } catch (error) {
+    console.error("PUBLIC_DB legal crisis response query failed", error);
+    return [];
+  }
+}
+
+export async function getLegalFrameworks(): Promise<LegalFrameworkRow[]> {
+  const db = getPublicDb();
+  if (!db) return [];
+  try {
+    const [rows] = await db.query<LegalFrameworkRow[]>("SELECT id,jurisdiction,region_code,framework_name,authority,framework_type,scope_summary,review_status,source_url,last_reviewed,display_order FROM legal_frameworks ORDER BY jurisdiction ASC, display_order ASC, id ASC");
+    return rows;
+  } catch (error) {
+    console.error("PUBLIC_DB legal frameworks query failed", error);
+    return [];
+  }
+}
