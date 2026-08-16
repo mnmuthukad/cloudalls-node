@@ -656,3 +656,15 @@ footer .cloudalls-wordmark svg { width: 170px; height: 34px; }
   footer .cloudalls-wordmark svg { width: 158px; height: 32px; }
 }
 
+
+/* Brand Assets media kit and homepage entry-point cards */
+.brand-asset-card { transition: transform .2s ease, box-shadow .2s ease; }
+.brand-asset-card:hover { transform: translateY(-4px); box-shadow: 0 1rem 2rem rgba(15,23,42,.10) !important; }
+.brand-asset-preview { min-height: 220px; }
+.home-start-card { display: block; text-decoration: none; color: inherit; padding: 1.5rem; border: 1px solid rgba(15,23,42,.12); border-radius: 1rem; background: #fff; transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease; }
+.home-start-card:hover, .home-start-card:focus-visible { color: inherit; transform: translateY(-4px); border-color: rgba(37,99,235,.55); box-shadow: 0 1rem 2rem rgba(15,23,42,.10); }
+.home-start-card .text-primary { margin-top: 1.25rem; }
+@media (max-width: 575.98px) {
+  .brand-asset-preview { min-height: 180px; }
+  .brand-asset-preview img { max-width: 240px !important; }
+}
