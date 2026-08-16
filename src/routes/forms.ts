@@ -3,7 +3,7 @@ import { Router, type Request } from "express";
 import { z } from "zod";
 import { buildLayoutData } from "../services/layout.service.js";
 import { getActiveCareers, getActiveExpertise } from "../services/content.service.js";
-import { insertContactInquiry, insertJobApplication, insertPartnershipApplication } from "../services/response.service.js";
+import { insertContactInquiry, insertDsrRequest, insertJobApplication, insertPartnershipApplication } from "../services/response.service.js";
 import { formLimiter } from "../middleware/security.js";
 
 const contactSchema = z.object({
@@ -29,6 +29,13 @@ const jobSchema = z.object({
   phone: z.string().trim().min(6).max(30),
   portfolio_url: z.string().trim().url().max(500),
   cover_letter: z.string().trim().min(1).max(10000),
+});
+
+const dsrSchema = z.object({
+  requester_name: z.string().trim().min(1).max(255),
+  requester_email: z.string().trim().email().max(320),
+  request_type: z.enum(["Access", "Modification", "Deletion", "Portability", "Objection", "Other"]),
+  specific_details: z.string().trim().min(1).max(10000),
 });
 
 function rotateCsrf(req: Request): void {
@@ -131,5 +138,34 @@ formsRouter.post("/careers_details", formLimiter, async (req, res) => {
   } catch (error) {
     console.error("CAREER_FORM_ERROR", error);
     res.redirect(`/careers_details?id=${job.id}&status=error`);
+  }
+});
+
+formsRouter.get("/data-requests", (req, res) => {
+  res.render("pages/data-requests", {
+    ...buildLayoutData({ currentPage: "data-requests", pageTitle: "Data Subject Requests | CloudAlls", pageDescription: "Submit a secure request to access, modify, export, or delete personal data held by CloudAlls.", canonicalUrl: "/data-requests" }),
+    status: typeof req.query.status === "string" ? req.query.status : "",
+  });
+});
+
+formsRouter.post("/data-requests", formLimiter, async (req, res) => {
+  const parsed = dsrSchema.safeParse(req.body);
+  if (!parsed.success) {
+    res.redirect("/data-requests?status=error");
+    return;
+  }
+  try {
+    await insertDsrRequest({
+      requesterName: parsed.data.requester_name,
+      requesterEmail: parsed.data.requester_email,
+      requestType: parsed.data.request_type,
+      specificDetails: parsed.data.specific_details,
+      requestIp: req.ip || "unknown",
+    });
+    rotateCsrf(req);
+    res.redirect("/data-requests?status=success");
+  } catch (error) {
+    console.error("DSR_FORM_ERROR", error);
+    res.redirect("/data-requests?status=error&msg=db");
   }
 });

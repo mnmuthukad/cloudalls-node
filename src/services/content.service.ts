@@ -136,3 +136,89 @@ export async function getPublishedPortfolios(): Promise<PortfolioRow[]> {
     return [];
   }
 }
+
+export interface TestimonialRow extends RowDataPacket {
+  id: number;
+  client_name: string;
+  client_role: string | null;
+  expertise_id: number | null;
+  review_text: string;
+  rating: number | null;
+  client_image: string | null;
+}
+
+export interface BrandDivisionRow extends RowDataPacket {
+  id: number;
+  name: string;
+  tagline: string;
+  svg_code: string | null;
+  display_order: number;
+  status: string;
+}
+
+export interface LegalDocumentRow extends RowDataPacket {
+  id: number;
+  slug: string;
+  title: string;
+  version: string;
+  effective_date: string;
+  content: string;
+}
+
+export interface LegalDirectoryRow extends RowDataPacket {
+  id: number;
+  link: string;
+  icon: string;
+  title: string;
+  description: string;
+  color_class: string;
+  display_order: number;
+}
+
+export async function getPublishedTestimonials(): Promise<TestimonialRow[]> {
+  const db = getPublicDb();
+  if (!db) return [];
+  try {
+    const [rows] = await db.query<TestimonialRow[]>("SELECT id,client_name,client_role,expertise_id,review_text,rating,client_image FROM testimonials WHERE status = 'Published' ORDER BY created_at DESC");
+    return rows;
+  } catch (error) {
+    console.error("PUBLIC_DB testimonials query failed", error);
+    return [];
+  }
+}
+
+export async function getActiveBrandDivisions(): Promise<BrandDivisionRow[]> {
+  const db = getPublicDb();
+  if (!db) return [];
+  try {
+    const [rows] = await db.query<BrandDivisionRow[]>("SELECT id,name,tagline,svg_code,display_order,status FROM brand_divisions WHERE status = 'Active' ORDER BY display_order ASC, id ASC");
+    return rows;
+  } catch (error) {
+    console.error("PUBLIC_DB brand divisions query failed", error);
+    return [];
+  }
+}
+
+export async function getLegalDirectory(): Promise<LegalDirectoryRow[]> {
+  const db = getPublicDb();
+  if (!db) return [];
+  try {
+    const [rows] = await db.query<LegalDirectoryRow[]>("SELECT id,link,icon,title,description,color_class,display_order FROM legal_directory ORDER BY display_order ASC, id ASC");
+    return rows;
+  } catch (error) {
+    console.error("PUBLIC_DB legal directory query failed", error);
+    return [];
+  }
+}
+
+export async function getLegalDocumentBySlug(slug: string): Promise<LegalDocumentRow | null> {
+  const db = getPublicDb();
+  if (!db) return null;
+  try {
+    const [rows] = await db.query<LegalDocumentRow[]>("SELECT id,slug,title,version,effective_date,content FROM legal_documents WHERE slug = ? LIMIT 1", [slug]);
+    return rows[0] || null;
+  } catch (error) {
+    console.error("PUBLIC_DB legal document query failed", error);
+    return null;
+  }
+}

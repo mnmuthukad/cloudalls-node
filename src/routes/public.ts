@@ -1,6 +1,6 @@
 import { Router, type Request, type Response } from "express";
 import { buildLayoutData } from "../services/layout.service.js";
-import { getActiveExpertise, getExpertiseBySlug, getPublishedFaqs, getPublishedInsights, getPublishedPortfolios } from "../services/content.service.js";
+import { getActiveBrandDivisions, getActiveExpertise, getExpertiseBySlug, getLegalDirectory, getLegalDocumentBySlug, getPublishedFaqs, getPublishedInsights, getPublishedPortfolios, getPublishedTestimonials } from "../services/content.service.js";
 
 interface PageSection {
   heading: string;
@@ -281,13 +281,49 @@ publicRouter.get("/faq", async (_req, res, next) => {
   } catch (error) { next(error); }
 });
 
-const dynamicSlugs = new Set(["expertise", "faq", "insights", "portfolio"]);
+publicRouter.get("/testimonials", async (_req, res, next) => {
+  try {
+    const testimonials = await getPublishedTestimonials();
+    res.render("pages/testimonials", { ...buildLayoutData({ currentPage: "testimonials", pageTitle: "Client Testimonials | CloudAlls", pageDescription: "Read client perspectives on CloudAlls engineering, security, creative, and operational systems.", canonicalUrl: "/testimonials" }), testimonials });
+  } catch (error) { next(error); }
+});
+
+publicRouter.get("/brand", async (_req, res, next) => {
+  try {
+    const divisions = await getActiveBrandDivisions();
+    res.render("pages/brand", { ...buildLayoutData({ currentPage: "brand", pageTitle: pages.brand!.title, pageDescription: pages.brand!.description, pageKeywords: pages.brand!.keywords, canonicalUrl: "/brand" }), divisions });
+  } catch (error) { next(error); }
+});
+
+publicRouter.get("/legal", async (_req, res, next) => {
+  try {
+    const directory = await getLegalDirectory();
+    res.render("pages/legal-center", { ...buildLayoutData({ currentPage: "legal", pageTitle: "Legal Center | CloudAlls", pageDescription: "CloudAlls terms, privacy, security, acceptable use, ethics, accessibility, and data rights.", canonicalUrl: "/legal" }), directory });
+  } catch (error) { next(error); }
+});
+
+publicRouter.get("/legal_documents", (_req, res) => res.redirect(302, "/legal"));
+
+for (const legalSlug of ["terms", "privacy", "security", "aup", "ethics", "accessibility"]) {
+  publicRouter.get(`/${legalSlug}`, async (_req, res, next) => {
+    try {
+      const document = await getLegalDocumentBySlug(legalSlug);
+      if (!document) {
+        res.status(404).render("errors/404", buildLayoutData({ pageTitle: "Legal document not found", canonicalUrl: `/${legalSlug}` }));
+        return;
+      }
+      res.render("pages/legal-document", { ...buildLayoutData({ currentPage: "legal", pageTitle: `${document.title} | CloudAlls`, pageDescription: `${document.title}, version ${document.version}.`, canonicalUrl: `/${legalSlug}` }), document });
+    } catch (error) { next(error); }
+  });
+}
+
+const dynamicSlugs = new Set(["expertise", "faq", "insights", "portfolio", "brand"]);
 for (const slug of Object.keys(pages)) {
   if (!dynamicSlugs.has(slug)) publicRouter.get(`/${slug}`, (_req: Request, res: Response) => renderDefinition(res, slug));
 }
 
 publicRouter.get("/sitemap.xml", (_req, res) => {
-  const urls = ["/", ...Object.keys(pages).map(slug => `/${slug}`), "/insights", "/portfolio", "/contact", "/careers", "/partnership"];
+  const urls = ["/", ...Object.keys(pages).map(slug => `/${slug}`), "/insights", "/portfolio", "/contact", "/careers", "/partnership", "/testimonials", "/legal", "/terms", "/privacy", "/security", "/aup", "/ethics", "/accessibility", "/data-requests"];
   const base = "https://www.cloudalls.com";
   const xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${urls.map(url => `<url><loc>${base}${url}</loc></url>`).join("")}</urlset>`;
   res.type("application/xml").send(xml);

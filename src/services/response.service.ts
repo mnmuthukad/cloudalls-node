@@ -53,3 +53,20 @@ export async function insertJobApplication(input: JobApplicationInput): Promise<
     [input.jobId, input.jobTitle, input.firstName, input.lastName, input.email, input.phone, input.portfolioUrl, input.coverLetter, "/careers_details"],
   );
 }
+
+export interface DsrInput {
+  requesterName: string;
+  requesterEmail: string;
+  requestType: string;
+  specificDetails: string;
+  requestIp: string;
+}
+
+export async function insertDsrRequest(input: DsrInput): Promise<void> {
+  const db = getResponsesDb();
+  if (!db) throw new Error("Responses database is not configured");
+  await db.execute(
+    "INSERT INTO dsr_requests (requester_name, requester_email, request_type, specific_details, request_ip, status, source_path) VALUES (?, ?, ?, ?, ?, 'Pending', ?)",
+    [input.requesterName, input.requesterEmail, input.requestType, input.specificDetails, input.requestIp, "/data-requests"],
+  );
+}
