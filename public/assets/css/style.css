@@ -36,7 +36,13 @@
     --gradient-cyan: linear-gradient(135deg, #22d3ee 0%, #0ea5e9 100%);
 }
 
-body { font-family: var(--font-main); background-color: var(--bg-light); color: var(--primary-dark); overflow-x: hidden; }
+html { width: 100%; max-width: 100%; overflow-x: hidden; }
+
+body { width: 100%; max-width: 100%; font-family: var(--font-main); background-color: var(--bg-light); color: var(--primary-dark); overflow-x: hidden; }
+
+/* Keep wide animated or embedded children inside the viewport on small devices. */
+#main-content, footer { width: 100%; max-width: 100%; overflow-x: clip; }
+img, svg, video, canvas, iframe { max-width: 100%; }
 
 .skip-link { position: fixed; left: 1rem; top: .75rem; z-index: 2000; transform: translateY(-180%); background: #0f172a; color: #fff; padding: .75rem 1rem; border-radius: .5rem; font-weight: 700; text-decoration: none; box-shadow: 0 8px 24px rgba(15, 23, 42, .2); transition: transform .18s ease; }
 .skip-link:focus { transform: translateY(0); color: #fff; }
@@ -530,6 +536,9 @@ body { min-width: 320px; letter-spacing: -.01em; }
   .nav-cta { width: 100%; margin-top: .3rem; }
 }
 @media (max-width: 575.98px) {
+  .container, .container-fluid { width: 100%; max-width: 100%; }
+  .row { min-width: 0; }
+  .cookie-banner-inner { min-width: 0; }
   .cloudalls-hero h1 { font-size: clamp(2.5rem, 13vw, 4rem) !important; }
   .cloudalls-hero .hero-copy { font-size: 1rem; }
   .hero-system-card { padding: 1rem; border-radius: 1.1rem; }
