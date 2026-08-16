@@ -1,3 +1,4 @@
+<%- include('../layouts/header', { pageTitle, pageDescription, pageKeywords, canonicalUrl, pageImage, settings, currentPage, socialLinks, schemaPhone }) %>
 <% const today = new Date().toISOString().slice(0, 10); const jobs = careers.filter(job => job.type !== 'Internship'); const internships = careers.filter(job => job.type === 'Internship'); %>
 <section class="container-fluid bg-dark text-white py-5">
   <div class="container py-5">
