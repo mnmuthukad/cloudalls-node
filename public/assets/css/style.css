@@ -646,3 +646,13 @@ body { min-width: 320px; letter-spacing: -.01em; }
 @media (max-width: 991.98px) { .about-sticky-heading { position: static; } .about-timeline-list::before { display: none; } .about-chapter, .about-chapter-reverse { padding-bottom: 4.5rem; } .about-chapter-copy { padding: 0; } }
 @media (max-width: 575.98px) { .about-hero h1 { font-size: clamp(2.65rem, 13vw, 4rem); } .about-copy-block p, .about-chapter-copy p { font-size: 1rem; } .about-unique-card { padding: 1.5rem; } .about-card-number { right: 1.5rem; } }
 @media (prefers-reduced-motion: reduce) { .about-signal-card, .about-signal-chip { backdrop-filter: none; } .about-value-card, .about-unique-card, .about-chapter-image img, .about-leader-image img { transition: none; } }
+
+/* CloudAlls wordmark: preserve the full icon + text lockup without clipping. */
+.cloudalls-wordmark { display: inline-flex; align-items: center; flex: 0 0 auto; line-height: 1; white-space: nowrap; }
+.cloudalls-wordmark svg { display: block; width: 154px; height: 32px; max-width: none; overflow: visible; }
+footer .cloudalls-wordmark svg { width: 170px; height: 34px; }
+@media (max-width: 575.98px) {
+  .cloudalls-wordmark svg { width: 148px; height: 30px; }
+  footer .cloudalls-wordmark svg { width: 158px; height: 32px; }
+}
+
