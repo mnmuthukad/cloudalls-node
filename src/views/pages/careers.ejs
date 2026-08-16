@@ -1,4 +1,40 @@
-<%- include('../layouts/header', { pageTitle, pageDescription, pageKeywords, canonicalUrl, pageImage, settings, currentPage, socialLinks, schemaPhone }) %>
-<section class="container-fluid bg-dark text-white py-5"><div class="container py-5"><p class="text-uppercase fw-bold text-info small ls-1 mb-3">Careers and internship</p><h1 class="display-3 fw-black ls-tight mb-4">Build the next system with us.</h1><p class="lead text-white-50 mb-0" style="max-width:760px;">Join a multidisciplinary team working across AI, engineering, creative systems, and operations.</p></div></section>
-<section class="container py-5"><div class="d-flex justify-content-between align-items-end mb-4"><div><h2 class="h3 fw-bold mb-2">Open roles</h2><p class="text-secondary mb-0">Current opportunities in the CloudAlls ecosystem.</p></div></div><div class="row g-4"><% if (careers.length) { careers.forEach(job => { %><article class="col-md-6"><div class="h-100 p-4 rounded-4 border bg-white shadow-sm"><div class="d-flex flex-wrap gap-2 mb-3"><span class="badge text-bg-primary"><%= job.type %></span><span class="badge text-bg-light"><%= job.location_type %></span></div><h3 class="h4 fw-bold"><%= job.title %></h3><p class="small text-muted mb-3"><%= job.department %> · <%= job.location %></p><p class="text-secondary"><%= (job.description || '').replace(/<[^>]*>/g, '').slice(0, 220) %></p><a class="btn btn-outline-primary rounded-pill" href="/careers_details?id=<%= job.id %>">View role</a></div></article><% }); } else { %><div class="col-12"><div class="p-5 rounded-4 bg-light border text-center"><h3 class="h4 fw-bold">No active roles are published right now.</h3><p class="text-secondary mb-0">Check back soon or use the contact page to introduce yourself.</p></div></div><% } %></div></section>
+<% const today = new Date().toISOString().slice(0, 10); const jobs = careers.filter(job => job.type !== 'Internship'); const internships = careers.filter(job => job.type === 'Internship'); %>
+<section class="container-fluid bg-dark text-white py-5">
+  <div class="container py-5">
+    <p class="text-uppercase fw-bold text-info small ls-1 mb-3">Careers and academy</p>
+    <h1 class="display-3 fw-black ls-tight mb-4">Join the <span class="text-info">mission.</span></h1>
+    <p class="lead text-white-50 mb-4" style="max-width: 760px;">Shape the future of the digital ecosystem through engineering, AI, creative systems, operations, and hands-on student programs.</p>
+    <div class="d-flex flex-wrap gap-3"><a class="btn btn-primary rounded-pill px-4" href="#open-roles">View open roles</a><a class="btn btn-outline-light rounded-pill px-4" href="#internships">Student programs</a></div>
+  </div>
+</section>
+
+<section id="open-roles" class="container py-5" style="scroll-margin-top: 80px;">
+  <div class="d-flex align-items-center gap-3 mb-4"><div><p class="text-uppercase fw-bold text-primary small ls-1 mb-2">Professional roles</p><h2 class="display-6 fw-bold mb-0">Build the systems that matter.</h2></div><span class="badge text-bg-dark rounded-pill"><%= jobs.length %> listed</span></div>
+  <div class="row g-4">
+    <% if (jobs.length) { jobs.forEach(job => { const start = String(job.start_date || '').slice(0, 10); const end = String(job.end_date || '').slice(0, 10); const expired = end && today > end; const upcoming = start && today < start; %>
+      <article class="col-lg-4 col-md-6"><div class="h-100 p-4 rounded-4 border bg-white shadow-sm <%= expired ? 'opacity-75' : '' %>">
+        <div class="d-flex flex-wrap gap-2 mb-3"><span class="badge text-bg-light"><%= job.department %></span><span class="badge <%= expired ? 'text-bg-danger' : upcoming ? 'text-bg-warning' : 'text-bg-primary' %>"><%= expired ? 'Closed' : upcoming ? `Opens ${start}` : job.type %></span></div>
+        <h3 class="h4 fw-bold"><%= job.title %></h3><p class="small text-muted"><%= job.location_type %> · <%= job.location %></p>
+        <p class="text-secondary"><%= (job.description || '').replace(/<[^>]*>/g, '').replace(/\\r?\\n/g, ' ').slice(0, 240) %><%= (job.description || '').replace(/<[^>]*>/g, '').length > 240 ? '…' : '' %></p>
+        <a class="btn <%= expired ? 'btn-outline-secondary' : 'btn-outline-primary' %> rounded-pill" href="/careers_details?id=<%= job.id %>"><%= expired ? 'View archive' : 'View role' %></a>
+      </div></article>
+    <% }); } else { %><div class="col-12"><div class="p-5 rounded-4 bg-light border text-center"><h3 class="h4 fw-bold">No professional roles are listed right now.</h3><p class="text-secondary mb-0">Check back soon or introduce yourself through the contact page.</p></div></div><% } %>
+  </div>
+</section>
+
+<section id="internships" class="bg-light border-top py-5" style="scroll-margin-top: 80px;">
+  <div class="container py-4"><div class="d-flex align-items-center gap-3 mb-4"><div><p class="text-uppercase fw-bold text-success small ls-1 mb-2">CloudAlls academy</p><h2 class="display-6 fw-bold mb-0">Learn through real delivery.</h2></div><span class="badge text-bg-success rounded-pill">Student programs</span></div>
+    <div class="row g-4">
+      <% if (internships.length) { internships.forEach(job => { const start = String(job.start_date || '').slice(0, 10); const end = String(job.end_date || '').slice(0, 10); const expired = end && today > end; const upcoming = start && today < start; %>
+        <article class="col-lg-4 col-md-6"><div class="h-100 p-4 rounded-4 border bg-white shadow-sm <%= expired ? 'opacity-75' : '' %>">
+          <div class="d-flex flex-wrap gap-2 mb-3"><span class="badge text-bg-light"><%= job.department %></span><span class="badge <%= expired ? 'text-bg-danger' : upcoming ? 'text-bg-warning' : 'text-bg-success' %>"><%= expired ? 'Closed' : upcoming ? `Opens ${start}` : 'Internship' %></span></div>
+          <h3 class="h4 fw-bold"><%= job.title %></h3><p class="small text-muted"><%= job.location_type %> · <%= job.location %></p>
+          <p class="text-secondary"><%= (job.description || '').replace(/<[^>]*>/g, '').replace(/\\r?\\n/g, ' ').slice(0, 240) %><%= (job.description || '').replace(/<[^>]*>/g, '').length > 240 ? '…' : '' %></p>
+          <a class="btn <%= expired ? 'btn-outline-secondary' : 'btn-outline-success' %> rounded-pill" href="/careers_details?id=<%= job.id %>"><%= expired ? 'View archive' : 'Apply for program' %></a>
+        </div></article>
+      <% }); } else { %><div class="col-12"><div class="p-5 rounded-4 bg-white border text-center"><h3 class="h4 fw-bold">No internships are listed right now.</h3><p class="text-secondary mb-0">Academy programs run seasonally. Please check back for the next cohort.</p></div></div><% } %>
+    </div>
+  </div>
+</section>
+
 <%- include('../layouts/footer', { settings, footerMenus, waLink }) %>

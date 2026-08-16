@@ -1,4 +1,115 @@
-<%- include('../layouts/header', { pageTitle, pageDescription, pageKeywords, canonicalUrl, pageImage, settings, currentPage, socialLinks, schemaPhone }) %>
-<section class="container-fluid bg-dark text-white py-5"><div class="container py-5"><p class="text-uppercase fw-bold text-info small ls-1 mb-3">Partner network</p><h1 class="display-3 fw-black ls-tight mb-4">Build stronger systems together.</h1><p class="lead text-white-50 mb-0" style="max-width:760px;">CloudAlls works with trusted organizations to create shared technology and operational value.</p></div></section>
-<section class="container py-5"><div class="row g-5"><div class="col-lg-5"><h2 class="h3 fw-bold">A partnership with purpose.</h2><p class="text-secondary">Tell us about your organization, the opportunity, and how we can create a meaningful long-term relationship.</p><div class="d-flex flex-column gap-3 mt-4"><div class="p-4 rounded-4 bg-light border"><strong>Standard Partner</strong><p class="small text-secondary mb-0 mt-2">Focused collaboration for defined opportunities.</p></div><div class="p-4 rounded-4 bg-light border"><strong>Pro Partner</strong><p class="small text-secondary mb-0 mt-2">Deeper collaboration across delivery and growth.</p></div><div class="p-4 rounded-4 bg-light border"><strong>Strategic Partner</strong><p class="small text-secondary mb-0 mt-2">Long-term ecosystem and market collaboration.</p></div></div></div><div class="col-lg-7" id="apply"><% if (status) { %><div class="alert <%= status === 'success' ? 'alert-success' : 'alert-danger' %> border-0 rounded-4" role="status"><strong><%= status === 'success' ? 'Application received.' : 'Unable to process application.' %></strong> <%= status === 'success' ? 'Our partnership team will contact you.' : 'Please review your inputs and try again.' %></div><% } %><div class="p-4 p-md-5 bg-white border rounded-4 shadow-sm"><form action="/process-partnership" method="post"><input type="hidden" name="action_apply_partnership" value="1"><input type="hidden" name="csrf_token" value="<%= csrfToken %>"><div class="row g-4"><div class="col-md-6"><label class="form-label small fw-bold text-muted text-uppercase" for="company-name">Company name</label><input class="form-control py-3" id="company-name" name="company_name" maxlength="200" required></div><div class="col-md-6"><label class="form-label small fw-bold text-muted text-uppercase" for="company-website">Website</label><input class="form-control py-3" id="company-website" name="website" type="url" placeholder="https://" maxlength="500" required></div><div class="col-md-6"><label class="form-label small fw-bold text-muted text-uppercase" for="partner-email">Professional email</label><input class="form-control py-3" id="partner-email" name="email" type="email" maxlength="320" required></div><div class="col-md-6"><label class="form-label small fw-bold text-muted text-uppercase" for="partner-tier">Partner tier</label><select class="form-select py-3" id="partner-tier" name="partner_tier" required><option value="Standard Partner">Standard Partner</option><option value="Pro Partner">Pro Partner</option><option value="Strategic Partner">Strategic Partner</option></select></div><div class="col-12"><label class="form-label small fw-bold text-muted text-uppercase" for="proposal">Proposal</label><textarea class="form-control py-3" id="proposal" name="proposal" rows="6" maxlength="10000" required></textarea></div><div class="col-12"><button class="btn btn-dark btn-lg rounded-pill px-5 fw-bold" type="submit">Submit partnership proposal</button></div></div></form></div></div></div></section>
+<section class="container-fluid bg-dark text-white py-5">
+  <div class="container py-5">
+    <p class="text-uppercase fw-bold text-info small ls-1 mb-3">Alliances and ecosystem</p>
+    <h1 class="display-3 fw-black ls-tight mb-4">Partner <span class="text-info">with purpose.</span></h1>
+    <p class="lead text-white-50 mb-0" style="max-width: 780px;">CloudAlls works with cloud providers, academic institutions, technology vendors, agencies, and operators to create stronger digital ecosystems.</p>
+  </div>
+</section>
+
+<section class="container py-5">
+  <div class="row g-4">
+    <div class="col-lg-4">
+      <div class="h-100 p-4 p-lg-5 rounded-4 bg-white border shadow-sm">
+        <i class="fa-brands fa-aws display-5 text-dark opacity-50 mb-4" aria-hidden="true"></i>
+        <h2 class="h4 fw-bold">AWS Partner</h2>
+        <p class="text-secondary mb-0">Enterprise-grade cloud hosting, scalable architectures, and serverless computing deployments.</p>
+      </div>
+    </div>
+    <div class="col-lg-4">
+      <div class="h-100 p-4 p-lg-5 rounded-4 bg-white border shadow-sm">
+        <i class="fa-brands fa-google display-5 text-dark opacity-50 mb-4" aria-hidden="true"></i>
+        <h2 class="h4 fw-bold">Google Cloud</h2>
+        <p class="text-secondary mb-0">Advanced data analytics, machine learning model training, and robust global delivery networks.</p>
+      </div>
+    </div>
+    <div class="col-lg-4">
+      <div class="h-100 p-4 p-lg-5 rounded-4 bg-white border shadow-sm">
+        <i class="fa-solid fa-building-columns display-5 text-dark opacity-50 mb-4" aria-hidden="true"></i>
+        <h2 class="h4 fw-bold">Academic Network</h2>
+        <p class="text-secondary mb-0">Strategic ties with technical institutes across Kerala to foster engineering talent and applied research.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="bg-white py-5 border-top border-bottom">
+  <div class="container py-4">
+    <p class="text-uppercase fw-bold text-primary small ls-1 mb-2">Commercial pathways</p>
+    <h2 class="display-6 fw-bold mb-3">Partnership tiers designed around contribution.</h2>
+    <p class="text-secondary lead mb-5" style="max-width: 760px;">Choose the relationship model that matches your organization’s capabilities, integration needs, and shared outcomes.</p>
+    <div class="table-responsive rounded-4 border shadow-sm">
+      <table class="table table-hover align-middle mb-0">
+        <thead class="table-light">
+          <tr>
+            <th class="p-4">Tier</th>
+            <th class="p-4">Best for</th>
+            <th class="p-4">Benefits</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="p-4"><strong>Pro Partner</strong><span class="d-block small text-primary mt-1">Strategic tier</span></td>
+            <td class="p-4 text-secondary">Deep API integration, joint customer success, and certified delivery capability.</td>
+            <td class="p-4 text-secondary">Co-marketing, priority API access, dedicated account coordination, and enterprise support pathways.</td>
+          </tr>
+          <tr>
+            <td class="p-4"><strong>Standard Partner</strong><span class="d-block small text-secondary mt-1">Integration tier</span></td>
+            <td class="p-4 text-secondary">Verified technology vendors and service providers aligned with CloudAlls standards.</td>
+            <td class="p-4 text-secondary">Ecosystem directory listing, referral agreements, and standard platform support.</td>
+          </tr>
+          <tr>
+            <td class="p-4"><strong>Academic Partner</strong><span class="d-block small text-info mt-1">Educational tier</span></td>
+            <td class="p-4 text-secondary">Accredited educational institutions and research laboratories.</td>
+            <td class="p-4 text-secondary">Curriculum sharing, internship pipelines, and joint research initiatives.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section class="container py-5">
+  <div class="p-4 p-lg-5 rounded-4 bg-light border d-flex flex-column flex-lg-row align-items-lg-center justify-content-between gap-4">
+    <div>
+      <h2 class="h4 fw-bold"><i class="fa-solid fa-shield-halved text-secondary me-2" aria-hidden="true"></i>Trust and compliance</h2>
+      <p class="text-secondary mb-0" style="max-width: 760px;">A partnership designation represents commercial and technological alignment, not a legal joint venture. Trademark usage, independent contractor status, and program terms remain subject to the applicable legal documents.</p>
+    </div>
+    <a class="btn btn-outline-dark rounded-pill px-4 flex-shrink-0" href="/legal">View legal centre <i class="fa-solid fa-arrow-right ms-2" aria-hidden="true"></i></a>
+  </div>
+</section>
+
+<section id="apply" class="bg-light py-5 border-top" style="scroll-margin-top: 80px;">
+  <div class="container py-4">
+    <div class="text-center mb-5">
+      <p class="text-uppercase fw-bold text-primary small ls-1 mb-2">Start the conversation</p>
+      <h2 class="display-6 fw-bold mb-3">Apply for partnership.</h2>
+      <p class="text-secondary lead mx-auto mb-0" style="max-width: 650px;">Submit your corporate blueprint and our operations team will review the opportunity.</p>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <% if (status) { %>
+          <div class="alert <%= status === 'success' ? 'alert-success' : 'alert-danger' %> border-0 rounded-4" role="status">
+            <strong><%= status === 'success' ? 'Application received.' : 'Unable to process application.' %></strong>
+            <%= status === 'success' ? ' Our partnership team will contact you.' : ' Please review your inputs and try again.' %>
+          </div>
+        <% } %>
+        <div class="p-4 p-md-5 bg-white border rounded-4 shadow-sm">
+          <form action="/process-partnership" method="post">
+            <input type="hidden" name="action_apply_partnership" value="1">
+            <input type="hidden" name="csrf_token" value="<%= csrfToken %>">
+            <div class="row g-4">
+              <div class="col-md-6"><label class="form-label small fw-bold text-muted text-uppercase" for="company-name">Company name</label><input class="form-control py-3" id="company-name" name="company_name" maxlength="200" required></div>
+              <div class="col-md-6"><label class="form-label small fw-bold text-muted text-uppercase" for="company-website">Corporate website</label><input class="form-control py-3" id="company-website" name="website" type="url" placeholder="https://" maxlength="500" required></div>
+              <div class="col-md-6"><label class="form-label small fw-bold text-muted text-uppercase" for="partner-email">Professional email</label><input class="form-control py-3" id="partner-email" name="email" type="email" maxlength="320" required></div>
+              <div class="col-md-6"><label class="form-label small fw-bold text-muted text-uppercase" for="partner-tier">Partnership tier</label><select class="form-select py-3" id="partner-tier" name="partner_tier" required><option value="Standard Partner">Standard Partner (Integration)</option><option value="Pro Partner">Pro Partner (Strategic)</option><option value="Academic Partner">Academic Partner (Educational)</option></select></div>
+              <div class="col-12"><label class="form-label small fw-bold text-muted text-uppercase" for="proposal">Collaboration proposal</label><textarea class="form-control py-3" id="proposal" name="proposal" rows="6" maxlength="10000" placeholder="Describe the vision, capabilities, and mutual operational benefits..." required></textarea></div>
+              <div class="col-12"><button class="btn btn-dark btn-lg rounded-pill px-5 fw-bold" type="submit">Submit partnership proposal <i class="fa-solid fa-paper-plane ms-2" aria-hidden="true"></i></button></div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <%- include('../layouts/footer', { settings, footerMenus, waLink }) %>
