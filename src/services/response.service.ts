@@ -88,7 +88,7 @@ export async function insertJobApplication(input: JobApplicationInput): Promise<
   await persistSubmission("job_application", input, async db => {
     await db.execute(
       "INSERT INTO job_applications (job_id, job_title, first_name, last_name, email, phone, portfolio_url, cover_letter, status, source_path) VALUES (?, ?, ?, ?, ?, ?, ?, ?, 'New', ?)",
-      [input.jobId, input.jobTitle, input.firstName, input.lastName, input.email, input.phone, input.portfolioUrl, input.coverLetter, "/careers_details"],
+      [input.jobId, input.jobTitle, input.firstName, input.lastName, input.email, input.phone, input.portfolioUrl, input.coverLetter, `/careers/${input.jobId}`],
     );
   });
 }

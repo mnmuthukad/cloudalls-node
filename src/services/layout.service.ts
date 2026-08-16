@@ -22,6 +22,13 @@ const footerMenus: LayoutData["footerMenus"] = {
   Resources: { "/portfolio": "Case Studies", "/insights": "Insights & Blog", "/testimonials": "Client Perspectives", "/events": "Events & Webinars" },
   "Impact & Talent": { "/media": "News & Impact", "/careers": "Career & Internship", "/responsibility": "Social Responsibility" },
   Platform: { "/expertise": "Expertise", "/methodology": "Methodology", "/pricing": "Pricing Plans", "https://academy.cloudalls.com/": { label: "Academy", badge: "External" } },
+  Portals: {
+    "https://portal.cloudalls.com/": { label: "All Portals", badge: "Gateway" },
+    "https://portal.cloudalls.com/client": "Client Portal",
+    "https://portal.cloudalls.com/admin": "Admin Portal",
+    "https://portal.cloudalls.com/official": "Official Portal",
+    "https://mn.cloudalls.com/": { label: "Founders Site", badge: "External" },
+  },
   Support: { "/faq": "Help & FAQ", "/legal": "Legal Center", "/data-requests": "Data requests", "/brand": "Brand Assets" },
 };
 
