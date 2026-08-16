@@ -2,7 +2,7 @@ import { Router, type Request, type Response } from "express";
 import { env } from "../config/env.js";
 import { buildLayoutData } from "../services/layout.service.js";
 import { loadJsonData } from "../services/data.service.js";
-import { getActiveBrandDivisions, getActiveExpertise, getExpertiseBySlug, getLegalCompliancePillars, getLegalCrisisResponse, getLegalDirectory, getLegalDocumentBySlug, getLegalFrameworks, getPublishedFaqs, getPublishedInsights, getPublishedPortfolios, getPublishedTestimonials, sanitizeLegalHtml } from "../services/content.service.js";
+import { getActiveBrandDivisions, getActiveCareers, getActiveExpertise, getExpertiseBySlug, getLegalCompliancePillars, getLegalCrisisResponse, getLegalDirectory, getLegalDocumentBySlug, getLegalFrameworks, getPublishedFaqs, getPublishedInsights, getPublishedPortfolios, getPublishedTestimonials, sanitizeLegalHtml } from "../services/content.service.js";
 
 interface PageSection {
   heading: string;
@@ -185,9 +185,25 @@ for (const slug of Object.keys(pages)) {
   if (!dynamicSlugs.has(slug)) publicRouter.get(`/${slug}`, (_req: Request, res: Response) => renderDefinition(res, slug));
 }
 
-publicRouter.get("/sitemap.xml", (_req, res) => {
-  const urls = ["/", ...Object.keys(pages).map(slug => `/${slug}`), "/insights", "/portfolio", "/contact", "/careers", "/partnership", "/testimonials", "/legal", "/terms", "/privacy", "/security", "/aup", "/ethics", "/accessibility", "/data-requests"];
-  const base = env.APP_URL.replace(/\/$/, "");
-  const xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${urls.map(url => `<url><loc>${base}${url}</loc></url>`).join("")}</urlset>`;
-  res.type("application/xml").send(xml);
+publicRouter.get("/sitemap.xml", async (_req, res, next) => {
+  try {
+    const [expertise, insights, portfolios, careers] = await Promise.all([getActiveExpertise(), getPublishedInsights(), getPublishedPortfolios(), getActiveCareers()]);
+    const today = new Date().toISOString().slice(0, 10);
+    const entries = new Map<string, string | undefined>();
+    const add = (path: string, lastmod?: string | null) => entries.set(path, lastmod ? String(lastmod).slice(0, 10) : undefined);
+
+    ["/", ...Object.keys(pages).map(slug => `/${slug}`), "/insights", "/portfolio", "/contact", "/careers", "/partnership", "/testimonials", "/legal", "/terms", "/privacy", "/security", "/aup", "/ethics", "/accessibility", "/data-requests"].forEach(path => add(path));
+    expertise.forEach(item => add(`/expertise_details?slug=${encodeURIComponent(item.slug)}`));
+    insights.forEach(item => add(`/insight_details?slug=${encodeURIComponent(item.slug)}`, item.created_at));
+    portfolios.forEach(item => add(`/portfolio_details?slug=${encodeURIComponent(item.slug)}`));
+    careers.filter(item => !item.end_date || String(item.end_date).slice(0, 10) >= today).forEach(item => add(`/careers_details?id=${encodeURIComponent(String(item.id))}`, item.start_date));
+
+    const escapeXml = (value: string) => value.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/\"/g, "&quot;").replace(/'/g, "&apos;");
+    const base = env.APP_URL.replace(/\/$/, "");
+    const xmlEntries = [...entries].map(([url, lastmod]) => `<url><loc>${escapeXml(`${base}${url}`)}</loc>${lastmod ? `<lastmod>${escapeXml(lastmod)}</lastmod>` : ""}</url>`).join("");
+    const xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${xmlEntries}</urlset>`;
+    res.type("application/xml").send(xml);
+  } catch (error) {
+    next(error);
+  }
 });
