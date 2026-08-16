@@ -1,5 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
+import sanitizeHtml from "sanitize-html";
 
 export interface BrandDivision {
   id?: number;
@@ -36,13 +37,30 @@ const fallbackSettings: SiteSettings = {
 
 let cachedSettings: SiteSettings | null = null;
 
+function sanitizeLogoMarkup(value: unknown): string {
+  return sanitizeHtml(String(value || fallbackSettings.logo_code), {
+    allowedTags: ["span", "svg", "path", "g", "circle", "rect", "title"],
+    allowedAttributes: {
+      span: ["class"],
+      svg: ["class", "viewBox", "width", "height", "fill", "xmlns", "role", "aria-label"],
+      path: ["d", "fill", "stroke", "stroke-width"],
+      g: ["fill", "stroke"],
+      circle: ["cx", "cy", "r", "fill"],
+      rect: ["x", "y", "width", "height", "rx", "fill"],
+    },
+    allowedSchemes: [],
+    disallowedTagsMode: "discard",
+  });
+}
+
 export function getSiteSettings(): SiteSettings {
   if (cachedSettings) return cachedSettings;
   const settingsPath = path.join(process.cwd(), "data", "site_settings.json");
   try {
     const raw = fs.readFileSync(settingsPath, "utf8");
     const parsed: unknown = JSON.parse(raw);
-    cachedSettings = parsed && typeof parsed === "object" ? parsed as SiteSettings : fallbackSettings;
+    const settings = parsed && typeof parsed === "object" ? parsed as SiteSettings : fallbackSettings;
+    cachedSettings = { ...settings, logo_code: sanitizeLogoMarkup(settings.logo_code) };
   } catch (error) {
     console.warn("CloudAlls site settings unavailable; using safe defaults.", error instanceof Error ? error.message : error);
     cachedSettings = fallbackSettings;

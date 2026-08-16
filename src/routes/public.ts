@@ -1,7 +1,7 @@
 import { Router, type Request, type Response } from "express";
 import { env } from "../config/env.js";
 import { buildLayoutData } from "../services/layout.service.js";
-import { getActiveBrandDivisions, getActiveExpertise, getExpertiseBySlug, getLegalCompliancePillars, getLegalCrisisResponse, getLegalDirectory, getLegalDocumentBySlug, getLegalFrameworks, getPublishedFaqs, getPublishedInsights, getPublishedPortfolios, getPublishedTestimonials } from "../services/content.service.js";
+import { getActiveBrandDivisions, getActiveExpertise, getExpertiseBySlug, getLegalCompliancePillars, getLegalCrisisResponse, getLegalDirectory, getLegalDocumentBySlug, getLegalFrameworks, getPublishedFaqs, getPublishedInsights, getPublishedPortfolios, getPublishedTestimonials, sanitizeLegalHtml } from "../services/content.service.js";
 
 interface PageSection {
   heading: string;
@@ -313,7 +313,8 @@ for (const legalSlug of ["terms", "privacy", "security", "aup", "ethics", "acces
         res.status(404).render("errors/404", buildLayoutData({ pageTitle: "Legal document not found", canonicalUrl: `/${legalSlug}` }));
         return;
       }
-      res.render("pages/legal-document", { ...buildLayoutData({ currentPage: "legal", pageTitle: `${document.title} | CloudAlls`, pageDescription: `${document.title}, version ${document.version}.`, canonicalUrl: `/${legalSlug}` }), document });
+      const safeDocument = { ...document, content: sanitizeLegalHtml(document.content) };
+      res.render("pages/legal-document", { ...buildLayoutData({ currentPage: "legal", pageTitle: `${document.title} | CloudAlls`, pageDescription: `${document.title}, version ${document.version}.`, canonicalUrl: `/${legalSlug}` }), document: safeDocument });
     } catch (error) { next(error); }
   });
 }

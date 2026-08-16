@@ -1,5 +1,6 @@
 import type { RowDataPacket } from "mysql2";
 import { getPublicDb } from "../config/database.js";
+import sanitizeHtml from "sanitize-html";
 
 export interface ExpertiseRow extends RowDataPacket {
   id: number;
@@ -163,6 +164,17 @@ export interface LegalDocumentRow extends RowDataPacket {
   version: string;
   effective_date: string;
   content: string;
+}
+
+export function sanitizeLegalHtml(content: string): string {
+  return sanitizeHtml(content || "", {
+    allowedTags: ["h1", "h2", "h3", "h4", "h5", "h6", "p", "ul", "ol", "li", "strong", "em", "b", "i", "br", "a", "blockquote", "table", "thead", "tbody", "tr", "th", "td", "hr", "code", "pre"],
+    allowedAttributes: { a: ["href", "target", "rel"], "*": ["class"] },
+    allowedSchemes: ["http", "https", "mailto"],
+    allowedSchemesByTag: { a: ["http", "https", "mailto"] },
+    allowProtocolRelative: false,
+    disallowedTagsMode: "discard",
+  });
 }
 
 export interface LegalDirectoryRow extends RowDataPacket {
