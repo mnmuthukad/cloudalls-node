@@ -1,0 +1,10 @@
+<svg width="260" height="56" viewBox="0 0 260 56" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">CloudAlls light logo</title>
+  <desc id="desc">CloudAlls circular mark and white wordmark</desc>
+  <g transform="translate(4 4)">
+    <circle cx="18" cy="34" r="14" fill="#38BDF8" fill-opacity="0.96"/>
+    <circle cx="32" cy="20" r="16" fill="#A78BFA" fill-opacity="0.96"/>
+    <circle cx="46" cy="34" r="14" fill="#60A5FA" fill-opacity="0.96"/>
+  </g>
+  <text x="70" y="39" fill="#FFFFFF" font-family="Inter, Arial, sans-serif" font-size="28" font-weight="800" letter-spacing="-0.8">Cloud<tspan fill="#7DD3FC">Alls</tspan></text>
+</svg>
