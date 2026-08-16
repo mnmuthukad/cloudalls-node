@@ -189,6 +189,43 @@ const pages: Record<string, PageDefinition> = {
   },
 };
 
+const aboutModel = {
+  sections: [
+    { title: '', body: 'CloudAlls is a next generation technology company and hybrid innovation lab. We bridge the critical gap between visionary digital innovation and rigorous real world execution. From AI powered neural networks to enterprise grade software and custom hardware infrastructure, we empower businesses to transform complex ideas into secure, highly scalable operational solutions.' },
+    { title: 'Our Philosophy', body: 'In a highly fragmented digital landscape, we recognize a fundamental truth: engineering is hollow without design, and automation is fragile without strategy. Our mission is to dismantle these industry silos. We do not just write code or build isolated applications; we architect complete, interconnected digital ecosystems where technology, design, and operations function as a single, cohesive force.' },
+    { title: 'What We Do', body: 'Operating at the intersection of deep tech and enterprise strategy, our capabilities are anchored in four core pillars: Digital Engineering, Intelligent Systems, Hardware Operations, and Business Growth. We manage the entire technological lifecycle from rapid prototyping and agile development to live cloud deployment and internal team upskilling through the CloudAlls Academy.' },
+    { title: 'Our Vision', body: 'We exist to serve as the global “Innovation Logic” layer for startups and multinational enterprises alike. At CloudAlls, we do not rely on guesswork. Through uncompromising security standards, rapid agility, and transparent communication, we engineer certainty—giving industry leaders the technological foundation they need to scale confidently into the future.' },
+  ],
+  values: [
+    { icon: 'fa-lightbulb', title: 'Innovation First' },
+    { icon: 'fa-users', title: 'Client-Centric' },
+    { icon: 'fa-magnifying-glass', title: 'Transparency' },
+    { icon: 'fa-bolt', title: 'Speed & Agility' },
+    { icon: 'fa-award', title: 'Quality Engineering' },
+  ],
+  unique: [
+    { icon: 'fa-layer-group', title: 'All in One Ecosystem', body: 'We do not just build software; we create complete digital ecosystems, including AI integrations, hardware deployment, automation, and marketing.' },
+    { icon: 'fa-flask', title: 'Innovation Driven', body: 'From Proof of Concept (PoC) to full scale enterprise deployment, we continuously experiment, refine, and innovate.' },
+    { icon: 'fa-arrows-spin', title: 'End to End Execution', body: 'Idea → Prototype → Development → Launch → Growth. You have one highly capable strategic partner for the entire lifecycle.' },
+    { icon: 'fa-rocket', title: 'Speed & Scalability', body: 'Our agile teams deliver rapid, highly functional results without ever compromising on security or architectural quality.' },
+  ],
+  chapters: [
+    { year: '2021', badge: 'The Hypothesis', image: '1.webp', title: 'The Physics of Collaboration.', body: 'CloudAlls started with a simple observation in Kerala’s academic scene: a massive gap between theory and execution. Campuses held untapped engineering talent lacking access to real-world, enterprise project environments.' },
+    { year: '2021', badge: 'The Prototype', image: '2.webp', title: 'Bridging the Gap.', body: 'Operating from dorm rooms, we built a bridge. By securing commercial contracts and distributing work to a hidden network of “Student Creators,” we proved distributed campus talent could deliver enterprise-grade results.', reverse: true },
+    { year: '2022', badge: 'The Collective', image: '3.webp', title: 'Structuring the Collective.', body: 'The late-night network rapidly evolved into a visible, campus-based collective. We dismantled silos, bringing isolated software engineers and designers together to architect complex apps and corporate identities.' },
+    { year: '2023', badge: 'The Foundation', image: '4.webp', title: 'The Ecosystem Takes Root.', body: 'CloudAlls officially incorporated. Our dispersed talent pooled into a singular, glowing ecosystem, setting the permanent stage for building comprehensive digital infrastructures and locking in our core brand identity.', reverse: true },
+    { year: '2024', badge: 'The Lab', image: '5.webp', title: 'The Innovation Lab is Born.', body: 'To meet escalating demands, we launched the CloudAlls Innovation Lab. We shifted from isolated software to engineering cohesive Digital Ecosystems, implementing rigorous deployment pipelines and advanced API architectures.' },
+    { year: '2025', badge: 'The Enterprise', image: '6.webp', title: 'Scaling to the Enterprise.', body: 'Leaving dorm rooms behind, CloudAlls matured into a corporate entity. From state-of-the-art headquarters, we now exclusively manage high-traffic infrastructures with zero-trust security for multinational clients.', reverse: true },
+    { year: '2026', badge: 'The Future', image: '7.webp', title: 'Global Scale & The Academy.', body: 'Now a global tech ecosystem, we launched the CloudAlls Academy to systematically upskill the next generation of engineers—eliminating the industry talent gap and giving back to the ecosystem that started it all.' },
+  ],
+  leadershipTeam: [
+    { title: 'Chief Executive Officer', role: 'Founder & Principal Architect', image: '/assets/img/1.webp', description: 'Driving the global vision for lean enterprise architecture and regional tech empowerment.' },
+    { title: 'Chief Technology Officer', role: 'Head of Labs & R&D', image: '/assets/img/1.webp', description: 'Overseeing the deployment of zero-trust protocols and AI pipeline integrations.' },
+    { title: 'Chief Creative Officer', role: 'Design & Ecosystem Strategy', image: '/assets/img/1.webp', description: 'Bridging the gap between complex backend engineering and intuitive human-centric interfaces.' },
+    { title: 'Chief Operating Officer', role: 'Global Operations', image: '/assets/img/1.webp', description: 'Scaling internal agility, corporate governance, and enterprise client onboarding.' },
+  ],
+};
+
 function renderDefinition(res: Response, slug: string): void {
   const page = pages[slug] ?? pages.resources!;
   res.render("pages/content", {
@@ -204,6 +241,11 @@ function renderDefinition(res: Response, slug: string): void {
 }
 
 export const publicRouter = Router();
+
+publicRouter.get("/about", (_req, res) => {
+  const page = pages.about!;
+  res.render("pages/about", { ...buildLayoutData({ currentPage: "about", pageTitle: page.title, pageDescription: page.description, pageKeywords: page.keywords, canonicalUrl: "/about" }), about: aboutModel });
+});
 
 publicRouter.get("/expertise", async (_req, res, next) => {
   try {
@@ -319,7 +361,7 @@ for (const legalSlug of ["terms", "privacy", "security", "aup", "ethics", "acces
   });
 }
 
-const dynamicSlugs = new Set(["expertise", "faq", "insights", "portfolio", "brand"]);
+const dynamicSlugs = new Set(["about", "expertise", "faq", "insights", "portfolio", "brand"]);
 for (const slug of Object.keys(pages)) {
   if (!dynamicSlugs.has(slug)) publicRouter.get(`/${slug}`, (_req: Request, res: Response) => renderDefinition(res, slug));
 }

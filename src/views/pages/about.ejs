@@ -1,0 +1,91 @@
+<%- include('../layouts/header', { pageTitle, pageDescription, pageKeywords, canonicalUrl, pageImage, settings, currentPage, socialLinks, schemaPhone }) %>
+
+<section class="about-hero position-relative overflow-hidden">
+  <div class="about-hero-grid" aria-hidden="true"></div>
+  <div class="container position-relative py-5">
+    <div class="row align-items-center g-5 py-lg-5">
+      <div class="col-lg-7">
+        <span class="eyebrow-pill"><i class="fa-solid fa-fingerprint me-2" aria-hidden="true"></i>Corporate identity</span>
+        <h1 class="display-2 fw-black text-white ls-tight mt-4 mb-4">Engineering the future with <span class="about-gradient-text">intelligence.</span></h1>
+        <p class="lead text-white-50 mb-4" style="max-width:720px;">CloudAlls is a full-spectrum technology company and hybrid innovation lab delivering AI, software, hardware, and business solutions under one unified ecosystem.</p>
+        <div class="d-flex flex-wrap gap-3">
+          <a href="/contact" class="btn btn-light btn-lg rounded-pill px-4 fw-bold">Work with us <i class="fa-solid fa-arrow-right ms-2" aria-hidden="true"></i></a>
+          <a href="#origin-story" class="btn btn-outline-light btn-lg rounded-pill px-4 fw-bold">Explore our story</a>
+        </div>
+      </div>
+      <div class="col-lg-5 d-none d-lg-block" aria-hidden="true">
+        <div class="about-signal-stack">
+          <div class="about-signal-card about-signal-card-top"><div class="about-signal-icon"><i class="fa-solid fa-microchip"></i></div><div><strong>Hardware operations</strong><small>Deployment status: active</small></div><div class="about-signal-line"></div></div>
+          <div class="about-signal-card about-signal-card-bottom"><div class="about-signal-icon"><i class="fa-solid fa-brain"></i></div><div><strong>AI neural network</strong><small>Processing responsible intelligence</small></div><div class="about-signal-bars"><span></span><span></span><span></span><span></span></div></div>
+          <div class="about-signal-chip"><i class="fa-solid fa-code"></i><strong>Software core</strong></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="our-story" class="about-story py-5">
+  <div class="container py-lg-5">
+    <div class="row g-5 mb-5 pb-lg-5 border-bottom border-secondary border-opacity-10">
+      <div class="col-lg-4">
+        <div class="about-sticky-heading"><span class="section-kicker">The CloudAlls standard</span><h2 class="display-5 fw-black ls-tight mt-3">Bridging digital innovation and real-world execution.</h2></div>
+      </div>
+      <div class="col-lg-8">
+        <% about.sections.forEach((section, index) => { %>
+          <article class="about-copy-block <%= index === 0 ? 'about-copy-lead' : '' %>">
+            <% if (section.title) { %><h3 class="h4 fw-bold mb-3"><%= section.title %></h3><% } %>
+            <p><%= section.body %></p>
+          </article>
+        <% }); %>
+      </div>
+    </div>
+    <div class="text-center mb-4"><span class="section-kicker">How we work</span><h2 class="display-6 fw-black ls-tight mt-3">Principles that guide every build.</h2></div>
+    <div class="row g-3 justify-content-center">
+      <% about.values.forEach((value, index) => { %>
+        <div class="col-6 col-md-4 col-lg"><div class="about-value-card h-100 text-center"><i class="fa-solid <%= value.icon %>" aria-hidden="true"></i><h3 class="h6 fw-bold mb-0"><%= value.title %></h3></div></div>
+      <% }); %>
+    </div>
+  </div>
+</section>
+
+<section class="about-unique py-5">
+  <div class="container py-lg-5">
+    <div class="text-center mb-5"><span class="section-kicker">The advantage</span><h2 class="display-6 fw-black ls-tight mt-3">What makes CloudAlls different.</h2></div>
+    <div class="row g-4">
+      <% about.unique.forEach((item, index) => { %>
+        <div class="col-md-6"><article class="about-unique-card h-100"><div class="about-feature-icon"><i class="fa-solid <%= item.icon %>" aria-hidden="true"></i></div><span class="about-card-number">0<%= index + 1 %></span><h3 class="h4 fw-black mt-4"><%= item.title %></h3><p class="text-secondary mb-0"><%= item.body %></p></article></div>
+      <% }); %>
+    </div>
+  </div>
+</section>
+
+<section id="origin-story" class="about-timeline py-5">
+  <div class="container py-lg-5">
+    <div class="row justify-content-center mb-5"><div class="col-lg-8 text-center text-lg-start"><span class="section-kicker">Origin story</span><h2 class="display-5 fw-black ls-tight mt-3">The architecture of our evolution.</h2><p class="lead text-secondary mt-3">A campus-born network became an operating model for dependable digital ecosystems.</p></div></div>
+    <div class="about-timeline-list">
+      <% about.chapters.forEach((chapter) => { %>
+        <article class="row align-items-center g-4 g-lg-5 about-chapter <%= chapter.reverse ? 'about-chapter-reverse' : '' %>">
+          <div class="col-lg-5 <%= chapter.reverse ? 'order-lg-2' : 'order-lg-1' %>"><div class="about-chapter-copy"><div class="about-chapter-meta"><strong><%= chapter.year %></strong><span>—</span><span><%= chapter.badge %></span></div><h3 class="display-6 fw-black ls-tight"><%= chapter.title %></h3><p><%= chapter.body %></p></div></div>
+          <div class="col-lg-6 <%= chapter.reverse ? 'order-lg-1' : 'order-lg-2' %>"><div class="about-chapter-image"><img src="/assets/img/legacy/<%= chapter.image %>" alt="<%= chapter.title %>" loading="lazy"></div></div>
+        </article>
+      <% }); %>
+    </div>
+  </div>
+</section>
+
+<section id="leadership" class="about-leadership py-5">
+  <div class="container py-lg-5">
+    <div class="text-center mb-5"><span class="section-kicker">Leadership</span><h2 class="display-6 fw-black ls-tight mt-3">The architects behind the ecosystem.</h2><p class="text-secondary lead">A multidisciplinary leadership model connecting technology, design, and execution.</p></div>
+    <div class="row g-4 justify-content-center">
+      <% about.leadershipTeam.forEach((member) => { %>
+        <div class="col-md-6 col-lg-3"><article class="about-leader-card h-100"><div class="about-leader-image"><img src="<%= member.image %>" alt="<%= member.title %>" loading="lazy"></div><div class="p-4 d-flex flex-column h-100"><h3 class="h5 fw-black mb-1"><%= member.title %></h3><p class="small fw-bold text-primary text-uppercase ls-1 mb-3"><%= member.role %></p><p class="small text-secondary mb-0"><%= member.description %></p></div></article></div>
+      <% }); %>
+    </div>
+    <div class="about-advisory mt-5 pt-5 text-center"><h3 class="h3 fw-bold">Board of advisors</h3><p class="text-secondary mx-auto" style="max-width:650px;">CloudAlls is guided by experienced perspectives from finance, cybersecurity, and global logistics to keep enterprise compliance and resilience at the center of growth.</p><div class="row justify-content-center g-4 mt-3"><div class="col-6 col-md-3"><strong>Legal &amp; Compliance</strong></div><div class="col-6 col-md-3"><strong>Venture Capital</strong></div><div class="col-6 col-md-3"><strong>Deep Tech Strategy</strong></div></div></div>
+  </div>
+</section>
+
+<section class="about-cta py-5"><div class="container py-lg-4"><div class="about-cta-panel text-center"><span class="section-kicker text-info">Global impact</span><h2 class="display-5 fw-black text-white mt-3">Let’s build something extraordinary together.</h2><p class="lead text-white-50 mx-auto my-4" style="max-width:700px;">We aim to expand globally, delivering cutting-edge solutions to businesses across industries and geographies.</p><div class="d-flex justify-content-center flex-wrap gap-3"><a href="/contact" class="btn btn-light btn-lg rounded-pill px-4 fw-bold">Start a project</a><a href="/expertise" class="btn btn-outline-light btn-lg rounded-pill px-4 fw-bold">Explore expertise</a></div></div></div></section>
+
+<%- include('../layouts/footer', { settings, footerMenus, waLink }) %>
+<script>document.addEventListener('DOMContentLoaded', () => { if (window.AOS) window.AOS.refresh(); });</script>
