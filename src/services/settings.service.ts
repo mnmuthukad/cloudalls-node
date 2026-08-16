@@ -42,7 +42,7 @@ function sanitizeLogoMarkup(value: unknown): string {
     allowedTags: ["span", "svg", "path", "g", "circle", "rect", "title", "text", "tspan"],
     allowedAttributes: {
       span: ["class"],
-      svg: ["class", "viewBox", "width", "height", "fill", "xmlns", "role", "aria-label", "focusable"],
+      svg: ["class", "viewBox", "viewbox", "width", "height", "fill", "xmlns", "role", "aria-label", "focusable"],
       path: ["d", "fill", "stroke", "stroke-width"],
       g: ["fill", "stroke", "transform", "opacity"],
       circle: ["cx", "cy", "r", "fill", "opacity", "stroke", "stroke-width"],
