@@ -17,7 +17,7 @@
         <div class="d-flex flex-wrap gap-2 mb-3"><span class="badge text-bg-light"><%= job.department %></span><span class="badge <%= expired ? 'text-bg-danger' : upcoming ? 'text-bg-warning' : 'text-bg-primary' %>"><%= expired ? 'Closed' : upcoming ? `Opens ${start}` : job.type %></span></div>
         <h3 class="h4 fw-bold"><%= job.title %></h3><p class="small text-muted"><%= job.location_type %> · <%= job.location %></p>
         <p class="text-secondary"><%= (job.description || '').replace(/<[^>]*>/g, '').replace(/\\r?\\n/g, ' ').slice(0, 240) %><%= (job.description || '').replace(/<[^>]*>/g, '').length > 240 ? '…' : '' %></p>
-        <a class="btn <%= expired ? 'btn-outline-secondary' : 'btn-outline-primary' %> rounded-pill" href="/careers_details?id=<%= job.id %>"><%= expired ? 'View archive' : 'View role' %></a>
+        <a class="btn <%= expired ? 'btn-outline-secondary' : 'btn-outline-primary' %> rounded-pill" href="/careers/<%= encodeURIComponent(String(job.id)) %>"><%= expired ? 'View archive' : 'View role' %></a>
       </div></article>
     <% }); } else { %><div class="col-12"><div class="p-5 rounded-4 bg-light border text-center"><h3 class="h4 fw-bold">No professional roles are listed right now.</h3><p class="text-secondary mb-0">Check back soon or introduce yourself through the contact page.</p></div></div><% } %>
   </div>
@@ -31,7 +31,7 @@
           <div class="d-flex flex-wrap gap-2 mb-3"><span class="badge text-bg-light"><%= job.department %></span><span class="badge <%= expired ? 'text-bg-danger' : upcoming ? 'text-bg-warning' : 'text-bg-success' %>"><%= expired ? 'Closed' : upcoming ? `Opens ${start}` : 'Internship' %></span></div>
           <h3 class="h4 fw-bold"><%= job.title %></h3><p class="small text-muted"><%= job.location_type %> · <%= job.location %></p>
           <p class="text-secondary"><%= (job.description || '').replace(/<[^>]*>/g, '').replace(/\\r?\\n/g, ' ').slice(0, 240) %><%= (job.description || '').replace(/<[^>]*>/g, '').length > 240 ? '…' : '' %></p>
-          <a class="btn <%= expired ? 'btn-outline-secondary' : 'btn-outline-success' %> rounded-pill" href="/careers_details?id=<%= job.id %>"><%= expired ? 'View archive' : 'Apply for program' %></a>
+          <a class="btn <%= expired ? 'btn-outline-secondary' : 'btn-outline-success' %> rounded-pill" href="/careers/<%= encodeURIComponent(String(job.id)) %>"><%= expired ? 'View archive' : 'Apply for program' %></a>
         </div></article>
       <% }); } else { %><div class="col-12"><div class="p-5 rounded-4 bg-white border text-center"><h3 class="h4 fw-bold">No internships are listed right now.</h3><p class="text-secondary mb-0">Academy programs run seasonally. Please check back for the next cohort.</p></div></div><% } %>
     </div>
