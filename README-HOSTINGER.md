@@ -35,3 +35,11 @@ After deployment, verify `https://z.cloudalls.com/healthz`, `/`, `/about`, `/exp
 ## Production cutover
 
 Keep `www.cloudalls.com` on the PHP application until the staging test passes, backups are confirmed, the response databases are verified, and all public routes have been compared. At cutover, deploy the same Git commit to the production Node application, change `APP_URL` to the canonical origin, purge old service-worker caches if needed, and monitor the logs and response tables. Retain the PHP deployment for rollback until the Node application has completed an agreed observation window.
+
+## Repaired migration notes
+
+The repaired build restores the full eight-record expertise catalogue when the public database is temporarily unavailable, aligns partnership tiers with the response database (`Standard Partner`, `Pro Partner`, and `Academic Partner`), expands the partnership page, and restores separate professional-role and Academy-internship sections. Active records whose end date has passed are displayed as archived rather than silently disappearing; archived roles cannot accept new applications.
+
+The build and check scripts invoke TypeScript through Node directly, which avoids failures caused by non-executable npm wrapper files after archive extraction. Run `npm ci` followed by `npm run build`, then use `npm start`. The application must receive Hostinger's assigned `PORT`; do not hard-code a public port.
+
+Before enabling form traffic, verify the response database contains `contact_inquiries`, `partnership_applications`, `job_applications`, `dsr_requests`, and `node_sessions`. The partnership `tier` column must include `Academic Partner`. Set `DB_RESP_*` variables to the response database so CSRF sessions persist across restarts; do not rely on Express's in-memory session store in production.
