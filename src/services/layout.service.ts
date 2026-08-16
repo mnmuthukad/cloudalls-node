@@ -18,8 +18,15 @@ export interface LayoutData {
 
 const footerMenus: LayoutData["footerMenus"] = {
   Company: { "/about": "About CloudAlls", "/partnership": "Partner Network", "/investors": "Investor Relations" },
-  Ecosystem: { "/labs": { label: "Labs", badge: "BETA" }, "/resources": "Developer Hub", "/engineering": "Engineering & Trust" },
-  Resources: { "/portfolio": "Case Studies", "/insights": "Insights & Blog", "/testimonials": "Client Perspectives", "/events": "Events & Webinars" },
+  "Ecosystem & Resources": {
+    "/labs": { label: "Labs", badge: "BETA" },
+    "/resources": "Developer Hub",
+    "/engineering": "Engineering & Trust",
+    "/portfolio": "Case Studies",
+    "/insights": "Insights & Blog",
+    "/testimonials": "Client Perspectives",
+    "/events": "Events & Webinars",
+  },
   "Impact & Talent": { "/media": "News & Impact", "/careers": "Career & Internship", "/responsibility": "Social Responsibility" },
   Platform: { "/expertise": "Expertise", "/methodology": "Methodology", "/pricing": "Pricing Plans", "https://academy.cloudalls.com/": { label: "Academy", badge: "External" } },
   Portals: {
