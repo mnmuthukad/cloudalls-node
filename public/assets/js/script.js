@@ -23,6 +23,7 @@
     const updateScrollState = () => {
       const y = window.scrollY;
       nav?.classList.toggle('scrolled', y > 32);
+      nav?.classList.toggle('utility-hidden', y > 32);
       backToTop?.classList.toggle('show', y > 480);
     };
     if (nav || backToTop) {
