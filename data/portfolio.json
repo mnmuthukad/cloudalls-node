@@ -24,5 +24,31 @@
     "live_link": "",
     "status": "Published",
     "created_at": "2026-02-24 00:53:59"
+  },
+  {
+    "id": 4,
+    "title": "Agentic AI Operations Platform for Vertex Commerce",
+    "slug": "vertex-ai-operations-platform",
+    "client_name": "Vertex Commerce",
+    "expertise_id": 3,
+    "short_desc": "A private RAG-powered AI operations platform automating invoice processing, support routing, and reporting without exposing client data to public AI models.",
+    "full_content": "<p class=\"lead\">Vertex Commerce, a multi-channel retail group, approached CloudAlls with a familiar enterprise problem: operational teams were spending dozens of hours weekly on repetitive manual workflows — invoice reconciliation, customer ticket triage, and executive reporting — while leadership could not justify sending proprietary sales data to public AI services.</p>\n\n<h4 class=\"mt-5 mb-3\">The Operational Challenge</h4>\n<p>Every week, the operations team reconciled purchase invoices against delivery records by hand. Customer support tickets had to be manually categorized and routed, and the executive reporting cycle consumed an entire working day. The client needed automation that respected strict data sovereignty requirements.</p>\n\n<h4 class=\"mt-5 mb-3\">The CloudAlls Architecture</h4>\n<p>Our engineering team designed a <strong>Localized AI Model</strong> architecture with a <strong>Private RAG (Retrieval-Augmented Generation)</strong> layer. The client's proprietary data was indexed inside their own secure server environment — it is never used to train, and never exposed to, public AI models. On top of this data foundation we built agentic workflows that autonomously process invoices, screen initial support requests, and route tickets based on contextual understanding.</p>\n<ul>\n    <li><strong>Invoice Processing Agent:</strong> automatically extracts line items from purchase documents, reconciles them against delivery records, and flags discrepancies for human review.</li>\n    <li><strong>Support Routing Agent:</strong> understands ticket context and routes to the correct department with a confidence score.</li>\n    <li><strong>Reporting Agent:</strong> compiles the executive weekly report automatically from verified operational data.</li>\n</ul>\n\n<h4 class=\"mt-5 mb-3\">The Blueprint Results</h4>\n<p>The platform now processes hundreds of invoices weekly with a sub-one-percent discrepancy-escape rate, support tickets reach the right team in seconds, and the executive reporting cycle has been reduced from one working day to minutes of review. Every byte of client data remains inside the client's own security boundary.</p>\n\n<h4 class=\"mt-5 mb-3\">What This Demonstrates</h4>\n<p>Responsible AI is an engineering property at CloudAlls, not a marketing term. Private RAG and localized models deliver automation without exposure, and agentic workflows deliver measurable operational overhead reduction from the first sprint.</p>",
+    "image_url": "/assets/img/slide/3.webp",
+    "live_link": null,
+    "status": "Published",
+    "created_at": "2026-08-10 00:00:00"
+  },
+  {
+    "id": 5,
+    "title": "Zero-Trust Security Network for Meridian Estates",
+    "slug": "meridian-zero-trust-security",
+    "client_name": "Meridian Estates",
+    "expertise_id": 10,
+    "short_desc": "A micro-segmented zero-trust security network unifying CCTV, biometric access, and smart environment control behind a single encrypted operations dashboard.",
+    "full_content": "<p class=\"lead\">Meridian Estates, a mixed-use commercial property group, needed a security and automation system that would not itself become a cyber liability. Their existing setup — consumer-grade cameras, standalone access controllers, and disconnected smart devices — had no segmentation, no encrypted telemetry, and no unified visibility.</p>\n\n<h4 class=\"mt-5 mb-3\">The Security Challenge</h4>\n<p>Modern smart environments are attack surfaces. Every connected camera, lighting controller, and sensor sits on the network and, if left unsegmented, can become a pivot point for lateral movement toward core operational systems. Meridian needed protection of physical space without creating digital risk.</p>\n\n<h4 class=\"mt-5 mb-3\">The CloudAlls Architecture</h4>\n<p>CloudAlls designed and deployed a <strong>zero-trust security network</strong> built on the principle that every device is untrusted until verified. The deployment micro-segments smart office devices — IoT lighting, environmental sensors, and CCTV — away from the core financial and operational servers, so that a compromise in one zone cannot propagate to another.</p>\n<ul>\n    <li><strong>Micro-segmented device zones:</strong> IoT, CCTV, and access control each operate in isolated network segments with encrypted telemetry.</li>\n    <li><strong>Biometric access control:</strong> role-based entry logging integrated with the central security dashboard.</li>\n    <li><strong>Unified encrypted portal:</strong> IP-CCTV streams, environmental sensors, and access logs unified into a single dashboard accessible from mobile or desktop.</li>\n    <li><strong>Incident response paths:</strong> documented containment and rollback procedures reviewed as part of handover.</li>\n</ul>\n\n<h4 class=\"mt-5 mb-3\">The Blueprint Results</h4>\n<p>The estate now operates with 24/7 encrypted monitoring, role-based access logging, and total situational awareness from a single dashboard — while the core operational network remains structurally unreachable from any smart device zone.</p>\n\n<h4 class=\"mt-5 mb-3\">What This Demonstrates</h4>\n<p>Physical security is digital infrastructure. CloudAlls applies the same trust engineering to buildings that we apply to software: assume the network is always at risk, segment accordingly, and verify continuously.</p>",
+    "image_url": "/assets/img/slide/4.webp",
+    "live_link": null,
+    "status": "Published",
+    "created_at": "2026-08-12 00:00:00"
   }
 ]

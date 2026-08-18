@@ -3,7 +3,8 @@
     { "title": "", "body": "CloudAlls is a next generation technology company and hybrid innovation lab. We bridge the critical gap between visionary digital innovation and rigorous real world execution. From AI powered neural networks to enterprise grade software and custom hardware infrastructure, we empower businesses to transform complex ideas into secure, highly scalable operational solutions." },
     { "title": "Our Philosophy", "body": "In a highly fragmented digital landscape, we recognize a fundamental truth: engineering is hollow without design, and automation is fragile without strategy. Our mission is to dismantle these industry silos. We do not just write code or build isolated applications; we architect complete, interconnected digital ecosystems where technology, design, and operations function as a single, cohesive force." },
     { "title": "What We Do", "body": "Operating at the intersection of deep tech and enterprise strategy, our capabilities are anchored in four core pillars: Digital Engineering, Intelligent Systems, Hardware Operations, and Business Growth. We manage the entire technological lifecycle from rapid prototyping and agile development to live cloud deployment and internal team upskilling through the CloudAlls Academy." },
-    { "title": "Our Vision", "body": "We exist to serve as the global “Innovation Logic” layer for startups and multinational enterprises alike. At CloudAlls, we do not rely on guesswork. Through uncompromising security standards, rapid agility, and transparent communication, we engineer certainty—giving industry leaders the technological foundation they need to scale confidently into the future." }
+    { "title": "Our Vision", "body": "We exist to serve as the global “Innovation Logic” layer for startups and multinational enterprises alike. At CloudAlls, we do not rely on guesswork. Through uncompromising security standards, rapid agility, and transparent communication, we engineer certainty—giving industry leaders the technological foundation they need to scale confidently into the future." },
+    { "title": "Built to Verify", "body": "Enterprise trust is earned through verifiable practice. Our engagements are documented against defined service levels, our architecture work supports vendor security reviews and penetration testing, and our delivery is structured for corporate procurement — with statements of work, acceptance criteria, and audit-ready handover documentation." }
   ],
   "values": [
     { "icon": "fa-lightbulb", "title": "Innovation First" },
@@ -28,9 +29,15 @@
     { "year": "2026", "badge": "The Future", "image": "7.webp", "title": "Global Scale & The Academy.", "body": "Now a global tech ecosystem, we launched the CloudAlls Academy to systematically upskill the next generation of engineers—eliminating the industry talent gap and giving back to the ecosystem that started it all." }
   ],
   "leadershipTeam": [
-    { "title": "Chief Executive Officer", "role": "Founder & Principal Architect", "image": "/assets/img/1.webp", "description": "Driving the global vision for lean enterprise architecture and regional tech empowerment." },
-    { "title": "Chief Technology Officer", "role": "Head of Labs & R&D", "image": "/assets/img/1.webp", "description": "Overseeing the deployment of zero-trust protocols and AI pipeline integrations." },
-    { "title": "Chief Creative Officer", "role": "Design & Ecosystem Strategy", "image": "/assets/img/1.webp", "description": "Bridging the gap between complex backend engineering and intuitive human-centric interfaces." },
-    { "title": "Chief Operating Officer", "role": "Global Operations", "image": "/assets/img/1.webp", "description": "Scaling internal agility, corporate governance, and enterprise client onboarding." }
+    { "title": "Chief Executive Officer", "role": "Founder & Principal Architect", "image": "/assets/img/1.webp", "description": "Sets the global direction for enterprise-grade delivery and regional tech empowerment — accountable for client outcomes, commercial strategy, and the CloudAlls standard of engineering certainty." },
+    { "title": "Chief Technology Officer", "role": "Head of Labs & R&D", "image": "/assets/img/1.webp", "description": "Owns technical strategy across zero-trust infrastructure, responsible AI architecture, and the Labs research agenda — personally reviews architecture blueprints for enterprise engagements." },
+    { "title": "Chief Creative Officer", "role": "Design & Ecosystem Strategy", "image": "/assets/img/1.webp", "description": "Leads the design practice and brand systems across digital and physical work, ensuring complex engineering is expressed through intuitive, accessible human interfaces." },
+    { "title": "Chief Operating Officer", "role": "Global Operations", "image": "/assets/img/1.webp", "description": "Runs delivery operations across India and the Gulf — sprint governance, service-level management, enterprise client onboarding, and the academy-to-hiring talent pipeline." }
+  ],
+  "stats": [
+    { "value": "12", "label": "Integrated capabilities under one roof" },
+    { "value": "6", "label": "Industries served — fintech, logistics, retail, healthcare, real estate, education" },
+    { "value": "3", "label": "Countries served — India, UAE, USA" },
+    { "value": "SLA", "label": "Tiered service-level coverage on enterprise deployments" }
   ]
 }

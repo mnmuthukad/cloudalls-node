@@ -53,5 +53,27 @@
     "client_image": "https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=256&auto=format&fit=crop",
     "status": "Published",
     "created_at": "2026-02-23 23:23:29"
+  },
+  {
+    "id": 6,
+    "client_name": "Khalid Al Mansoori",
+    "client_role": "Head of Digital, Gulf Horizon Group (Dubai, UAE)",
+    "expertise_id": 1,
+    "review_text": "We engaged CloudAlls for an internal procurement portal across our Dubai and India offices. Their documentation standards, security posture, and handover quality met the same bar we expect from our global vendors — with a communication cadence that kept our leadership informed at every sprint boundary.",
+    "rating": 5,
+    "client_image": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=256&auto=format&fit=crop",
+    "status": "Published",
+    "created_at": "2026-07-15 00:00:00"
+  },
+  {
+    "id": 7,
+    "client_name": "Divya Krishnan",
+    "client_role": "COO, Astra Health Network (Kochi)",
+    "expertise_id": 3,
+    "review_text": "What convinced us was the data sovereignty architecture. CloudAlls deployed a localized AI model so our patient-facing data never touches public AI services — and they walked our compliance team through the audit trail. That is the kind of partner we build long-term with.",
+    "rating": 5,
+    "client_image": "https://images.unsplash.com/photo-1598550874175-4d0ef436c909?q=80&w=256&auto=format&fit=crop",
+    "status": "Published",
+    "created_at": "2026-07-28 00:00:00"
   }
 ]
