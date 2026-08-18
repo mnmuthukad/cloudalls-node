@@ -7,9 +7,9 @@
     "eyebrow": "Clear commercial pathways",
     "hero": "Technology investment with operational certainty.",
     "sections": [
-      { "heading": "Foundation", "body": "For organizations establishing a dependable digital foundation with focused delivery and measurable outcomes.", "bullets": ["Discovery and architecture review", "Responsive web experience", "Security and performance baseline"] },
-      { "heading": "Scale", "body": "For teams that need an integrated engineering partner for data, automation, and customer-facing systems.", "bullets": ["Product and platform engineering", "AI workflow integration", "Observability and continuous improvement"] },
-      { "heading": "Enterprise", "body": "For organizations operating complex systems where governance, resilience, and trust are non-negotiable.", "bullets": ["Zero-trust architecture planning", "Multi-system integration", "Executive reporting and operational support"] }
+      { "heading": "Foundation", "body": "For organizations establishing a dependable digital foundation with focused delivery, defined service levels, and measurable outcomes.", "bullets": ["Discovery and architecture review with written blueprint", "Responsive web experience with performance budgets", "Security and performance baseline with documented handover", "Milestone-based invoicing and acceptance criteria"] },
+      { "heading": "Scale", "body": "For teams that need an integrated engineering partner for data, automation, and customer-facing systems across bi-weekly sprint cycles.", "bullets": ["Product and platform engineering in agile sprints", "AI workflow integration with data sovereignty options", "Observability, backups, and rollback procedures", "Dedicated delivery lead and sprint reviews"] },
+      { "heading": "Enterprise", "body": "For organizations operating complex systems where governance, resilience, and trust are non-negotiable — with contractual SLAs and procurement-ready documentation.", "bullets": ["Zero-trust architecture planning and security reviews", "Multi-system integration with data residency guarantees", "Tiered SLAs with defined response and resolution targets", "Executive reporting and quarterly operating reviews"] }
     ]
   },
   "about": {
@@ -62,8 +62,10 @@
     "eyebrow": "Innovation lab",
     "hero": "Experiments with a path to reality.",
     "sections": [
-      { "heading": "Active initiatives", "body": "Labs turns focused experiments into useful systems through rapid prototyping, technical evaluation, and responsible release." },
-      { "heading": "Open source at CloudAlls", "body": "We believe practical knowledge becomes more valuable when it is documented, tested, and shared with the wider engineering community." }
+      { "heading": "Agentic workflow engine", "body": "A typed, auditable orchestration layer for autonomous enterprise workflows — invoice processing, support triage, and reporting agents with explicit human-approval gates and full decision traceability.", "bullets": ["Typed tool registries and human-approval gates", "Decision-trace audit logs", "Private RAG retrieval layer"] },
+      { "heading": "Zero-trust device mesh", "body": "Reference architecture for micro-segmented physical environments — IoT, CCTV, and access-control devices isolated from core networks with encrypted telemetry and automated lateral-movement detection.", "bullets": ["Micro-segmented network zones", "Encrypted telemetry pipelines", "Reference deployment blueprints"] },
+      { "heading": "Edge telemetry gateway", "body": "An open hardware-firmware reference design bringing observability to custom IoT and machinery builds, with secure firmware updates and authenticated data channels.", "bullets": ["Secure over-the-air firmware updates", "Authenticated device identity", "Low-cost MCU reference designs"] },
+      { "heading": "Open source at CloudAlls", "body": "Practical knowledge becomes more valuable when it is documented, tested, and shared. Labs releases developer tooling and reference architectures on GitHub under the CloudAlls lab organization for the wider engineering community.", "bullets": ["Documented reference architectures", "Community-ready tooling", "Responsible disclosure practices"] }
     ]
   },
   "engineering": {
@@ -111,8 +113,10 @@
     "eyebrow": "Company information",
     "hero": "Building durable value through useful technology.",
     "sections": [
-      { "heading": "Long-term thinking", "body": "CloudAlls focuses on durable systems, clear governance, responsible innovation, and measurable value creation." },
-      { "heading": "Information requests", "body": "For official company or investor enquiries, use the contact channel so the request can be routed securely." }
+      { "heading": "Investment thesis", "body": "CloudAlls operates a full-spectrum technology model — strategy, engineering, AI, and physical infrastructure under one accountable organization. Diversified revenue across project delivery, retainer operations, and academy programs creates a resilient base while enterprise capability development compounds our margin and positioning.", "bullets": ["Full-spectrum delivery model", "Recurring retainer revenue base", "Academy-to-hiring talent pipeline"] },
+      { "heading": "Operating footprint", "body": "Headquartered in Kerala, India, with delivery operations extending across India and a growing Gulf footprint — including on-site cloud infrastructure leadership in Dubai, UAE — CloudAlls serves clients across India, the GCC, and North America.", "bullets": ["Kerala, India — headquarters and engineering core", "Dubai, UAE — Gulf operations", "India, GCC, and North American client base"] },
+      { "heading": "Governance and reporting", "body": "The company is guided by an advisory board spanning legal and compliance, venture capital, and deep-tech strategy. Financial disclosures for accredited enquiries are available on request; early-stage operating metrics are shared directly with prospective partners and investors through a structured information request process.", "bullets": ["Advisory board across compliance, VC, and deep tech", "Structured disclosure for accredited enquiries", "Quarterly operating highlights for partners"] },
+      { "heading": "Information requests", "body": "For official company or investor enquiries, use the contact channel so the request can be routed securely to the investor relations desk." }
     ]
   },
   "media": {
