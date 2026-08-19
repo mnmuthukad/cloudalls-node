@@ -192,7 +192,24 @@ export async function getActiveExpertise(): Promise<ExpertiseRow[]> {
   if (!db) return editableExpertise;
   try {
     const [rows] = await db.query<ExpertiseRow[]>("SELECT id,title,slug,icon,color,short_description,full_description,bullet_points,price_range,delivery_time,sub_services,key_benefits,division FROM expertise WHERE status = 'Active' ORDER BY display_order ASC, created_at DESC");
-    return rows.length ? rows : editableExpertise;
+    // Merge any JSON-defined services that are not yet in the database (e.g. newly
+    // added services) so the catalogue stays complete even before the DB is updated.
+    if (rows.length) {
+      const seen = new Set(rows.map(row => row.slug));
+      for (const jsonRow of editableExpertise) {
+        if (!seen.has(jsonRow.slug)) {
+          rows.push(jsonRow);
+        } else if (jsonRow.division) {
+          // Backfill subsidiary assignments from the data file until the database
+          // migration has written them (db column may not exist yet in older deploys).
+          const existing = rows.find(row => row.slug === jsonRow.slug);
+          if (existing && !existing.division) existing.division = jsonRow.division;
+        }
+      }
+    } else {
+      return editableExpertise;
+    }
+    return rows;
   } catch (error) {
     console.error("PUBLIC_DB expertise query failed", error);
     return editableExpertise;
