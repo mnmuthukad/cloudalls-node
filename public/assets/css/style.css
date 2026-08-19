@@ -325,7 +325,7 @@ html { scroll-behavior: smooth; }
 
 /* Navigation */
 .glass-nav { background: rgba(255, 255, 255, 0.96); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-bottom: 1px solid rgba(0, 0, 0, 0.06); z-index: 1030; }
-.navbar { transition: background-color 0.3s ease, box-shadow 0.3s ease, backdrop-filter 0.3s ease; padding: 20px 0; }
+.navbar { transition: background-color 0.3s ease, box-shadow 0.3s ease, backdrop-filter 0.3s ease; padding: 8px 0; }
 .navbar.scrolled { background: rgba(255, 255, 255, 0.9); box-shadow: 0 4px 20px rgba(0,0,0,0.05); backdrop-filter: blur(10px); }
 
 /* WhatsApp */
