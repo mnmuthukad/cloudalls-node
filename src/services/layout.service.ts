@@ -40,7 +40,10 @@ const footerMenus: LayoutData["footerMenus"] = {
 export function buildLayoutData(input: Partial<Pick<LayoutData, "currentPage" | "pageTitle" | "pageDescription" | "pageKeywords" | "pageImage" | "canonicalUrl">> = {}): LayoutData {
   const settings = getSiteSettings();
   const pathPart = input.canonicalUrl || "/";
-  const canonicalUrl = pathPart.startsWith("http") ? pathPart : `${env.APP_URL}${pathPart.startsWith("/") ? pathPart : `/${pathPart}`}`;
+  // Sanitize relative paths before embedding in meta/link tags (guards 404-style paths):
+  // allow only letters, digits, hyphens, underscores, dots and slashes; collapse and trim slashes; cap length.
+  const sanitizedRelative = `/${pathPart.replace(/^\/+/, "").replace(/[^a-zA-Z0-9_\-./]/g, "").replace(/\/+/g, "/").slice(0, 200)}`;
+  const canonicalUrl = pathPart.startsWith("http") ? pathPart : `${env.APP_URL}${pathPart.startsWith("/") ? sanitizedRelative : sanitizedRelative.slice(1)}`;
   const socialLinks = [settings.linkedin, settings.instagram, settings.x_link, settings.github, settings.youtube]
     .filter((value): value is string => Boolean(value));
 
