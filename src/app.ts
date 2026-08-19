@@ -38,7 +38,7 @@ export function createApp() {
     const policy = [
       "default-src 'self'",
       "base-uri 'self'",
-      "font-src 'self' data:",
+      "font-src 'self' data: https://cdn.jsdelivr.net",
       "form-action 'self'",
       "frame-ancestors 'self'",
       `img-src 'self' data: https:`,
