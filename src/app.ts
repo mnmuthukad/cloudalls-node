@@ -31,6 +31,27 @@ export function createApp() {
   });
   app.use(securityHeaders);
   app.use((_req, res, next) => {
+    // Enforce a full Content-Security-Policy ourselves (second header). Some hosting
+    // platforms inject a minimal CSP of their own; browsers evaluate ALL CSP headers
+    // as a union of restrictions, so our header remains effective either way.
+    const nonce = (res.locals.cspNonce as string) || "";
+    const policy = [
+      "default-src 'self'",
+      "base-uri 'self'",
+      "font-src 'self' data:",
+      "form-action 'self'",
+      "frame-ancestors 'self'",
+      `img-src 'self' data: https:`,
+      "object-src 'none'",
+      `script-src 'self' 'nonce-${nonce}' https://www.google.com https://www.gstatic.com`,
+      "script-src-attr 'none'",
+      "style-src 'self' 'unsafe-inline'",
+      "connect-src 'self' https://www.google.com https://www.gstatic.com",
+      "manifest-src 'self'",
+      "upgrade-insecure-requests",
+      "frame-src 'self' https://www.google.com",
+    ].join(";");
+    res.appendHeader("Content-Security-Policy", policy);
     res.setHeader("Permissions-Policy", "accelerometer=(), autoplay=(), camera=(), clipboard-read=(), clipboard-write=(), geolocation=(), gyroscope=(), hid=(), interest-cohort=(), magnetometer=(), microphone=(), payment=(), publickey-credentials-get=(), screen-wake-lock=(), serial=(), sync-xhr=(), usb=()");
     if (env.APP_URL.includes("z.cloudalls.com")) res.setHeader("X-Robots-Tag", "noindex, nofollow, noarchive");
     next();
