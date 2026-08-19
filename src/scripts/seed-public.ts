@@ -51,7 +51,7 @@ async function seed(): Promise<void> {
     short_description: row.short_description ?? row.description, full_description: row.full_description,
     bullet_points: row.bullet_points, price_range: row.price_range, delivery_time: row.delivery_time,
     sub_services: row.sub_services, key_benefits: row.key_benefits, status: row.status ?? "Active",
-    display_order: row.display_order ?? 0,
+    division: row.division ?? null, display_order: row.display_order ?? 0,
   }));
   await seedTable("faqs", "faqs.json", row => ({
     question: row.question, answer: row.answer, expertise_id: row.expertise_id,

@@ -15,36 +15,16 @@
   "updated_at": "2026-08-19",
   "brand_divisions": [
     {
-      "id": 1,
       "name": "Foundry"
     },
     {
-      "id": 2,
       "name": "Intelligence"
     },
     {
-      "id": 3,
-      "name": "Infrastructure"
-    },
-    {
-      "id": 4,
       "name": "Studio"
     },
     {
-      "id": 5,
-      "name": "Growth"
-    },
-    {
-      "id": 6,
-      "name": "Operations"
-    },
-    {
-      "id": 7,
-      "name": "Academy"
-    },
-    {
-      "id": 8,
-      "name": "Labs"
+      "name": "Academy & Operations"
     }
   ]
 }

@@ -9,6 +9,7 @@ import { csrfMiddleware, generalLimiter, securityHeaders } from "./middleware/se
 import { env } from "./config/env.js";
 import { getPublicDb, getResponsesDb } from "./config/database.js";
 import { buildLayoutData } from "./services/layout.service.js";
+import { restructureBrandDatabase } from "./services/db-restructure.service.js";
 import { publicRouter } from "./routes/public.js";
 import { formsRouter } from "./routes/forms.js";
 
@@ -17,6 +18,9 @@ const __dirname = path.dirname(__filename);
 
 export function createApp() {
   const app = express();
+  // One-time, idempotent restructure: reconciles live DB divisions/expertise with the
+  // new consolidated subsidiary model defined in the data/ JSON files.
+  void restructureBrandDatabase(getPublicDb());
   const publicDir = path.join(__dirname, "../public");
   const viewsDir = path.join(__dirname, "views");
 

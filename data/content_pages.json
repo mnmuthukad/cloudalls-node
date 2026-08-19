@@ -57,15 +57,15 @@
   "labs": {
     "currentPage": "labs",
     "title": "CloudAlls Labs | Experiments & Open Source",
-    "description": "Explore the CloudAlls Labs, where we prototype new developer tools, automation systems, and responsible AI workflows.",
-    "keywords": "CloudAlls Labs, developer tools, open source AI",
-    "eyebrow": "Innovation lab",
+    "description": "Explore the CloudAlls Labs, the research wing of CloudAlls Foundry, where we prototype new developer tools, automation systems, and responsible AI workflows.",
+    "keywords": "CloudAlls Labs, developer tools, open source AI, Foundry R&D",
+    "eyebrow": "Innovation lab · CloudAlls Foundry",
     "hero": "Experiments with a path to reality.",
     "sections": [
       { "heading": "Agentic workflow engine", "body": "A typed, auditable orchestration layer for autonomous enterprise workflows — invoice processing, support triage, and reporting agents with explicit human-approval gates and full decision traceability.", "bullets": ["Typed tool registries and human-approval gates", "Decision-trace audit logs", "Private RAG retrieval layer"] },
       { "heading": "Zero-trust device mesh", "body": "Reference architecture for micro-segmented physical environments — IoT, CCTV, and access-control devices isolated from core networks with encrypted telemetry and automated lateral-movement detection.", "bullets": ["Micro-segmented network zones", "Encrypted telemetry pipelines", "Reference deployment blueprints"] },
       { "heading": "Edge telemetry gateway", "body": "An open hardware-firmware reference design bringing observability to custom IoT and machinery builds, with secure firmware updates and authenticated data channels.", "bullets": ["Secure over-the-air firmware updates", "Authenticated device identity", "Low-cost MCU reference designs"] },
-      { "heading": "Open source at CloudAlls", "body": "Practical knowledge becomes more valuable when it is documented, tested, and shared. Labs releases developer tooling and reference architectures on GitHub under the CloudAlls lab organization for the wider engineering community.", "bullets": ["Documented reference architectures", "Community-ready tooling", "Responsible disclosure practices"] }
+      { "heading": "Open source at CloudAlls", "body": "Practical knowledge becomes more valuable when it is documented, tested, and shared. Labs releases developer tooling and reference architectures on GitHub under the CloudAlls lab organization for the wider engineering community, extending the Foundry research agenda.", "bullets": ["Documented reference architectures", "Community-ready tooling", "Responsible disclosure practices"] }
     ]
   },
   "engineering": {

@@ -79,7 +79,7 @@ publicRouter.get("/expertise", async (_req, res, next) => {
 publicRouter.get("/expertise/:slug", async (req, res, next) => {
   try {
     const slug = req.params.slug;
-    const expertise = await getExpertiseBySlug(slug);
+    const [expertise, allExpertise] = await Promise.all([getExpertiseBySlug(slug), getActiveExpertise()]);
     if (!expertise) {
       res.status(404).render("errors/404", buildLayoutData({ pageTitle: "Expertise not found", canonicalUrl: "/expertise" }));
       return;
@@ -87,6 +87,7 @@ publicRouter.get("/expertise/:slug", async (req, res, next) => {
     res.render("pages/expertise-detail", {
       ...buildLayoutData({ currentPage: "expertise", pageTitle: `${expertise.title} | CloudAlls Expertise`, pageDescription: expertise.short_description || "CloudAlls expertise.", canonicalUrl: `/expertise/${encodeURIComponent(expertise.slug)}` }),
       expertise,
+      siblingExpertise: allExpertise,
     });
   } catch (error) { next(error); }
 });
@@ -167,8 +168,8 @@ publicRouter.get("/testimonials", async (_req, res, next) => {
 
 publicRouter.get("/brand", async (_req, res, next) => {
   try {
-    const divisions = await getActiveBrandDivisions();
-    res.render("pages/brand", { ...buildLayoutData({ currentPage: "brand", pageTitle: pages.brand!.title, pageDescription: pages.brand!.description, pageKeywords: pages.brand!.keywords, canonicalUrl: "/brand" }), divisions });
+    const [divisions, expertise] = await Promise.all([getActiveBrandDivisions(), getActiveExpertise()]);
+    res.render("pages/brand", { ...buildLayoutData({ currentPage: "brand", pageTitle: pages.brand!.title, pageDescription: pages.brand!.description, pageKeywords: pages.brand!.keywords, canonicalUrl: "/brand" }), divisions, expertise });
   } catch (error) { next(error); }
 });
 
