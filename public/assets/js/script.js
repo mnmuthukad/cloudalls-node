@@ -93,6 +93,13 @@
     if (window.AOS && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       window.AOS.init({ duration: 560, easing: 'ease-out-cubic', once: true, offset: 40 });
     }
-    if ('serviceWorker' in navigator) navigator.serviceWorker.register('/sw.js').catch(() => {});
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/sw.js').catch(() => {});
+      caches.keys().then((names) =>
+        names.forEach((n) => {
+          if (n !== 'cloudalls-static-v3' && n.startsWith('cloudalls-static')) caches.delete(n);
+        }),
+      );
+    }
   }, { once: true });
 })();

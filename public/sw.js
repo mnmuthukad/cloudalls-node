@@ -1,4 +1,4 @@
-const CACHE_NAME = 'cloudalls-static-v1';
+const CACHE_NAME = 'cloudalls-static-v3';
 const ASSETS_TO_CACHE = [
   '/assets/css/style.css',
   '/assets/js/script.js',
@@ -31,16 +31,23 @@ self.addEventListener('fetch', (event) => {
     SECURE_ROUTES.some((route) => url.pathname.includes(route))
   ) return;
 
+  // Only intercept the small set of whitelisted static assets.
+  // Everything else (pages, fonts, icons, images, API) is always fetched
+  // fresh from the network — never served from a stale cache.
+  if (!ASSETS_TO_CACHE.includes(url.pathname)) return;
   event.respondWith(
-    fetch(event.request)
-      .then((networkResponse) => {
-        const cacheControl = networkResponse.headers.get('cache-control') || '';
-        if (networkResponse.ok && networkResponse.type === 'basic' && !cacheControl.includes('no-store')) {
-          const responseToCache = networkResponse.clone();
-          event.waitUntil(caches.open(CACHE_NAME).then((cache) => cache.put(event.request, responseToCache)));
-        }
-        return networkResponse;
-      })
-      .catch(() => caches.match(event.request).then((cached) => cached || Response.error())),
+    caches.open(CACHE_NAME).then((cache) =>
+      cache.match(event.request).then((cached) => {
+        const fetchPromise = fetch(event.request)
+          .then((networkResponse) => {
+            if (networkResponse.ok) {
+              event.waitUntil(cache.put(event.request, networkResponse.clone()));
+            }
+            return networkResponse;
+          })
+          .catch(() => cached || Response.error());
+        return cached || fetchPromise;
+      }),
+    ),
   );
 });
