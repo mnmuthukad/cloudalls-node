@@ -219,6 +219,31 @@ export async function restructureBrandDatabase(pool: Pool | null): Promise<void>
       }
       console.log(`[db-restructure] faqs service FAQs refreshed (${targetFaqs.length} rows written)`);
     }
+
+    // --- insights + portfolio: upsert every JSON row into the DB (idempotent via
+    // INSERT ... ON DUPLICATE KEY UPDATE) so new entries added to the JSON data files
+    // automatically appear on the live site after every deploy ---
+    const syncTable = async (table: string, file: string, idCol: string) => {
+      const target = loadJson<Record<string, unknown>[]>(file);
+      if (!target.length || !(await tableExists(pool, table))) return;
+      let inserted = 0;
+      let updated = 0;
+      for (const row of target) {
+        const cols = Object.keys(row).filter(c => c !== "id");
+        const values: unknown[] = [];
+        for (const col of cols) values.push(row[col] ?? null);
+        const [result] = await pool.query(
+          `INSERT INTO ${table} (${idCol}, ${cols.join(", ")}) VALUES (?, ${cols.map(() => "?").join(", ")}) ON DUPLICATE KEY UPDATE ${cols.map(c => `${c} = VALUES(${c})`).join(", ")}`,
+          [row[idCol], ...values],
+        );
+        const affected = (result as { affectedRows: number })?.affectedRows ?? 0;
+        if (affected >= 2) updated += 1;
+        else if (affected === 1) inserted += 1;
+      }
+      console.log(`[db-restructure] ${table} rows upserted (${inserted} inserted, ${updated} updated of ${target.length})`);
+    };
+    await syncTable("insights", "insights.json", "id");
+    await syncTable("portfolio", "portfolio.json", "id");
   } catch (error) {
     console.error("[db-restructure] failed (non-fatal):", error);
   }
