@@ -1,48 +1,63 @@
 <%- include('../layouts/header', { pageTitle, pageDescription, pageKeywords, canonicalUrl, pageImage, settings, currentPage, socialLinks, schemaPhone }) %>
 <% const slugify = (name) => String(name || '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, ''); %>
-<section class="editorial-hero"><div class="container"><p class="editorial-kicker mb-3">Capabilities</p><h1 class="mb-4">Technology that makes the complex usable.</h1><p class="lead mb-0">Fifty-one capabilities across the CloudAlls ecosystem. Filter by division or wing — detail for each one lives on its own page.</p></div></section>
+
+<section class="editorial-hero"><div class="container"><p class="editorial-kicker mb-3">Our capabilities</p><h1 class="mb-4">Find exactly what you need.</h1><p class="lead mb-0">Fifty-one services across two wings. Start by typing what you need, or browse by division.</p></div></section>
 
 <section class="editorial-section bg-white" id="capabilities">
-  <div class="container py-lg-5">
-    <div class="row g-3 mb-4">
-      <div class="col-12">
-        <div class="d-flex flex-wrap gap-2" id="filter-bar">
-          <button type="button" class="btn btn-light rounded-pill px-3 py-2 fw-medium filter-btn active" data-filter="all">All <span class="opacity-50"><%= expertise.length %></span></button>
-          <% const counts = {}; expertise.forEach(item => { const key = String(item.division || '').trim(); counts[key] = (counts[key] || 0) + 1; });
-             Object.keys(counts).forEach(div => { %>
-          <button type="button" class="btn btn-light rounded-pill px-3 py-2 fw-medium filter-btn" data-filter="<%= slugify(div) %>"><%= div %> <span class="opacity-50"><%= counts[div] %></span></button>
-          <% }); %>
+  <div class="container py-lg-4">
+
+    <!-- Search: the fastest way to find a service -->
+    <div class="row justify-content-center mb-4">
+      <div class="col-lg-8">
+        <div class="position-relative">
+          <i class="fa-solid fa-magnifying-glass position-absolute text-muted" style="top: 50%; left: 1.25rem; transform: translateY(-50%);" aria-hidden="true"></i>
+          <input type="search" id="service-search" class="form-control form-control-lg ps-5 rounded-pill" placeholder="Search a service — e.g. e-commerce, chatbots, DevOps, security..." aria-label="Search services">
         </div>
-      </div>
-      <div class="col-12">
-        <div class="d-flex gap-2" id="wing-tabs">
-          <button type="button" class="btn btn-sm rounded-pill px-3 py-1 border-0 fw-medium wing-btn active" data-wing="all">Everything</button>
-          <button type="button" class="btn btn-sm rounded-pill px-3 py-1 border-0 fw-medium wing-btn" data-wing="A">Wing A</button>
-          <button type="button" class="btn btn-sm rounded-pill px-3 py-1 border-0 fw-medium wing-btn" data-wing="B">Wing B</button>
-        </div>
+        <p class="text-muted small mt-2 mb-0 text-center" id="search-hint">Type to filter instantly, or scroll to the divisions below.</p>
       </div>
     </div>
 
-    <div class="row g-4 py-3" id="catalogue-grid">
-    <% if (expertise.length) { expertise.forEach(item => { %>
-      <div class="col-lg-4 catalogue-card" data-division="<%= slugify(item.division) %>" data-wing="<%= String(item.wing || '').toUpperCase() === 'B' ? 'B' : 'A' %>">
-        <a class="d-block p-4 rounded-3 bg-white border h-100 text-decoration-none transition-hover" href="/expertise/<%= encodeURIComponent(item.slug) %>" style="border-color:#eef1f6;">
-          <div class="d-flex align-items-start gap-3 mb-3">
-            <span class="capability-icon mt-1"><i class="fa-solid <%= item.icon || 'fa-code' %>" aria-hidden="true"></i></span>
-            <div>
-              <p class="small text-primary fw-semibold mb-1">CloudAlls <%= item.division %></p>
-              <h3 class="h5 fw-bold mb-0"><%= item.title %></h3>
-            </div>
-          </div>
-          <p class="text-secondary mb-0 small"><%= String(item.short_description || '').slice(0, 130) %></p>
-        </a>
-      </div>
-    <% }); } else { %>
-      <div class="col-12"><div class="enterprise-card text-center"><h3 class="h4 fw-bold">Capability catalogue is being refreshed.</h3><p class="text-secondary mb-0">Start a conversation and our team will route your requirement to the right specialists.</p></div></div>
-    <% } %>
+    <!-- Wing selector -->
+    <div class="d-flex justify-content-center gap-2 mb-5" id="wing-tabs">
+      <button type="button" class="btn btn-sm rounded-pill px-4 py-2 fw-semibold wing-btn active" data-wing="all">All services</button>
+      <button type="button" class="btn btn-sm rounded-pill px-4 py-2 fw-semibold wing-btn" data-wing="capabilities">Wing A — Capabilities</button>
+      <button type="button" class="btn btn-sm rounded-pill px-4 py-2 fw-semibold wing-btn" data-wing="verticals">Wing B — Verticals</button>
     </div>
-    <div class="text-center py-4" id="no-results" style="display:none;">
-      <p class="text-secondary small"><i class="fa-solid fa-filter-circle-xmark me-2" aria-hidden="true"></i>No capabilities match this filter.</p>
+
+    <div id="catalogue-list">
+    <% const grouped = {}; expertise.forEach(item => { const div = String(item.division || '').trim(); (grouped[div] = grouped[div] || []).push(item); });
+       const divOrder = Object.keys(grouped).sort((a, b) => (grouped[a][0].display_order ?? 0) - (grouped[b][0].display_order ?? 0)); %>
+    <% divOrder.forEach(div => { %>
+      <div class="division-group mb-5" data-division="<%= slugify(div) %>">
+        <div class="d-flex align-items-baseline gap-3 mb-3 pt-2 border-bottom">
+          <h2 class="h4 fw-bold mb-0"><%= div %></h2>
+          <span class="badge rounded-pill bg-primary-subtle text-primary-emphasis fw-medium"><%= grouped[div].length %> services</span>
+        </div>
+        <div class="row g-3">
+        <% grouped[div].forEach(item => { %>
+          <div class="col-12 col-sm-6 col-lg-4 catalogue-card" data-division="<%= slugify(div) %>" data-wing="<%= String(item.wing || '').trim() %>" data-title="<%= String(item.title).toLowerCase() %>" data-desc="<%= String(item.short_description || '').toLowerCase() %>">
+            <a class="d-block p-4 rounded-3 bg-white border h-100 text-decoration-none transition-hover" href="/expertise/<%= encodeURIComponent(item.slug) %>" style="border-color:#eef1f6;">
+              <div class="d-flex align-items-start gap-3 mb-3">
+                <span class="capability-icon mt-1"><i class="fa-solid <%= item.icon || 'fa-code' %>" aria-hidden="true"></i></span>
+                <div>
+                  <p class="small text-primary fw-semibold mb-1">CloudAlls <%= div %></p>
+                  <h3 class="h5 fw-bold mb-0"><%= item.title %></h3>
+                </div>
+              </div>
+              <p class="text-secondary mb-0 small"><%= String(item.short_description || '').slice(0, 130) %></p>
+            </a>
+          </div>
+        <% }); %>
+        </div>
+      </div>
+    <% }); %>
+    </div>
+
+    <div class="text-center py-5" id="no-results" style="display:none;">
+      <i class="fa-solid fa-magnifying-glass fa-3x text-muted mb-3" aria-hidden="true"></i>
+      <h3 class="h5 fw-bold">Nothing matches "<span id="no-results-term"></span>"</h3>
+      <p class="text-secondary mb-3">Try a simpler word, or browse a different division above.</p>
+      <a href="/contact" class="btn btn-primary rounded-pill px-4">Tell us what you need instead</a>
     </div>
   </div>
 </section>
@@ -50,49 +65,68 @@
 <script>
 (function () {
   'use strict';
-  var grid = document.getElementById('catalogue-grid');
+  var search = document.getElementById('service-search');
+  var hint = document.getElementById('search-hint');
   var noResults = document.getElementById('no-results');
-  var cards = grid ? Array.prototype.slice.call(grid.querySelectorAll('.catalogue-card')) : [];
-  var state = { div: 'all', wing: 'all' };
+  var noTerm = document.getElementById('no-results-term');
+  var groups = Array.prototype.slice.call(document.querySelectorAll('.division-group'));
+  var allCards = Array.prototype.slice.call(document.querySelectorAll('.catalogue-card'));
+  var state = { wing: 'all', query: '' };
 
   function applyFilter() {
-    var visible = 0;
-    cards.forEach(function (card) {
-      var divOk = state.div === 'all' || String(card.getAttribute('data-division') || '') === state.div;
-      var wingOk = state.wing === 'all' || String(card.getAttribute('data-wing') || '') === state.wing;
-      var show = divOk && wingOk;
-      card.style.display = show ? '' : 'none';
-      if (show) visible += 1;
+    var q = state.query.trim().toLowerCase();
+    var anyVisible = false;
+    var totalVisible = 0;
+    groups.forEach(function (group) {
+      var cards = Array.prototype.slice.call(group.querySelectorAll('.catalogue-card'));
+      var groupVisible = 0;
+      cards.forEach(function (card) {
+        var wingOk = state.wing === 'all' || String(card.getAttribute('data-wing') || '') === state.wing;
+        var qOk = !q || String(card.getAttribute('data-title') || '').indexOf(q) > -1 || String(card.getAttribute('data-desc') || '').indexOf(q) > -1;
+        var show = wingOk && qOk;
+        card.style.display = show ? '' : 'none';
+        if (show) { groupVisible += 1; totalVisible += 1; }
+      });
+      group.style.display = groupVisible > 0 ? '' : 'none';
+      if (groupVisible > 0) anyVisible = true;
     });
-    if (noResults) noResults.style.display = visible === 0 ? '' : 'none';
-    Array.prototype.slice.call(document.querySelectorAll('.filter-btn')).forEach(function (btn) {
-      btn.classList.toggle('active', String(btn.getAttribute('data-filter') || '') === state.div);
-    });
+    if (noResults) {
+      noResults.style.display = (totalVisible === 0 && q) ? '' : 'none';
+      noTerm.textContent = state.query;
+    }
     Array.prototype.slice.call(document.querySelectorAll('.wing-btn')).forEach(function (btn) {
       btn.classList.toggle('active', String(btn.getAttribute('data-wing') || '') === state.wing);
     });
+    if (hint) hint.style.display = q ? 'none' : '';
   }
 
-  Array.prototype.slice.call(document.querySelectorAll('.filter-btn')).forEach(function (btn) {
-    btn.addEventListener('click', function () {
-      state.div = String(btn.getAttribute('data-filter') || 'all');
-      applyFilter();
-      if (history.replaceState) history.replaceState(null, '', '/expertise' + (state.div === 'all' ? '' : '?div=' + state.div + '&wing=' + state.wing) + '#capabilities');
-    });
-  });
   Array.prototype.slice.call(document.querySelectorAll('.wing-btn')).forEach(function (btn) {
     btn.addEventListener('click', function () {
       state.wing = String(btn.getAttribute('data-wing') || 'all');
       applyFilter();
-      if (history.replaceState) history.replaceState(null, '', '/expertise' + (state.div === 'all' && state.wing === 'all' ? '' : '?' + (state.div !== 'all' ? 'div=' + state.div : '') + (state.div !== 'all' && state.wing !== 'all' ? '&' : '') + (state.wing !== 'all' ? 'wing=' + state.wing : '')) + '#capabilities');
+      if (history.replaceState) history.replaceState(null, '', '/expertise' + (state.wing === 'all' ? '' : '?wing=' + state.wing) + '#capabilities');
     });
   });
 
+  var timer = null;
+  search.addEventListener('input', function () {
+    clearTimeout(timer);
+    timer = setTimeout(function () {
+      state.query = search.value;
+      applyFilter();
+      if (state.query && history.replaceState) {
+        history.replaceState(null, '', '/expertise?q=' + encodeURIComponent(state.query) + (state.wing !== 'all' ? '&wing=' + state.wing : '') + '#capabilities');
+      } else if (!state.query && history.replaceState) {
+        history.replaceState(null, '', '/expertise' + (state.wing !== 'all' ? '?wing=' + state.wing : '') + '#capabilities');
+      }
+    }, 120);
+  });
+
   var params = new URLSearchParams(window.location.search);
-  var initDiv = params.get('div');
+  var initQ = params.get('q');
   var initWing = params.get('wing');
-  if (initDiv) state.div = initDiv === 'all' ? 'all' : initDiv.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
-  if (initWing && (initWing === 'A' || initWing === 'B')) state.wing = initWing;
+  if (initQ) { state.query = initQ; search.value = initQ; }
+  if (initWing) state.wing = initWing;
   applyFilter();
 })();
 </script>

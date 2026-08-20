@@ -1,4 +1,126 @@
 <%- include('../layouts/header', { pageTitle, pageDescription, pageKeywords, canonicalUrl, pageImage, settings, currentPage, socialLinks, schemaPhone }) %>
-<section class="container-fluid bg-dark text-white py-5"><div class="container py-5"><p class="text-uppercase fw-bold text-info small ls-1 mb-3"><%= page.eyebrow %></p><h1 class="display-3 fw-black ls-tight mb-4"><%= page.hero %></h1><p class="lead text-white-50 mb-0" style="max-width: 760px;">Practical answers about CloudAlls services, technology decisions, and delivery standards.</p></div></section>
-<section class="container py-5"><div class="accordion" id="faqAccordion"><% if (faqs.length) { %><% faqs.forEach((faq, index) => { %><div class="accordion-item mb-3 border rounded-3 overflow-hidden" data-aos="fade-up"><h2 class="accordion-header" id="faq-heading-<%= faq.id %>"><button class="accordion-button <%= index === 0 ? '' : 'collapsed' %> fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#faq-collapse-<%= faq.id %>" aria-expanded="<%= index === 0 ? 'true' : 'false' %>" aria-controls="faq-collapse-<%= faq.id %>"><%= faq.question %></button></h2><div id="faq-collapse-<%= faq.id %>" class="accordion-collapse collapse <%= index === 0 ? 'show' : '' %>" aria-labelledby="faq-heading-<%= faq.id %>" data-bs-parent="#faqAccordion"><div class="accordion-body text-secondary"><%= faq.answer %></div></div></div><% }); %><% } else { %><% page.sections.forEach((section, index) => { %><div class="accordion-item mb-3 border rounded-3 overflow-hidden" data-aos="fade-up"><h2 class="accordion-header" id="faq-heading-fallback-<%= index %>"><button class="accordion-button <%= index === 0 ? '' : 'collapsed' %> fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#faq-collapse-fallback-<%= index %>" aria-expanded="<%= index === 0 ? 'true' : 'false' %>"><%= section.heading %></button></h2><div id="faq-collapse-fallback-<%= index %>" class="accordion-collapse collapse <%= index === 0 ? 'show' : '' %>" data-bs-parent="#faqAccordion"><div class="accordion-body text-secondary"><%= section.body %></div></div></div><% }); %><% } %></div></section>
+<%
+  // Categorize FAQs by service keywords for the topic filter chips.
+  // Service FAQs carry expertise_id; global FAQs have expertise_id null.
+  var topicMap = {};
+  faqs.forEach(function (faq) {
+    var tid = (faq.expertise_id && faq.expertise_id >= 1000) ? 'service' : 'general';
+    topicMap[tid] = topicMap[tid] || [];
+    topicMap[tid].push(faq);
+  });
+  var serviceFaqs = topicMap.service || [];
+  var generalFaqs = topicMap.general || [];
+  var hasCategories = serviceFaqs.length && generalFaqs.length;
+%>
+<section class="container-fluid bg-dark text-white py-5"><div class="container py-5"><p class="text-uppercase fw-bold text-info small ls-1 mb-3"><%= page.eyebrow || 'Help centre' %></p><h1 class="display-3 fw-black ls-tight mb-4"><%= page.hero || 'Frequently asked questions' %></h1><p class="lead text-white-50 mb-0" style="max-width: 760px;">Search our answers by keyword, or jump to a topic. Can't find what you need? Ask us directly.</p></div></section>
+
+<section class="editorial-section bg-white" id="faq-section">
+  <div class="container py-5">
+    <!-- Search -->
+    <div class="row justify-content-center mb-4">
+      <div class="col-lg-8">
+        <div class="position-relative">
+          <i class="fa-solid fa-magnifying-glass position-absolute text-muted" style="top: 50%; left: 1.25rem; transform: translateY(-50%);" aria-hidden="true"></i>
+          <input type="search" id="faq-search" class="form-control form-control-lg ps-5 rounded-pill" placeholder="Search questions — e.g. security, payment, timeline, support..." aria-label="Search FAQs">
+        </div>
+      </div>
+    </div>
+
+    <!-- Topic chips -->
+    <div class="d-flex flex-wrap justify-content-center gap-2 mb-5" id="faq-topics">
+      <button type="button" class="btn btn-sm rounded-pill px-4 py-2 fw-semibold topic-btn active" data-topic="all">All questions <span class="opacity-50"><%= faqs.length %></span></button>
+      <% if (hasCategories) { %>
+      <button type="button" class="btn btn-sm rounded-pill px-4 py-2 fw-semibold topic-btn" data-topic="service">Service-specific <span class="opacity-50"><%= serviceFaqs.length %></span></button>
+      <button type="button" class="btn btn-sm rounded-pill px-4 py-2 fw-semibold topic-btn" data-topic="general">General &amp; company <span class="opacity-50"><%= generalFaqs.length %></span></button>
+      <% } %>
+    </div>
+
+    <p class="text-center text-muted small mb-4" id="faq-count"><%= faqs.length %> questions</p>
+
+    <div class="row justify-content-center">
+      <div class="col-lg-9">
+        <div class="accordion" id="faqAccordion">
+        <% if (faqs.length) { faqs.forEach((faq, index) => { %>
+          <div class="accordion-item mb-2 border rounded-3 overflow-hidden faq-row" data-topic="<%= (faq.expertise_id && faq.expertise_id >= 1000) ? 'service' : 'general' %>" data-q="<%= String(faq.question + ' ' + faq.answer).toLowerCase() %>">
+            <h2 class="accordion-header" id="faq-heading-<%= faq.id %>">
+              <button class="accordion-button <%= index === 0 ? '' : 'collapsed' %> fw-semibold" type="button" data-bs-toggle="collapse" data-bs-target="#faq-collapse-<%= faq.id %>" aria-expanded="<%= index === 0 ? 'true' : 'false' %>" aria-controls="faq-collapse-<%= faq.id %>"><%= faq.question %></button>
+            </h2>
+            <div id="faq-collapse-<%= faq.id %>" class="accordion-collapse collapse <%= index === 0 ? 'show' : '' %>" aria-labelledby="faq-heading-<%= faq.id %>" data-bs-parent="#faqAccordion">
+              <div class="accordion-body text-secondary"><%= faq.answer %></div>
+            </div>
+          </div>
+        <% }); } else { %><% page.sections.forEach((section, index) => { %>
+          <div class="accordion-item mb-2 border rounded-3 overflow-hidden faq-row">
+            <h2 class="accordion-header" id="faq-heading-fallback-<%= index %>">
+              <button class="accordion-button <%= index === 0 ? '' : 'collapsed' %> fw-semibold" type="button" data-bs-toggle="collapse" data-bs-target="#faq-collapse-fallback-<%= index %>" aria-expanded="<%= index === 0 ? 'true' : 'false' %>"><%= section.heading %></button>
+            </h2>
+            <div id="faq-collapse-fallback-<%= index %>" class="accordion-collapse collapse <%= index === 0 ? 'show' : '' %>" data-bs-parent="#faqAccordion">
+              <div class="accordion-body text-secondary"><%= section.body %></div>
+            </div>
+          </div>
+        <% }); %><% } %>
+        </div>
+
+        <div class="text-center py-4" id="faq-no-results" style="display:none;">
+          <i class="fa-solid fa-circle-question fa-2x text-muted mb-2" aria-hidden="true"></i>
+          <p class="mb-1 fw-semibold">No questions match your search.</p>
+          <p class="text-secondary small mb-3">Try different keywords, or reach our team.</p>
+          <a href="/contact" class="btn btn-primary rounded-pill px-4">Ask us directly</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+(function () {
+  'use strict';
+  var search = document.getElementById('faq-search');
+  var count = document.getElementById('faq-count');
+  var noResults = document.getElementById('faq-no-results');
+  var rows = Array.prototype.slice.call(document.querySelectorAll('.faq-row'));
+  var total = rows.length;
+  var state = { topic: 'all', query: '' };
+
+  function applyFilter() {
+    var q = state.query.trim().toLowerCase();
+    var visible = 0;
+    rows.forEach(function (row) {
+      var tOk = state.topic === 'all' || String(row.getAttribute('data-topic') || '') === state.topic;
+      var qOk = !q || String(row.getAttribute('data-q') || '').indexOf(q) > -1;
+      var show = tOk && qOk;
+      row.style.display = show ? '' : 'none';
+      if (show) visible += 1;
+    });
+    if (count) count.textContent = visible + ' question' + (visible === 1 ? '' : 's') + (q ? ' matching "' + state.query + '"' : '');
+    if (noResults) noResults.style.display = (visible === 0 && q) ? '' : 'none';
+    Array.prototype.slice.call(document.querySelectorAll('.topic-btn')).forEach(function (btn) {
+      btn.classList.toggle('active', String(btn.getAttribute('data-topic') || '') === state.topic);
+    });
+  }
+
+  document.querySelectorAll('.topic-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      state.topic = String(btn.getAttribute('data-topic') || 'all');
+      applyFilter();
+      if (history.replaceState) history.replaceState(null, '', '/faq' + (state.topic !== 'all' ? '?topic=' + state.topic : '') + (state.query ? (state.topic !== 'all' ? '&' : '?') + 'q=' + encodeURIComponent(state.query) : '') + '#faq-section');
+    });
+  });
+
+  var timer = null;
+  search.addEventListener('input', function () {
+    clearTimeout(timer);
+    timer = setTimeout(function () {
+      state.query = search.value;
+      applyFilter();
+      if (history.replaceState) history.replaceState(null, '', '/faq' + (state.topic !== 'all' ? '?topic=' + state.topic : '') + (state.query ? (state.topic !== 'all' ? '&' : '?') + 'q=' + encodeURIComponent(state.query) : '') + '#faq-section');
+    }, 120);
+  });
+
+  var params = new URLSearchParams(window.location.search);
+  if (params.get('q')) { state.query = params.get('q'); search.value = params.get('q'); }
+  if (params.get('topic')) state.topic = params.get('topic');
+  applyFilter();
+})();
+</script>
 <%- include('../layouts/footer', { settings, footerMenus, waLink }) %>

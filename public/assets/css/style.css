@@ -818,3 +818,14 @@ footer .cloudalls-wordmark svg { width: 170px; height: 34px; }
     justify-content: center;
   }
 }
+
+/* Detail page: sticky in-page navigation (phase: UX refinement Aug 2026) */
+.sticky-detail-nav { position: sticky; top: 0; z-index: 1020; }
+.sticky-detail-nav .nav-link-detail { color: #475569; text-decoration: none; white-space: nowrap; padding: .35rem .6rem; border-radius: .5rem; transition: color .15s ease, background .15s ease; }
+.sticky-detail-nav .nav-link-detail:hover { color: #2563eb; background: #eff6ff; text-decoration: none; }
+
+/* Catalogue: subtle focus state for search clarity */
+.catalogue-card { transition: opacity .2s ease, transform .2s ease; }
+
+/* FAQ page: gentle highlight of visible rows */
+.faq-row { transition: opacity .15s ease; }
