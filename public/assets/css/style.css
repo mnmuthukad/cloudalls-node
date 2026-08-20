@@ -831,7 +831,7 @@ footer .cloudalls-wordmark svg { width: 170px; height: 34px; }
 .faq-row { transition: opacity .15s ease; }
 
 /* Search boxes: icon sits left with clearance, placeholder text is lighter */
-#service-search, #faq-search { padding-left: 3.6rem; }
-#service-search::placeholder, #faq-search::placeholder { opacity: .5; color: #8a94a6; }
-#service-search::-ms-input-placeholder, #faq-search::-ms-input-placeholder { opacity: .5; color: #8a94a6; }
-.search-icon-left { left: 1.5rem; }
+#service-search, #faq-search { padding-left: 3.6rem !important; }
+#service-search::placeholder, #faq-search::placeholder { opacity: .5 !important; color: #8a94a6 !important; }
+#service-search::-ms-input-placeholder, #faq-search::-ms-input-placeholder { opacity: .5 !important; color: #8a94a6 !important; }
+.search-icon-left { left: 1.5rem !important; }
