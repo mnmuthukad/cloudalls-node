@@ -1,1235 +1,1298 @@
 [
   {
     "id": 1001,
+    "question": "How will you integrate our enterprise CMS and manage content migration for a corporate website relaunch?",
+    "answer": "We run a content discovery to map your existing content model to the chosen Headless CMS, define transformation rules, and produce migration and rollback plans. The Next.js frontend consumes the CMS APIs using ISR or incremental builds according to your freshness requirements, and we deliver migration scripts, automated validation tests, staging verification, and editor training. Final delivery includes migration documentation and a tested rollback procedure.",
+    "expertise_id": 1,
+    "display_order": 0,
+    "status": "Published"
+  },
+  {
+    "id": 1002,
+    "question": "Can you build a multi-vendor e-commerce storefront that scales, enforces vendor isolation, and meets payment security controls?",
+    "answer": "We design a containerized architecture (Docker) with PostgreSQL and horizontally scalable Node.js or Laravel services, and a CDN-backed Next.js storefront, implementing vendor isolation at the application and data layers. Payments are integrated via tokenized flows against PCI-compliant providers and we apply security hardening, logging, and automated tests; formal PCI certification is coordinated with your QSA and depends on scope and hosting choices. Production delivery includes monitoring, alerting, and performance budgets to support scale.",
+    "expertise_id": 1,
+    "display_order": 1,
+    "status": "Published"
+  },
+  {
+    "id": 1003,
+    "question": "How do you handle SSO, access control, and accessibility requirements for an internal employee portal?",
+    "answer": "We assess your identity provider and implement SAML or OIDC-based SSO with role-based access control and secure session handling on the Node.js/Laravel backend and token management on the Next.js frontend. Accessibility is enforced during Design with component-level a11y requirements, manual audits, and CI checks, and we include documentation, training, and monitoring hooks for audit logs and ongoing compliance.",
+    "expertise_id": 1,
+    "display_order": 2,
+    "status": "Published"
+  },
+  {
+    "id": 1004,
+    "question": "Our field engineers must work entirely offline for long periods and then sync large batches of work later — how do you implement offline-first sync and prevent data loss or conflicts?",
+    "answer": "We implement an offline-first layer using local SQLite stores with a sync engine over GraphQL, including background and batched synchronization to reduce bandwidth spikes. Conflict-resolution strategies (custom merge rules, timestamped operations or CRDT-style approaches) are selected based on your workflows and defined during the Discover phase, and we include automated tests for common sync failure modes. We also design encryption for data at rest and in transit and validate integrity and auditability requirements as part of scoping.",
+    "expertise_id": 2,
+    "display_order": 0,
+    "status": "Published"
+  },
+  {
+    "id": 1005,
+    "question": "For a retail POS or customer loyalty app, should we build native Swift/Kotlin apps or a single React Native codebase?",
+    "answer": "We evaluate trade-offs: native Swift and Kotlin provide the best platform performance and direct access to hardware (card readers, printers, secure elements), while React Native with TypeScript reduces duplicate development and accelerates cross-platform delivery. We make a recommendation during Discover — which we typically run as a 4–8 week scoping engagement — and deliver a cost, risk and performance comparison tied to your use cases. Regardless of choice, the Build and Deliver phases include CI/CD, automated tests, performance tuning, and store-ready binaries.",
+    "expertise_id": 2,
+    "display_order": 1,
+    "status": "Published"
+  },
+  {
+    "id": 1006,
+    "question": "What level of help do you provide for App Store/Play Store submission, CI/CD and ongoing updates once the app is live?",
+    "answer": "We prepare store-ready iOS and Android binaries and provide hands-on submission support, including packaging, screenshots, metadata review and coordination with your app store accounts; we can perform the final submission or support your team through it. For CI/CD we set up automated builds and deployment pipelines using Fastlane, and include smoke and regression tests so updates are predictable and repeatable. Post‑launch monitoring and maintenance plans are available and are scoped and quoted after Discover based on desired release cadence and SLAs.",
+    "expertise_id": 2,
+    "display_order": 2,
+    "status": "Published"
+  },
+  {
+    "id": 1007,
+    "question": "How do you approach data isolation and tenant topology for a B2B multi-tenant SaaS to meet our security and performance requirements?",
+    "answer": "We evaluate tenant models during Discover and Design — shared schema with tenant_id, schema-per-tenant, or dedicated databases — and recommend the model that balances performance, cost, and compliance for your use case. Implementation uses PostgreSQL capabilities (row-level security, schemas), network/VPC segmentation on AWS, and Kubernetes namespace isolation where appropriate, plus encryption-at-rest and in-transit. The final topology and SLIs are documented in the roadmap and runbooks so operational and security teams can validate the choice before Build.",
+    "expertise_id": 3,
+    "display_order": 0,
+    "status": "Published"
+  },
+  {
+    "id": 1008,
+    "question": "How will you integrate our enterprise identity providers and authorization model (OAuth2/SSO) with the SaaS and license/entitlement platform?",
+    "answer": "We inventory IdPs, protocols (OIDC, SAML) and existing claim/role mappings during Discover and design an OAuth2/OIDC-first flow for the Node.js backend and React frontend. Entitlements and license mappings are enforced server-side and surfaced in the UI, with token management (refresh, revocation) and RBAC patterns built into the license management service. Integration points, test plans, and failure modes for federated login are delivered as part of the Build and included in the handover documentation.",
+    "expertise_id": 3,
+    "display_order": 1,
+    "status": "Published"
+  },
+  {
+    "id": 1009,
+    "question": "What do you deliver for production operations, observability and subscription billing so we can run and scale the product on AWS/Kubernetes with Stripe?",
+    "answer": "We deliver CI/CD pipelines, Kubernetes deployment manifests, autoscaling policies, logging/metrics dashboards and alerting playbooks to provide production observability and operational runbooks for standard incidents. Billing integrations include Stripe subscription flows, webhook handling, reconciliation hooks and admin interfaces for managing entitlements and billing exceptions. Ongoing operational support or managed runbook execution after handover is scoped separately and typically quoted after discovery.",
+    "expertise_id": 3,
+    "display_order": 2,
+    "status": "Published"
+  },
+  {
+    "id": 1010,
+    "question": "How do you make sure payment gateway integrations are PCI-compliant and securely authenticate partner payouts for marketplace use cases?",
+    "answer": "We implement payment integrations using tokenization and gateway-hosted flows to keep card data out of your systems, and we follow PCI scope-reduction patterns during the Build phase. Authentication for partners and payout APIs uses OAuth 2.0 with scoped credentials and signed requests; we also provide sandbox integration and test suites for payment providers. Final scope for any required PCI attestation or remediation is determined during Discover and is quoted as part of the engagement.",
+    "expertise_id": 4,
+    "display_order": 0,
+    "status": "Published"
+  },
+  {
+    "id": 1011,
+    "question": "What delivery guarantees, retry policies and observability do you provide for webhook events and real-time order/fulfillment integrations?",
+    "answer": "We design event delivery around a durable event bus (Kafka) and implement at-least-once delivery with idempotency keys on endpoints to avoid duplicate processing. Webhook delivery includes exponential backoff retries, configurable dead-letter queues, and delivery metrics/alerts integrated into monitoring so you can track success rates and latency. Specific SLA targets and retention/retry policies are agreed during Discover and codified in the integration design.",
+    "expertise_id": 4,
+    "display_order": 1,
+    "status": "Published"
+  },
+  {
+    "id": 1012,
+    "question": "How do you prevent data conflicts and ensure reliable two-way sync between CRM and ERP systems when fields and models differ?",
+    "answer": "We start by creating a canonical data model and mapping layer in the Design phase so each system maps to a single source of truth; adapters handle transformations and validation when syncing. Conflict resolution is implemented explicitly (versioning, last-write policies, or custom resolution rules), with transactional persisting in PostgreSQL and change-event propagation via Kafka to ensure durability and order. We deliver OpenAPI/GraphQL specs and test harnesses to validate mappings in a sandbox before production cutover, and the exact conflict policy is defined during Discover.",
+    "expertise_id": 4,
+    "display_order": 2,
+    "status": "Published"
+  },
+  {
+    "id": 1013,
+    "question": "How do you implement zero-downtime deployments and safe automated rollbacks (blue-green or canary) for a high-traffic SaaS platform?",
+    "answer": "We design CI/CD pipelines (GitHub Actions) that drive Helm-based Kubernetes deployments and staged traffic shifts to enforce blue-green or canary patterns. Deployments include automated health checks and metric gates tied to monitoring and alerts so the pipeline can abort or trigger an automated rollback if service-level indicators degrade. We validate zero-downtime behavior and rollback mechanics during the Deliver phase with staged rollouts and production-like testing.",
+    "expertise_id": 5,
+    "display_order": 0,
+    "status": "Published"
+  },
+  {
+    "id": 1014,
+    "question": "What is your approach to migrating a monolithic application to containerized cloud infrastructure without prolonged downtime or data loss?",
+    "answer": "We start with a Discover phase to inventory services, data stores, and migration priorities, then produce a phased Design that maps components to container images, Kubernetes topology, and Terraform modules for AWS/GCP. Migration typically uses incremental strategies (strangler pattern, sidecar or API gateways) with CI/CD pipelines for each increment, database migration plans, automated backups, and staged cutovers to minimize risk. The exact sequence and tooling choices depend on scope and are finalized after discovery.",
+    "expertise_id": 5,
+    "display_order": 1,
+    "status": "Published"
+  },
+  {
+    "id": 1015,
+    "question": "How do you ensure infrastructure provisioning meets regulatory requirements and provides audit evidence for compliance reviews?",
+    "answer": "We implement compliance controls as part of Terraform modules and IaC patterns, enforcing encryption, least-privilege IAM, centralized logging, and backup retention using cloud-native services on AWS/GCP. Policy-as-code and automated checks are embedded in CI/CD so non-compliant changes are blocked, while monitoring, alerting, and audit log aggregation provide the operational evidence auditors require. Specific controls and evidence formats depend on the compliance regime (PCI, HIPAA, SOC2, etc.) and are defined during discovery.",
+    "expertise_id": 5,
+    "display_order": 2,
+    "status": "Published"
+  },
+  {
+    "id": 1016,
+    "question": "How do you handle sensitive data and regulatory compliance (e.g., for insurance claims triage) during model training and deployment?",
+    "answer": "We assess data readiness and compliance during the Discover phase and implement controls (data minimization, PII masking, encryption at rest/in transit) before model training. For regulated use cases like claims triage we can run training in isolated environments, use differential privacy or pseudonymization where required, and record lineage in MLflow to support audits. Specific controls and hosting options depend on your compliance requirements and are defined during discovery.",
+    "expertise_id": 6,
+    "display_order": 0,
+    "status": "Published"
+  },
+  {
+    "id": 1017,
+    "question": "What latency, scalability, and reliability can we expect from the containerized inference services on Kubernetes for real-time use cases such as customer NLU or recommender systems?",
+    "answer": "We design inference services to meet the target latency and availability you specify during Discover and validate them during Build with load and failover tests. Implementation uses optimized PyTorch/TensorFlow models packed in Docker, deployed on Kubernetes with autoscaling (Horizontal Pod Autoscaler), GPU support where needed, and health probes for rolling updates and quick rollback. Final SLA and resource sizing depend on your traffic profile and will be confirmed after performance validation.",
+    "expertise_id": 6,
+    "display_order": 1,
+    "status": "Published"
+  },
+  {
+    "id": 1018,
+    "question": "How do you implement monitoring, alerting, and automated retraining so models don’t degrade in production (concept drift) for use cases like churn prediction?",
+    "answer": "We instrument models with Prometheus metrics and logging, track experiments and model artifacts in MLflow, and configure alerts for metric degradation or data-distribution shifts. Based on those alerts we can trigger defined retraining pipelines in your CI/CD system or a scheduled retrain cadence; retraining logic and thresholds are defined in the Design step and implemented in Build. The exact monitoring thresholds and retrain policy are agreed during discovery and depend on acceptable business risk and operational constraints.",
+    "expertise_id": 6,
+    "display_order": 2,
+    "status": "Published"
+  },
+  {
+    "id": 1019,
+    "question": "How will you integrate ML deliverables with our existing operational systems and streaming platforms (for example, Kafka) so models run reliably in production?",
+    "answer": "We start in Discover by assessing your data sources and streaming topology, then Design integration points and monitoring metrics. In Build we deliver production data pipelines and containerized inference (Docker) that connect to Kafka topics or batch stores, plus deployment scripts and validation tests. Deliverables include monitoring dashboards, alerting for data/feature drift, and handoff documentation so your ops team can run and troubleshoot models in production.",
+    "expertise_id": 7,
+    "display_order": 0,
+    "status": "Published"
+  },
+  {
+    "id": 1020,
+    "question": "What is your approach to labeling, feature engineering, and validating models for use cases like retail demand forecasting or industrial anomaly detection?",
+    "answer": "During Discover we inventory labeling needs and KPIs; during Design we specify feature pipelines, evaluation metrics (e.g., backtesting for forecasting, precision/recall for anomalies), and model architectures using scikit-learn, TensorFlow, or PyTorch. In Build we produce reproducible training pipelines, versioned feature artifacts, and hold-out/rolling-window validations, plus model cards documenting assumptions and failure modes. Deliverables include the feature artifacts, trained classification/forecasting models, and monitoring dashboards to track live performance.",
+    "expertise_id": 7,
+    "display_order": 1,
+    "status": "Published"
+  },
+  {
+    "id": 1021,
+    "question": "Can you deploy inference to edge devices and how do you manage updates across a fleet?",
+    "answer": "Yes—edge-capable inference is a core deliverable: we convert models to portable runtimes (typically ONNX), containerize where appropriate (Docker), and provide deployment scripts and integration points for device orchestration. We recommend staged rollout (canary/A–B) and instrument telemetry so performance and resource usage are monitored centrally. The exact update, rollback, and retraining cadence depends on scope and is defined after discovery, and we deliver the automation and monitoring artifacts required for safe fleet updates.",
+    "expertise_id": 7,
+    "display_order": 2,
+    "status": "Published"
+  },
+  {
+    "id": 1022,
+    "question": "How do you validate and govern data from multiple source systems before creating executive BI dashboards?",
+    "answer": "We start in the Discover phase with source inventory, profiling and KPI definition so governance requirements are concrete. During Build we implement dbt tests, schema-level constraints in Snowflake, data lineage and versioning, and role-based access controls; Airflow orchestration enforces pipeline SLAs. The result is a governed, documented semantic layer that feeds Power BI/Tableau dashboards and automated reports.",
+    "expertise_id": 8,
+    "display_order": 0,
+    "status": "Published"
+  },
+  {
+    "id": 1023,
+    "question": "How will a customer-churn model be deployed so it drives real-time alerts and integrates with existing operations?",
+    "answer": "We train models in Python (scikit-learn/pandas) and validate performance as part of the Build step, then operationalize them either as scheduled scoring jobs in Airflow or as streaming endpoints depending on latency needs. Scored results are written to the Cloud data warehouse (Snowflake) and wired into alerting rules that trigger automated reports or downstream workflows; we also implement monitoring for drift and retraining cadence. Deployment includes runbooks, monitoring dashboards and stakeholder training delivered in the Deliver phase.",
+    "expertise_id": 8,
+    "display_order": 1,
+    "status": "Published"
+  },
+  {
+    "id": 1024,
+    "question": "Which visualization approach and stack do you recommend for consolidated executive KPIs while preserving self-service for analysts?",
+    "answer": "We design a two-layer approach: a governed semantic layer and curated executive dashboards in Power BI or Tableau, with transformations handled in dbt and stored in Snowflake for fast aggregations. Self-service analysts get access to certified datasets and documentation so they can run ad-hoc queries without bypassing governance, and we apply row-level security and published metrics to ensure consistency. The Design phase defines wireframes and the Build phase implements the models, with handover and training during Deliver.",
+    "expertise_id": 8,
+    "display_order": 2,
+    "status": "Published"
+  },
+  {
+    "id": 1025,
+    "question": "How will you protect sensitive customer and employee data when our chatbots use OpenAI GPT, RAG and a vector DB such as Pinecone for document and conversational workflows?",
+    "answer": "We map data flows during Discover and define controls in the Design phase to avoid sending raw PII to models. Typical controls include input redaction/transformation, restricting which documents enter the RAG store, network and encryption configuration for the vector DB, and use of enterprise APIs or private proxying for model access. Final controls (log retention, audit trails, and data residency) are agreed during discovery and implemented in Build and Deliver.",
+    "expertise_id": 9,
+    "display_order": 0,
+    "status": "Published"
+  },
+  {
+    "id": 1026,
+    "question": "Can these agents act on our ERP and ticketing systems, and how do you handle safe escalation to human teams?",
+    "answer": "During Discover we inventory available APIs, authentication methods and UI automation needs; in Build we implement connectors or UiPath RPA bots for systems without APIs and orchestrate long-running flows with Temporal. Escalation paths and human-in-the-loop gates are defined in Design and enforced at runtime by Rasa dialogue policies and workflow checks, with audit logs and configurable decision criteria validated in Deliver.",
+    "expertise_id": 9,
+    "display_order": 1,
+    "status": "Published"
+  },
+  {
+    "id": 1027,
+    "question": "What accuracy and maintenance model do you provide for invoice extraction, contract understanding and conversational intent performance?",
+    "answer": "We set measurable accuracy targets during Discover rather than promising a fixed number off the bat, then implement Google Document AI for extraction and tune Rasa NLU plus RAG pipelines to meet those targets. Production includes monitoring, human review for edge cases, feedback loops for retraining, and periodic model/data updates to address drift; the frequency and scope of maintenance are agreed after discovery.",
+    "expertise_id": 9,
+    "display_order": 2,
+    "status": "Published"
+  },
+  {
+    "id": 1028,
+    "question": "How do you decide whether to build a custom model or buy a vendor solution for a use case like invoice automation or intelligent document processing?",
+    "answer": "We make that decision during Discover and Design by combining an AI readiness audit, data inventory and a cost/ROI model. Key factors are data quality and volume, required accuracy, integration effort with your PostgreSQL and downstream systems, vendor maturity for OCR/NLP, and long‑term maintenance costs. The outcome is a documented vendor evaluation and a build‑vs‑buy recommendation with estimated implementation costs and ROI.",
+    "expertise_id": 10,
+    "display_order": 0,
+    "status": "Published"
+  },
+  {
+    "id": 1029,
+    "question": "We have thousands of scanned PDFs and legacy invoices — how will you assess if NLP extraction is feasible and what you’ll need from our side?",
+    "answer": "During Discover we perform a data inventory and sample analysis to measure OCR success rates, layout variability, label availability and annotation effort. That assessment feeds the AI readiness audit and use‑case prioritization map and defines the minimum data schema, required preprocessing pipelines (OCR + NLP), and a scoped POC using Python and TensorFlow/PyTorch. Deliverables include a validated feasibility statement, recommended prototype spec, and an estimated ROI and implementation cost model.",
+    "expertise_id": 10,
+    "display_order": 1,
+    "status": "Published"
+  },
+  {
+    "id": 1030,
+    "question": "If we want predictive maintenance in production, how will you make sure models are deployable, monitored and compliant with governance requirements?",
+    "answer": "In Build and Deliver we specify production patterns using Docker for containerization, MLflow for model lifecycle, and PostgreSQL for feature and metadata storage, and we produce an implementation plan that includes API contracts and CI/CD checkpoints. We also define monitoring metrics, data drift and performance alerts, rollback procedures and a governance checklist that maps to risk controls and stakeholder roles. Final deliverables include the roadmap, governance guidance and vendor/architecture recommendations; specific implementation effort is quoted after discovery.",
+    "expertise_id": 10,
+    "display_order": 2,
+    "status": "Published"
+  },
+  {
+    "id": 1031,
+    "question": "How will you demonstrate PCI‑DSS compliance for our payment systems as part of this engagement?",
+    "answer": "We map your payment assets and controls to PCI‑DSS requirements during Discover and produce a compliance evidence package as part of Deliver. Penetration testing (using Burp Suite and Nessus) and configuration reviews feed the evidence package, and we supply a remediation plan tied to the Vulnerability Management Plan. Final acceptance artifacts and gap lists are handed over so auditors can validate required controls.",
+    "expertise_id": 11,
+    "display_order": 0,
+    "status": "Published"
+  },
+  {
+    "id": 1032,
+    "question": "Can you implement the zero‑trust architecture using our existing Palo Alto NGFW, AWS Security Hub, and Azure Sentinel tooling?",
+    "answer": "Yes — during Discover we inventory current NGFW rules and cloud monitoring, then Design a zero‑trust segmentation and access model that maps to Palo Alto rule sets and cloud detection controls. Build activities use Terraform where possible to codify rules, and we deploy detection rules into AWS Security Hub and Azure Sentinel so enforcement and monitoring are integrated. The Deliverable includes the zero‑trust blueprint and implementation artifacts (IaC, rule sets, runbooks) for your operations team.",
+    "expertise_id": 11,
+    "display_order": 1,
+    "status": "Published"
+  },
+  {
+    "id": 1033,
+    "question": "What does your incident response readiness engagement include, and how do you validate it works across hybrid cloud workloads?",
+    "answer": "We develop incident playbooks and run tabletop exercises that simulate common and high‑impact scenarios for hybrid cloud migrations, then validate detection and response paths using AWS Security Hub and Azure Sentinel telemetry. Tests include exercising CI/CD pipeline rollback and containment steps for microservices, and we update the Vulnerability Management Plan and remediation actions based on findings. You receive a post‑exercise report, prioritized action items, and evidence that response capabilities operate end‑to‑end.",
+    "expertise_id": 11,
+    "display_order": 2,
+    "status": "Published"
+  },
+  {
+    "id": 1034,
+    "question": "How do you guarantee backups and restores will work before we cut over a datacenter-to-cloud migration?",
+    "answer": "We build a backup and recovery plan during Design and execute test restores during Build to prove recovery objectives. We use enterprise tooling (for example Veeam for VM workloads and native cloud snapshot/backup services) to perform full restores in a sandboxed environment and provide documented evidence of RPO/RTO attainment. Handover includes runbooks and a schedule for periodic restore drills as part of ongoing management.",
+    "expertise_id": 12,
+    "display_order": 0,
+    "status": "Published"
+  },
+  {
+    "id": 1035,
+    "question": "Can you integrate our existing Active Directory with cloud providers while enforcing SSO and MFA across AWS, Azure, and Google Cloud?",
+    "answer": "Yes — we assess your current identity topology during Discover, design a federated identity model (Azure AD Connect, SAML/OIDC federation, or managed AD in cloud) and define roles and conditional access policies to enforce SSO and MFA. We provision the configuration using infrastructure-as-code (Terraform) where possible and validate access flows in the Build phase. Final delivery includes role mappings, policy documents, and operational runbooks for onboarding and offboarding.",
+    "expertise_id": 12,
+    "display_order": 1,
+    "status": "Published"
+  },
+  {
+    "id": 1036,
+    "question": "For a multi-site retail/franchise rollout, how do you handle ongoing patching, monitoring, and compliance reporting?",
+    "answer": "We define SLAs and monitoring/patching scope during Discover and capture them in the Design deliverables, then implement centralized management (cloud-native management tools, VMware/SCCM alternatives, and automated IaC workflows) in Build. Ongoing management includes scheduled patch windows, automated compliance scans, backup verification, and consolidated operational reports; we hand over runbooks and can operate under a managed-services agreement if required. Specific SLAs and reporting cadence depend on scope and are typically finalized after discovery.",
+    "expertise_id": 12,
+    "display_order": 2,
+    "status": "Published"
+  },
+  {
+    "id": 1037,
+    "question": "How do you ensure accurate asset tagging and inventory reconciliation for a distributed workforce laptop refresh across multiple sites?",
+    "answer": "We start with a Discover assessment to capture existing inventory, serial numbers, and warranty coverage, then design a barcode asset-tagging scheme tied to a central inventory database. During Build we tag devices, reconcile procurement lists against physical counts, and update the asset repository with serials, user/site assignment, and warranty metadata. Deliverables include a reconciliation report and an updated inventory feed that can be exported to your CMDB or endpoint management tools for ongoing reconciliation.",
+    "expertise_id": 13,
+    "display_order": 0,
+    "status": "Published"
+  },
+  {
+    "id": 1038,
+    "question": "Can you handle imaging and automated enrollment for mixed Windows and Apple fleets using our existing MDM tools?",
+    "answer": "Yes — we design imaging pipelines aligned to your toolset (Microsoft Intune, SCCM, VMware Workspace ONE, Apple Business Manager and Zero-Touch Enrollment) and produce golden images plus automated enrollment profiles. In Build we stage devices, validate enrollment and policy application (Autopilot/ABM/Workspace ONE flows), and perform acceptance testing before staged rollout. We also document enrollment mapping so each device type follows the correct imaging and onboarding path during Deliver.",
+    "expertise_id": 13,
+    "display_order": 1,
+    "status": "Published"
+  },
+  {
+    "id": 1039,
+    "question": "How do you manage warranties, vendor coordination, and RMAs during a large retail POS hardware replacement and storewide rollout?",
+    "answer": "Warranty coverage and RMA terms are validated in Discover and captured in the procurement and deployment design so serials and warranty windows are tracked from receipt through deployment. We maintain vendor coordination and a documented RMA workflow that includes escalation contacts, replacement logistics, and serial reconciliation, and we handle warranty claims and returns on your behalf. Lead times and vendor RMA policies vary by supplier; we include those constraints in the rollout plan and recommend contingencies during Design.",
+    "expertise_id": 13,
+    "display_order": 2,
+    "status": "Published"
+  },
+  {
+    "id": 1040,
+    "question": "How do you validate Wi‑Fi 6 coverage and capacity for a 300‑seat headquarters or a multi‑building campus before any hardware is purchased?",
+    "answer": "We start with the Discover phase: site surveys, traffic profiling, floor plans and RF measurements drive a predictive model for AP counts and placement. During Design we produce channel allocation, interference mitigation and capacity calculations tied to IEEE 802.11ax capabilities and preferred vendors (Aruba Instant or Cisco Meraki). Deliverables include heatmaps and pass/fail validation criteria so you can see expected coverage and per‑area client density before procurement.",
+    "expertise_id": 14,
+    "display_order": 0,
+    "status": "Published"
+  },
+  {
+    "id": 1041,
+    "question": "Can you design secure branch connectivity for retail sites that combines SD‑WAN with perimeter and microsegmentation controls?",
+    "answer": "Yes — we design an SD‑WAN topology using VMware SD‑WAN (VeloCloud) or equivalent and integrate FortiGate (or customer‑preferred firewalls) for perimeter controls and VPN termination. The VLAN segmentation plan specifies L2/L3 boundaries and ACL/policy placement for segmentation, and Build includes configuring SD‑WAN policies, firewall rules and validating segmentation with traffic tests. We provide configuration documentation and test reports as part of handover so the segmentation is reproducible and auditable.",
+    "expertise_id": 14,
+    "display_order": 1,
+    "status": "Published"
+  },
+  {
+    "id": 1042,
+    "question": "What monitoring, alerting and operational handover do you provide for a 24/7 monitored network using SNMP/NetFlow?",
+    "answer": "We implement network monitoring using SNMP and NetFlow collectors, create dashboards and alerting thresholds, and integrate with your NOC or a managed monitoring service as required. Monitoring setup is included as a deliverable and we supply runbooks, escalation matrices and monitoring documentation during Deliver so your operations team can take over or we can assist with ongoing 24/7 monitoring (scope and staffing options are typically quoted after discovery).",
+    "expertise_id": 14,
+    "display_order": 2,
+    "status": "Published"
+  },
+  {
+    "id": 1043,
+    "question": "How do you determine NVR, PoE and network capacity for rack-level surveillance in a data center using ONVIF cameras and Milestone VMS?",
+    "answer": "We perform a Discover site survey and calculate bandwidth and storage based on camera count, resolution, frame rate, retention policy and analytic load, then size PoE NVRs and switches accordingly. Design output includes Milestone VMS configuration, RAID/N+1 recommendations for storage redundancy, and VLAN segmentation to isolate camera traffic. Final hardware and licensing quotes depend on scope and are provided after discovery.",
+    "expertise_id": 15,
+    "display_order": 0,
+    "status": "Published"
+  },
+  {
+    "id": 1044,
+    "question": "Can the biometric access control and HID readers be integrated into our existing LenelS2 deployment for campus access control and compliance reporting?",
+    "answer": "Yes — integration is scoped during Discover and executed in the Design and Build phases, where HID biometric readers are commissioned against LenelS2 and credential enrollment workflows are defined. We deliver audit and event logging configurations that meet typical campus compliance requirements and provide user training and handover documentation. Specific migration steps and any custom mapping of access groups depend on the existing LenelS2 configuration and are confirmed after discovery.",
+    "expertise_id": 15,
+    "display_order": 1,
+    "status": "Published"
+  },
+  {
+    "id": 1045,
+    "question": "What technical and operational controls do you implement to protect IP cameras, NVRs and Honeywell intrusion panels while enabling SOC remote monitoring and guard response protocols?",
+    "answer": "Security controls include network segmentation (camera VLANs), device hardening and firmware management, encrypted streams where supported by ONVIF/Milestone, and role-based access controls for the VMS and LenelS2. For operations, we integrate alarm panels and VMS events to the SOC over secure VPNs, define guard response protocols during the Design phase, and validate them in Deliver testing. Remote monitoring SLAs and SOC escalation models are determined during discovery and quoted with the engagement scope.",
+    "expertise_id": 15,
+    "display_order": 2,
+    "status": "Published"
+  },
+  {
+    "id": 1046,
+    "question": "How do you ensure global distribution and low-latency delivery for a corporate all‑hands that must stream to internal CDNs, public platforms, and remote offices?",
+    "answer": "We can deliver simultaneous RTMP/RTSP outputs to public platforms and internal CDNs while using SRT or Zixi for low‑latency, resilient contribution links to our encoders. For high‑availability events we architect dual-encoder and dual-CDN topologies (or AWS Elemental MediaLive as an upstream encoder/origin) during the Design phase and validate performance in Build and rehearsals. Latency targets are a tradeoff — we’ll specify acceptable ranges and the protocol (SRT/Zixi vs CDN) during Discover so the Design meets your audience and compliance needs.",
+    "expertise_id": 16,
+    "display_order": 0,
+    "status": "Published"
+  },
+  {
+    "id": 1047,
+    "question": "We run a hybrid conference with a main stage and remote presenters — how do you handle multi‑camera switching, live graphics, and integrating remote talent reliably?",
+    "answer": "On-site multi-camera switching is handled with Blackmagic ATEM (or equivalent) and we render live titles and lower‑thirds via our graphics templates integrated into the switcher. Remote presenters can be brought in over NewTek NDI for LAN sources or SRT for WAN contribution, with vMix/OBS available as flexible encoder/backups; we test firewalls and venue connectivity in Discover and rehearse signal paths in Build. An on-site technical crew operates switching and graphics during Deliver while we monitor incoming feeds and fallback paths.",
+    "expertise_id": 16,
+    "display_order": 1,
+    "status": "Published"
+  },
+  {
+    "id": 1048,
+    "question": "For broadcast‑grade sports or entertainment streams, what monitoring, redundancy, and engineering support do you provide to avoid on‑air failures?",
+    "answer": "We provide 24/7 stream monitoring and active engineering during live delivery, including automated alerts, real‑time telemetry, and human operators watching encoders, CDN health, and program outputs. Reliability is achieved with redundant encoders, dual CDN or origin failover, SRT/Zixi links, and hot‑standby signal routing designed in the Design step and tested in Build. The exact on‑site vs remote engineering roster and SLAs depend on event scope and are typically quoted after discovery.",
+    "expertise_id": 16,
+    "display_order": 2,
+    "status": "Published"
+  },
+  {
+    "id": 1049,
+    "question": "Do we receive the original 4K camera files and what formats and usage rights do you provide for enterprise deliverables?",
+    "answer": "Yes — delivery includes 4K master footage (camera originals) plus the edited, color‑graded final film and platform‑specific exports. Originals are provided in the native capture format for the camera used (for example ProRes or BRAW depending on RED/Blackmagic settings) or converted by agreement. Usage rights for the final assets and any transfer or archival of raw footage are specified in the statement of work; standard enterprise usage licenses are included and any extended rights are agreed during discovery.",
+    "expertise_id": 17,
+    "display_order": 0,
+    "status": "Published"
+  },
+  {
+    "id": 1050,
+    "question": "How do you ensure the film matches our investor presentation or product‑launch narrative and who signs off before shooting begins?",
+    "answer": "We use the Discover and Design stages to align narrative and technical constraints: stakeholder interviews, location scouting, a production brief, script, shotlist and storyboard are produced for approval before scheduling. All creative deliverables require client sign‑off prior to principal photography, and we run daily rushes during the Build phase so issues can be corrected early. Revision rounds during Deliver are defined in the SOW to control scope and approvals for the final master.",
+    "expertise_id": 17,
+    "display_order": 1,
+    "status": "Published"
+  },
+  {
+    "id": 1051,
+    "question": "Can you handle drone shots and multi‑camera setups at an annual conference, and how are safety, permits and professional audio managed on site?",
+    "answer": "Yes — we routinely deploy multi‑camera 4K rigs and DJI Inspire 3 drone capture alongside professional audio (Sennheiser wireless) for events and conferences. Qualified drone pilots, permits, location access and insurance are coordinated as part of the project scope when required; permit costs and logistics are captured in the quote after discovery. On site we perform daily rushes review and professional field recording with mixed feeds to ensure the footage and audio meet edit and broadcast requirements.",
+    "expertise_id": 17,
+    "display_order": 2,
+    "status": "Published"
+  },
+  {
+    "id": 1052,
+    "question": "How do you maintain consistent color and lighting across hundreds of product images shot on different days or at different locations?",
+    "answer": "We enforce consistency through calibrated strobes, standardized softbox setups, and X‑Rite color targets captured on every shoot. Tethered capture into Capture One lets us apply a single color profile and lighting diagram across sessions, and we batch‑process final adjustments to match your brand retouching standards in Photoshop. Any departures from the agreed standard are flagged during the Build step so they can be corrected before final delivery.",
+    "expertise_id": 18,
+    "display_order": 0,
+    "status": "Published"
+  },
+  {
+    "id": 1053,
+    "question": "What file types, resolutions, and image variants will you deliver for e‑commerce catalogs and event galleries?",
+    "answer": "Deliverables are produced from high‑resolution DSLR originals and can include retouched TIFFs or high‑quality JPEGs for print, sRGB JPEGs optimized for web, and client‑approved resized variants or transparent‑background composites where required. We export using Capture One for raw conversions and use Photoshop for final retouching and batch exports; exact file formats and counts depend on scope and are confirmed during Discover. All final assets are delivered via secure download with filename conventions aligned to your distribution channels.",
+    "expertise_id": 18,
+    "display_order": 1,
+    "status": "Published"
+  },
+  {
+    "id": 1054,
+    "question": "For on‑site event or architectural shoots, how do you handle lighting, power constraints, and client reviews during the shoot?",
+    "answer": "We bring studio strobes, modifiers, and portable light stands sized to the location, and we plan for power or generator needs identified in the Discover phase. Tethered capture enables live client checks and immediate adjustments against the preapproved lighting diagram, and we record the setup so field conditions are reproducible for follow‑up shoots. Final selection and retouching are completed in the Deliver phase after client review of the tethered proofs.",
+    "expertise_id": 18,
+    "display_order": 2,
+    "status": "Published"
+  },
+  {
+    "id": 1055,
+    "question": "How do you guarantee consistent, festival-quality color across ARRI/RED footage and deliver final masters compatible with our post pipeline?",
+    "answer": "We manage color using an ACES-based pipeline and DaVinci Resolve for final grading, starting with on-set color management during the Build phase. We deliver cinema-camera raw (ARRI/RED) plus usable proxies and a final color-graded master file set in the delivery formats you specify. We also supply color metadata and any custom LUTs used so your downstream teams can match look and grading notes. Specific final-format requirements are confirmed during Discover and handled in the Deliver stage.",
+    "expertise_id": 19,
+    "display_order": 0,
+    "status": "Published"
+  },
+  {
+    "id": 1056,
+    "question": "We need an aerial reveal for an integrated campaign that will run on TV, web and OOH—how do you plan and execute aerial capture while maintaining a consistent look and safety compliance?",
+    "answer": "During Discover we align channel requirements and technical constraints, then in Design we create shot lists and a lighting plot that accounts for aerial perspectives. On Build we use DJI Matrice or FPV systems with experienced aerial pilots, integrate the aerial plates with on-set lighting grids and HMI/LED packages, and enforce regulated safety protocols and permits on location. The aerial footage is delivered as camera raw and proxies and graded to match the rest of the spot in Deliver.",
+    "expertise_id": 19,
+    "display_order": 1,
+    "status": "Published"
+  },
+  {
+    "id": 1057,
+    "question": "For a director-led short intended for festival submission, which camera and lens package do you recommend and will you provide raw footage and support for festival delivery specs?",
+    "answer": "For festival-quality narrative we typically recommend ARRI Alexa for skin tones and dynamic range or RED V-Raptor where higher resolution is required, paired with Zeiss or Cooke cinema lenses to achieve cinematic character. The Director-led shoot package includes lighting design, on-set color monitoring, and delivery of cinema-camera raw plus proxies; final grading is done in DaVinci Resolve. Festival technical-spec compliance varies by event, so we confirm format and deliverable requirements during Discover and include them in the Deliver scope.",
+    "expertise_id": 19,
+    "display_order": 2,
+    "status": "Published"
+  },
+  {
+    "id": 1058,
+    "question": "What editable source and asset formats will you deliver so our design and development teams can continue work?",
+    "answer": "We deliver editable source files tailored to the asset type: Adobe Illustrator (.ai/.eps), Photoshop (.psd), InDesign (.indd) for print, and Figma files/components for UI. You will also receive vector exports (SVG/PDF), optimized raster web assets (PNG/JPEG), packaged folders with named assets and export specs, plus Pantone color references where applicable. Production-ready PDFs and a concise handoff guide for developers are included.",
+    "expertise_id": 20,
+    "display_order": 0,
+    "status": "Published"
+  },
+  {
+    "id": 1059,
+    "question": "How do you guarantee color consistency and print readiness for materials like brochures, posters, and retail packaging?",
+    "answer": "Color and print specifications are confirmed during the Discover step and we match Pantone references and document color profiles (CMYK or spot) accordingly. Deliverables include production-ready PDFs with bleeds, trim/crop marks, embedded fonts or outlined text, and a preflight report; we will coordinate proofing with your printer and adjust files based on their feedback.",
+    "expertise_id": 20,
+    "display_order": 1,
+    "status": "Published"
+  },
+  {
+    "id": 1060,
+    "question": "We're launching a product across social channels and local markets — how will you manage multi-size social kits, localization, and version control?",
+    "answer": "We produce a social graphics kit with platform-specific sizes exported from Figma or Photoshop and provide editable master templates for copy and imagery localization. Assets are organized with clear naming conventions and component-based Figma libraries to support version control and reuse. Final scope for localization and number of variants depends on volume, typically quoted after discovery.",
+    "expertise_id": 20,
+    "display_order": 2,
+    "status": "Published"
+  },
+  {
+    "id": 1061,
+    "question": "How will you deliver 3D assets in formats that integrate with our existing pipeline (CAD, FBX, glTF, USDZ, or native DCC files)?",
+    "answer": "We deliver native scene files (Blender, Maya, or Cinema 4D) plus common interchange exports (FBX, OBJ, glTF, USDZ) and PBR texture sets from Substance Painter. Every package includes UV layouts, material assignments, naming conventions, and import notes to speed integration into your pipeline. Final format set and any CAD conversion requirements are confirmed during Discover and quoted after discovery.",
+    "expertise_id": 21,
+    "display_order": 0,
+    "status": "Published"
+  },
+  {
+    "id": 1062,
+    "question": "How do you optimize models and renders differently for real‑time targets (Unreal Engine, web viewers) versus high‑res offline renders (V‑Ray/Redshift)?",
+    "answer": "We produce separate asset variants: high‑resolution builds for offline renders with displacement and layered AOVs, and optimized real‑time builds with baked normals/occlusion, atlased textures, LODs, and lightmap UVs. Real‑time variants are validated in Unreal Engine or web viewers and delivered with performance budgets (polycount, texture sizes). Optimization targets and acceptance criteria are agreed in Discover and locked during Design.",
+    "expertise_id": 21,
+    "display_order": 1,
+    "status": "Published"
+  },
+  {
+    "id": 1063,
+    "question": "What is the review, revision, and handoff process for animation sequences and architectural visualization deliverables?",
+    "answer": "We follow a four‑step workflow: Discover to capture specs, Design for look‑dev and storyboards, Build for modeling/texturing/animation, and Deliver for final assets and documentation. Clients review look‑dev stills and playblasts during Design/Build; the number of formal revision cycles and approval gates are defined in the project scope and quoted after discovery. Final handoff includes high‑res renders or image sequences, AOVs/render passes, optimized asset packages, source scenes (Blender/Maya/C4D), Substance exports, and import/assembly notes for your team.",
+    "expertise_id": 21,
+    "display_order": 2,
+    "status": "Published"
+  },
+  {
+    "id": 1064,
+    "question": "Which devices and channels can you deploy our AR filters, product try‑on and 360° tours to, and what platform limitations should we plan for?",
+    "answer": "We deliver to social AR platforms (Spark AR for Facebook/Instagram, Lens Studio for Snapchat), WebAR (WebXR/Three.js with glTF assets) for browser-based experiences, and native/immersive builds using Unity or Unreal for mobile apps and VR headsets. Each channel has technical constraints — e.g., Spark AR and Lens Studio enforce file‑size, polygon and texture budgets and specific tracking APIs (face, body, hand, surface), WebAR is limited by browser and device WebXR support, and native/VR builds require GPU/OS compatibility. During Build we perform device compatibility testing and produce a supported‑devices list and recommendations for downgraded assets where necessary. If you need guaranteed reach on particular device classes we validate that in Discover before committing to a channel strategy.",
+    "expertise_id": 22,
+    "display_order": 0,
+    "status": "Published"
+  },
+  {
+    "id": 1065,
+    "question": "Can you integrate shoppable product try‑on AR with our existing e‑commerce systems and keep SKUs and inventory synchronized?",
+    "answer": "Yes — we build product AR catalogs with optimized glTF models and connect them to your commerce stack via APIs or your PIM/CMS during the Build phase so SKUs, pricing and metadata stay in sync. Checkout can be implemented via deep links, hosted web checkout, or direct API calls to your cart/checkout endpoints depending on target platform; some platform SDKs restrict in‑app payment flows so the exact approach depends on the chosen channel. We also instrument conversion events and product interactions for analytics so you can measure lift and attribution. The exact integration pattern and data contract are scoped in Discover and priced after that assessment.",
+    "expertise_id": 22,
+    "display_order": 1,
+    "status": "Published"
+  },
+  {
+    "id": 1066,
+    "question": "How will you measure campaign success and support post‑launch updates, approvals and asset handoff?",
+    "answer": "We define KPIs and measurement events in Discover, then implement analytics (platform SDKs and custom event tracking) and deliver a measurement dashboard as part of Deliver so you can track impressions, engagements, try‑ons and conversion-related events. Publishing to social platforms involves platform review and approval processes (Spark AR, Lens Studio) which we manage and coordinate, and we include QA and a content package with source files, optimized assets and build notes at handoff. Post‑launch updates, maintenance SLAs and additional asset refreshes are offered but depend on scope and are typically quoted after discovery.",
+    "expertise_id": 22,
+    "display_order": 2,
+    "status": "Published"
+  },
+  {
+    "id": 1067,
+    "question": "We’re doing a post-merger rebrand with several legacy marks — how will you create a single identity that respects legacy assets but remains scalable across products and regions?",
+    "answer": "We start with the Discover phase: an audit of legacy marks, stakeholder interviews, and competitive analysis to identify elements to preserve and where consolidation is required. During Design and Build we produce a logo system with master marks and practical variants (stacked, horizontal, monoline, icon-only), plus transition rules and usage examples so product teams can apply the identity at different scales and in different locales. All marks are delivered as vector SVGs, Figma components and Illustrator source files to ensure consistent reproduction across digital and print.",
+    "expertise_id": 23,
+    "display_order": 0,
+    "status": "Published"
+  },
+  {
+    "id": 1068,
+    "question": "How do you hand off brand assets so engineering and design systems can implement them without rework?",
+    "answer": "We deliver design tokens (color, spacing, type scales) in developer-friendly formats (JSON/CSS variables) alongside Figma component libraries and atomic component specs so teams can map tokens directly into code. SVG icon sets, exported asset packages, and an implementation section in the brand guidelines show naming conventions, CSS examples, and accessibility notes to minimize interpretation and rework. If you need integration support or a token export pipeline for your specific framework, that is scoped during discovery and typically quoted after we assess your stack.",
+    "expertise_id": 23,
+    "display_order": 1,
+    "status": "Published"
+  },
+  {
+    "id": 1069,
+    "question": "We need to standardize global marketing materials but allow local teams to adapt messaging and imagery — how do you balance consistency with localization?",
+    "answer": "We create a template package (Figma for digital, InDesign for print) with constrained components, responsive layout rules, and a clear set of do’s/don’ts in the guidelines so local teams can swap content without breaking the identity. Design tokens and iconography palettes enforce visual consistency while modular templates and variant rules allow approved deviations for regional languages and formats. Rollout support and controlled governance (e.g., permissioned component libraries, training) are available and scoped after discovery based on the number of markets and teams.",
+    "expertise_id": 23,
+    "display_order": 2,
+    "status": "Published"
+  },
+  {
+    "id": 1070,
+    "question": "How will you ensure the KPIs you design are measurable in Google Analytics 4 and not just ‘vanity’ metrics?",
+    "answer": "During Discover we perform a data audit of your GA4 implementation and historical campaign data to identify available events, conversions and attribution signals. In Design we map each KPI to a GA4 event or cohort definition and an agreed attribution model, then in Build we validate those metrics against real campaign data and A/B test results. Deliverables include a KPI catalogue with measurement specs, dashboard templates and monitoring triggers, with adjustments implemented during the 30/60/90-day handover cadence.",
+    "expertise_id": 24,
+    "display_order": 0,
+    "status": "Published"
+  },
+  {
+    "id": 1071,
+    "question": "How do you create campaign governance and decision frameworks for multi-market launches while preserving local team autonomy?",
+    "answer": "We run facilitated workshops with central and local stakeholders to define responsibilities using a RACI matrix and co-create an operating model that sets central guardrails and local execution boundaries. The decision framework specifies investment thresholds, approval gates and escalation paths and is validated through scenario modelling and cohort analysis of past launches. We deliver playbooks, governance artifacts and stakeholder training, plus a prioritized implementation roadmap to operationalize the model.",
+    "expertise_id": 24,
+    "display_order": 1,
+    "status": "Published"
+  },
+  {
+    "id": 1072,
+    "question": "What inputs and commitments do you need from our side to build a channel investment decision framework and supporting dashboards?",
+    "answer": "You should provide access to GA4, historical campaign and cost data, your product and marketing roadmaps, and 4–8 stakeholder interviewees across marketing, product and analytics for the Discover phase. We will produce the decision framework, channel-level KPI definitions, attribution settings, cohort analyses, dashboard templates and a prioritized roadmap; exact scope and timelines depend on complexity and are typically quoted after discovery. Training and handover materials are included to ensure your teams can operate the framework and dashboards independently.",
+    "expertise_id": 24,
+    "display_order": 2,
+    "status": "Published"
+  },
+  {
+    "id": 1073,
+    "question": "How will you attribute leads and revenue across channels and tie them back to signed invoices in our CRM?",
+    "answer": "We start with an audit of attribution gaps, CRM data fields, and current tagging to map out measurable conversion events from first impression to invoice. Then we implement GA4 event schemas, UTM and pixel standards, and CRM mappings in HubSpot or Salesforce so conversions and invoice records are linked deterministically; where needed we deploy server-side tagging to stabilize attribution. The result is a cross-channel attribution layer surfaced in the performance dashboard that shows attributed pipeline and revenue and supports media reallocation recommendations.",
+    "expertise_id": 25,
+    "display_order": 0,
+    "status": "Published"
+  },
+  {
+    "id": 1074,
+    "question": "For a product launch that must drive both awareness and high-intent leads, how do you ensure creatives and landing pages actually convert?",
+    "answer": "We design full-funnel customer journeys and creative briefs that map messaging to channel and stage, then build the paid assets and landing pages with tracking specs in place. We run A/B tests and multivariate experiments through Optimizely, use Hotjar behavior data to diagnose friction, and iterate creative and page variants based on statistically significant lift. Parallel CRM email sequences are activated to capture and nurture high-intent leads into the enterprise sales process.",
+    "expertise_id": 25,
+    "display_order": 1,
+    "status": "Published"
+  },
+  {
+    "id": 1075,
+    "question": "What account access and integrations do you need to deliver the channel strategy, conversion tracking, and the performance dashboard?",
+    "answer": "We need read/write access to ad platforms (Google Ads, Meta Ads), GA4 property admin, and CRM access (HubSpot or Salesforce), plus CMS access for landing pages and ad pixels; if you use server-side tagging we need access to that container as well. If any connectors are missing we can implement tracking, tag templates, and data ingestion pipelines as part of the Build step. Final scope for integrations and dashboard data models depends on your environment and is typically quoted after the initial discovery.",
+    "expertise_id": 25,
+    "display_order": 2,
+    "status": "Published"
+  },
+  {
+    "id": 1076,
+    "question": "How do you ensure market sizing and feasibility assessments use representative customer data rather than biased online samples?",
+    "answer": "We design the study to combine primary and secondary sources: probability or quota-based online surveys and targeted customer interviews together with client GA data and third-party signals from SEMrush/SimilarWeb. During the Build phase we clean and weight samples using reproducible Python (pandas) workflows to correct known biases and estimate confidence intervals. All assumptions, sourcing and limitations are documented in the Deliverables so you can assess risk for the feasibility decision.",
+    "expertise_id": 26,
+    "display_order": 0,
+    "status": "Published"
+  },
+  {
+    "id": 1077,
+    "question": "Can you integrate competitor benchmarking with our internal analytics and the external tools you use (SEMrush, SimilarWeb, Google Analytics)?",
+    "answer": "Yes — we extract external signals via APIs and web scraping where allowed, and ingest your Google Analytics exports or other internal datasets during the Build step. We normalize and join datasets in pandas, produce merged competitor maps and benchmarks, and deliver interactive Tableau dashboards that connect metrics back to your internal KPIs; integration scope and any required access/IT support are determined during Discover. Data handling and access controls are agreed up front and documented in the project plan.",
+    "expertise_id": 26,
+    "display_order": 1,
+    "status": "Published"
+  },
+  {
+    "id": 1078,
+    "question": "What concrete outputs will I get to act on competitive positioning for a digital campaign, and how are campaign KPIs defined?",
+    "answer": "You receive a competitor mapping and benchmarking deliverable, a trend-and-opportunity dashboard, and a customer segmentation file plus an industry analysis report with explicit recommendations aligned to campaign goals. KPI definitions are set during the Design step in collaboration with your stakeholders, then measured across our data pulls (SEMrush/SimilarWeb, GA, surveys) and surfaced in Tableau with drilldowns and suggested testable actions. The Deliverable package includes data sources, methodology, and next-step recommendations for execution and measurement.",
+    "expertise_id": 26,
+    "display_order": 2,
+    "status": "Published"
+  },
+  {
+    "id": 1079,
+    "question": "Can you implement CRM workflows and proposal automation in our existing Salesforce/HubSpot environment and connect DocuSign, Outreach or SalesLoft?",
+    "answer": "Yes — we design and build CRM workflows that map to your buyer stages, create editable proposal templates, and set up integrations with DocuSign and cadence tools like Outreach or SalesLoft where APIs permit. We validate integrations in a sandbox, run end-to-end tests with sample deals, and deploy to production during the Deliver phase. Complex or custom integrations may require additional engineering effort and are scoped and quoted after discovery.",
+    "expertise_id": 27,
+    "display_order": 0,
+    "status": "Published"
+  },
+  {
+    "id": 1080,
+    "question": "How will you demonstrate that the enablement work is actually accelerating deals or improving seller performance?",
+    "answer": "We establish baseline metrics during Discover and agree on measurable success criteria — typical KPIs include sales cycle length, win rate, proposal turnaround time, CRM activity adoption, and seller ramp time. Deliverables include dashboards/reports and validation of workflows against live deals, with recommendations for adjustments if targets are not met. Ongoing measurement and iterative optimization are offered as follow-on work depending on scope.",
+    "expertise_id": 27,
+    "display_order": 1,
+    "status": "Published"
+  },
+  {
+    "id": 1081,
+    "question": "What does the seller training and certification look like for onboarding new reps and ensuring they use the new decks, proposals, and CRM flows?",
+    "answer": "Training is role-based and delivered as a mix of instructor-led workshops, hands-on labs (using your Salesforce/HubSpot and cadence tools), and recorded modules with assessments tied to certification. Materials are provided as editable Google Slides or PowerPoint decks, proposal templates, and CRM playbooks, and certification status can be tracked in your CRM or LMS. We include train-the-trainer options and post-training reinforcement plans, with continued enablement support scoped after discovery.",
+    "expertise_id": 27,
+    "display_order": 2,
+    "status": "Published"
+  },
+  {
+    "id": 1082,
+    "question": "How will you make sure the positioning works for both customers and investors (Series A) rather than just sounding good on a slide deck?",
+    "answer": "We combine competitive analysis and customer interviews with the Value Proposition Canvas to identify real customer pain points and opportunity spaces before drafting positioning options. Those findings are synthesized into a Positioning Map and messaging frameworks that include investor-facing variants and suggested pitch language. We validate the recommended messages in stakeholder workshops and with targeted customer feedback so the final deliverables are evidence-based, not aspirational.",
+    "expertise_id": 28,
+    "display_order": 0,
+    "status": "Published"
+  },
+  {
+    "id": 1083,
+    "question": "We need sales and marketing to use the same language in our go-to-market — how do you create alignment and ensure adoption?",
+    "answer": "We map buyer segments in the Audience Definition and populate a messaging matrix that specifies core claims, proof points, and channel-specific language for each segment. Stakeholder workshops bring sales and marketing into the Design phase to agree priorities, and the Build phase produces a messaging playbook plus an implementation checklist for activation. The Deliver phase includes a handoff package and recommended next steps to operationalize the playbook across sales enablement and marketing assets.",
+    "expertise_id": 28,
+    "display_order": 1,
+    "status": "Published"
+  },
+  {
+    "id": 1084,
+    "question": "What do you provide for naming, and how do you handle trademark or legal risk for the name candidates you propose?",
+    "answer": "Naming sessions produce a scored shortlist of naming options with rationale tied to the positioning and messaging framework, and we validate fit through customer feedback where appropriate. We include an implementation checklist that describes rollout considerations and any recommended domain/handle priorities. We do not provide formal legal clearance; trademark screening and legal opinions are handled by your legal team or a third-party counsel we can coordinate with and scope after discovery.",
+    "expertise_id": 28,
+    "display_order": 2,
+    "status": "Published"
+  },
+  {
+    "id": 1085,
+    "question": "How do you handle AV and hybrid delivery for large conferences and product launches, specifically integrating Crestron control systems, live Zoom feeds, and venue networks?",
+    "answer": "In Design we produce detailed AV and network specifications that include Crestron control mappings, codec and bandwidth requirements, and redundancy for live Zoom feeds. During Build we confirm venue IT capabilities, establish redundant streaming paths and stage-to-control-room signal flows, and schedule full technical dry-runs. On Deliver an on-site AV manager and crew operate the Crestron system, monitor streams in real time, and execute contingency switching if a feed or network issue occurs.",
+    "expertise_id": 29,
+    "display_order": 0,
+    "status": "Published"
+  },
+  {
+    "id": 1086,
+    "question": "How will you manage vendor contracts, procurement, and final budget reconciliation for a multi-city product launch, and can you integrate expense data with SAP Concur?",
+    "answer": "During Build we negotiate vendor SOWs, secure permits, and centralize contracts and purchase orders in our project management tools, with approvals routed per your procurement policy. After the event we provide a post-event report that reconciles actual spend to budget with line-item comparisons, variance explanations, and original contract references. Expense data can be exported and formatted for ingestion into SAP Concur or delivered as CSVs for your AP team; integration specifics are determined during discovery.",
+    "expertise_id": 29,
+    "display_order": 1,
+    "status": "Published"
+  },
+  {
+    "id": 1087,
+    "question": "How do you enforce the run-of-show and resolve real-time issues on-site for a 2,000-attendee annual conference to keep sessions on time and attendees moving?",
+    "answer": "We develop a minute-by-minute run-of-show in Design and translate timing responsibilities into Asana task lists and Microsoft Teams channels for crew coordination. On Deliver we operate a staffed command center that uses RFID badge scanning for real-time flow metrics, assigns timing marshals, and follows a defined escalation matrix to resolve queuing, speaker delays, or AV faults. All deviations and corrective actions are documented in the post-event report with recommendations to prevent recurrence.",
+    "expertise_id": 29,
+    "display_order": 2,
+    "status": "Published"
+  },
+  {
+    "id": 1088,
+    "question": "How do you decide which processes to automate versus which to standardize but keep manual?",
+    "answer": "During Discover and Design we map end-to-end processes and score candidates by frequency, repeatability, exception rate, compliance risk, and integration complexity. We model workflows in BPMN (Lucidchart) and estimate time savings and failure reduction, then prioritize automation pilots for high-volume, low-exception tasks such as parts of order-to-cash or ticket triage. Final selection is confirmed with stakeholders and tied to measurable success metrics before build work begins.",
+    "expertise_id": 30,
+    "display_order": 0,
+    "status": "Published"
+  },
+  {
+    "id": 1089,
+    "question": "How will you integrate automated workflows with our existing systems and RPA tools (Camunda, UiPath, Power Automate) without disrupting operations?",
+    "answer": "In the Build phase we configure integrations using APIs, vendor connectors, or a Camunda process engine in a sandbox and run end-to-end tests including exception and reconciliation scenarios. We deploy in phased rolls with rollback plans, monitoring hooks, and operational acceptance tests to detect and contain issues before full cutover. For high-risk flows such as finance or compliance reporting we recommend parallel runs and documented acceptance criteria before switching to production.",
+    "expertise_id": 30,
+    "display_order": 1,
+    "status": "Published"
+  },
+  {
+    "id": 1090,
+    "question": "Who owns and updates the SOP library and performance dashboards after you deliver them, and how do you enable ongoing governance?",
+    "answer": "We publish the SOP library and a governance playbook at Deliver and train your operations and IT teams; the playbook spells out role-based ownership, change-control steps, and update cadence. Dashboards are handed over in Power BI with data-source documentation and admin guides so your analysts can maintain metrics and alerts. If you need us to operate ongoing updates or monitoring, that can be scoped as a separate engagement after discovery.",
+    "expertise_id": 30,
+    "display_order": 2,
+    "status": "Published"
+  },
+  {
+    "id": 1091,
+    "question": "How will you ensure our records retention schedules and compliance filing packages meet regulatory obligations and remain audit-ready?",
+    "answer": "We assess obligations during the Discover step, map records to retention policies in the Design step, and implement enforceable policies in repositories (SharePoint/Google Workspace) with versioning and immutable audit trails (DocuSign audit logs where signatures are required). Filing coordination is automated and ticketed through ServiceNow so each submission has a chain-of-custody and exportable audit package. We also provide periodic attestations and role-based access controls to maintain audit readiness.",
+    "expertise_id": 31,
+    "display_order": 0,
+    "status": "Published"
+  },
+  {
+    "id": 1092,
+    "question": "Can you centralize our existing contract repository across Microsoft 365 and Google Workspace without disrupting ongoing work, and how do you make scanned documents searchable?",
+    "answer": "We design a migration or federation approach during Design that preserves permissions and SSO (Azure AD/Google) and either migrates documents into SharePoint or indexes them in place to minimize disruption. Scanned contracts are processed with AWS Textract for OCR and metadata extraction, and Zapier or native connectors are used to populate searchable fields and tag records for fast retrieval. All changes are versioned and validated during the Build phase before live cutover to reduce operational risk.",
+    "expertise_id": 31,
+    "display_order": 1,
+    "status": "Published"
+  },
+  {
+    "id": 1093,
+    "question": "How are dedicated virtual assistant hours allocated and how will executives get visibility and SLAs for scheduling, travel and ad-hoc tasks?",
+    "answer": "Allocation and prioritization are defined in the Design phase and can be assigned as dedicated hours per executive or pooled support depending on need; those rules are captured in SLAs and escalation paths. Task-tracking logs are maintained in the agreed platform (ServiceNow or shared task logs) with dashboards and weekly reports for visibility. Response and turnaround targets are documented in the SLA and can be adjusted post-discovery based on workload and criticality.",
+    "expertise_id": 31,
+    "display_order": 2,
+    "status": "Published"
+  },
+  {
+    "id": 1094,
+    "question": "How will you integrate the centralized communication hub and contract repository with our existing SAP Ariba, Coupa or ServiceNow environments?",
+    "answer": "We capture existing system configurations and communication gaps during Discover and produce an integration design during Build that links the contract repository, alerts, and workflow tickets to SAP Ariba, Coupa, ServiceNow, Microsoft Teams or Slack. DocuSign is integrated for signature workflows and we configure notifications and escalation paths to the centralized hub. The exact integration approach depends on current licensing and customisations and is scoped and quoted after discovery.",
+    "expertise_id": 32,
+    "display_order": 0,
+    "status": "Published"
+  },
+  {
+    "id": 1095,
+    "question": "How do you enforce SLAs and compliance across MSPs, field contractors or multiple manufacturing suppliers operating in different regions?",
+    "answer": "In the Design phase we define measurable SLA metrics, governance, escalation paths and a RACI matrix tailored to regional risk and regulatory requirements. We operationalise those metrics with ServiceNow workflows, dashboarding and scheduled performance review reports, and execute initial vendor training during Deliver to align behaviour. Escalations and remedial actions are formalised in the contract management package and executed through the centralized communication hub.",
+    "expertise_id": 32,
+    "display_order": 1,
+    "status": "Published"
+  },
+  {
+    "id": 1096,
+    "question": "Will you retain ownership of vendor relationships after handover or only provide a contract management package and playbooks for our team?",
+    "answer": "We deliver a contract management package, playbooks, DocuSign-enabled templates and a vendor selection shortlist as standard outputs, and we train your team to operate the centralized hub during the Deliver handover. If you prefer, we can act as the interim or ongoing vendor coordinator and run performance reviews on your behalf; that ongoing operating model is treated as a separate scope and is typically quoted after discovery. In all cases we document the RACI and transfer operational runbooks to ensure continuity.",
+    "expertise_id": 32,
+    "display_order": 2,
+    "status": "Published"
+  },
+  {
+    "id": 1097,
+    "question": "How will you tailor a development bootcamp to upskill our frontend team specifically for a React production launch?",
+    "answer": "We start with Discover to assess your team's JavaScript and React baseline and the business objectives for the launch, then Design a curriculum that maps modules, code standards, and a capstone brief directly to your codebase and feature set. During Build we run instructor-led labs, code reviews, and iterative capstone work using your code patterns and CI practices. At Deliver we evaluate the capstone against agreed production criteria, issue assessed certifications, and hand over employer-ready portfolio artifacts and remediation plans for any gaps.",
+    "expertise_id": 33,
+    "display_order": 0,
+    "status": "Published"
+  },
+  {
+    "id": 1098,
+    "question": "Can you train early-career hires for AI/data roles using our proprietary data while protecting IP and privacy?",
+    "answer": "In Discover we capture data sensitivity, compliance requirements, and target model outcomes, then Design ML modules that use sanitized, anonymized, or synthetic variants of your datasets as needed. Training is delivered in Python and TensorFlow with hands-on labs and an ML capstone that prototypes a constrained internal use case; all work and access controls are defined up front. Intellectual property handling and data access rules are formalized during contracting so deliverables and ownership meet your legal and security requirements.",
+    "expertise_id": 33,
+    "display_order": 1,
+    "status": "Published"
+  },
+  {
+    "id": 1099,
+    "question": "How do you measure learning outcomes and ensure the UX improvements produced will be production-usable for our customer-facing apps?",
+    "answer": "We define role-based outcomes and assessment rubrics during Discover and Design that map directly to UX deliverables such as Figma prototypes, usability test metrics, and implemented front-end code. Build includes mentor-led reviews, user testing of prototypes, and measured assessments; Deliver provides pass/fail certification, portfolio pieces tied to usability scores, code-quality reports, and a recommended action list for integrating prototypes into your product pipeline. Reporting is customized to the KPIs you define (e.g., conversion uplift potential, usability score, code maintainability) and typically issued after final evaluation.",
+    "expertise_id": 33,
+    "display_order": 2,
+    "status": "Published"
+  },
+  {
+    "id": 1100,
+    "question": "How will you tailor the Management Fundamentals course and Leadership development program to the specific roles and performance gaps in our organisation?",
+    "answer": "We begin with the Discover step to assess organisational needs, learner profiles and performance gaps, then map those findings to role-specific competencies during Design. Course content — including case method studies, business simulations and Agile/Design Thinking exercises — is selected or adapted to reflect the scenarios your managers face. Final scope and module adjustments are confirmed after discovery so assessments and mentor sessions align with your priority outcomes.",
+    "expertise_id": 34,
+    "display_order": 0,
+    "status": "Published"
+  },
+  {
+    "id": 1101,
+    "question": "Can the Business Analytics applied project and certification be delivered through our existing LMS and work with our data systems?",
+    "answer": "Yes — during Design and Deliver we assess integration options and can package the applied project as SCORM/xAPI/LTI modules for your LMS where supported. Participants use Excel and Power BI for project work; we can run exercises on sanitized extracts of your data or on representative datasets depending on your security and connectivity policies. Full integration and any data engineering work are scoped during discovery and quoted accordingly.",
+    "expertise_id": 34,
+    "display_order": 1,
+    "status": "Published"
+  },
+  {
+    "id": 1102,
+    "question": "How do you measure success and business impact from the leadership program, mentor sessions and the entrepreneurship toolkit?",
+    "answer": "We set baseline KPIs and target competencies during Discover, then measure outcomes through built-in assessments, simulation scores, mentor session feedback and evaluation of practical project deliverables. Deliverables include certification outcomes for the Business Analytics project and assessment artifacts from the Management Fundamentals module, which we compile into outcome reports. For clients who require it, we produce Power BI dashboards linking learning metrics to agreed business KPIs to demonstrate impact.",
+    "expertise_id": 34,
+    "display_order": 2,
+    "status": "Published"
+  },
+  {
+    "id": 1103,
+    "question": "How will certification outcomes appear in our HRIS and how do you handle SSO and employer verification for issued credentials?",
+    "answer": "During Discover we map the HRIS fields and SSO flows; in Design we specify SAML/OAuth assertions and certificate/badge metadata to be pushed. In Build we deliver API connectors that push completion records and issue Open Badges with verifiable metadata, and we expose an Employer Verification API endpoint that employers can query to validate certificate and badge status. Final integration and field mappings are validated in a pilot during Deliver to ensure records reconcile with your HRIS.",
+    "expertise_id": 35,
+    "display_order": 0,
+    "status": "Published"
+  },
+  {
+    "id": 1104,
+    "question": "What options do you provide to ensure exam integrity and scalability for high‑volume contractor certification runs?",
+    "answer": "We implement proctored assessment workflows using ProctorU for identity-verified sessions, combine randomized question banks (SCORM/xAPI-capable) and timed windows to reduce cheating, and provision cloud-hosted LMS capacity (Moodle/Canvas) to handle concurrency. During Build we configure proctoring rules, session orchestration and logging, and during Deliver we validate the approach with a pilot cohort and scale settings based on observed load. Specific scheduling, concurrency and proctoring SLA requirements depend on scope and are typically quoted after discovery.",
+    "expertise_id": 35,
+    "display_order": 1,
+    "status": "Published"
+  },
+  {
+    "id": 1105,
+    "question": "Can you provide audit‑quality compliance reports and machine-readable learning records for regulators and internal auditors?",
+    "answer": "Yes — we emit granular xAPI (Tin Can) statements to an LRS for every assessment interaction and package completed modules as SCORM when required, while completion certificates include verifiable metadata and signatures. Reporting templates and audit logs are defined in Design and delivered with dashboards and API access so auditors can pull timelines, candidate evidence, and verification results. Retention policies and the exact export formats are agreed during Discover to meet your regulatory needs.",
+    "expertise_id": 35,
+    "display_order": 2,
+    "status": "Published"
+  },
+  {
+    "id": 1106,
+    "question": "How will you measure learning impact and ROI after the program, and what will the post-program report include?",
+    "answer": "We run baseline and post-program assessments, collect LMS and xAPI/LRS analytics (completion, time-on-task, assessment scores), and correlate results with agreed business KPIs such as tool adoption, error rates, or sales conversion. The post-program impact and ROI report bundles assessment results, usage analytics, certification rates, qualitative feedback from stakeholders, and recommended next steps to close remaining gaps. If you want financial ROI tied to revenue or operational metrics we will map required business data during Discover and include that in the final analysis.",
+    "expertise_id": 36,
+    "display_order": 0,
+    "status": "Published"
+  },
+  {
+    "id": 1107,
+    "question": "Can you integrate your custom content with our existing LMS and virtual tooling (SCORM/xAPI, Zoom/Teams, cloud sandboxes)?",
+    "answer": "Yes — we deliver SCORM and xAPI-compliant packages and can connect to your LMS or an LRS for tracking, plus integrate virtual classroom sessions with Zoom or Microsoft Teams and enable SSO where required. For hands-on labs we provision cloud sandbox environments on AWS/Azure/GCP or adapt to your existing cloud tenancy, and we validate integration during the Build phase to ensure analytics and assessments flow back into your reporting. Any work that requires tenant access, additional licensing, or bespoke connectors depends on scope and is typically quoted after discovery.",
+    "expertise_id": 36,
+    "display_order": 1,
+    "status": "Published"
+  },
+  {
+    "id": 1108,
+    "question": "For a cloud migration tool training for engineering teams, how do you ensure the labs reflect our real workflows and toolchain?",
+    "answer": "During Discover we perform stakeholder interviews and a tool usage assessment to capture your architecture, CI/CD pipelines, and common failure modes, then map those into role-based lab scenarios during Design. In Build we create hands-on labs in a cloud sandbox that mimic your environments, include scripted exercises and troubleshooting tasks, and integrate assessments that measure practical competence against your success metrics. We will need access to architecture documentation and appropriate cloud permissions to replicate workflows; specific environment work and any on-prem/toolchain integration are scoped and quoted after discovery.",
+    "expertise_id": 36,
+    "display_order": 2,
+    "status": "Published"
+  },
+  {
+    "id": 1109,
+    "question": "How will you validate feasibility for an autonomous material‑handling pilot and what evidence will we receive to decide whether to scale it to production?",
+    "answer": "We start with Discover workshops and data review to define success metrics and constraints, then produce low‑fidelity prototypes in Design to test core hypotheses. Deliverables include a robotics research report, a validated proof‑of‑concept build tested in a controlled testbed, quantitative performance metrics (throughput, localization accuracy, failure modes), and a risk assessment with a recommended roadmap for scaling.",
+    "expertise_id": 37,
+    "display_order": 0,
+    "status": "Published"
+  },
+  {
+    "id": 1110,
+    "question": "Our fleet uses ROS 1, NVIDIA Jetsons, and some FPGA‑based sensors — can you integrate with that existing stack and what handoff artifacts will your team provide?",
+    "answer": "Yes. We provide a ROS‑2 migration or bridging strategy, TensorRT‑optimized models for NVIDIA devices, reference FPGA IP or HDL stubs for Verilog/VHDL, and Embedded Linux (Yocto) builds where needed. Handoff artifacts include documented code, build recipes/images, integration test harnesses, firmware and software runbooks, and a prioritized defect/risk log to accelerate your internal teams.",
+    "expertise_id": 37,
+    "display_order": 1,
+    "status": "Published"
+  },
+  {
+    "id": 1111,
+    "question": "What level of safety and regulatory assurance do you deliver for a prototype industrial robotic arm intended for machine tending?",
+    "answer": "We perform a safety and requirements assessment during Discover, embed safety constraints into the Design and Build phases (emergency stops, controlled testbeds, sensor redundancy, and software interlocks), and deliver a formal risk assessment and recommended mitigation plan. We can prepare the prototype and documentation required for certification, but final regulatory approval or third‑party certification depends on scope and is typically quoted after discovery.",
+    "expertise_id": 37,
+    "display_order": 2,
+    "status": "Published"
+  },
+  {
+    "id": 1112,
+    "question": "Will we receive all source files and IP rights for the electronics, firmware, and enclosure at handover?",
+    "answer": "We deliver schematic and PCB fabrication files, assembled and tested PCB units, firmware source with its automated test harness (including board support and build scripts for targeted MCUs such as STM32 or ESP32), and 3D CAD and STL files for the enclosure. Ownership and licensing terms for those deliverables are defined in the engagement contract; typically clients receive the rights necessary to manufacture and maintain the product while third‑party software/open‑source components (for example FreeRTOS) are noted in the bill of materials and license file. Any reusable consultancy libraries or tools we intend to retain will be identified during Discover and agreed in writing.",
+    "expertise_id": 38,
+    "display_order": 0,
+    "status": "Published"
+  },
+  {
+    "id": 1113,
+    "question": "How do you ensure the prototype is designed for SMT assembly and can transition toward production?",
+    "answer": "During Design we apply DFM best practices in Altium or KiCad, choose standard SMT footprints and tolerances, and review panelization and reflow requirements with manufacturing constraints in mind. In Build we supply fabrication‑ready Gerbers/ODB++, a vetted BOM with approved alternates, assembled units and validated pick‑and‑place and reflow profiles, plus SLA enclosure prints and CAD for tooling considerations. Transitioning to higher volumes typically requires additional process transfer and supply‑chain validation work, which we scope and quote after Discover.",
+    "expertise_id": 38,
+    "display_order": 1,
+    "status": "Published"
+  },
+  {
+    "id": 1114,
+    "question": "Can you provide the testing and documentation needed for medical or industrial regulatory review?",
+    "answer": "We perform bench and environmental tests, produce test reports, and deliver traceable firmware logs, BOM records, and design history files to support regulatory submissions for alpha‑level review. For medical‑device work we implement design control practices and component traceability during Discover and Design, but formal certification or regulatory approvals (for example FDA clearance or notified‑body testing) are outside the standard prototyping scope unless specifically included in the contract. If you need formal certification support, we will coordinate with accredited test labs and add that scope after discovery and requirements definition.",
+    "expertise_id": 38,
+    "display_order": 2,
+    "status": "Published"
+  },
+  {
+    "id": 1115,
+    "question": "How do you manage regulatory and compliance requirements when incubating a connected medical device through regulated pilots?",
+    "answer": "We capture regulatory and compliance requirements during the Design step and translate them into MVP scope, testing protocols, and documentation required for pilots. MVPs are built on secure, auditable infrastructure (AWS, Kubernetes, Terraform) with embedded validation artifacts and analytics to support regulatory review. Pilot programs include acceptance criteria and operational playbooks that demonstrate compliance for graduation or handover.",
+    "expertise_id": 39,
+    "display_order": 0,
+    "status": "Published"
+  },
+  {
+    "id": 1116,
+    "question": "What objective criteria do you use to decide if an incubated vertical should graduate into a standalone subsidiary?",
+    "answer": "Graduation criteria are defined in Discover as measurable thresholds across market traction (customer acquisition and retention), unit economics, regulatory readiness, operational scalability, and pilot KPIs. We assess pilot outcomes against those thresholds during Deliver and produce a graduation roadmap plus a go/no‑go recommendation backed by data. The final package includes residual risk documentation and an operational playbook to support the decision maker.",
+    "expertise_id": 39,
+    "display_order": 1,
+    "status": "Published"
+  },
+  {
+    "id": 1117,
+    "question": "Which technologies and handover artifacts do you deliver to ensure an MVP can be scaled or spun out without rework?",
+    "answer": "We deliver cloud‑native MVPs (Python services, containerized on Kubernetes, provisioned via Terraform on AWS) with Figma prototypes and analytics instrumentation. Handover artifacts include source repositories, Terraform modules, CI/CD configurations, automated tests, monitoring dashboards, and runbooks. Those deliverables and the operational playbook are structured to allow the corporate parent or a new subsidiary to operate or scale the vertical with minimal replatforming.",
+    "expertise_id": 39,
+    "display_order": 2,
+    "status": "Published"
+  },
+  {
+    "id": 1118,
+    "question": "How do you handle HIPAA and regional regulatory requirements across telemedicine video, patient messaging, and EHR storage?",
+    "answer": "We design the architecture to meet HIPAA and similar regional requirements by using AWS HIPAA-eligible services, encryption in transit and at rest, role-based access controls, and detailed audit logging. Authentication and session management use OAuth 2.0 / OpenID Connect and secure token lifecycles for both clinician and patient access. Compliance validation is part of the Deliver phase and we define required Business Associate Agreements and regional controls during Discover.",
+    "expertise_id": 40,
+    "display_order": 0,
+    "status": "Published"
+  },
+  {
+    "id": 1119,
+    "question": "Can you integrate the telemedicine platform with our existing EHR and map clinical data using HL7 FHIR?",
+    "answer": "Yes — integration is planned during Discover where we identify EHR endpoints, supported FHIR versions and required workflows; during Build we implement FHIR-based interoperability components and any custom adapters. We support standard FHIR resources and can implement middleware for transformation, persistence in PostgreSQL, and secure APIs running on Kubernetes. Integration complexity depends on your EHR vendor and local customizations, so scope and cost are typically quoted after discovery.",
+    "expertise_id": 40,
+    "display_order": 1,
+    "status": "Published"
+  },
+  {
+    "id": 1120,
+    "question": "What technology and scalability approach do you use for real-time video visits, mobile access, and clinician scheduling?",
+    "answer": "We implement real-time video with WebRTC and TURN/SFU architectures for scale, mobile clients with React Native, and clinician scheduling as an integrated service with secure messaging in the patient portal. The platform runs on Kubernetes in AWS with autoscaling, monitoring, and logging to handle peaks and provide SLA-grade availability. Media sessions are encrypted end-to-end where feasible and access is protected by OAuth 2.0 / OpenID Connect with monitoring delivered as part of rollout and support.",
+    "expertise_id": 40,
+    "display_order": 2,
+    "status": "Published"
+  },
+  {
+    "id": 1121,
+    "question": "How will you integrate our existing EMR and laboratory systems that currently use HL7 v2 and proprietary interfaces so clinical results and orders flow without disruption?",
+    "answer": "We start in Discover with an interface inventory and mapping exercise, then design FHIR- and HL7 v2-based adapters that translate between your systems and our HMS. Integration components are implemented as .NET Core services, containerized with Docker and deployed on AWS, with data persisted in PostgreSQL and validated through end-to-end test cases. We support phased cutovers and reconciliation reports to ensure no orders or results are lost during the transition.",
+    "expertise_id": 41,
+    "display_order": 0,
+    "status": "Published"
+  },
+  {
+    "id": 1122,
+    "question": "Can the billing module automate claims and insurance adjudication across different payers, and how are local billing rules and exception handling managed?",
+    "answer": "The billing deliverable includes a configurable rules engine that encodes payer-specific tariffs and adjudication logic and connects to clearinghouses via API or EDI connectors. Claims processing, retries, denials, and remittance reconciliation are logged and surfaced in operational dashboards; exceptions are routed to billing staff with audit trails. During Design we capture local billing variants so the automation matches your payer mix and regulatory requirements.",
+    "expertise_id": 41,
+    "display_order": 1,
+    "status": "Published"
+  },
+  {
+    "id": 1123,
+    "question": "What is your approach to migrating historical patient records, meeting data-protection regulations (e.g., HIPAA/GDPR or regional requirements), and supporting peak inpatient capacity and high availability?",
+    "answer": "In Discover we assess source systems and regulatory constraints and perform test ETL runs that map legacy schemas into our PostgreSQL model, including data validation and anonymized test loads. Security controls include encryption in transit and at rest, IAM, VPC isolation, and audit logging on AWS to meet regional compliance; data residency requirements are implemented per customer policy. Scalability and availability are addressed by containerized services (Docker) on AWS with autoscaling, backups and documented DR plans, and we validate capacity planning during the Deliver phase with staff training and live workflow validation.",
+    "expertise_id": 41,
+    "display_order": 2,
+    "status": "Published"
+  },
+  {
+    "id": 1124,
+    "question": "How will you integrate Imaging Support and the Clinical Decision Support interface with our existing PACS and EMR without disrupting radiology and ED workflows?",
+    "answer": "We use DICOM/PACS connectors and HL7/FHIR interfaces wrapped in containerized services (Docker/Kubernetes) to integrate with vendor systems and minimize footprint. Integration design, including metadata mapping and human-in-the-loop checkpoints, is defined in the Discover and Design phases and validated in a staging environment before any production cutover. Exact effort and vendor-specific adapters depend on your PACS/EMR and are scoped during discovery.",
+    "expertise_id": 42,
+    "display_order": 0,
+    "status": "Published"
+  },
+  {
+    "id": 1125,
+    "question": "What does your model validation and safety process look like for use cases such as automated mammography flagging or ED stroke triage?",
+    "answer": "We deliver a Model Validation Report that includes held-out and external dataset evaluation, subgroup and calibration analyses, threshold-setting for sensitivity/specificity trade-offs, and failure-mode analysis for each use case. Explainability outputs (Grad-CAM/SHAP) and clinician review workflows are integrated to surface model reasoning and support human-in-the-loop decisions. Prospective clinical validation or regulatory-focused trials are planned during Discover and scoped according to the facility’s requirements.",
+    "expertise_id": 42,
+    "display_order": 1,
+    "status": "Published"
+  },
+  {
+    "id": 1126,
+    "question": "Can you train models across multiple hospitals without centralizing PHI, and what safeguards do you provide for patient data and compliance?",
+    "answer": "Yes — we support federated learning architectures so local data remains on-prem while only encrypted model updates are aggregated, reducing PHI movement. Deployments use containerized local compute, encrypted transport, role-based access controls, and audit logging; we also supply explainability and monitoring hooks required for clinical oversight. Specific compliance controls (HIPAA/GDPR, data retention, business associate agreements) are assessed during Discover and implemented per your governance requirements.",
+    "expertise_id": 42,
+    "display_order": 2,
+    "status": "Published"
+  },
+  {
+    "id": 1127,
+    "question": "How do you handle privacy, consent and PHI when integrating a corporate employee wellness app with our EHR and HR systems?",
+    "answer": "We treat this as a discovery deliverable: we perform data mapping and clinical stakeholder interviews to define what constitutes PHI, required consent flows, and local regulatory obligations. Design and Build phases implement role-based access, audit logging, encryption in transit and at rest on AWS, and consent-first flows in the React Native/React front end with Node.js backend enforcement. We use FHIR for EHR integrations and minimize PHI storage in PostgreSQL, and we can operate under a Business Associate Agreement or equivalent contractual protections where required. Ongoing monitoring and privacy-first configuration are included in delivery to ensure continued compliance.",
+    "expertise_id": 43,
+    "display_order": 0,
+    "status": "Published"
+  },
+  {
+    "id": 1128,
+    "question": "Can you ingest and normalize data from wearables and third-party nutrition/content providers into the wellness tracking dashboard and habit-formation system?",
+    "answer": "Yes — during Discover we map required device integrations and vendor APIs, then implement adapters in the Build phase using Node.js middleware and Python analytics pipelines to normalize incoming streams before persisting to PostgreSQL. Mobile clients are built in React Native and support device pairing and consent flows; web dashboards are React-based and consume the same normalized datasets. We validate feeds via automated testing and monitor data quality in production so analytics and habit‑formation logic receive consistent inputs.",
+    "expertise_id": 43,
+    "display_order": 1,
+    "status": "Published"
+  },
+  {
+    "id": 1129,
+    "question": "How do you prove clinical effectiveness and business ROI for programs such as digital weight-management or preventive care for insurers?",
+    "answer": "We start by defining measurable KPIs in Discover — e.g., weight change, biometric risk scores, engagement and utilization rates — and create evidence-informed journey maps to tie interventions to outcomes. Analytics pipelines (Python) and EHR/claims integrations via FHIR enable cohort analysis, A/B testing, and attribution studies; dashboards surface these metrics for clinical and business stakeholders. Final study design and the degree of attribution you can achieve depend on available data and consent, so measurement scope is typically finalized and quoted after discovery.",
+    "expertise_id": 43,
+    "display_order": 2,
+    "status": "Published"
+  },
+  {
+    "id": 1130,
+    "question": "How do you prevent double-booking and maintain real-time inventory sync across multiple suppliers (channel managers, GDS, tour operators)?",
+    "answer": "We implement supplier-specific adapters and an inventory-sync API layer that supports push and poll models depending on the partner. We use transactional writes in PostgreSQL with optimistic locking for the source of truth, Redis for short‑term cache and rate-limiting, and reconciliation jobs to catch and resolve conflicts; the exact sync frequency and conflict rules are defined during Discover based on each supplier's capabilities.",
+    "expertise_id": 44,
+    "display_order": 0,
+    "status": "Published"
+  },
+  {
+    "id": 1131,
+    "question": "How is payment processing and vendor settlement handled in a multi-vendor marketplace while staying PCI-compliant?",
+    "answer": "We architect payments using tokenization and a PCI-compliant gateway (Stripe is part of our stack) and implement marketplace flows such as platform-authorize/vendor-capture or direct vendor settlement via Stripe Connect depending on contracts. Payment webhooks feed a reconciliation ledger in PostgreSQL and automated reconciliation processes match transactions to bookings; we validate the final compliance posture during Discover and include deployment hardening on Kubernetes to protect card data.",
+    "expertise_id": 44,
+    "display_order": 1,
+    "status": "Published"
+  },
+  {
+    "id": 1132,
+    "question": "Can the platform build dynamic flight+hotel+activity packages with capacity and pricing rules, and how are those rules implemented technically?",
+    "answer": "Yes — we deliver a dynamic itinerary and package builder that composes inventory via GraphQL from flight, hotel and activity services and applies pricing and capacity rules in a Node.js pricing engine. Rules and constraints are stored as configurable policies, enforced at booking time with atomic transactions, and surfaced in the React UI for mobile-first conversion; specific rule sets and edge cases are captured during Design and Build phases.",
+    "expertise_id": 44,
+    "display_order": 2,
+    "status": "Published"
+  },
+  {
+    "id": 1133,
+    "question": "How will you measure campaign performance and attribute bookings or MICE registrations across digital channels and offline conversion paths?",
+    "answer": "We instrument end-to-end tracking in Google Analytics 4 and align ad reporting in Google Ads and Meta Ads using UTM schemas and conversion events defined in the Discover step. For offline bookings or group reservations we implement a reconciliation process (CRM or booking export mapped to campaign UTMs) so GA4 can attribute value; where CRM integration isn’t available we provide a deterministic attribution workbook. Weekly dashboards and conversion funnels are produced during Deliver so you can see channel-level CPA, assisted conversions, and seasonality impact.",
+    "expertise_id": 45,
+    "display_order": 0,
+    "status": "Published"
+  },
+  {
+    "id": 1134,
+    "question": "What does the influencer program plan include, and how do you vet creators for a coastal resort reopening or a city DMO off-peak awareness push?",
+    "answer": "The influencer program plan lists audience-aligned creator personas, reach-and-engagement benchmarks, content themes from the Design phase, and a contract template with required deliverables, usage rights and FTC disclosure language. We vet creators using audience demographics, engagement quality, historical campaign performance and platform relevance (Instagram, YouTube using YouTube Studio metrics); shortlisted creators are then validated against brand safety and local tourism rules. Measurement criteria and creative approval gates are embedded in the plan so influencers’ content feeds into the content calendar and paid amplification strategy.",
+    "expertise_id": 45,
+    "display_order": 1,
+    "status": "Published"
+  },
+  {
+    "id": 1135,
+    "question": "What will your Tourism SEO audit and roadmap deliver, and how do you prioritize technical fixes versus content creation for seasonal campaigns?",
+    "answer": "The SEO audit uses Ahrefs and SEMrush plus GA4 traffic data to map organic keyword opportunities, technical issues (crawlability, Core Web Vitals), and content gaps tied to seasonal demand identified in Discover. The roadmap scores fixes by impact and effort—technical fixes that block indexing or conversions are prioritized in the Build phase, while high-opportunity content (localized landing pages, itineraries) is scheduled into the Content production package and calendar. We hand over implementation-ready briefs and can configure tracking on new landing pages so SEO results are measurable during Deliver.",
+    "expertise_id": 45,
+    "display_order": 2,
+    "status": "Published"
+  },
+  {
+    "id": 1136,
+    "question": "How will you help us shift mix from OTAs to higher-yield direct bookings without disrupting occupancy or channel relationships?",
+    "answer": "We start with a Channel Distribution Assessment to quantify current yield by channel and identify low-risk levers such as rate parity adjustments, targeted direct-booking offers, and CRS routing rules. The Design phase produces a phased channel strategy and KPIs (conversion, ADR, cancellation rates) and the Build phase prototypes routing and offer tests against live channels to validate impact before wider rollout. Implementation includes monitoring via the Visitor Analytics Dashboard so you can measure uplift and quickly revert or refine tactics if occupancy or partner relationships are affected.",
+    "expertise_id": 46,
+    "display_order": 0,
+    "status": "Published"
+  },
+  {
+    "id": 1137,
+    "question": "Can you integrate our disparate property management systems and central reservation systems into a single, consistent distribution layer?",
+    "answer": "Yes — we use an API-led architecture and proven CRS/channel integration patterns to standardise interfaces across PMS and booking engines, leveraging AWS and real-time pipelines (Kafka/Segment) where needed. The Discover step inventories vendor APIs and data quality to identify whether adapters, middleware or custom connectors are required, and the Build phase prototypes integrations and validates distribution flows with live property testing. Actual effort depends on the number and vintage of systems and data quality; scope and costs are typically quoted after discovery.",
+    "expertise_id": 46,
+    "display_order": 1,
+    "status": "Published"
+  },
+  {
+    "id": 1138,
+    "question": "How do you govern guest data across multiple properties while enabling the visitor segmentation and analytics we need?",
+    "answer": "We implement a Customer Data Platform-backed architecture and real-time analytics pipelines to centralise identity, consent and event data, then deliver a Visitor Analytics Dashboard with segmentation and operational insights. Governance is delivered as part of the Deliver phase — including data model, access controls, runbooks, and compliance guidance (privacy and retention) — and we provide training so property teams can maintain segments and reports. For multi-property groups we also recommend shared master data practices and enforcement points in the API layer to prevent downstream drift.",
+    "expertise_id": 46,
+    "display_order": 2,
+    "status": "Published"
+  },
+  {
+    "id": 1139,
+    "question": "How will you integrate our current channel managers and OTA connections without disrupting live bookings or causing double‑bookings?",
+    "answer": "We use a phased integration approach that starts with the Discover step to map existing channel relationships and booking flows, then implements channel connectivity via our RESTful APIs and microservices in a staging environment. During Build we perform full synchronization tests, idempotent booking operations, and reconciliation logic to prevent duplicates; in Deliver we cut over with monitored traffic routing and roll-back plans to avoid live disruption. We also support queueing and eventual consistency patterns (using Redis where appropriate) for high-throughput properties.",
+    "expertise_id": 47,
+    "display_order": 0,
+    "status": "Published"
+  },
+  {
+    "id": 1140,
+    "question": "What security and compliance measures do you apply for guest data in the mobile app and guest messaging workflows?",
+    "answer": "We design authentication and authorization with OAuth 2.0, apply TLS for data in transit and encryption at rest in PostgreSQL and AWS storage, and implement role-based access and audit logging as part of the Design phase. Sensitive operations such as payment processing are isolated or integrated via PCI‑compliant providers, and we include penetration testing and configuration hardening before production. Specific compliance requirements (GDPR, local privacy rules) are captured during Discover and implemented as part of the delivery scope.",
+    "expertise_id": 47,
+    "display_order": 1,
+    "status": "Published"
+  },
+  {
+    "id": 1141,
+    "question": "How do you ensure multi-property rate parity and centralized revenue management across direct bookings, OTAs, and channel partners?",
+    "answer": "We implement a centralized pricing microservice and revenue management toolset exposed via RESTful APIs to push rates to direct‑booking websites and channel managers, with caching (Redis) for performance and conflict-resolution rules to preserve parity. During Discover we define business rules and exceptions (e.g., local promotions, channel commissions), during Build we codify those rules into the pricing engine, and Deliver includes monitoring and automated alerts for rate drift. Advanced dynamic-pricing algorithms and external data feeds are available but depend on scope and are typically quoted after discovery.",
+    "expertise_id": 47,
+    "display_order": 2,
+    "status": "Published"
+  },
+  {
+    "id": 1142,
+    "question": "How will you integrate your automation controls and line monitoring dashboard with our existing Siemens and Allen‑Bradley PLCs without disrupting production?",
+    "answer": "We begin with the Discover step to map your line topology and control system access, then implement read‑only OPC UA or native drivers to avoid control loop changes during integration. Where needed we deploy MQTT gateways and staged commissioning windows to minimize interference, validate data consistency in test batches, and only move to active control after operator sign‑off. Final commissioning includes rollback plans and training so operations can sustain production while we transition functionality.",
+    "expertise_id": 48,
+    "display_order": 0,
+    "status": "Published"
+  },
+  {
+    "id": 1143,
+    "question": "Can you deliver serialized traceability that meets export documentation requirements for ready‑to‑eat meals and dairy exports?",
+    "answer": "Yes — we design serialized event capture at defined checkpoints (packaging, palletizing, cold chain handoffs) using RFID or barcode systems and persist events to the SQL Data Warehouse for auditability. During Design we map regulatory fields and reporting rules so the serialized traceability system can produce compliance reports required for exports, and in Deliver we validate the workflow using test batches to demonstrate traceability end‑to‑end. Any specific regulatory mapping or certificate formats are finalized in discovery and included in the delivery scope.",
+    "expertise_id": 48,
+    "display_order": 1,
+    "status": "Published"
+  },
+  {
+    "id": 1144,
+    "question": "What do you need to provide predictive maintenance for blanchers and fryers, and how reliable are the predictions?",
+    "answer": "Predictive maintenance starts with sensor placement and PLC/IoT telemetry (vibration, temperature, cycle counts) ingested through OPC UA/MQTT into AWS IoT Core and the SQL Data Warehouse for historical analysis. Reliability depends on the quantity and quality of historical failure data and the number of relevant sensors; we typically scope an initial analytics baseline during Discover, then iterate models and thresholds as more labeled data accumulates. Deliverables include dashboards, alerting logic, and integration with maintenance workflows; model performance and reduction in unplanned downtime are measured during the validation phase.",
+    "expertise_id": 48,
+    "display_order": 2,
+    "status": "Published"
+  },
+  {
+    "id": 1145,
+    "question": "How will you integrate our existing LIMS, SAP/Oracle ERP and IoT cold‑chain sensors into the HACCP digitization so records are audit‑ready?",
+    "answer": "During Discover we map current data flows and interfaces, then in Build we implement API connectors or middleware to sync LIMS results, ERP batch and traceability data, and live IoT sensor streams into the HACCP data model. We configure immutable audit trails and electronic evidence (time‑stamped test results, temperature logs, batch lineage) so records meet FSSAI and export inspection expectations. Final validation includes end‑to‑end data reconciliation and a mock audit to confirm record completeness and integrity.",
+    "expertise_id": 49,
+    "display_order": 0,
+    "status": "Published"
+  },
+  {
+    "id": 1146,
+    "question": "Can a single implementation support FSSAI inspection requirements and EU/US export compliance without duplicating work across teams?",
+    "answer": "Yes—Design produces a regulatory requirements matrix that maps common controls to FSSAI and export standards and identifies where export‑specific documentation or test methods are required. We implement a single source of truth in LIMS and SOP automation, then expose regulatory views and templates (Power BI/Tableau reports, certificate bundles) per buyer or regulator to avoid duplicate effort. Exact scope and any additional export testing workflows depend on site complexity and are typically quoted after discovery.",
+    "expertise_id": 49,
+    "display_order": 1,
+    "status": "Published"
+  },
+  {
+    "id": 1147,
+    "question": "What do you deliver to enable realistic recall simulations and centralized supplier audits across multiple sites?",
+    "answer": "We deliver automated recall workflows (low‑code Power Apps) tied to LIMS batch data and IoT cold‑chain logs so you can isolate affected lots, notify stakeholders, and trace downstream recipients. For supplier audits we centralize supplier performance metrics and lab results in dashboards and provide standard audit documentation templates and evidence packages. Deliverables include runbooks for simulations, after‑action reports, staff training, and support during initial mock recalls and supplier audit rehearsals.",
+    "expertise_id": 49,
+    "display_order": 2,
+    "status": "Published"
+  },
+  {
+    "id": 1148,
+    "question": "How do you ensure cold-chain alerting is reliable for remote smallholder shipments with intermittent connectivity?",
+    "answer": "We design redundancy into telemetry by combining local edge gateways with IoT sensors and GPS telematics so critical thresholds are evaluated at the edge when connectivity drops. During Discover and Design we define SLA conditions and geofenced alert rules, then validate those rules with baseline telemetry samples before Build. In production, the system uses queued delivery to the cloud data lake and escalates alerts through the real-time dashboard and RESTful APIs once connectivity resumes.",
+    "expertise_id": 50,
+    "display_order": 0,
+    "status": "Published"
+  },
+  {
+    "id": 1149,
+    "question": "How do you deliver immutable provenance for certified organic or fair-trade lanes without exposing sensitive farmer data?",
+    "answer": "We record provenance checkpoints on a permissioned blockchain ledger as hashed pointers rather than raw records, while storing full telemetry and documents in a controlled cloud object store with role-based access. Access and validation rules for fair-sourcing are defined in the Design phase and enforced by the ledger’s permission model plus API-level authorization. Audit trail packages provide verifiable timelines and proofs for buyers and auditors without wholesale public disclosure of farmer-level personal data.",
+    "expertise_id": 50,
+    "display_order": 1,
+    "status": "Published"
+  },
+  {
+    "id": 1150,
+    "question": "Can you integrate the sourcing platform and replenishment recommendations with our existing ERP and procurement systems?",
+    "answer": "Yes — we expose procurement connectors and replenishment outputs through RESTful APIs and standard data feeds that map into common ERPs; integration patterns and data mappings are identified in the Discover phase. Demand-forecasting models run against the cloud data lake and produce time-series driven replenishment recommendations that can be pushed to your systems or surfaced on our dashboard. Custom connector development depends on scope and is typically scoped after discovery.",
+    "expertise_id": 50,
+    "display_order": 2,
+    "status": "Published"
+  },
+  {
+    "id": 1151,
+    "question": "How will you prove regulatory compliance for a healthcare digital platform across different regional markets?",
+    "answer": "We start in Discover by mapping applicable regional regulations and Lab research outputs, then translate those requirements into controls during Design and Build using our data governance and regulatory compliance frameworks. Pilots run on AWS and Kubernetes with implemented compliance controls and audit trails so technical validation is observable. The Deliver package includes a market research report, pilot results showing compliance status, and documented mitigations for any gaps.",
+    "expertise_id": 51,
+    "display_order": 0,
+    "status": "Published"
+  },
+  {
+    "id": 1152,
+    "question": "Can you run a pilot that integrates with our existing Kubernetes clusters, AWS accounts, and CI/CD pipelines, and what access do you need?",
+    "answer": "During Design we define the integration architecture and API contracts, then in Build we execute the pilot by deploying to your Kubernetes clusters, integrating with AWS services, and wiring into your CI/CD pipelines using IaC and standard connectors. We will need admin or delegated provisioning access to the target cloud accounts, API credentials for partner systems, and a test data arrangement that meets your governance rules. The handover includes operational playbooks and integration runbooks so your teams can continue deployments after the pilot.",
+    "expertise_id": 51,
+    "display_order": 1,
+    "status": "Published"
+  },
+  {
+    "id": 1153,
+    "question": "What does the partner ecosystem map and agreements cover, and how do you make partner commitments actionable for go-to-market?",
+    "answer": "The partner ecosystem map identifies roles, capabilities, and commercial fit for strategic manufacturing, financial, or energy partners and is validated during the Build pilot phase. Agreements we deliver are practical pilot-level contracts or MOUs that specify responsibilities, SLAs, data-sharing and compliance obligations, and escalation paths. The Vertical launch plan ties those agreements to go-to-market activities and includes risk mitigations and recommended contract clauses to make commitments executable.",
+    "expertise_id": 51,
+    "display_order": 2,
+    "status": "Published"
+  },
+  {
+    "id": 1154,
     "question": "What is the \"CloudAlls Ecosystem\" approach?",
     "answer": "The Ecosystem approach means we don't just build isolated apps or websites. We architect interconnected digital environments where your custom software, physical hardware, cybersecurity, and marketing pipelines work together as a single, highly scalable organism.",
-    "expertise_id": null,
     "display_order": 1,
     "status": "Published",
     "created_at": "2026-04-18 06:32:06"
   },
   {
-    "id": 1002,
+    "id": 1155,
     "question": "What is your standard project onboarding process?",
     "answer": "Our onboarding begins with a comprehensive technical discovery session, followed by an architectural blueprinting phase. Once the technical specifications, timelines, and security matrices are approved by your team, we initiate agile development sprints.",
-    "expertise_id": null,
     "display_order": 2,
     "status": "Published",
     "created_at": "2026-04-18 06:32:06"
   },
   {
-    "id": 1003,
+    "id": 1156,
     "question": "Do you provide post-deployment support and SLAs?",
     "answer": "Yes, we offer tiered Service Level Agreements (SLAs) for all enterprise deployments. This includes 24/7 server monitoring, routine cybersecurity patches, and priority bug resolution through our dedicated support desk.",
-    "expertise_id": null,
     "display_order": 3,
     "status": "Published",
     "created_at": "2026-04-18 06:32:06"
   },
   {
-    "id": 1004,
-    "question": "What tech stack do you use for enterprise web applications?",
-    "answer": "We utilize a modern, highly scalable tech stack featuring PHP/Laravel or Node.js for robust backend processing, React or Vue.js for fluid frontend interfaces, and AWS/GCP for cloud-native deployment.",
-    "expertise_id": 1,
-    "display_order": 10,
-    "status": "Published",
-    "created_at": "2026-04-18 06:32:06"
-  },
-  {
-    "id": 1005,
-    "question": "Can your software integrate with our existing legacy ERP systems?",
-    "answer": "Yes, our engineering team specializes in building custom API gateways and middleware that securely bridge the gap between modern cloud interfaces and legacy on-premise databases without risking data loss.",
-    "expertise_id": 1,
-    "display_order": 11,
-    "status": "Published",
-    "created_at": "2026-04-18 06:32:06"
-  },
-  {
-    "id": 1006,
-    "question": "Why do you recommend Flutter for MVP mobile app development?",
-    "answer": "Flutter allows us to use a single codebase to compile natively for both iOS and Android. This drastically reduces development time and costs by up to 40% while maintaining fluid 60FPS performance, making it the perfect strategic choice for MVPs.",
-    "expertise_id": 2,
-    "display_order": 20,
-    "status": "Published",
-    "created_at": "2026-04-18 06:32:06"
-  },
-  {
-    "id": 1007,
-    "question": "Will my mobile app work offline?",
-    "answer": "Depending on your project requirements, we can architect local-first data caching utilizing SQLite or Hive. This ensures core app functionalities remain accessible offline, automatically syncing to the cloud once connectivity is restored.",
-    "expertise_id": 2,
-    "display_order": 21,
-    "status": "Published",
-    "created_at": "2026-04-18 06:32:06"
-  },
-  {
-    "id": 1008,
-    "question": "How secure is my data when integrating AI?",
-    "answer": "Security is our core priority. For sensitive enterprise projects, we implement Localized AI Models or Private RAG (Retrieval-Augmented Generation) architectures. Your proprietary data never leaves your secure server and is never used to train public AI models.",
-    "expertise_id": 3,
-    "display_order": 30,
-    "status": "Published",
-    "created_at": "2026-04-18 06:32:06"
-  },
-  {
-    "id": 1009,
-    "question": "Can AI Agents automate our internal HR or Finance workflows?",
-    "answer": "Absolutely. We architect \"Agentic AI\" workflows that can autonomously process invoices, screen initial resumes, and route support tickets based on contextual understanding, drastically reducing manual operational overhead.",
-    "expertise_id": 3,
-    "display_order": 31,
-    "status": "Published",
-    "created_at": "2026-04-18 06:32:06"
-  },
-  {
-    "id": 1010,
-    "question": "What does a Technical Feasibility Study involve?",
-    "answer": "Our feasibility studies assess the market viability, necessary technology stack, regulatory compliance, and estimated infrastructure costs of a proposed deep-tech product before you commit heavy capital to full-scale development.",
-    "expertise_id": 4,
-    "display_order": 40,
-    "status": "Published",
-    "created_at": "2026-04-18 06:32:06"
-  },
-  {
-    "id": 1011,
-    "question": "Can you help us build a Proof of Concept (PoC) for investors?",
-    "answer": "Yes, our R&D division frequently partners with startups and venture capitalists to build rapid, functional PoCs and interactive wireframes designed specifically to validate ideas and secure seed funding.",
-    "expertise_id": 4,
-    "display_order": 41,
-    "status": "Published",
-    "created_at": "2026-04-18 06:32:06"
-  },
-  {
-    "id": 1012,
-    "question": "What is your approach to the product development lifecycle?",
-    "answer": "We utilize Agile methodology. We break the product down into bi-weekly sprints, allowing us to deliver functional software or hardware increments regularly. This ensures continuous client feedback and rapid pivot capabilities.",
-    "expertise_id": 5,
-    "display_order": 50,
-    "status": "Published",
-    "created_at": "2026-04-18 06:32:06"
-  },
-  {
-    "id": 1013,
-    "question": "Do you handle both software and hardware product development?",
-    "answer": "Yes. CloudAlls is uniquely positioned to handle end-to-end product development, managing both the digital software architecture and the physical hardware prototyping under one roof to ensure perfect integration.",
-    "expertise_id": 5,
-    "display_order": 51,
-    "status": "Published",
-    "created_at": "2026-04-18 06:32:06"
-  },
-  {
-    "id": 1014,
-    "question": "Can you integrate custom hardware with existing mobile apps?",
-    "answer": "Absolutely. We specialize in bridging physical and digital worlds. Whether it's IoT sensors, biometric scanners, or custom controller boards, we can blueprint and build the firmware and APIs needed to connect them to your software ecosystem.",
-    "expertise_id": 6,
-    "display_order": 60,
-    "status": "Published",
-    "created_at": "2026-04-18 06:32:06"
-  },
-  {
-    "id": 1015,
-    "question": "Do you provide custom workstations for high-end rendering or AI training?",
-    "answer": "Yes, we source, assemble, and optimize custom enterprise-grade PC builds and local server racks tailored specifically for heavy computational workloads like 3D rendering, video post-production, and local machine learning.",
-    "expertise_id": 6,
-    "display_order": 61,
-    "status": "Published",
-    "created_at": "2026-04-18 06:32:06"
-  },
-  {
-    "id": 1016,
-    "question": "Does your UI/UX design process include user testing?",
-    "answer": "Yes, our UI/UX methodology relies heavily on interactive wireframing and A/B testing to ensure intuitive user flows before any actual code is written, saving significant development time down the line.",
-    "expertise_id": 7,
-    "display_order": 70,
-    "status": "Published",
-    "created_at": "2026-04-18 06:32:06"
-  },
-  {
-    "id": 1017,
-    "question": "Can you handle bulk corporate printing and branding materials?",
-    "answer": "We manage the entire lifecycle from digital logo design to the physical delivery of high-quality corporate branding materials, including bound brochures, ID cards, custom notepads, and large-scale event flex banners.",
-    "expertise_id": 7,
-    "display_order": 71,
-    "status": "Published",
-    "created_at": "2026-04-18 06:32:06"
-  },
-  {
-    "id": 1018,
-    "question": "Do you provide video production for corporate training or marketing?",
-    "answer": "Yes, our creative studio handles end-to-end media production. This includes scriptwriting, on-location corporate shoots, post-production editing, and integrating premium 3D motion graphics.",
-    "expertise_id": 8,
-    "display_order": 80,
-    "status": "Published",
-    "created_at": "2026-04-18 06:32:06"
-  },
-  {
-    "id": 1019,
-    "question": "What are the deliverables for a standard product photography shoot?",
-    "answer": "You will receive high-resolution, color-graded raw files alongside web-optimized, compressed formats ready for immediate deployment on your e-commerce platform, digital catalog, or social media channels.",
-    "expertise_id": 8,
-    "display_order": 81,
-    "status": "Published",
-    "created_at": "2026-04-18 06:32:06"
-  },
-  {
-    "id": 1020,
-    "question": "How do you measure the ROI of your digital marketing campaigns?",
-    "answer": "We implement closed-loop analytics. By connecting Google Ads, Meta Pixels, and your custom CRM, we track a user from their first ad click all the way to the final signed invoice, providing 100% transparent ROI metrics.",
-    "expertise_id": 9,
-    "display_order": 90,
-    "status": "Published",
-    "created_at": "2026-04-18 06:32:06"
-  },
-  {
-    "id": 1021,
-    "question": "Do you handle SEO as part of the initial web development?",
-    "answer": "Yes, technical SEO (site speed, schema markup, mobile-first optimization) is baked into our web architecture from day one. We also offer ongoing content-driven SEO retainers to ensure long-term organic growth.",
-    "expertise_id": 9,
-    "display_order": 91,
-    "status": "Published",
-    "created_at": "2026-04-18 06:32:06"
-  },
-  {
-    "id": 1022,
-    "question": "What is Zero-Trust Architecture in the context of office automation?",
-    "answer": "Zero-Trust means assuming your network is always at risk. We micro-segment your smart office devices (like IoT lighting and CCTV) away from your core financial and operational servers to prevent lateral cyber-attacks.",
-    "expertise_id": 10,
-    "display_order": 100,
-    "status": "Published",
-    "created_at": "2026-04-18 06:32:06"
-  },
-  {
-    "id": 1023,
-    "question": "Can we monitor our CCTV and access control from a single dashboard?",
-    "answer": "Yes, we unify your IP-CCTV streams, environmental sensors, and biometric access logs into a single, encrypted digital portal accessible via mobile or desktop for total situational awareness.",
-    "expertise_id": 10,
-    "display_order": 101,
-    "status": "Published",
-    "created_at": "2026-04-18 06:32:06"
-  },
-  {
-    "id": 1024,
-    "question": "Do you handle tech summit and corporate event coordination?",
-    "answer": "We provide end-to-end event operations, from developing digital ticketing gateways and RSVP CRMs to handling physical venue logistics, A/V setups, and live-streaming infrastructure.",
-    "expertise_id": 11,
-    "display_order": 110,
-    "status": "Published",
-    "created_at": "2026-04-18 06:32:06"
-  },
-  {
-    "id": 1025,
-    "question": "What does your business management consulting involve?",
-    "answer": "We deploy experienced fractional operations managers to analyze your internal bottlenecks, implement lean agile workflows, and train your staff on adopting new enterprise software systems.",
-    "expertise_id": 11,
-    "display_order": 111,
-    "status": "Published",
-    "created_at": "2026-04-18 06:32:06"
-  },
-  {
-    "id": 1026,
-    "question": "Are your academy programs suitable for corporate team upskilling?",
-    "answer": "Yes, we offer tailored corporate masterclasses designed to upskill your existing workforce in modern development frameworks, cloud infrastructure management, and AI workflow integration.",
-    "expertise_id": 12,
-    "display_order": 120,
-    "status": "Published",
-    "created_at": "2026-04-18 06:32:06"
-  },
-  {
-    "id": 1027,
-    "question": "Do you hire directly from your internship programs?",
-    "answer": "We view our Academy and intensive internship programs as our primary recruitment pipeline. Top-performing interns are frequently offered full-time engineering or design roles within the CloudAlls Ecosystem.",
-    "expertise_id": 12,
-    "display_order": 121,
-    "status": "Published",
-    "created_at": "2026-04-18 06:32:06"
-  },
-  {
-    "id": 1028,
+    "id": 1157,
     "question": "Do you sign NDAs and support vendor security reviews?",
     "answer": "Yes. We routinely execute mutual NDAs before discovery conversations and support standard enterprise vendor security reviews, including architecture questionnaires, source-scan summaries, and penetration-test reporting for engagements where it is required.",
-    "expertise_id": null,
     "display_order": 130,
     "status": "Published",
     "created_at": "2026-08-14 00:00:00"
   },
   {
-    "id": 1029,
+    "id": 1158,
     "question": "Where is our data hosted, and how do you handle data residency?",
     "answer": "Data hosting follows your policy. We deploy to AWS or GCP regions of your choosing (including India and UAE regions), operate private RAG and localized AI environments entirely inside your tenant, and execute documented deletion procedures at contract end.",
-    "expertise_id": null,
     "display_order": 131,
     "status": "Published",
     "created_at": "2026-08-14 00:00:00"
   },
   {
-    "id": 1030,
+    "id": 1159,
     "question": "How do enterprise procurement and invoicing work?",
     "answer": "We issue milestone-based invoices aligned to sprint reviews, support purchase-order billing, and provide formal engagement letters, statements of work, and acceptance criteria documentation suitable for corporate procurement workflows.",
-    "expertise_id": null,
     "display_order": 132,
     "status": "Published",
     "created_at": "2026-08-14 00:00:00"
   },
   {
-    "id": 1031,
+    "id": 1160,
     "question": "What does your SLA structure look like?",
     "answer": "Enterprise deployments are covered by tiered SLAs spanning 24/7 server monitoring, security patching windows, and priority defect resolution with defined response and resolution targets. SLA terms are agreed in the engagement contract and reviewed quarterly.",
-    "expertise_id": null,
     "display_order": 133,
     "status": "Published",
     "created_at": "2026-08-14 00:00:00"
   },
   {
-    "id": 1032,
+    "id": 1161,
     "question": "Are you compliant with DPDP and global privacy frameworks?",
     "answer": "Our engagements are designed around India's Digital Personal Data Protection (DPDP) Act principles — lawful processing, data minimization, consent management, and breach notification paths — alongside ISO 27001, SOC 2, and GDPR alignment practices referenced in our Trust Center documentation.",
-    "expertise_id": null,
     "display_order": 134,
     "status": "Published",
     "created_at": "2026-08-14 00:00:00"
   },
   {
-    "id": 1033,
+    "id": 1162,
     "question": "Can you work within our existing cloud and tooling standards?",
     "answer": "Yes. We integrate with enterprise environments including Azure and GCP tenants, GitLab and GitHub CI pipelines, Jira and Linear issue tracking, and your existing IAM and secrets management — we adapt to your standards rather than requiring you to adopt ours.",
-    "expertise_id": null,
     "display_order": 135,
     "status": "Published",
     "created_at": "2026-08-14 00:00:00"
-  },
-  {
-    "id": 1034,
-    "question": "What lead time is required for bulk hardware orders?",
-    "answer": "Standard delivery window is 1–3 weeks for most configurations. Custom specs, licensing, or high-volume OEM orders may extend lead times; a detailed timeline is provided after requirements discovery.",
-    "expertise_id": 13,
-    "display_order": 50,
-    "status": "Published"
-  },
-  {
-    "id": 1035,
-    "question": "How are warranties and returns handled?",
-    "answer": "Manufacturer warranties transfer to the customer; CloudAlls manages RMA coordination, returns processing, and warranty claims administration during the coverage period, streamlining repairs or replacements on behalf of the client.",
-    "expertise_id": 13,
-    "display_order": 51,
-    "status": "Published"
-  },
-  {
-    "id": 1036,
-    "question": "Can existing asset inventories and configurations be integrated?",
-    "answer": "Yes. Existing inventory and configuration baselines are imported; device mappings, serials, and imaging profiles are reconciled to ensure continuity, minimize duplication, and maintain accurate lifecycle reporting.",
-    "expertise_id": 13,
-    "display_order": 52,
-    "status": "Published"
-  },
-  {
-    "id": 1037,
-    "question": "How long does network architecture delivery take?",
-    "answer": "Typical delivery is one to three weeks for standard office or campus phases. Larger deployments require additional surveys, procurement lead time, and change approvals; timeline is finalized after discovery.",
-    "expertise_id": 14,
-    "display_order": 50,
-    "status": "Published"
-  },
-  {
-    "id": 1038,
-    "question": "Will the design support Wi‑Fi capacity for high-density areas?",
-    "answer": "Yes. High-density support includes Wi‑Fi 6 radios, density-optimized access point placement, channel allocation, and capacity planning. Post-deployment validation ensures client density targets and application performance are met.",
-    "expertise_id": 14,
-    "display_order": 51,
-    "status": "Published"
-  },
-  {
-    "id": 1039,
-    "question": "How is network security enforced across branches and Wi‑Fi?",
-    "answer": "Security is enforced via VLAN segmentation, NAC, firewall and SD‑WAN policy controls, WPA3 enterprise authentication, and continuous monitoring with alerts. Role-based access and segregation limit lateral movement and data exposure.",
-    "expertise_id": 14,
-    "display_order": 52,
-    "status": "Published"
-  },
-  {
-    "id": 1040,
-    "question": "What is the typical deployment timeline for a standard site?",
-    "answer": "Typical deployments complete within one to four weeks. Timeline varies by site size, cabling complexity, permitting, and required compliance validation; project plan includes installation, commissioning, testing, and documentation.",
-    "expertise_id": 15,
-    "display_order": 50,
-    "status": "Published"
-  },
-  {
-    "id": 1041,
-    "question": "How do you handle data privacy and compliance for video and access logs?",
-    "answer": "Video and access data are encrypted in transit and at rest, retained per policy, access is role-restricted, and audit logs support compliance reporting and forensic analysis.",
-    "expertise_id": 15,
-    "display_order": 51,
-    "status": "Published"
-  },
-  {
-    "id": 1042,
-    "question": "Can existing cameras and access hardware be integrated into the new system?",
-    "answer": "Existing cameras and controllers are evaluated for compatibility; many integrate via ONVIF or vendor SDKs. Migration plans include adapters, reconfiguration, and staged cutover to minimize downtime.",
-    "expertise_id": 15,
-    "display_order": 52,
-    "status": "Published"
-  },
-  {
-    "id": 1043,
-    "question": "What internet bandwidth is required for a multi-camera broadcast?",
-    "answer": "Single output streams typically use 6–10 Mbps. For multi-bitrate, dual-encoder redundancy, and multiple channels, budget 25–100 Mbps upstream on a symmetrical, low-jitter connection.",
-    "expertise_id": 16,
-    "display_order": 50,
-    "status": "Published"
-  },
-  {
-    "id": 1044,
-    "question": "How far in advance should the production be planned and tested?",
-    "answer": "Schedule technical planning two to six weeks before the event. Conduct on-site setup and a full technical rehearsal at least one day prior to event start.",
-    "expertise_id": 16,
-    "display_order": 51,
-    "status": "Published"
-  },
-  {
-    "id": 1045,
-    "question": "How are recorded streams delivered and retained post-event?",
-    "answer": "Master recordings and proxy files are delivered via secure SFTP, cloud transfer, or private CDN link. Standard delivery includes mezzanine and web-optimized files; custom retention and archival workflows available.",
-    "expertise_id": 16,
-    "display_order": 52,
-    "status": "Published"
-  },
-  {
-    "id": 1046,
-    "question": "What is the typical project timeline?",
-    "answer": "Standard delivery spans 1–4 weeks depending on scope. Pre-production, shoot days and post-production schedules are confirmed during planning to meet deadlines and approvals.",
-    "expertise_id": 17,
-    "display_order": 50,
-    "status": "Published"
-  },
-  {
-    "id": 1047,
-    "question": "Which formats and file types are provided on delivery?",
-    "answer": "Final masters delivered in 4K ProRes or H.264/H.265, plus web and social versions, closed captions, and archive masters for broadcast or repurposing.",
-    "expertise_id": 17,
-    "display_order": 51,
-    "status": "Published"
-  },
-  {
-    "id": 1048,
-    "question": "How are usage rights and third‑party licenses handled?",
-    "answer": "Commercial usage rights for finished films are granted to the client. Third-party costs—talent, locations, stock assets—are billed separately and documented in the production agreement.",
-    "expertise_id": 17,
-    "display_order": 52,
-    "status": "Published"
-  },
-  {
-    "id": 1049,
-    "question": "What is the typical turnaround time for edited images?",
-    "answer": "Standard delivery is 3–7 days for edited images. Larger shoots or heavy retouching may extend timelines; expedited options are available for urgent deadlines.",
-    "expertise_id": 18,
-    "display_order": 50,
-    "status": "Published"
-  },
-  {
-    "id": 1050,
-    "question": "How are image rights and licensing handled?",
-    "answer": "Licensing is specified in the project quote: standard commercial usage for marketing and web is included. Extended or exclusive rights are available via separate licensing agreements.",
-    "expertise_id": 18,
-    "display_order": 51,
-    "status": "Published"
-  },
-  {
-    "id": 1051,
-    "question": "Can shoots be conducted on location or only in studio?",
-    "answer": "Both studio and on-location shoots are supported. On-site work includes portable strobe setups to match studio lighting; travel and location fees depend on distance and logistics.",
-    "expertise_id": 18,
-    "display_order": 52,
-    "status": "Published"
-  },
-  {
-    "id": 1052,
-    "question": "What footage formats and deliverables will the client receive?",
-    "answer": "Final deliverables include color-graded master (ProRes or DNxHD), camera original raw files on request, broadcast and social encodes, and a DCP or festival-ready export when specified.",
-    "expertise_id": 19,
-    "display_order": 50,
-    "status": "Published"
-  },
-  {
-    "id": 1053,
-    "question": "How is the shooting schedule and turnaround determined?",
-    "answer": "Turnaround depends on scope; typical delivery is two to six weeks. Scheduling is set after script approval, location clearance and talent bookings to guarantee technical readiness and creative priorities.",
-    "expertise_id": 19,
-    "display_order": 51,
-    "status": "Published"
-  },
-  {
-    "id": 1054,
-    "question": "Do you handle permits, drones and safety on aerial shoots?",
-    "answer": "Yes. Crew sources licensed drone pilots, manages airspace permissions, insurance and on-site safety plans. Permit coordination and regulatory compliance are included in aerial production scope.",
-    "expertise_id": 19,
-    "display_order": 52,
-    "status": "Published"
-  },
-  {
-    "id": 1055,
-    "question": "What file formats are provided for print and digital?",
-    "answer": "Deliverables include layered AI, PSD, INDD where applicable, SVG and high-resolution PDF exports, and web-optimized PNG/JPEG. Editable source files and export-ready assets are included for both print vendors and digital teams.",
-    "expertise_id": 20,
-    "display_order": 50,
-    "status": "Published"
-  },
-  {
-    "id": 1056,
-    "question": "How does the unlimited revisions window work?",
-    "answer": "Unlimited revisions are available during the designated approval window, enabling iterative changes until final sign‑off. Substantial scope changes after delivery may require additional scheduling and fees.",
-    "expertise_id": 20,
-    "display_order": 51,
-    "status": "Published"
-  },
-  {
-    "id": 1057,
-    "question": "What is the typical turnaround and pricing?",
-    "answer": "Typical delivery ranges from 3 to 10 days depending on scope. Project costs vary; indicative pricing is ₹5,000–₹30,000. A detailed estimate is provided after scoping and asset review.",
-    "expertise_id": 20,
-    "display_order": 52,
-    "status": "Published"
-  },
-  {
-    "id": 1058,
-    "question": "How long does a typical 3D project take?",
-    "answer": "Typical delivery ranges from 1 to 4 weeks for standard product renders or arch‑viz. Complexity, revisions, and animation length increase timeline; a defined brief and prompt feedback accelerate completion.",
-    "expertise_id": 21,
-    "display_order": 50,
-    "status": "Published"
-  },
-  {
-    "id": 1059,
-    "question": "What asset formats will I receive?",
-    "answer": "Delivered assets include native scene files (Maya/Blender/C4D), geometry exports (OBJ/FBX), PBR textures (PNG/TIFF), EXR render passes, and video exports (MP4). Additional formats available on request.",
-    "expertise_id": 21,
-    "display_order": 51,
-    "status": "Published"
-  },
-  {
-    "id": 1060,
-    "question": "Can these assets be used for both marketing and manufacturing?",
-    "answer": "Yes. Assets are produced for marketing and technical uses; CAD-to-CG conversion, high-precision modeling, and annotated exploded views support manufacturing, while photoreal renders serve promotional channels. Supply CAD when available.",
-    "expertise_id": 21,
-    "display_order": 52,
-    "status": "Published"
-  },
-  {
-    "id": 1061,
-    "question": "What platforms and devices will the experiences support?",
-    "answer": "Deliverables are built device-agnostic: WebAR, iOS/Android native wrappers, major social AR platforms, and common headset formats. Compatibility matrix provided during Discovery to align formats and performance budgets.",
-    "expertise_id": 22,
-    "display_order": 50,
-    "status": "Published"
-  },
-  {
-    "id": 1062,
-    "question": "How are results measured and reported?",
-    "answer": "Analytics tags and SDKs are embedded to track impressions, engagement time, conversion events and AR-specific actions. Regular reports include KPI dashboards, event-level export and recommendations for optimization.",
-    "expertise_id": 22,
-    "display_order": 51,
-    "status": "Published"
-  },
-  {
-    "id": 1063,
-    "question": "What are typical timelines and cost considerations?",
-    "answer": "Most projects complete in two to six weeks depending on complexity, asset readiness and platform count. Indicative budgets range from ₹20,000 to ₹1,00,000; detailed estimate follows Discovery.",
-    "expertise_id": 22,
-    "display_order": 52,
-    "status": "Published"
-  },
-  {
-    "id": 1064,
-    "question": "How long does a typical identity project take?",
-    "answer": "Typical delivery ranges from two to five weeks depending on scope and approvals. Timeline covers discovery, concepting, iterations and finalization; expedited options available for tighter deadlines.",
-    "expertise_id": 23,
-    "display_order": 50,
-    "status": "Published"
-  },
-  {
-    "id": 1065,
-    "question": "What files and formats are provided at handoff?",
-    "answer": "Final deliverables include editable vector master files (.ai, .eps, .svg), high-resolution PNG/JPEG exports, web-optimized SVGs, font licenses or recommendations, and a packaged source folder for implementation.",
-    "expertise_id": 23,
-    "display_order": 51,
-    "status": "Published"
-  },
-  {
-    "id": 1066,
-    "question": "Will the identity scale across digital products and external vendors?",
-    "answer": "Brand scalability ensured through documented guidelines, responsive logo variants, component-based assets, and design tokens. Handoff includes templates and instructions so marketing, product, and external agencies can maintain consistent application.",
-    "expertise_id": 23,
-    "display_order": 52,
-    "status": "Published"
-  },
-  {
-    "id": 1067,
-    "question": "What size of engagement and timeline should be expected?",
-    "answer": "Engagements typically run 2–8 weeks, varying by scope. Small scoping and KPI design can complete in two weeks; full operating-model and cross-functional rollout requires closer to eight weeks.",
-    "expertise_id": 24,
-    "display_order": 50,
-    "status": "Published"
-  },
-  {
-    "id": 1068,
-    "question": "How are deliverables transferred and who retains ownership?",
-    "answer": "Deliverables are handed over as editable documents and dashboards; client retains ownership. Knowledge transfer sessions and a 30/60/90-day support window ensure operational handoff and adoption.",
-    "expertise_id": 24,
-    "display_order": 51,
-    "status": "Published"
-  },
-  {
-    "id": 1069,
-    "question": "How is success measured after the engagement?",
-    "answer": "Success is measured by adoption of the operating model, clarity of decisions, and predefined KPI improvements tied to campaign performance and acquisition metrics.",
-    "expertise_id": 24,
-    "display_order": 52,
-    "status": "Published"
-  },
-  {
-    "id": 1070,
-    "question": "How is ROI attributed across multiple channels?",
-    "answer": "ROI is attributed by instrumenting GA4 and CRM for lead-to-invoice mapping, applying multi-touch attribution, server-side event tracking and cohort analysis to validate channel contribution and incremental lift.",
-    "expertise_id": 25,
-    "display_order": 50,
-    "status": "Published"
-  },
-  {
-    "id": 1071,
-    "question": "What access or assets are required from the client?",
-    "answer": "Ad account access, analytics and CRM credentials, creative assets, audience data, conversion definitions, and timely stakeholder availability for approvals and feedback.",
-    "expertise_id": 25,
-    "display_order": 51,
-    "status": "Published"
-  },
-  {
-    "id": 1072,
-    "question": "How long does an engagement take and what does pricing cover?",
-    "answer": "Typical engagements run 2–6 weeks. Indicative pricing ₹15,000–₹60,000 covers strategy, campaign setup, initial creative and tracking, plus two optimization cycles and reporting.",
-    "expertise_id": 25,
-    "display_order": 52,
-    "status": "Published"
-  },
-  {
-    "id": 1073,
-    "question": "What is included in the 2–5 week delivery window?",
-    "answer": "Typical engagements include scoping, instrument design, data collection, analysis, and delivery. Shorter scopes focus on secondary research and competitor mapping; primary research adds time for recruitment and responses.",
-    "expertise_id": 26,
-    "display_order": 50,
-    "status": "Published"
-  },
-  {
-    "id": 1074,
-    "question": "How is data provenance and transparency maintained?",
-    "answer": "All sources are catalogued with collection dates, methodologies, and access links. Primary instruments, sampling frames, and anonymized response datasets are provided where consent and confidentiality policies permit.",
-    "expertise_id": 26,
-    "display_order": 51,
-    "status": "Published"
-  },
-  {
-    "id": 1075,
-    "question": "What are typical costs and what determines the final price?",
-    "answer": "Indicative range is ₹20,000–₹75,000. Final price depends on scope complexity, sample size, primary data collection requirements, platform subscriptions, and custom analysis or dashboarding needs.",
-    "expertise_id": 26,
-    "display_order": 52,
-    "status": "Published"
-  },
-  {
-    "id": 1076,
-    "question": "How long does implementation take?",
-    "answer": "Typical implementations complete within 2–4 weeks. Timelines depend on CRM complexity, volume of collateral, and stakeholder availability; a focused scope or templates-ready client can shorten delivery to the lower end.",
-    "expertise_id": 27,
-    "display_order": 50,
-    "status": "Published"
-  },
-  {
-    "id": 1077,
-    "question": "Will existing CRM data and tools be integrated?",
-    "answer": "Yes. Existing CRM instances (Salesforce, HubSpot) and tools (Outreach, DocuSign) are integrated where possible. Integration scope defined during discovery to map fields, triggers, and reporting without disrupting live sales operations.",
-    "expertise_id": 27,
-    "display_order": 51,
-    "status": "Published"
-  },
-  {
-    "id": 1078,
-    "question": "How are adoption and success measured?",
-    "answer": "Adoption tracked via usage metrics, CRM activity, proposal send rates, pipeline velocity, and close-rate changes. Training assessments and periodic reviews ensure adoption; success metrics agreed at project start and included in handover.",
-    "expertise_id": 27,
-    "display_order": 52,
-    "status": "Published"
-  },
-  {
-    "id": 1079,
-    "question": "How long does a typical Brand Positioning engagement take?",
-    "answer": "Standard engagements run 2–4 weeks. Scope, number of stakeholders, and naming complexity affect timeline. A rapid audit or expanded naming project may extend delivery; timeline confirmed at proposal stage.",
-    "expertise_id": 28,
-    "display_order": 50,
-    "status": "Published"
-  },
-  {
-    "id": 1080,
-    "question": "Will the deliverables integrate with existing marketing and sales materials?",
-    "answer": "Yes. Deliverables are formatted for easy integration into go-to-market assets, sales decks, and website content. Customization and templates are provided to accelerate adoption across marketing and sales channels.",
-    "expertise_id": 28,
-    "display_order": 51,
-    "status": "Published"
-  },
-  {
-    "id": 1081,
-    "question": "How is stakeholder alignment achieved during the project?",
-    "answer": "Stakeholder workshops, review sessions, and consensus checkpoints are built into the schedule. Decisions are documented and trade-offs clarified to ensure alignment before finalizing positioning and messaging artifacts.",
-    "expertise_id": 28,
-    "display_order": 52,
-    "status": "Published"
-  },
-  {
-    "id": 1082,
-    "question": "What is included in the per-event quote?",
-    "answer": "The per-event quote covers venue sourcing, vendor fees, run-of-show development, on-site crew, equipment rentals, permits, and post-event reporting. Optional services and travel expenses are itemized and approved before contracting.",
-    "expertise_id": 29,
-    "display_order": 50,
-    "status": "Published"
-  },
-  {
-    "id": 1083,
-    "question": "How are vendors and venues selected and managed?",
-    "answer": "Vendors and venues undergo formal vetting for capacity, compliance, pricing, and past performance; contracts include SLAs and escalation paths, with proactive communication throughout planning and execution.",
-    "expertise_id": 29,
-    "display_order": 51,
-    "status": "Published"
-  },
-  {
-    "id": 1084,
-    "question": "What happens if scope changes during planning or on event day?",
-    "answer": "Scope changes trigger a documented change order outlining cost, schedule, and risk impacts. Emergency on-site adjustments follow predefined escalation and approval procedures to minimize disruption and preserve objectives.",
-    "expertise_id": 29,
-    "display_order": 52,
-    "status": "Published"
-  },
-  {
-    "id": 1085,
-    "question": "How long does a typical Business Process Management engagement take?",
-    "answer": "Typical delivery runs 2–6 weeks depending on scope and stakeholder availability. Short scoping engagements can be faster; larger transformation projects require phased workstreams beyond the initial window.",
-    "expertise_id": 30,
-    "display_order": 50,
-    "status": "Published"
-  },
-  {
-    "id": 1086,
-    "question": "What documentation and deliverables will be provided?",
-    "answer": "Deliverables include detailed process maps, a searchable SOP library, automation configurations, test scripts, and an operations dashboard. All documentation is handover-ready for internal governance and future updates.",
-    "expertise_id": 30,
-    "display_order": 51,
-    "status": "Published"
-  },
-  {
-    "id": 1087,
-    "question": "How are process improvement benefits measured and tracked?",
-    "answer": "Improvement is measured with KPIs defined during design—error rates, cycle time, throughput, and compliance. Dashboards visualize trends and enable weekly or monthly reviews tied to continuous improvement targets.",
-    "expertise_id": 30,
-    "display_order": 52,
-    "status": "Published"
-  },
-  {
-    "id": 1088,
-    "question": "How is confidential information and data protection handled?",
-    "answer": "Access is limited by role-based permissions, end-to-end encryption, secure repositories, and contractual safeguards (NDAs, data processing agreements). Optional SOC2-compliant environments and customer-specific controls available on request.",
-    "expertise_id": 31,
-    "display_order": 50,
-    "status": "Published"
-  },
-  {
-    "id": 1089,
-    "question": "What service-level agreements and reporting are included?",
-    "answer": "Standard SLAs specify response, resolution and completion windows for tasks. Monthly operational reports, SLA dashboards and periodic compliance attestations are provided as part of the retainer.",
-    "expertise_id": 31,
-    "display_order": 51,
-    "status": "Published"
-  },
-  {
-    "id": 1090,
-    "question": "How does the monthly retainer adapt to changing volume or requirements?",
-    "answer": "Retainers are tiered by hours and scope; monthly reviews permit reallocation, short-term scaling, or adjustments. Additional work billed transparently at agreed rates with prior approval.",
-    "expertise_id": 31,
-    "display_order": 52,
-    "status": "Published"
-  },
-  {
-    "id": 1091,
-    "question": "How long does a typical engagement take?",
-    "answer": "Standard delivery window is 2–4 weeks depending on scope, number of vendors, and integration complexity. Rapid assessments may complete sooner; complex global programmes require extended planning.",
-    "expertise_id": 32,
-    "display_order": 50,
-    "status": "Published"
-  },
-  {
-    "id": 1092,
-    "question": "What inputs are required from the client?",
-    "answer": "Current vendor list, existing contracts, SLAs, organizational RACI, key stakeholder contacts, and access to procurement or service platforms. Timely inputs reduce delivery time and improve accuracy.",
-    "expertise_id": 32,
-    "display_order": 51,
-    "status": "Published"
-  },
-  {
-    "id": 1093,
-    "question": "How are escalations handled and SLAs enforced?",
-    "answer": "Escalation paths are defined during design, with tiered response times, notification workflows, and ownership tracked in the communication hub; non‑compliance triggers remediation plans and executive alerts.",
-    "expertise_id": 32,
-    "display_order": 52,
-    "status": "Published"
-  },
-  {
-    "id": 1094,
-    "question": "What is the typical class format and time commitment?",
-    "answer": "Courses combine weekly live workshops, asynchronous modules, and project work. Typical commitment is 6–12 hours per week, including mentor reviews and practical assignments.",
-    "expertise_id": 33,
-    "display_order": 50,
-    "status": "Published"
-  },
-  {
-    "id": 1095,
-    "question": "Are certifications recognized by employers?",
-    "answer": "Certificates validate completed projects and assessed competencies aligned to industry role profiles. Employer recognition varies; accompanying portfolios and mentor recommendations improve hiring visibility.",
-    "expertise_id": 33,
-    "display_order": 51,
-    "status": "Published"
-  },
-  {
-    "id": 1096,
-    "question": "Can corporate teams customize content for internal needs?",
-    "answer": "Yes. Customization options include tailored project briefs, internal tooling, upskilling modules, and private cohorts with dedicated mentors and progress reporting.",
-    "expertise_id": 33,
-    "display_order": 52,
-    "status": "Published"
-  },
-  {
-    "id": 1097,
-    "question": "What is the program duration and scheduling flexibility?",
-    "answer": "Programs run 4–12 weeks with flexible scheduling and part-time options. Outcome depends on intensity; enterprise cohorts can be modularized and scheduled across quarters to suit availability.",
-    "expertise_id": 34,
-    "display_order": 50,
-    "status": "Published"
-  },
-  {
-    "id": 1098,
-    "question": "What certification or credential is provided on completion?",
-    "answer": "Completion yields a competency-based certificate and digital badge; assessments validate applied skills. Certificates support internal HR recognition and can map to industry skill frameworks upon request.",
-    "expertise_id": 34,
-    "display_order": 51,
-    "status": "Published"
-  },
-  {
-    "id": 1099,
-    "question": "Can the course content be customised for our industry and KPIs?",
-    "answer": "Content is customised for sector-specific challenges, KPIs, and datasets. Timeline for full customisation is typically two to four weeks depending on complexity and approvals.",
-    "expertise_id": 34,
-    "display_order": 52,
-    "status": "Published"
-  },
-  {
-    "id": 1100,
-    "question": "What is the typical delivery timeframe for a certification course?",
-    "answer": "Standard delivery is 4–8 weeks from discovery to launch. Timelines vary by assessment complexity, number of roles, and LMS/HRIS integration requirements.",
-    "expertise_id": 35,
-    "display_order": 50,
-    "status": "Published"
-  },
-  {
-    "id": 1101,
-    "question": "How are credentials verified by employers?",
-    "answer": "Digital badges and completion certificates include verifiable metadata and a secure verification API; employers can confirm authenticity through a direct lookup or HRIS integration.",
-    "expertise_id": 35,
-    "display_order": 51,
-    "status": "Published"
-  },
-  {
-    "id": 1102,
-    "question": "What pricing model is used?",
-    "answer": "Pricing is per-course fee with optional volume discounts for batch certifications and enterprise licensing for ongoing assessment administration and integrations.",
-    "expertise_id": 35,
-    "display_order": 52,
-    "status": "Published"
-  },
-  {
-    "id": 1103,
-    "question": "How long does a typical program take to implement?",
-    "answer": "Most programs deliver within 2–6 weeks from needs assessment to final impact report. Timing depends on cohort size, curriculum complexity, and scheduling; complex enterprise rollouts may require phased deployments.",
-    "expertise_id": 36,
-    "display_order": 50,
-    "status": "Published"
-  },
-  {
-    "id": 1104,
-    "question": "How is training effectiveness measured?",
-    "answer": "Effectiveness is measured through pre/post assessments, practical lab performance, certification pass rates, usage and adoption metrics, and qualitative learner feedback consolidated in an impact report tied to defined success metrics.",
-    "expertise_id": 36,
-    "display_order": 51,
-    "status": "Published"
-  },
-  {
-    "id": 1105,
-    "question": "Can content be aligned with internal tools and compliance requirements?",
-    "answer": "Yes. Curriculum is customized to internal platforms, vendor products, and regulatory frameworks; compliance checkpoints and role-specific scenarios ensure learners meet policy requirements and auditors can verify training records.",
-    "expertise_id": 36,
-    "display_order": 52,
-    "status": "Published"
-  },
-  {
-    "id": 1106,
-    "question": "What clients are best suited for Emerging Technology R&D?",
-    "answer": "Enterprises, OEMs, and venture investors exploring robotics or advanced hardware. Best for stakeholders needing de-risked prototypes, documented research, and clear paths to integration or commercialization.",
-    "expertise_id": 37,
-    "display_order": 50,
-    "status": "Published"
-  },
-  {
-    "id": 1107,
-    "question": "How is intellectual property handled?",
-    "answer": "IP terms negotiated per engagement; typical models include client ownership of deliverables, joint development agreements, or licensing arrangements. Confidentiality and transfer terms are defined in the SOW.",
-    "expertise_id": 37,
-    "display_order": 51,
-    "status": "Published"
-  },
-  {
-    "id": 1108,
-    "question": "What is the typical timeline and cost model?",
-    "answer": "Delivery window 3-12 months; projects are research-quoted based on scope, complexity, and risk. Phased engagements with defined milestones enable predictable spend and go/no-go decisions.",
-    "expertise_id": 37,
-    "display_order": 52,
-    "status": "Published"
-  },
-  {
-    "id": 1109,
-    "question": "What is the typical timeline, and can delivery be accelerated?",
-    "answer": "Standard delivery is two to eight weeks depending on complexity. Expedited options available for additional cost, prioritizing critical tasks while possibly limiting iteration depth.",
-    "expertise_id": 38,
-    "display_order": 50,
-    "status": "Published"
-  },
-  {
-    "id": 1110,
-    "question": "What testing and documentation are included with prototypes?",
-    "answer": "Delivered prototypes include functional verification, basic environmental or EMC checks where specified, schematic and PCB files, BOM, assembly notes, and a summary test report.",
-    "expertise_id": 38,
-    "display_order": 51,
-    "status": "Published"
-  },
-  {
-    "id": 1111,
-    "question": "Can prototypes be scaled into small-batch manufacturing?",
-    "answer": "Designs are produced with DFM considerations, vendor-ready BOMs and panelization options; CloudAlls Labs supports transition to small-batch fabrication and assembly.",
-    "expertise_id": 38,
-    "display_order": 52,
-    "status": "Published"
-  },
-  {
-    "id": 1112,
-    "question": "What criteria determine when a vertical graduates?",
-    "answer": "Graduation is based on predefined KPIs: validated customer acquisition, recurring revenue trajectory, unit economics, regulatory compliance, operational readiness, and a sustainable go-to-market plan. The Labs team documents thresholds and exit requirements before pilots begin.",
-    "expertise_id": 39,
-    "display_order": 50,
-    "status": "Published"
-  },
-  {
-    "id": 1113,
-    "question": "How long does each incubation cycle typically take?",
-    "answer": "Cycle length varies by vertical complexity; most MVP and pilot phases run three to nine months. Early discovery may be shorter; complex regulated markets require extended validation and stakeholder engagement.",
-    "expertise_id": 39,
-    "display_order": 51,
-    "status": "Published"
-  },
-  {
-    "id": 1114,
-    "question": "Who owns IP and assets created during incubation?",
-    "answer": "Ownership follows the sponsoring organization's governance and contractual agreements. Labs recommends clear IP assignment, licensing, and equity terms at program initiation to protect enterprise assets and enable eventual subsidiary capitalization.",
-    "expertise_id": 39,
-    "display_order": 52,
-    "status": "Published"
-  },
-  {
-    "id": 1115,
-    "question": "How is patient data secured and compliant with HIPAA?",
-    "answer": "Data is encrypted in transit and at rest, with role-based access controls, audit logging, and HIPAA-ready architecture. Business Associate Agreements (BAAs) and regular security assessments support compliance.",
-    "expertise_id": 40,
-    "display_order": 50,
-    "status": "Published"
-  },
-  {
-    "id": 1116,
-    "question": "What integrations with existing EHRs and systems are supported?",
-    "answer": "Standard HL7 and FHIR-based integrations, custom API adapters, SSO via OAuth/OpenID Connect, and interface mapping for legacy systems. Integration scope is defined during discovery and quoted per platform complexity.",
-    "expertise_id": 40,
-    "display_order": 51,
-    "status": "Published"
-  },
-  {
-    "id": 1117,
-    "question": "What performance and reliability guarantees apply to telemedicine video sessions?",
-    "answer": "Video uses WebRTC with adaptive bitrate, TURN/STUN fallbacks, monitoring, and auto-reconnect. Production deployments include redundancy and observability; uptime and support SLAs are defined in the platform contract.",
-    "expertise_id": 40,
-    "display_order": 52,
-    "status": "Published"
-  },
-  {
-    "id": 1118,
-    "question": "How long does full implementation typically take?",
-    "answer": "Typical implementations are completed between 10 and 20 weeks, depending on facility size, existing system integrations, and custom workflow requirements. Complex data migrations can extend timelines; detailed estimates are facility-quoted.",
-    "expertise_id": 41,
-    "display_order": 50,
-    "status": "Published"
-  },
-  {
-    "id": 1119,
-    "question": "What interoperability standards are supported?",
-    "answer": "Supports HL7v2 messaging and FHIR APIs for clinical data exchange, with lab (LOINC) and medication coding (RxNorm) mappings. Integrations use secure OAuth2 and TLS transport.",
-    "expertise_id": 41,
-    "display_order": 51,
-    "status": "Published"
-  },
-  {
-    "id": 1120,
-    "question": "What training and support is included?",
-    "answer": "Includes role-based staff training, administrator workshops, and documented operational procedures. Post-deployment options include tiered support contracts with SLA response times, patching, and optional managed services.",
-    "expertise_id": 41,
-    "display_order": 52,
-    "status": "Published"
-  },
-  {
-    "id": 1121,
-    "question": "How is clinical validation performed and reported?",
-    "answer": "Clinical validation uses retrospective and prospective cohorts, pre-specified performance metrics, and external test sets. Deliverables include performance statistics, ROC curves, confidence intervals, dataset descriptions, and a model validation report for regulatory review.",
-    "expertise_id": 42,
-    "display_order": 50,
-    "status": "Published"
-  },
-  {
-    "id": 1122,
-    "question": "What integration options are supported for existing clinical systems?",
-    "answer": "Supports PACS/DICOM, HL7/FHIR, and RESTful API integrations with on-premise or cloud deployment. Integration includes worklist prioritization, image retrieval, result posting, and audit logging for clinical workflows.",
-    "expertise_id": 42,
-    "display_order": 51,
-    "status": "Published"
-  },
-  {
-    "id": 1123,
-    "question": "How are explainability and human-in-the-loop implemented to support clinical decisions?",
-    "answer": "Explainability via heatmaps, saliency maps (Grad‑CAM), and feature-attribution scores; confidence intervals accompany outputs. Clinician review interfaces enable overrides, annotated feedback capture, and logged decisions for continuous improvement and retraining.",
-    "expertise_id": 42,
-    "display_order": 52,
-    "status": "Published"
-  },
-  {
-    "id": 1124,
-    "question": "What is the typical delivery timeline for a wellness application?",
-    "answer": "Typical delivery runs 8–14 weeks. Scope, integrations, clinical content depth, and regulatory requirements drive schedule; discovery phase clarifies deliverables and a detailed project timeline.",
-    "expertise_id": 43,
-    "display_order": 50,
-    "status": "Published"
-  },
-  {
-    "id": 1125,
-    "question": "How is user privacy and health data protected?",
-    "answer": "Privacy-first architecture, end-to-end encryption, role-based access, consent management, and support for HIPAA, GDPR, and local regulations to minimize PHI exposure and ensure auditability.",
-    "expertise_id": 43,
-    "display_order": 51,
-    "status": "Published"
-  },
-  {
-    "id": 1126,
-    "question": "Can the app integrate with wearables, EHRs, and corporate HR systems?",
-    "answer": "Yes. Integrations use FHIR, secure REST APIs, OAuth2, and configurable ETL connectors for HR systems. Integration scope determines mapping, testing, and timeline.",
-    "expertise_id": 43,
-    "display_order": 52,
-    "status": "Published"
-  },
-  {
-    "id": 1127,
-    "question": "What is the typical implementation timeline?",
-    "answer": "Implementation typically completes within 10–18 weeks depending on integrations, certification cycles, and supplier readiness. Complex multi-country deployments or bespoke connectors may extend timelines; phased rollouts recommended.",
-    "expertise_id": 44,
-    "display_order": 50,
-    "status": "Published"
-  },
-  {
-    "id": 1128,
-    "question": "How are payments and refunds handled?",
-    "answer": "Payment processing integrates PCI-compliant gateways with multi-currency settlement, tokenization, and automated reconciliation. Refunds follow configurable business rules with support for partial refunds, supplier reimbursements, and audit trails.",
-    "expertise_id": 44,
-    "display_order": 51,
-    "status": "Published"
-  },
-  {
-    "id": 1129,
-    "question": "How is inventory synchronization managed with suppliers?",
-    "answer": "Inventory sync uses real-time APIs where available, with adaptive polling and caching fallbacks. Delta updates, conflict resolution policies, and supplier adapters ensure consistency and high availability across channels.",
-    "expertise_id": 44,
-    "display_order": 52,
-    "status": "Published"
-  },
-  {
-    "id": 1130,
-    "question": "What metrics define success for a destination marketing campaign?",
-    "answer": "Primary metrics include incremental visits, website sessions, booking conversions and assisted conversions. Additional KPIs cover reach, engagement, SEO rankings, cost-per-acquisition and season-specific uplift compared to historical baselines.",
-    "expertise_id": 45,
-    "display_order": 50,
-    "status": "Published"
-  },
-  {
-    "id": 1131,
-    "question": "How long before peak season should a campaign begin?",
-    "answer": "Start planning and SEO work at least three to six months before peak season; paid media and influencer activations typically begin six to eight weeks prior for optimized reach.",
-    "expertise_id": 45,
-    "display_order": 51,
-    "status": "Published"
-  },
-  {
-    "id": 1132,
-    "question": "What level of access is required to run tourism SEO and tracking?",
-    "answer": "Read-write access to the CMS, Google Analytics 4, Search Console and ad accounts; plus permission to deploy tags via CMS or tag manager.",
-    "expertise_id": 45,
-    "display_order": 52,
-    "status": "Published"
-  },
-  {
-    "id": 1133,
-    "question": "What is the typical engagement timeline?",
-    "answer": "Typical engagements run 3–8 weeks depending on scope and integrations; scoping defines phased deliverables and exact timelines for assessment, design, and handover.",
-    "expertise_id": 46,
-    "display_order": 50,
-    "status": "Published"
-  },
-  {
-    "id": 1134,
-    "question": "How are costs estimated?",
-    "answer": "Costs scale with scope, integrations and data complexity; indicative engagements range ₹20,000–₹75,000. A brief scoping exercise provides a firm fixed price and phased pricing for implementation and analytics.",
-    "expertise_id": 46,
-    "display_order": 51,
-    "status": "Published"
-  },
-  {
-    "id": 1135,
-    "question": "How will visitor data privacy and compliance be handled?",
-    "answer": "Solutions include data minimisation, consent frameworks, pseudonymisation, and adherence to local regulations; architecture recommendations include secure cloud controls and vendor assessments to ensure compliance.",
-    "expertise_id": 46,
-    "display_order": 52,
-    "status": "Published"
-  },
-  {
-    "id": 1136,
-    "question": "What is the typical implementation timeline?",
-    "answer": "Most deployments complete within 8–16 weeks; timeline varies with property count, custom integrations, channel certification processes, and required data migrations.",
-    "expertise_id": 47,
-    "display_order": 50,
-    "status": "Published"
-  },
-  {
-    "id": 1137,
-    "question": "How does channel synchronization prevent overbookings?",
-    "answer": "Real-time inventory and rate updates via channel manager, combined with centralized reservations and OTA confirmations, maintain parity and close synchronization to minimize double bookings.",
-    "expertise_id": 47,
-    "display_order": 51,
-    "status": "Published"
-  },
-  {
-    "id": 1138,
-    "question": "Can the system integrate with existing accounting and CRM platforms?",
-    "answer": "Yes. Standard integrations use RESTful APIs, SFTP data exchanges, or middleware. Integration scope and mapping are defined during discovery to ensure accurate financial posting and guest record synchronization.",
-    "expertise_id": 47,
-    "display_order": 52,
-    "status": "Published"
-  },
-  {
-    "id": 1139,
-    "question": "How long does a typical Harvest processing technology deployment take?",
-    "answer": "Typical deployments complete within 6–14 weeks depending on line complexity, control system compatibility, and required serialization. Facility-scoped estimates provided after Discover assessment, with phased approaches to minimize production disruption.",
-    "expertise_id": 48,
-    "display_order": 50,
-    "status": "Published"
-  },
-  {
-    "id": 1140,
-    "question": "Can Harvest integrate with existing PLCs and ERP systems?",
-    "answer": "Yes. Integrations with Siemens, Allen-Bradley PLCs and major ERPs are standard. Interfaces use OPC UA, MQTT, and APIs to synchronize production events, inventory records, and quality metrics.",
-    "expertise_id": 48,
-    "display_order": 51,
-    "status": "Published"
-  },
-  {
-    "id": 1141,
-    "question": "How does Harvest support regulatory compliance and recall readiness?",
-    "answer": "Traceability systems record serialized batch history, time-stamped events, and quality parameters. Exportable audit packages and fast-query recall workflows enable rapid identification, isolation, and reporting for regulatory inspections and product withdrawals.",
-    "expertise_id": 48,
-    "display_order": 52,
-    "status": "Published"
-  },
-  {
-    "id": 1142,
-    "question": "How long does deployment typically take?",
-    "answer": "Typical delivery takes 4–10 weeks depending on site count, scope of HACCP plans, and integration complexity. Pilot site implementations are often completed within the lower end of this range.",
-    "expertise_id": 49,
-    "display_order": 50,
-    "status": "Published"
-  },
-  {
-    "id": 1143,
-    "question": "What is the indicative cost for this service?",
-    "answer": "Indicative pricing ranges from ₹25,000 to ₹1,00,000 depending on scope: number of sites, LIMS integration, and custom SOP automation. Final quote provided after discovery and scoping.",
-    "expertise_id": 49,
-    "display_order": 51,
-    "status": "Published"
-  },
-  {
-    "id": 1144,
-    "question": "Which compliance standards and markets are supported?",
-    "answer": "Supports FSSAI compliance, HACCP plan digitization, and export-market requirements (EU/US). Implementation aligns with ISO 22000 principles and can incorporate customer-specific buyer-code or retailer audit standards.",
-    "expertise_id": 49,
-    "display_order": 52,
-    "status": "Published"
-  },
-  {
-    "id": 1145,
-    "question": "How long does implementation typically take?",
-    "answer": "Typical delivery is 8–16 weeks; timeline depends on integrations, sensor rollout, number of sites, and data readiness. A scoped discovery defines the program quote and detailed project schedule.",
-    "expertise_id": 50,
-    "display_order": 50,
-    "status": "Published"
-  },
-  {
-    "id": 1146,
-    "question": "How is provenance data secured and verified?",
-    "answer": "A permissioned blockchain ledger, cryptographic signatures, immutability controls, and role-based access ensure provenance integrity. Integration with sensor telemetry and supplier attestations creates an auditable chain for certification and compliance.",
-    "expertise_id": 50,
-    "display_order": 51,
-    "status": "Published"
-  },
-  {
-    "id": 1147,
-    "question": "What KPIs should be tracked to measure ROI?",
-    "answer": "Track spoilage and waste reduction, on-time cold-chain deliveries, forecast accuracy versus actual sales, supplier compliance and fair-sourcing verification rates, time-to-certification, and margin improvement attributable to reduced inventory losses.",
-    "expertise_id": 50,
-    "display_order": 52,
-    "status": "Published"
-  },
-  {
-    "id": 1148,
-    "question": "What industries are eligible for the Next Industry Vertical slot?",
-    "answer": "Eligibility centers on markets researched in Labs and strategic initiatives with demonstrable market signals. Selection considers commercial potential, regulatory feasibility, technical viability, and partner alignment for enterprise-scale deployment.",
-    "expertise_id": 51,
-    "display_order": 50,
-    "status": "Published"
-  },
-  {
-    "id": 1149,
-    "question": "How long does incubation and pilot typically take?",
-    "answer": "Incubation and pilot duration varies by sector complexity and compliance needs; typical programs run from three to nine months, with extensions for extensive regulatory or integration requirements.",
-    "expertise_id": 51,
-    "display_order": 51,
-    "status": "Published"
-  },
-  {
-    "id": 1150,
-    "question": "What outcomes will be delivered to support investment decisions?",
-    "answer": "Delivered artifacts include a market research report, pilot performance data, partner engagement agreements, risk assessments, and a prioritized launch plan to inform investment and go-to-market decisions.",
-    "expertise_id": 51,
-    "display_order": 52,
-    "status": "Published"
   }
 ]

@@ -192,16 +192,16 @@ export async function restructureBrandDatabase(pool: Pool | null): Promise<void>
       if (!(await columnExists(pool, "faqs", "status"))) {
         await pool.query(`ALTER TABLE faqs ADD COLUMN status VARCHAR(20) NOT NULL DEFAULT 'Published' AFTER display_order`);
       }
-      let faqInserted = 0;
-      let faqSkipped = 0;
+      // Curated service FAQs (ids >= 1000) are fully owned by faqs.json: refresh them on
+      // every startup so rewritten question/answer text is always reflected on the site.
+      await pool.query(`DELETE FROM faqs WHERE id >= 1000`);
       for (const f of targetFaqs) {
-        const [faqResult] = await pool.query(
-          `INSERT IGNORE INTO faqs (id, question, answer, expertise_id, display_order, status) VALUES (?, ?, ?, ?, ?, ?)`,
+        await pool.query(
+          `INSERT INTO faqs (id, question, answer, expertise_id, display_order, status) VALUES (?, ?, ?, ?, ?, ?)`,
           [f.id, f.question, f.answer, f.expertise_id ?? null, f.display_order ?? 0, f.status || "Published"],
         );
-        if ((faqResult as { affectedRows: number })?.affectedRows) faqInserted += 1; else faqSkipped += 1;
       }
-      console.log(`[db-restructure] faqs service FAQs synced (${faqInserted} inserted, ${faqSkipped} already present, ${targetFaqs.length} referenced)`);
+      console.log(`[db-restructure] faqs service FAQs refreshed (${targetFaqs.length} rows written)`);
     }
   } catch (error) {
     console.error("[db-restructure] failed (non-fatal):", error);
