@@ -181,7 +181,16 @@ export async function restructureBrandDatabase(pool: Pool | null): Promise<void>
     }
 
     // --- faqs: sync per-service FAQs from JSON (idempotent via INSERT IGNORE on id) ---
-    const targetFaqs = loadJson<FaqData>("faqs.json").filter(f => typeof f.expertise_id === "number");
+    // Sync the full curated FAQ set (ids >= 1000): service FAQs carry an expertise_id, general/company FAQs carry null.
+    const targetFaqs = loadJson<FaqData>("faqs.json").filter(f => Number(f.id) >= 1000);
+    // Ensure every synced row has an explicit numeric expertise id or null so the INSERT is valid.
+    targetFaqs.forEach(f => {
+      if (f.expertise_id !== undefined && f.expertise_id !== null) {
+        f.expertise_id = Number(f.expertise_id);
+      } else {
+        f.expertise_id = null;
+      }
+    });
     if (targetFaqs.length && (await tableExists(pool, "faqs"))) {
       if (!(await columnExists(pool, "faqs", "expertise_id"))) {
         await pool.query(`ALTER TABLE faqs ADD COLUMN expertise_id INT NULL AFTER answer`);
