@@ -17,7 +17,7 @@ export interface LayoutData {
 }
 
 const footerMenus: LayoutData["footerMenus"] = {
-  Company: { "/about": "About CloudAlls", "/partnership": "Partner Network", "/investors": "Investor Relations", "/testimonials": "Client Perspectives" },
+  Company: { "/about": "About CloudAlls", "/partnership": "Partner Network", "/investors": "Investor Relations", "/brand": "Brand Assets" },
   "Ecosystem & Resources": {
     "/labs": { label: "Labs", badge: "BETA" },
     "/resources": "Developer Hub",

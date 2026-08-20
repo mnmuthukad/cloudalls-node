@@ -2,7 +2,7 @@ import { Router, type Request, type Response } from "express";
 import { env } from "../config/env.js";
 import { buildLayoutData } from "../services/layout.service.js";
 import { loadJsonData } from "../services/data.service.js";
-import { getActiveBrandDivisions, getActiveCareers, getActiveExpertise, getExpertiseBySlug, getLegalCompliancePillars, getLegalCrisisResponse, getLegalDirectory, getLegalDocumentBySlug, getLegalFrameworks, getPublishedFaqs, getPublishedInsights, getPublishedPortfolios, getPublishedTestimonials, sanitizeLegalHtml } from "../services/content.service.js";
+import { getActiveBrandDivisions, getActiveCareers, getActiveExpertise, getExpertiseBySlug, getLegalCompliancePillars, getLegalCrisisResponse, getLegalDirectory, getLegalDocumentBySlug, getLegalFrameworks, getPublishedFaqs, getPublishedInsights, getPublishedPortfolios, sanitizeLegalHtml } from "../services/content.service.js";
 
 interface PageSection {
   heading: string;
@@ -159,13 +159,6 @@ publicRouter.get("/faq", async (_req, res, next) => {
   } catch (error) { next(error); }
 });
 
-publicRouter.get("/testimonials", async (_req, res, next) => {
-  try {
-    const testimonials = await getPublishedTestimonials();
-    res.render("pages/testimonials", { ...buildLayoutData({ currentPage: "testimonials", pageTitle: "Client Testimonials | CloudAlls", pageDescription: "Read client perspectives on CloudAlls engineering, security, creative, and operational systems.", canonicalUrl: "/testimonials" }), testimonials });
-  } catch (error) { next(error); }
-});
-
 publicRouter.get("/brand", async (_req, res, next) => {
   try {
     const [divisions, expertise] = await Promise.all([getActiveBrandDivisions(), getActiveExpertise()]);
@@ -208,7 +201,7 @@ publicRouter.get("/sitemap.xml", async (_req, res, next) => {
     const entries = new Map<string, string | undefined>();
     const add = (path: string, lastmod?: string | null) => entries.set(path, lastmod ? String(lastmod).slice(0, 10) : undefined);
 
-    ["/", ...Object.keys(pages).map(slug => `/${slug}`), "/insights", "/portfolio", "/contact", "/careers", "/partnership", "/testimonials", "/legal", "/terms", "/privacy", "/security", "/aup", "/ethics", "/accessibility", "/data-requests"].forEach(path => add(path));
+    ["/", ...Object.keys(pages).map(slug => `/${slug}`), "/insights", "/portfolio", "/contact", "/careers", "/partnership", "/legal", "/terms", "/privacy", "/security", "/aup", "/ethics", "/accessibility", "/data-requests"].forEach(path => add(path));
     expertise.forEach(item => add(`/expertise/${encodeURIComponent(item.slug)}`));
     insights.forEach(item => add(`/insights/${encodeURIComponent(item.slug)}`, item.created_at));
     portfolios.forEach(item => add(`/portfolio/${encodeURIComponent(item.slug)}`));
