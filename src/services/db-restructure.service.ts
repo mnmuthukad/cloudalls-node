@@ -86,9 +86,14 @@ export async function restructureBrandDatabase(pool: Pool | null): Promise<void>
     if (targetDivisions.length && (await tableExists(pool, "brand_divisions"))) {
       await pool.query(`DELETE FROM brand_divisions WHERE status = 'Active'`);
       await pool.query(`DELETE FROM brand_divisions WHERE 1 = 1`);
-      // Ensure the description column exists so full division details reach the brand page.
+      // Ensure every column used by the insert exists before the loop — a failed INSERT
+      // inside brand_divisions reconciliation aborts the whole restructure, hiding the
+      // faqs sync that depends on it.
       if (!(await columnExists(pool, "brand_divisions", "description"))) {
         await pool.query(`ALTER TABLE brand_divisions ADD COLUMN description TEXT NULL AFTER tagline`);
+      }
+      if (!(await columnExists(pool, "brand_divisions", "wing"))) {
+        await pool.query(`ALTER TABLE brand_divisions ADD COLUMN wing VARCHAR(50) NULL AFTER display_order`);
       }
       for (const div of targetDivisions) {
         await pool.query(
@@ -106,10 +111,6 @@ export async function restructureBrandDatabase(pool: Pool | null): Promise<void>
     if (await tableExists(pool, "expertise") && !(await columnExists(pool, "expertise", "wing"))) {
       await pool.query(`ALTER TABLE expertise ADD COLUMN wing VARCHAR(50) NULL AFTER division`);
     }
-    if (await tableExists(pool, "brand_divisions") && !(await columnExists(pool, "brand_divisions", "wing"))) {
-      await pool.query(`ALTER TABLE brand_divisions ADD COLUMN wing VARCHAR(50) NULL AFTER display_order`);
-    }
-
     // --- expertise: sync division assignments from JSON (idempotent by id) ---
     const targetExpertise = loadJson<ExpertiseData>("expertise.json");
     if (targetExpertise.length && (await tableExists(pool, "expertise"))) {
