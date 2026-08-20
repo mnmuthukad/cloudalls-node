@@ -129,13 +129,13 @@ export function createApp() {
   app.use(publicRouter);
 
   app.use((_req, res) => {
-    res.status(404).render("errors/404", buildLayoutData({ pageTitle: "Page not found", pageDescription: "The requested page could not be found.", canonicalUrl: _req.path }));
+    res.status(404).render("errors/404", buildLayoutData({ pageTitle: "Page not found", pageDescription: "The requested page could not be found.", canonicalUrl: "/", noindex: true }));
   });
 
   app.use((error: unknown, _req: express.Request, res: express.Response, _next: express.NextFunction) => {
     console.error("CLOUDALLS_ERROR", error);
     if (res.headersSent) return;
-    res.status(500).render("errors/500", buildLayoutData({ pageTitle: "Service error", pageDescription: "CloudAlls is temporarily unable to complete this request.", canonicalUrl: _req.path }));
+    res.status(500).render("errors/500", buildLayoutData({ pageTitle: "Service error", pageDescription: "CloudAlls is temporarily unable to complete this request.", canonicalUrl: "/", noindex: true }));
   });
 
   return app;
