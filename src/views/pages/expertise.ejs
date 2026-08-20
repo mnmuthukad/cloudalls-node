@@ -1,6 +1,114 @@
 <%- include('../layouts/header', { pageTitle, pageDescription, pageKeywords, canonicalUrl, pageImage, settings, currentPage, socialLinks, schemaPhone }) %>
-<% const splitValues = (value) => String(value || '').split(',').map(item => item.trim()).filter(Boolean); %>
-<section class="editorial-hero"><div class="container"><p class="editorial-kicker mb-3">Capabilities</p><h1 class="mb-4">Technology that makes the complex usable.</h1><p class="lead mb-0">Explore the CloudAlls ecosystem — fifty-one capabilities across eight capability divisions and four industry verticals. Start with the capability that matches the decision in front of you.</p></div></section>
-<section class="editorial-section bg-white"><div class="container"><div class="row align-items-end g-4 mb-5"><div class="col-lg-8"><p class="section-kicker mb-3">Capability catalogue</p><h2 class="display-6 fw-bold mb-3">Specialists around the problem.</h2><p class="text-secondary lead mb-0">Every engagement is shaped around outcomes, constraints, and the operating environment—not a fixed package.</p></div><div class="col-lg-4 text-lg-end"><a class="btn btn-primary rounded-pill px-4" href="/contact">Discuss your requirement <i class="fa-solid fa-arrow-right ms-2" aria-hidden="true"></i></a></div></div><div class="row g-4"><% if (expertise.length) { expertise.forEach((item, index) => { const benefits = splitValues(item.key_benefits); const services = splitValues(item.sub_services); %><div class="col-12"><article class="capability-detail-card"><div class="row g-4 align-items-start"><div class="col-lg-4"><div class="d-flex align-items-start gap-3"><span class="capability-icon mt-1"><i class="fa-solid <%= item.icon || 'fa-code' %>" aria-hidden="true"></i></span><div><span class="small text-primary fw-bold"><%= String(index + 1).padStart(2, '0') %></span><h2 class="h3 fw-bold mb-2"><%= item.title %></h2><p class="text-secondary mb-0"><%= item.short_description || '' %></p><% if (item.division) { %><span class="badge rounded-pill bg-light border text-primary mt-2 px-3"><i class="fa-solid fa-building me-1" aria-hidden="true"></i>CloudAlls <%= item.division %></span><% } %></div></div></div><div class="col-lg-5"><% if (item.full_description) { %><p class="text-secondary lh-lg mb-3"><%= item.full_description %></p><% } %><% if (services.length) { %><div class="d-flex flex-wrap gap-2"><% services.slice(0, 5).forEach(service => { %><span class="badge rounded-pill text-bg-light border px-3 py-2"><%= service %></span><% }); %></div><% } %></div><div class="col-lg-3"><div class="capability-meta"><% if (item.delivery_time) { %><span><small>Typical delivery</small><strong><%= item.delivery_time %></strong></span><% } %><% if (item.price_range) { %><span><small>Engagement</small><strong><%= item.price_range %></strong></span><% } %><a class="btn btn-dark rounded-pill w-100 mt-2" href="/expertise/<%= encodeURIComponent(item.slug) %>">View capability <i class="fa-solid fa-arrow-up-right-from-square ms-1" aria-hidden="true"></i></a></div></div></div><% if (benefits.length) { %><div class="border-top mt-4 pt-3"><div class="d-flex flex-wrap gap-3 small text-secondary"><% benefits.slice(0, 6).forEach(benefit => { %><span><i class="fa-solid fa-check text-primary me-2" aria-hidden="true"></i><%= benefit %></span><% }); %></div></div><% } %></article></div><% }); } else { %><div class="col-12"><div class="enterprise-card text-center"><h3 class="h4 fw-bold">Capability catalogue is being refreshed.</h3><p class="text-secondary mb-0">Start a conversation and our team will route your requirement to the right specialists.</p></div></div><% } %></div></div></section>
+<% const splitValues = (value) => String(value || '').split(',').map(item => item.trim()).filter(Boolean);
+   const slugify = (name) => String(name || '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, ''); %>
+<section class="editorial-hero"><div class="container"><p class="editorial-kicker mb-3">Capabilities</p><h1 class="mb-4">Technology that makes the complex usable.</h1><p class="lead mb-0">Explore the CloudAlls ecosystem — fifty-one capabilities across eight capability divisions and four industry verticals. Filter by division or wing to find exactly what you need.</p></div></section>
+
+<section class="editorial-section bg-white" id="capabilities">
+  <div class="container">
+    <div class="row align-items-end g-4 mb-4">
+      <div class="col-lg-8"><p class="section-kicker mb-3">Capability catalogue</p><h2 class="display-6 fw-bold mb-3">Specialists around the problem.</h2><p class="text-secondary lead mb-0">Every engagement is shaped around outcomes, constraints, and the operating environment — not a fixed package.</p></div>
+      <div class="col-lg-4 text-lg-end"><a class="btn btn-primary rounded-pill px-4" href="/contact">Discuss your requirement <i class="fa-solid fa-arrow-right ms-2" aria-hidden="true"></i></a></div>
+    </div>
+
+    <% const byDivision = {};
+       const counts = {};
+       expertise.forEach(item => { const key = String(item.division || '').trim(); byDivision[key] = byDivision[key] || []; byDivision[key].push(item); counts[key] = (counts[key] || 0) + 1; });
+       const allCount = expertise.length; %>
+
+    <div class="row g-3 mb-4">
+      <div class="col-12">
+        <div class="d-flex flex-wrap gap-2" id="filter-bar">
+          <button type="button" class="btn rounded-pill px-3 py-2 fw-semibold border filter-btn active" data-filter="all"><i class="fa-solid fa-layer-group me-2 text-primary" aria-hidden="true"></i>All capabilities <span class="ms-1 opacity-75"><%= allCount %></span></button>
+          <% Object.keys(counts).forEach(div => { %>
+          <button type="button" class="btn rounded-pill px-3 py-2 fw-semibold border filter-btn" data-filter="<%= slugify(div) %>"><%= div %> <span class="ms-1 opacity-75"><%= counts[div] %></span></button>
+          <% }); %>
+        </div>
+      </div>
+      <div class="col-12">
+        <div class="d-flex gap-2" id="wing-tabs">
+          <button type="button" class="btn btn-sm rounded-pill px-3 py-1 border fw-semibold wing-btn active" data-wing="all">Everything</button>
+          <button type="button" class="btn btn-sm rounded-pill px-3 py-1 border fw-semibold wing-btn" data-wing="A">Wing A — Capability divisions</button>
+          <button type="button" class="btn btn-sm rounded-pill px-3 py-1 border fw-semibold wing-btn" data-wing="B">Wing B — Industry verticals</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="row g-4" id="catalogue-grid">
+    <% if (expertise.length) { expertise.forEach(item => { const benefits = splitValues(item.key_benefits); const services = splitValues(item.sub_services); %>
+      <div class="col-md-6 catalogue-card" data-division="<%= slugify(item.division) %>" data-wing="<%= String(item.wing || '').toUpperCase() === 'B' ? 'B' : 'A' %>">
+        <article class="capability-detail-card h-100">
+          <div class="d-flex align-items-start gap-3">
+            <span class="capability-icon mt-1"><i class="fa-solid <%= item.icon || 'fa-code' %>" aria-hidden="true"></i></span>
+            <div class="flex-grow-1">
+              <span class="small text-primary fw-bold d-block mb-1">CloudAlls <%= item.division %></span>
+              <h3 class="h4 fw-bold mb-2"><%= item.title %></h3>
+              <p class="text-secondary mb-0"><%= item.short_description || '' %></p>
+            </div>
+          </div>
+          <% if (services.length) { %><div class="d-flex flex-wrap gap-2 mt-3"><% services.slice(0, 5).forEach(service => { %><span class="badge rounded-pill text-bg-light border px-3 py-2"><%= service %></span><% }); %></div><% } %>
+          <% if (benefits.length) { %><div class="border-top mt-3 pt-3"><div class="d-flex flex-wrap gap-3 small text-secondary"><% benefits.slice(0, 5).forEach(benefit => { %><span><i class="fa-solid fa-check text-primary me-2" aria-hidden="true"></i><%= benefit %></span><% }); %></div></div><% } %>
+          <div class="d-flex flex-wrap align-items-center gap-3 mt-3"><a class="btn btn-dark rounded-pill" href="/expertise/<%= encodeURIComponent(item.slug) %>">View capability <i class="fa-solid fa-arrow-up-right-from-square ms-1" aria-hidden="true"></i></a><% if (item.delivery_time) { %><span class="small text-secondary"><small class="d-block">Typical delivery</small><strong><%= item.delivery_time %></strong></span><% } %><% if (item.price_range) { %><span class="small text-secondary"><small class="d-block">Engagement</small><strong><%= item.price_range %></strong></span><% } %></div>
+        </article>
+      </div>
+    <% }); } else { %>
+      <div class="col-12"><div class="enterprise-card text-center"><h3 class="h4 fw-bold">Capability catalogue is being refreshed.</h3><p class="text-secondary mb-0">Start a conversation and our team will route your requirement to the right specialists.</p></div></div>
+    <% } %>
+    </div>
+    <div class="text-center mt-4" id="no-results" style="display:none;">
+      <p class="text-secondary"><i class="fa-solid fa-filter-circle-xmark me-2" aria-hidden="true"></i>No capabilities match this filter. Showing all instead.</p>
+    </div>
+  </div>
+</section>
+
 <section class="editorial-section bg-light"><div class="container"><div class="row g-4"><div class="col-lg-4"><p class="section-kicker mb-3">How it connects</p><h2 class="h1 fw-bold">One operating model.</h2><p class="text-secondary">Capabilities are stronger when the handoffs are designed in from the start.</p></div><div class="col-lg-8"><div class="row g-3"><div class="col-md-4"><div class="enterprise-card"><span class="home-proof-index">01</span><h3 class="h5 fw-bold mt-3">Direction</h3><p class="mb-0">We define the decision and the evidence needed to make it.</p></div></div><div class="col-md-4"><div class="enterprise-card"><span class="home-proof-index">02</span><h3 class="h5 fw-bold mt-3">Delivery</h3><p class="mb-0">We build an accessible, secure, and observable path to value.</p></div></div><div class="col-md-4"><div class="enterprise-card"><span class="home-proof-index">03</span><h3 class="h5 fw-bold mt-3">Continuity</h3><p class="mb-0">We document the system so teams can operate and improve it.</p></div></div></div></div></div></div></section>
+
+<script>
+(function () {
+  'use strict';
+  var grid = document.getElementById('catalogue-grid');
+  var noResults = document.getElementById('no-results');
+  var cards = grid ? Array.prototype.slice.call(grid.querySelectorAll('.catalogue-card')) : [];
+  var state = { div: 'all', wing: 'all' };
+
+  function applyFilter() {
+    var visible = 0;
+    cards.forEach(function (card) {
+      var divOk = state.div === 'all' || String(card.getAttribute('data-division') || '') === state.div;
+      var wingOk = state.wing === 'all' || String(card.getAttribute('data-wing') || '') === state.wing;
+      var show = divOk && wingOk;
+      card.style.display = show ? '' : 'none';
+      if (show) visible += 1;
+    });
+    if (noResults) noResults.style.display = visible === 0 && state.div !== 'all' ? '' : 'none';
+    Array.prototype.slice.call(document.querySelectorAll('.filter-btn')).forEach(function (btn) {
+      btn.classList.toggle('active', String(btn.getAttribute('data-filter') || '') === state.div);
+    });
+    Array.prototype.slice.call(document.querySelectorAll('.wing-btn')).forEach(function (btn) {
+      btn.classList.toggle('active', String(btn.getAttribute('data-wing') || '') === state.wing);
+    });
+  }
+
+  Array.prototype.slice.call(document.querySelectorAll('.filter-btn')).forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      state.div = String(btn.getAttribute('data-filter') || 'all');
+      applyFilter();
+      if (history.replaceState) history.replaceState(null, '', '/expertise' + (state.div === 'all' ? '' : '?div=' + state.div + '&wing=' + state.wing) + '#capabilities');
+    });
+  });
+  Array.prototype.slice.call(document.querySelectorAll('.wing-btn')).forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      state.wing = String(btn.getAttribute('data-wing') || 'all');
+      applyFilter();
+      if (history.replaceState) history.replaceState(null, '', '/expertise' + (state.div === 'all' && state.wing === 'all' ? '' : '?' + (state.div !== 'all' ? 'div=' + state.div : '') + (state.div !== 'all' && state.wing !== 'all' ? '&' : '') + (state.wing !== 'all' ? 'wing=' + state.wing : '')) + '#capabilities');
+    });
+  });
+
+  var params = new URLSearchParams(window.location.search);
+  var initDiv = params.get('div');
+  var initWing = params.get('wing');
+  if (initDiv) { state.div = initDiv === 'all' ? 'all' : initDiv.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, ''); }
+  if (initWing && (initWing === 'A' || initWing === 'B')) state.wing = initWing;
+  applyFilter();
+})();
+</script>
 <%- include('../layouts/footer', { settings, footerMenus, waLink }) %>

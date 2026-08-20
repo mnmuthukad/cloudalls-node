@@ -105,7 +105,7 @@
       <h3 class="h4 fw-bold mb-1 text-center">CloudAlls <%= division.name %></h3>
       <p class="fw-semibold text-primary text-center mb-2"><%= division.tagline %></p>
       <p class="text-secondary text-center mb-4" style="max-width:520px;margin-left:auto;margin-right:auto;"><%= (division.description || '').trim() ? division.description : 'Part of the CloudAlls ecosystem, delivering connected capabilities.' %></p>
-      <div class="mt-auto text-center"><% if (services.length) { %><a class="btn btn-primary rounded-pill px-4" href="/expertise"><i class="fa-solid fa-arrow-right me-2" aria-hidden="true"></i>View <%= services.length %> capabilities</a><% } else { %><span class="badge rounded-pill border px-3 py-2">Services coming soon</span><% } %></div>
+      <div class="mt-auto text-center"><% if (services.length) { %><a class="btn btn-primary rounded-pill px-4" href="/expertise?div=<%= encodeURIComponent(String(division.name).trim()) %>#capabilities"><i class="fa-solid fa-arrow-right me-2" aria-hidden="true"></i>View <%= services.length %> capabilities</a><% } else { %><span class="badge rounded-pill border px-3 py-2">Services coming soon</span><% } %></div>
     </div></div>
   <% }); %>
   </div>
@@ -127,7 +127,7 @@
       <h3 class="h4 fw-bold mb-1 text-center">CloudAlls <%= division.name %><% if (isReserved) { %> <span class="badge rounded-pill text-bg-secondary px-3">Reserved</span><% } %></h3>
       <p class="fw-semibold text-primary text-center mb-2"><%= division.tagline %></p>
       <p class="text-secondary text-center mb-4" style="max-width:520px;margin-left:auto;margin-right:auto;"><%= (division.description || '').trim() ? division.description : 'An industry vertical of the CloudAlls ecosystem.' %></p>
-      <div class="mt-auto text-center"><% if (!isReserved && services.length) { %><a class="btn btn-outline-dark rounded-pill px-4" href="/expertise"><i class="fa-solid fa-arrow-right me-2" aria-hidden="true"></i>View <%= services.length %> capabilities</a><% } else if (isReserved) { %><span class="badge rounded-pill border px-3 py-2">Launching next</span><% } %></div>
+      <div class="mt-auto text-center"><% if (!isReserved && services.length) { %><a class="btn btn-outline-dark rounded-pill px-4" href="/expertise?div=<%= encodeURIComponent(String(division.name).trim()) %>#capabilities"><i class="fa-solid fa-arrow-right me-2" aria-hidden="true"></i>View <%= services.length %> capabilities</a><% } else if (isReserved) { %><span class="badge rounded-pill border px-3 py-2">Launching next</span><% } %></div>
     </div></div>
   <% }); %>
   </div>
