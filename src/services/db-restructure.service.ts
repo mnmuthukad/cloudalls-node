@@ -159,6 +159,15 @@ export async function restructureBrandDatabase(pool: Pool | null): Promise<void>
     // --- faqs: sync per-service FAQs from JSON (idempotent via INSERT IGNORE on id) ---
     const targetFaqs = loadJson<FaqData>("faqs.json").filter(f => typeof f.expertise_id === "number");
     if (targetFaqs.length && (await tableExists(pool, "faqs"))) {
+      if (!(await columnExists(pool, "faqs", "expertise_id"))) {
+        await pool.query(`ALTER TABLE faqs ADD COLUMN expertise_id INT NULL AFTER answer`);
+      }
+      if (!(await columnExists(pool, "faqs", "display_order"))) {
+        await pool.query(`ALTER TABLE faqs ADD COLUMN display_order INT NOT NULL DEFAULT 0 AFTER expertise_id`);
+      }
+      if (!(await columnExists(pool, "faqs", "status"))) {
+        await pool.query(`ALTER TABLE faqs ADD COLUMN status VARCHAR(20) NOT NULL DEFAULT 'Published' AFTER display_order`);
+      }
       for (const f of targetFaqs) {
         await pool.query(
           `INSERT IGNORE INTO faqs (id, question, answer, expertise_id, display_order, status) VALUES (?, ?, ?, ?, ?, ?)`,
