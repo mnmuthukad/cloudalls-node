@@ -50,5 +50,57 @@
     "live_link": null,
     "status": "Published",
     "created_at": "2026-08-12 00:00:00"
+  },
+  {
+    "id": 6,
+    "title": "AI Voice Agent Suite for CareLink Health",
+    "slug": "carelink-ai-voice-agent",
+    "client_name": "CareLink Health Systems",
+    "expertise_id": 3,
+    "short_desc": "A multi-language AI voice agent that handles appointment scheduling, patient triage routing, and 24/7 enquiry automation across a 40-clinic network.",
+    "full_content": "<p class=\"lead\">CareLink Health operated a 40-clinic network drowning in call volume. Every hour of missed calls meant lost appointments and strained front-desk teams. They needed an AI front office that answered in multiple languages, understood medical context, and never dropped a call.</p>\r\n\r\n<h4 class=\"mt-5 mb-3\">The Operational Challenge</h4>\r\n<p>The existing IVR system forced patients through rigid phone trees, and staff spent entire shifts repeating the same answers. A naïve chatbot would have failed — medical conversations require accurate routing, escalation triggers, and human handoff that is seamless rather than frustrating.</p>\r\n\r\n<h4 class=\"mt-5 mb-3\">Our Ecosystem Solution</h4>\r\n<p>CloudAlls Intelligence built a voice-agent architecture combining speech recognition, intent classification, and a retrieval layer trained on the clinic network's actual services and policies:</p>\r\n<ul>\r\n    <li>Appointments booked, rescheduled, or cancelled directly through conversation — synced to the clinic's existing practice-management calendar.</li>\r\n    <li>Smart triage routing that distinguishes routine enquiries from urgent symptoms and escalates to a human within seconds when needed.</li>\r\n    <li>Conversations conducted in English, Malayalam, Hindi, and Tamil with consistent service quality.</li>\r\n</ul>\r\n\r\n<h4 class=\"mt-5 mb-3\">Delivered Outcomes</h4>\r\n<ul>\r\n    <li>68% of inbound calls resolved without human intervention in the first quarter.</li>\r\n    <li>Appointment no-show rates reduced through automated reminder conversations.</li>\r\n    <li>Front-desk staff redeployed to in-clinic patient experience instead of phone duty.</li>\r\n</ul>\r\n\r\n<p>The deployment runs on CloudAlls infrastructure with end-to-end encryption of voice transcripts and strict health-data retention policies.</p>",
+    "image_url": "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=1000&auto=format&fit=crop",
+    "live_link": null,
+    "status": "Published",
+    "created_at": "2026-08-20 00:00:00"
+  },
+  {
+    "id": 7,
+    "title": "E-Commerce Replatform for Marav Stores",
+    "slug": "marav-ecommerce-replatform",
+    "client_name": "Marav Stores Group",
+    "expertise_id": 1,
+    "short_desc": "A headless e-commerce rebuild that migrated 18,000 SKUs to a faster storefront, lifting conversion 31% and cutting page weight in half.",
+    "full_content": "<p class=\"lead\">Marav Stores' decade-old e-commerce platform was slow, fragile, and impossible to extend. Checkout abandonment was climbing, and every seasonal sale pushed the infrastructure past its limits. The business needed a platform engineered for growth, not just another redesign.</p>\r\n\r\n<h4 class=\"mt-5 mb-3\">The Architectural Challenge</h4>\r\n<p>Monolithic storefronts fail under sales pressure because presentation, cart, and payments are entangled in one application. Migrating 18,000 SKUs, customer accounts, and order history without a day of downtime was the core engineering constraint.</p>\r\n\r\n<h4 class=\"mt-5 mb-3\">Our Ecosystem Solution</h4>\r\n<p>CloudAlls Foundry delivered a headless architecture separating storefront, commerce engine, and checkout:</p>\r\n<ul>\r\n    <li>A Next.js storefront with incremental static regeneration — category pages render in milliseconds and stay fresh without full rebuilds.</li>\r\n    <li>Zero-downtime SKU and customer migration using dual-write validation and automated reconciliation scripts.</li>\r\n    <li>Isolated, PCI-scoped checkout service handling UPI, cards, and wallet payments with fraud screening.</li>\r\n</ul>\r\n\r\n<h4 class=\"mt-5 mb-3\">Delivered Outcomes</h4>\r\n<ul>\r\n    <li>Page weight reduced by 52%; Core Web Vitals moved from 'poor' to 'good' across all device classes.</li>\r\n    <li>Conversion rate up 31% in the first two quarters after relaunch.</li>\r\n    <li>Seasonal sale traffic peaks handled without any infrastructure intervention.</li>\r\n</ul>\r\n\r\n<p>Operations now run on CloudAlls infrastructure with automated backups, staged deployments, and a 24/7 monitoring dashboard shared with the client.</p>",
+    "image_url": "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?q=80&w=1000&auto=format&fit=crop",
+    "live_link": null,
+    "status": "Published",
+    "created_at": "2026-08-20 00:00:00"
+  },
+  {
+    "id": 8,
+    "title": "Smart Campus Operations for Al Noor Education",
+    "slug": "al-noor-smart-campus",
+    "client_name": "Al Noor Education Group",
+    "expertise_id": 10,
+    "short_desc": "A unified IoT and access-control deployment across three campuses: attendance, facility energy, CCTV analytics, and visitor management on one platform.",
+    "full_content": "<p class=\"lead\">Al Noor Education Group ran three campuses on disconnected systems — separate attendance registers, CCTV vendors, energy meters, and visitor books. Nothing talked to anything else, and safety incidents took too long to surface. They needed one operational layer over all of it.</p>\r\n\r\n<h4 class=\"mt-5 mb-3\">The Operational Challenge</h4>\r\n<p>Educational facilities juggle thousands of daily movements — students, staff, visitors, buses — and every subsystem historically lived in its own silo. Retrofitting intelligence onto existing hardware without replacing working equipment was essential to keep the budget realistic.</p>\r\n\r\n<h4 class=\"mt-5 mb-3\">Our Ecosystem Solution</h4>\r\n<p>CloudAlls Infrastructure and Operations converged the estates onto a single telemetry platform:</p>\r\n<ul>\r\n    <li>Biometric and card attendance unified with timetable data — late arrivals, absences, and bus dispatch alerts in one feed.</li>\r\n    <li>Existing CCTV retained; video analytics added at the edge for crowd-density and restricted-zone alerts.</li>\r\n    <li>Energy metering on AC, lighting, and pumps with automated off-peak scheduling that cut facility costs.</li>\r\n    <li>Visitor management with pre-registration, photo verification, and host notifications at gate level.</li>\r\n</ul>\r\n\r\n<h4 class=\"mt-5 mb-3\">Delivered Outcomes</h4>\r\n<ul>\r\n    <li>Facility energy costs down 23% in the first year through automated scheduling.</li>\r\n    <li>Incident response time reduced from minutes to seconds via automated alerts to campus safety teams.</li>\r\n    <li>Parents receive automated daily arrival and departure confirmations.</li>\r\n</ul>\r\n\r\n<p>The platform runs on CloudAlls-managed infrastructure with role-based access per campus and encrypted audit trails.</p>",
+    "image_url": "https://images.unsplash.com/photo-1562774053-701939374585?q=80&w=1000&auto=format&fit=crop",
+    "live_link": null,
+    "status": "Published",
+    "created_at": "2026-08-20 00:00:00"
+  },
+  {
+    "id": 9,
+    "title": "Brand System Launch for Tidal Resorts",
+    "slug": "tidal-resorts-brand-system",
+    "client_name": "Tidal Resorts & Hospitality",
+    "expertise_id": 4,
+    "short_desc": "A complete brand identity and digital experience for a coastal hospitality group — wordmark, guidelines, booking-grade website, and campaign assets.",
+    "full_content": "<p class=\"lead\">Tidal Resorts was opening its second property with an identity built on templates: borrowed typography, inconsistent colours, and a booking website that looked nothing like its lobby. CloudAlls Studio rebuilt the brand from first principles and shipped a digital experience worthy of the property itself.</p>\r\n\r\n<h4 class=\"mt-5 mb-3\">The Creative Challenge</h4>\r\n<p>Hospitality brands live and die on the first impression. The identity needed to work across a wayfinding-grade wordmark, a photography-led website with live availability, and OTA-style campaign assets — all from one coherent system.</p>\r\n\r\n<h4 class=\"mt-5 mb-3\">Our Ecosystem Solution</h4>\r\n<p>CloudAlls Studio delivered the full brand system:</p>\r\n<ul>\r\n    <li>Original wordmark, logotype lockups, and a colour system drawn from the coastline context, documented in a full guidelines kit.</li>\r\n    <li>A booking-grade website with real-time room availability, direct booking, and photography-driven storytelling.</li>\r\n    <li>Menu of campaign assets: launch film, OTA imagery, social templates, and printed collateral for on-property use.</li>\r\n</ul>\r\n\r\n<h4 class=\"mt-5 mb-3\">Delivered Outcomes</h4>\r\n<ul>\r\n    <li>Direct bookings up 44% versus the previous template site within six months.</li>\r\n    <li>Brand guidelines adopted across both properties with zero design inconsistencies.</li>\r\n    <li>Launch campaign achieved full occupancy across the opening quarter.</li>\r\n</ul>\r\n\r\n<p>Every asset is produced in-house by the CloudAlls Studio and stored in the brand portal for the client's team.</p>",
+    "image_url": "https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=1000&auto=format&fit=crop",
+    "live_link": null,
+    "status": "Published",
+    "created_at": "2026-08-20 00:00:00"
   }
 ]

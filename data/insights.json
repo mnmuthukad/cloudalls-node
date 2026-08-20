@@ -40,5 +40,61 @@
     "image_url": "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=1000&auto=format&fit=crop",
     "status": "Published",
     "created_at": "2026-02-23 21:57:51"
+  },
+  {
+    "id": 4,
+    "title": "Headless Commerce: Why the Storefront Is No Longer the Business",
+    "slug": "headless-commerce-strategy-2026",
+    "expertise_id": 1,
+    "excerpt": "The storefront used to BE the business. In 2026 it is one channel among many — and the businesses winning treat the commerce engine, not the website, as the centre of gravity.",
+    "content": "<p>The headless conversation has matured past its hype cycle. What began as a way to make websites faster has become the default architecture for any commerce operation that sells beyond a browser — marketplaces, mobile apps, voice ordering, WhatsApp storefronts, and in-store kiosks all now consume the same commerce engine.</p>\r\n<p>The shift is conceptual: <strong>the storefront is a channel; the business logic is the asset.</strong> Organisations that still treat their website as the product rebuild it entirely whenever a channel changes. Organisations that treat the commerce engine as the product plug channels in and out with weeks of effort instead of years.</p>\r\n<h4>What actually moves when you go headless</h4>\r\n<ul>\r\n<li><strong>Presentation decouples from logic.</strong> Catalogue, cart, pricing, and payments live behind an API surface. Every channel consumes the same source of truth.</li>\r\n<li><strong>Teams ship in parallel.</strong> The storefront team deploys weekly without touching checkout; the checkout team evolves payments without blocking marketing.</li>\r\n<li><strong>Performance becomes an engineering fact.</strong> Static and incrementally-generated pages deliver sub-second category experiences that monolithic platforms cannot match under load.</li>\r\n</ul>\r\n<h4>When headless is not worth it</h4>\r\n<p>Honesty matters here: a single-channel catalog business with modest traffic rarely needs this. Headless pays for itself when channels multiply, when team size justifies parallel work, or when seasonal scale exposes monolithic limits. The decision is about operational geometry, not technology fashion.</p>\r\n<p>At CloudAlls, every commerce rebuild since 2025 has shipped headless by default — because the channel landscape will not stop expanding, and the architecture should not have to be rebuilt to follow it.</p>",
+    "meta_title": "Headless Commerce in 2026: Storefront as Channel, Engine as Business | CloudAlls",
+    "meta_description": "Why leading commerce teams treat the commerce engine — not the website — as the centre of gravity, and how headless architecture follows the channel landscape.",
+    "meta_keywords": "headless commerce, e-commerce architecture, storefront strategy, CloudAlls insights",
+    "image_url": "https://images.unsplash.com/photo-1556742111-a301076d9d18?q=80&w=1000&auto=format&fit=crop",
+    "status": "Published",
+    "created_at": "2026-08-19 00:00:00"
+  },
+  {
+    "id": 5,
+    "title": "The Quiet Cost of Technical Debt in AI Systems",
+    "slug": "technical-debt-ai-systems",
+    "expertise_id": 3,
+    "excerpt": "AI features ship fast and rot quietly. The cost of skipping evaluation suites, versioned prompts, and observability is paid exactly when the system matters most.",
+    "content": "<p>Every AI system we audit follows the same pattern: an impressive prototype, a rushed production rollout, and a slow accumulation of quiet failures — hallucinated answers that nobody noticed, prompt changes that degraded quality without anyone measuring, and costs that drifted upward as token usage quietly compounded.</p>\r\n<p>The uncomfortable truth: <strong>AI technical debt is invisible by design.</strong> Unlike a slow database query, a degraded AI answer often looks correct. The failure mode is not an error log — it is eroded trust.</p>\r\n<h4>The three debts that kill AI projects</h4>\r\n<ul>\r\n<li><strong>Evaluation debt.</strong> Systems without automated eval suites regress silently. Every prompt change becomes a coin flip. Building a representative eval set before launch is the single highest-ROI activity in any AI project.</li>\r\n<li><strong>Prompt and model debt.</strong> Prompts edited inline, models swapped ad hoc, and parameters tuned in production without records turn an AI system into an unrepeatable artifact. Versioning is not bureaucracy — it is recoverability.</li>\r\n<li><strong>Observability debt.</strong> Token costs, latency distributions, and answer-quality signals need dashboards from day one, not after the invoice surprises you.</li>\r\n</ul>\r\n<h4>The engineering answer</h4>\r\n<p>Treat AI components like any other production system: versioned artifacts, CI-gated evaluation, cost alerts, and human-review sampling. The teams that ship AI sustainably are not the ones with better models — they are the ones with better discipline.</p>\r\n<p>This is the practice embedded in every CloudAlls Intelligence delivery: an AI system is only as trustworthy as its measurement.</p>",
+    "meta_title": "Technical Debt in AI Systems: The Quiet Cost | CloudAlls Insights",
+    "meta_description": "Why AI systems fail quietly — evaluation debt, prompt drift, and missing observability — and the engineering discipline that keeps them trustworthy.",
+    "meta_keywords": "AI technical debt, LLM evaluation, AI observability, enterprise AI",
+    "image_url": "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?q=80&w=1000&auto=format&fit=crop",
+    "status": "Published",
+    "created_at": "2026-08-18 00:00:00"
+  },
+  {
+    "id": 6,
+    "title": "Zero-Downtime Migrations: The Discipline Nobody Markets",
+    "slug": "zero-downtime-migration-discipline",
+    "expertise_id": 10,
+    "excerpt": "Migrations are not projects; they are campaigns. The difference between a launch that works and a launch that scrambles is written months before go-live.",
+    "content": "<p>Every infrastructure team celebrates migrations that “just worked.” Almost none of them acknowledge how much of that outcome was engineered in advance. A zero-downtime migration is not a technical trick — it is a months-long campaign of dual runs, reconciliation, and staged cutover.</p>\r\n<h4>The discipline in practice</h4>\r\n<ul>\r\n<li><strong>Dual-write validation.</strong> Both old and new systems process real traffic in parallel. Reconciliation scripts compare outcomes continuously until the delta is effectively zero.</li>\r\n<li><strong>Staged cutover.</strong> Traffic moves segment by segment — internal users, low-risk cohorts, then the remainder — with automated rollback at every stage.</li>\r\n<li><strong>Reversibility as a requirement.</strong> If any stage cannot be reversed in minutes, the stage does not proceed. Comfortable rollback is what makes teams brave enough to move fast.</li>\r\n</ul>\r\n<h4>Why this matters commercially</h4>\r\n<p>Downtime is not an embarrassment — it is revenue, reputation, and sometimes safety. For a commerce platform, an hour of outage during peak is five figures. For a healthcare or education system, the stakes are worse. The discipline costs more upfront and pays back in the single digit of incidents.</p>\r\n<p>CloudAlls runs every production migration under this campaign model, with a written rollback plan for every stage. The boring part is the professional part.</p>",
+    "meta_title": "Zero-Downtime Migrations: Campaign-Grade Discipline | CloudAlls Insights",
+    "meta_description": "How production migrations are actually executed: dual-write validation, staged cutover, and enforced reversibility — the discipline that makes them boring in the best way.",
+    "meta_keywords": "zero downtime migration, infrastructure cutover, CloudAlls operations",
+    "image_url": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1000&auto=format&fit=crop",
+    "status": "Published",
+    "created_at": "2026-08-17 00:00:00"
+  },
+  {
+    "id": 7,
+    "title": "Design Systems for Companies That Outgrow Their First 100 Screens",
+    "slug": "design-systems-scale-beyond-screens",
+    "expertise_id": 4,
+    "excerpt": "Your first hundred screens were designed. The next thousand need to be engineered. The pivot from pixel craft to design-system infrastructure is a company-building decision.",
+    "content": "<p>There is a moment in every product company's life when the design team stops being the bottleneck and starts being the casualty: features duplicate each other, components drift across platforms, and “similar” buttons become seventeen different buttons.</p>\r\n<p>Scaling design is not hiring more designers. It is <strong>converting design into infrastructure</strong> — components, tokens, and rules that product teams consume rather than recreate.</p>\r\n<h4>The three layers of a real design system</h4>\r\n<ul>\r\n<li><strong>Tokens.</strong> Colour, spacing, type, and motion defined once as code. A token change propagates everywhere; a hex value hunt does not.</li>\r\n<li><strong>Components.</strong> Buttons, forms, cards, and charts shipped as versioned packages with usage documentation and accessible defaults — consumed by web, mobile, and desktop teams from the same source.</li>\r\n<li><strong>Patterns.</strong> The documented “how we solve this problem” library: empty states, error recovery, onboarding flows. Patterns encode judgment, which is the thing most systems lose first.</li>\r\n</ul>\r\n<h4>What actually changes</h4>\r\n<p>Feature velocity goes up because teams stop designing fundamentals. Consistency becomes automatic because deviation requires effort. And designers graduate from pixel craft to solving problems the components do not yet cover — which is where their value actually lives.</p>\r\n<p>CloudAlls Studio builds design systems as products: versioned, documented, and adopted through engineering workflows rather than by goodwill.</p>",
+    "meta_title": "Design Systems at Scale: From Screens to Infrastructure | CloudAlls Insights",
+    "meta_description": "How product companies pivot from pixel craft to design-system infrastructure — tokens, components, and patterns that make consistency automatic.",
+    "meta_keywords": "design systems, component libraries, design tokens, CloudAlls Studio",
+    "image_url": "https://images.unsplash.com/photo-1558655146-9f40138edfeb?q=80&w=1000&auto=format&fit=crop",
+    "status": "Published",
+    "created_at": "2026-08-16 00:00:00"
   }
 ]
