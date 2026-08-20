@@ -7,9 +7,36 @@
     "eyebrow": "Clear commercial pathways",
     "hero": "Technology investment with operational certainty.",
     "sections": [
-      { "heading": "Foundation", "body": "For organizations establishing a dependable digital foundation with focused delivery, defined service levels, and measurable outcomes.", "bullets": ["Discovery and architecture review with written blueprint", "Responsive web experience with performance budgets", "Security and performance baseline with documented handover", "Milestone-based invoicing and acceptance criteria"] },
-      { "heading": "Scale", "body": "For teams that need an integrated engineering partner for data, automation, and customer-facing systems across bi-weekly sprint cycles.", "bullets": ["Product and platform engineering in agile sprints", "AI workflow integration with data sovereignty options", "Observability, backups, and rollback procedures", "Dedicated delivery lead and sprint reviews"] },
-      { "heading": "Enterprise", "body": "For organizations operating complex systems where governance, resilience, and trust are non-negotiable — with contractual SLAs and procurement-ready documentation.", "bullets": ["Zero-trust architecture planning and security reviews", "Multi-system integration with data residency guarantees", "Tiered SLAs with defined response and resolution targets", "Executive reporting and quarterly operating reviews"] }
+      {
+        "heading": "Foundation",
+        "body": "For organizations establishing a dependable digital foundation with focused delivery, defined service levels, and measurable outcomes.",
+        "bullets": [
+          "Discovery and architecture review with written blueprint",
+          "Responsive web experience with performance budgets",
+          "Security and performance baseline with documented handover",
+          "Milestone-based invoicing and acceptance criteria"
+        ]
+      },
+      {
+        "heading": "Scale",
+        "body": "For teams that need an integrated engineering partner for data, automation, and customer-facing systems across bi-weekly sprint cycles.",
+        "bullets": [
+          "Product and platform engineering in agile sprints",
+          "AI workflow integration with data sovereignty options",
+          "Observability, backups, and rollback procedures",
+          "Dedicated delivery lead and sprint reviews"
+        ]
+      },
+      {
+        "heading": "Enterprise",
+        "body": "For organizations operating complex systems where governance, resilience, and trust are non-negotiable — with contractual SLAs and procurement-ready documentation.",
+        "bullets": [
+          "Zero-trust architecture planning and security reviews",
+          "Multi-system integration with data residency guarantees",
+          "Tiered SLAs with defined response and resolution targets",
+          "Executive reporting and quarterly operating reviews"
+        ]
+      }
     ]
   },
   "about": {
@@ -20,9 +47,18 @@
     "eyebrow": "The CloudAlls ecosystem",
     "hero": "Organizing the new technology culture.",
     "sections": [
-      { "heading": "A multidisciplinary operating model", "body": "CloudAlls connects strategy, product thinking, engineering, creative systems, and operational discipline so organizations can move from ideas to dependable outcomes." },
-      { "heading": "Built for trust", "body": "We design for clarity, privacy, accessibility, measurable performance, and long-term maintainability from the first system decision." },
-      { "heading": "Rooted in India, designed for the world", "body": "Our work is shaped in Kerala and delivered with a global standard of quality, responsibility, and technical rigor." }
+      {
+        "heading": "A multidisciplinary operating model",
+        "body": "CloudAlls connects strategy, product thinking, engineering, creative systems, and operational discipline so organizations can move from ideas to dependable outcomes."
+      },
+      {
+        "heading": "Built for trust",
+        "body": "We design for clarity, privacy, accessibility, measurable performance, and long-term maintainability from the first system decision."
+      },
+      {
+        "heading": "Rooted in India, designed for the world",
+        "body": "Our work is shaped in Kerala and delivered with a global standard of quality, responsibility, and technical rigor."
+      }
     ]
   },
   "expertise": {
@@ -33,9 +69,18 @@
     "eyebrow": "Capabilities",
     "hero": "Technology that makes the complex usable.",
     "sections": [
-      { "heading": "Artificial intelligence", "body": "Practical AI systems that improve decision-making, automate repetitive work, and create better customer and team experiences." },
-      { "heading": "Web and platform engineering", "body": "Fast, accessible, secure digital products built on a clear architecture and measured against real business outcomes." },
-      { "heading": "Creative media and brand systems", "body": "Visual and interactive systems that make technical value understandable, memorable, and actionable." }
+      {
+        "heading": "Artificial intelligence",
+        "body": "Practical AI systems that improve decision-making, automate repetitive work, and create better customer and team experiences."
+      },
+      {
+        "heading": "Web and platform engineering",
+        "body": "Fast, accessible, secure digital products built on a clear architecture and measured against real business outcomes."
+      },
+      {
+        "heading": "Creative media and brand systems",
+        "body": "Visual and interactive systems that make technical value understandable, memorable, and actionable."
+      }
     ]
   },
   "methodology": {
@@ -46,12 +91,30 @@
     "eyebrow": "The deployment pipeline",
     "hero": "From ambiguity to operational certainty.",
     "sections": [
-      { "heading": "01 — Understand", "body": "Frame the problem, users, constraints, success measures, and risks before choosing technology." },
-      { "heading": "02 — Architect", "body": "Design the system boundaries, data contracts, security model, and delivery plan." },
-      { "heading": "03 — Build", "body": "Implement the smallest reliable path with clean interfaces, tests, and observable behavior." },
-      { "heading": "04 — Validate", "body": "Test accessibility, performance, security, data integrity, and real user workflows." },
-      { "heading": "05 — Operate", "body": "Deploy with monitoring, backups, rollback procedures, and clear ownership." },
-      { "heading": "06 — Improve", "body": "Use evidence from production to refine the product, platform, and operating model." }
+      {
+        "heading": "01 — Understand",
+        "body": "Frame the problem, users, constraints, success measures, and risks before choosing technology."
+      },
+      {
+        "heading": "02 — Architect",
+        "body": "Design the system boundaries, data contracts, security model, and delivery plan."
+      },
+      {
+        "heading": "03 — Build",
+        "body": "Implement the smallest reliable path with clean interfaces, tests, and observable behavior."
+      },
+      {
+        "heading": "04 — Validate",
+        "body": "Test accessibility, performance, security, data integrity, and real user workflows."
+      },
+      {
+        "heading": "05 — Operate",
+        "body": "Deploy with monitoring, backups, rollback procedures, and clear ownership."
+      },
+      {
+        "heading": "06 — Improve",
+        "body": "Use evidence from production to refine the product, platform, and operating model."
+      }
     ]
   },
   "labs": {
@@ -62,10 +125,42 @@
     "eyebrow": "Deep tech R&D · CloudAlls Labs",
     "hero": "Experiments with a path to reality.",
     "sections": [
-      { "heading": "Agentic workflow engine", "body": "A typed, auditable orchestration layer for autonomous enterprise workflows — invoice processing, support triage, and reporting agents with explicit human-approval gates and full decision traceability.", "bullets": ["Typed tool registries and human-approval gates", "Decision-trace audit logs", "Private RAG retrieval layer"] },
-      { "heading": "Zero-trust device mesh", "body": "Reference architecture for micro-segmented physical environments — IoT, CCTV, and access-control devices isolated from core networks with encrypted telemetry and automated lateral-movement detection.", "bullets": ["Micro-segmented network zones", "Encrypted telemetry pipelines", "Reference deployment blueprints"] },
-      { "heading": "Edge telemetry gateway", "body": "An open hardware-firmware reference design bringing observability to custom IoT and machinery builds, with secure firmware updates and authenticated data channels.", "bullets": ["Secure over-the-air firmware updates", "Authenticated device identity", "Low-cost MCU reference designs"] },
-      { "heading": "Open source at CloudAlls", "body": "Practical knowledge becomes more valuable when it is documented, tested, and shared. Labs releases developer tooling and reference architectures on GitHub under the CloudAlls lab organization for the wider engineering community, extending the Foundry research agenda.", "bullets": ["Documented reference architectures", "Community-ready tooling", "Responsible disclosure practices"] }
+      {
+        "heading": "Agentic workflow engine",
+        "body": "A typed, auditable orchestration layer for autonomous enterprise workflows — invoice processing, support triage, and reporting agents with explicit human-approval gates and full decision traceability.",
+        "bullets": [
+          "Typed tool registries and human-approval gates",
+          "Decision-trace audit logs",
+          "Private RAG retrieval layer"
+        ]
+      },
+      {
+        "heading": "Zero-trust device mesh",
+        "body": "Reference architecture for micro-segmented physical environments — IoT, CCTV, and access-control devices isolated from core networks with encrypted telemetry and automated lateral-movement detection.",
+        "bullets": [
+          "Micro-segmented network zones",
+          "Encrypted telemetry pipelines",
+          "Reference deployment blueprints"
+        ]
+      },
+      {
+        "heading": "Edge telemetry gateway",
+        "body": "An open hardware-firmware reference design bringing observability to custom IoT and machinery builds, with secure firmware updates and authenticated data channels.",
+        "bullets": [
+          "Secure over-the-air firmware updates",
+          "Authenticated device identity",
+          "Low-cost MCU reference designs"
+        ]
+      },
+      {
+        "heading": "Open source at CloudAlls",
+        "body": "Practical knowledge becomes more valuable when it is documented, tested, and shared. Labs releases developer tooling and reference architectures on GitHub under the CloudAlls lab organization for the wider engineering community, extending the Foundry research agenda.",
+        "bullets": [
+          "Documented reference architectures",
+          "Community-ready tooling",
+          "Responsible disclosure practices"
+        ]
+      }
     ]
   },
   "engineering": {
@@ -76,9 +171,34 @@
     "eyebrow": "Engineering and trust",
     "hero": "Trust is an engineering property.",
     "sections": [
-      { "heading": "Global infrastructure status", "body": "We design for observable, recoverable systems with explicit health checks, useful logs, and documented incident paths." },
-      { "heading": "Security core", "body": "Security is built into the request boundary, data layer, deployment process, and operational review—not added after launch." },
-      { "heading": "Continuous auditing", "body": "Code, dependencies, configuration, and access are reviewed continuously so the system improves as it grows." }
+      {
+        "heading": "Global infrastructure status",
+        "body": "CloudAlls platforms are delivered against a defined operational baseline: multi-region deployment targets, encrypted data in transit and at rest, and published availability objectives for contracted services. Infrastructure reviews are conducted quarterly, and incident summaries are recorded in the engineering log with corrective actions attached to each event.",
+        "bullets": [
+          "Multi-region deployment targets for client workloads",
+          "Encrypted data in transit (TLS 1.3) and at rest (AES-256)",
+          "Quarterly infrastructure reviews with recorded corrective actions"
+        ]
+      },
+      {
+        "heading": "Security core",
+        "body": "Security is engineered, not bolted on. Every delivery inherits the CloudAlls baseline: least-privilege access, secrets management through a dedicated vault, dependency auditing on each build, and rate limiting with brute-force protection at every public surface. Penetration assessments are commissioned before major releases.",
+        "bullets": [
+          "Least-privilege IAM and vault-backed secrets management",
+          "Dependency auditing and patching on every build pipeline run",
+          "Rate limiting, brute-force protection, and Web Application Firewall rules on public surfaces",
+          "Commissioned penetration assessments before major releases"
+        ]
+      },
+      {
+        "heading": "Continuous auditing",
+        "body": "Trust is demonstrated through records, not claims. Audit trails, access logs, and configuration snapshots are retained against the schedules published in the legal center. Third-party compliance frameworks — including the standards referenced in our legal documents — are applied to client environments where contracted, and audit summaries are available to authorized parties on request.",
+        "bullets": [
+          "Retained audit trails, access logs, and configuration snapshots",
+          "Compliance frameworks applied to contracted client environments",
+          "Authorized-party audit summaries available on request"
+        ]
+      }
     ]
   },
   "events": {
@@ -89,10 +209,34 @@
     "eyebrow": "Community and learning",
     "hero": "Ideas become useful when they are shared.",
     "sections": [
-      { "heading": "Format and focus", "body": "CloudAlls events are working sessions rather than marketing talks. Each session is led by the engineers who build the systems, uses real architectures from live CloudAlls deliveries, and ends with decisions your team can apply the same week.", "bullets": ["Architecture deep-dives: zero trust, API gateways, and data sovereignty", "Practical AI adoption: agents, RAG, workflow automation, and cost control", "Security and compliance: audits, incident response, and continuous assurance", "Delivery practice: accessibility, performance budgets, and observability"] },
-      { "heading": "Session types", "body": "Sessions run in three formats. Executive briefings are 45 minutes for leadership teams deciding on technology direction. Developer workshops are hands-on, 2-3 hour sessions with live environments and reference repositories. Community webinars are open, recorded, and published to the CloudAlls insights library afterward.", "bullets": ["Executive briefings — 45 minutes, leadership focus", "Developer workshops — hands-on, 2-3 hours, with reference repositories", "Community webinars — open, recorded, and published afterward"] },
-      { "heading": "Bring your questions", "body": "Every session is shaped by the audience. Share your context, constraints, and open questions when you register, and the session will be calibrated to your decision point rather than a generic agenda. Recordings and supporting documentation are shared with attendees after each session."
-}, { "heading": "Request a private session", "body": "Organizations can request a private briefing or workshop through the contact channel. Sessions are prepared against your actual architecture and roadmap, with a written summary and action list delivered within five business days." } ]
+      {
+        "heading": "Format and focus",
+        "body": "CloudAlls events are working sessions rather than marketing talks. Each session is led by the engineers who build the systems, uses real architectures from live CloudAlls deliveries, and ends with decisions your team can apply the same week.",
+        "bullets": [
+          "Architecture deep-dives: zero trust, API gateways, and data sovereignty",
+          "Practical AI adoption: agents, RAG, workflow automation, and cost control",
+          "Security and compliance: audits, incident response, and continuous assurance",
+          "Delivery practice: accessibility, performance budgets, and observability"
+        ]
+      },
+      {
+        "heading": "Session types",
+        "body": "Sessions run in three formats. Executive briefings are 45 minutes for leadership teams deciding on technology direction. Developer workshops are hands-on, 2-3 hour sessions with live environments and reference repositories. Community webinars are open, recorded, and published to the CloudAlls insights library afterward.",
+        "bullets": [
+          "Executive briefings — 45 minutes, leadership focus",
+          "Developer workshops — hands-on, 2-3 hours, with reference repositories",
+          "Community webinars — open, recorded, and published afterward"
+        ]
+      },
+      {
+        "heading": "Bring your questions",
+        "body": "Every session is shaped by the audience. Share your context, constraints, and open questions when you register, and the session will be calibrated to your decision point rather than a generic agenda. Recordings and supporting documentation are shared with attendees after each session."
+      },
+      {
+        "heading": "Request a private session",
+        "body": "Organizations can request a private briefing or workshop through the contact channel. Sessions are prepared against your actual architecture and roadmap, with a written summary and action list delivered within five business days."
+      }
+    ]
   },
   "brand": {
     "currentPage": "brand",
@@ -102,8 +246,14 @@
     "eyebrow": "Brand system",
     "hero": "A clear identity for a connected ecosystem.",
     "sections": [
-      { "heading": "Use with care", "body": "The CloudAlls name and visual identity represent a culture of clarity, responsibility, and technical ambition. Please preserve spacing, contrast, and context when using the assets." },
-      { "heading": "Media enquiries", "body": "For approved logos, partnership stories, or press enquiries, contact the CloudAlls team." }
+      {
+        "heading": "Use with care",
+        "body": "The CloudAlls name and visual identity represent a culture of clarity, responsibility, and technical ambition. Please preserve spacing, contrast, and context when using the assets."
+      },
+      {
+        "heading": "Media enquiries",
+        "body": "For approved logos, partnership stories, or press enquiries, contact the CloudAlls team."
+      }
     ]
   },
   "investors": {
@@ -114,10 +264,37 @@
     "eyebrow": "Company information",
     "hero": "Building durable value through useful technology.",
     "sections": [
-      { "heading": "Investment thesis", "body": "CloudAlls operates a full-spectrum technology model — strategy, engineering, AI, and physical infrastructure under one accountable organization. Diversified revenue across project delivery, retainer operations, and academy programs creates a resilient base while enterprise capability development compounds our margin and positioning.", "bullets": ["Full-spectrum delivery model", "Recurring retainer revenue base", "Academy-to-hiring talent pipeline"] },
-      { "heading": "Operating footprint", "body": "Headquartered in Kerala, India, with delivery operations extending across India and a growing Gulf footprint — including on-site cloud infrastructure leadership in Dubai, UAE — CloudAlls serves clients across India, the GCC, and North America.", "bullets": ["Kerala, India — headquarters and engineering core", "Dubai, UAE — Gulf operations", "India, GCC, and North American client base"] },
-      { "heading": "Governance and reporting", "body": "The company is guided by an advisory board spanning legal and compliance, venture capital, and deep-tech strategy. Financial disclosures for accredited enquiries are available on request; early-stage operating metrics are shared directly with prospective partners and investors through a structured information request process.", "bullets": ["Advisory board across compliance, VC, and deep tech", "Structured disclosure for accredited enquiries", "Quarterly operating highlights for partners"] },
-      { "heading": "Information requests", "body": "For official company or investor enquiries, use the contact channel so the request can be routed securely to the investor relations desk." }
+      {
+        "heading": "Investment thesis",
+        "body": "CloudAlls operates a full-spectrum technology model — strategy, engineering, AI, and physical infrastructure under one accountable organization. Diversified revenue across project delivery, retainer operations, and academy programs creates a resilient base while enterprise capability development compounds our margin and positioning.",
+        "bullets": [
+          "Full-spectrum delivery model",
+          "Recurring retainer revenue base",
+          "Academy-to-hiring talent pipeline"
+        ]
+      },
+      {
+        "heading": "Operating footprint",
+        "body": "Headquartered in Kerala, India, with delivery operations extending across India and a growing Gulf footprint — including on-site cloud infrastructure leadership in Dubai, UAE — CloudAlls serves clients across India, the GCC, and North America.",
+        "bullets": [
+          "Kerala, India — headquarters and engineering core",
+          "Dubai, UAE — Gulf operations",
+          "India, GCC, and North American client base"
+        ]
+      },
+      {
+        "heading": "Governance and reporting",
+        "body": "The company is guided by an advisory board spanning legal and compliance, venture capital, and deep-tech strategy. Financial disclosures for accredited enquiries are available on request; early-stage operating metrics are shared directly with prospective partners and investors through a structured information request process.",
+        "bullets": [
+          "Advisory board across compliance, VC, and deep tech",
+          "Structured disclosure for accredited enquiries",
+          "Quarterly operating highlights for partners"
+        ]
+      },
+      {
+        "heading": "Information requests",
+        "body": "For official company or investor enquiries, use the contact channel so the request can be routed securely to the investor relations desk."
+      }
     ]
   },
   "media": {
@@ -128,10 +305,22 @@
     "eyebrow": "News and impact",
     "hero": "Technology should leave people and systems stronger.",
     "sections": [
-      { "heading": "Responsible progress", "body": "We measure progress by the quality of the systems we create and the opportunities they open for people, teams, and communities — not by output volume. Every CloudAlls delivery is assessed against user impact, operational resilience, and long-term maintainability." },
-      { "heading": "Announcements", "body": "Company milestones, product releases, partnership news, and ecosystem updates are published here and through the CloudAlls insights library as they are verified and approved for public release." },
-      { "heading": "Social impact", "body": "The CloudAlls Academy trains engineers from non-traditional backgrounds and feeds directly into hiring pipelines across the ecosystem, turning learning into employment rather than certificates alone. Community workshops and open reference architectures extend this reach beyond our own teams." },
-      { "heading": "Press and media", "body": "For media enquiries, interviews, and approved statements, contact the CloudAlls communications team through the contact channel with the subject line 'Media enquiry'." }
+      {
+        "heading": "Responsible progress",
+        "body": "We measure progress by the quality of the systems we create and the opportunities they open for people, teams, and communities — not by output volume. Every CloudAlls delivery is assessed against user impact, operational resilience, and long-term maintainability."
+      },
+      {
+        "heading": "Announcements",
+        "body": "Company milestones, product releases, partnership news, and ecosystem updates are published here and through the CloudAlls insights library as they are verified and approved for public release. Announcements follow an editorial standard: technical claims are verified against production evidence before publication."
+      },
+      {
+        "heading": "Social impact",
+        "body": "The CloudAlls Academy trains engineers from non-traditional backgrounds and feeds directly into hiring pipelines across the ecosystem, turning learning into employment rather than certificates alone. Community workshops and open reference architectures extend this reach beyond our own teams."
+      },
+      {
+        "heading": "Press and media",
+        "body": "For media enquiries, interviews, and approved statements, contact the CloudAlls communications team through the contact channel with the subject line 'Media enquiry'. Spokesperson availability, approved facts, and image assets are provided within three business days of a verified request."
+      }
     ]
   },
   "responsibility": {
@@ -142,9 +331,22 @@
     "eyebrow": "Impact by design",
     "hero": "Responsibility is part of the system.",
     "sections": [
-      { "heading": "Privacy and dignity", "body": "We treat personal data, consent, accessibility, and human context as first-class engineering requirements. Data minimization, explicit consent flows, retention limits, and deletion rights are enforced in the architecture, not just in policy. Details are published in the legal center under privacy and data-request policies." },
-      { "heading": "Inclusive access", "body": "Every CloudAlls product is built against WCAG accessibility targets with keyboard navigation, screen-reader compatibility, reduced-motion support, and readable contrast — validated during delivery, not added afterward. Systems should remain useful across devices, abilities, languages, and levels of technical confidence." },
-      { "heading": "Community learning", "body": "The CloudAlls Academy provides structured pathways in engineering, AI, and operations for learners from non-traditional backgrounds, with direct hiring pipelines across the ecosystem. Open reference architectures, documented tooling, and free community workshops extend that reach to the wider engineering community." }
+      {
+        "heading": "Privacy and dignity",
+        "body": "We treat personal data, consent, accessibility, and human context as first-class engineering requirements. Data minimization, explicit consent flows, retention limits, and deletion rights are enforced in the architecture, not just in policy. Details are published in the legal center under privacy and data-request policies."
+      },
+      {
+        "heading": "Inclusive access",
+        "body": "Every CloudAlls product is built against WCAG accessibility targets with keyboard navigation, screen-reader compatibility, reduced-motion support, and readable contrast — validated during delivery, not added afterward. Systems should remain useful across devices, abilities, languages, and levels of technical confidence."
+      },
+      {
+        "heading": "Community learning",
+        "body": "The CloudAlls Academy provides structured pathways in engineering, AI, and operations for learners from non-traditional backgrounds, with direct hiring pipelines across the ecosystem. Open reference architectures, documented tooling, and free community workshops extend that reach to the wider engineering community."
+      },
+      {
+        "heading": "Sustainable delivery",
+        "body": "Delivery decisions carry environmental weight. We favor architectures that reduce computational waste — efficient data pipelines, cached assets, right-sized infrastructure — and we publish performance budgets that keep page weight, energy use, and user experience in balance."
+      }
     ]
   },
   "resources": {
@@ -155,9 +357,18 @@
     "eyebrow": "Developer hub",
     "hero": "Useful knowledge, organized for action.",
     "sections": [
-      { "heading": "Insights", "body": "Read practical thinking on AI integration, platform engineering, security, design systems, and operational excellence." },
-      { "heading": "Case studies", "body": "Explore how clear architecture and focused execution turn complex requirements into dependable outcomes." },
-      { "heading": "Events and workshops", "body": "Join the CloudAlls community for live sessions and hands-on learning." }
+      {
+        "heading": "Insights",
+        "body": "Read practical thinking on AI integration, platform engineering, security, design systems, and operational excellence."
+      },
+      {
+        "heading": "Case studies",
+        "body": "Explore how clear architecture and focused execution turn complex requirements into dependable outcomes."
+      },
+      {
+        "heading": "Events and workshops",
+        "body": "Join the CloudAlls community for live sessions and hands-on learning."
+      }
     ]
   },
   "faq": {
@@ -168,9 +379,18 @@
     "eyebrow": "Knowledge base",
     "hero": "Good questions create better systems.",
     "sections": [
-      { "heading": "What does CloudAlls build?", "body": "We build secure web platforms, AI-assisted workflows, digital experiences, and operational systems tailored to the organization using them." },
-      { "heading": "How do projects begin?", "body": "Projects begin with a focused discovery conversation covering goals, users, constraints, risks, and measurable outcomes." },
-      { "heading": "How do you handle security?", "body": "Security is addressed through least privilege, input validation, secure sessions, protected secrets, dependency updates, testing, and operational review." }
+      {
+        "heading": "What does CloudAlls build?",
+        "body": "We build secure web platforms, AI-assisted workflows, digital experiences, and operational systems tailored to the organization using them."
+      },
+      {
+        "heading": "How do projects begin?",
+        "body": "Projects begin with a focused discovery conversation covering goals, users, constraints, risks, and measurable outcomes."
+      },
+      {
+        "heading": "How do you handle security?",
+        "body": "Security is addressed through least privilege, input validation, secure sessions, protected secrets, dependency updates, testing, and operational review."
+      }
     ]
   }
 }
