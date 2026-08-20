@@ -82,12 +82,19 @@
   var total = rows.length;
   var state = { topic: 'all', query: '' };
 
+  // Decode HTML entities (e.g. &amp;, &#8208;) in data attributes so search matches plain text.
+  var decoy = document.createElement('div');
+  function decode(text) {
+    decoy.innerHTML = String(text || '');
+    return decoy.textContent || '';
+  }
+
   function applyFilter() {
     var q = state.query.trim().toLowerCase();
     var visible = 0;
     rows.forEach(function (row) {
       var tOk = state.topic === 'all' || String(row.getAttribute('data-topic') || '') === state.topic;
-      var qOk = !q || String(row.getAttribute('data-q') || '').indexOf(q) > -1;
+      var qOk = !q || decode(row.getAttribute('data-q')).indexOf(q) > -1;
       var show = tOk && qOk;
       row.style.display = show ? '' : 'none';
       if (show) visible += 1;

@@ -73,6 +73,13 @@
   var allCards = Array.prototype.slice.call(document.querySelectorAll('.catalogue-card'));
   var state = { wing: 'all', query: '' };
 
+  // Decode HTML entities (e.g. &amp;) in data attributes so search matches plain text.
+  var decoy = document.createElement('div');
+  function decode(text) {
+    decoy.innerHTML = String(text || '');
+    return decoy.textContent || '';
+  }
+
   function applyFilter() {
     var q = state.query.trim().toLowerCase();
     var anyVisible = false;
@@ -82,7 +89,7 @@
       var groupVisible = 0;
       cards.forEach(function (card) {
         var wingOk = state.wing === 'all' || String(card.getAttribute('data-wing') || '') === state.wing;
-        var qOk = !q || String(card.getAttribute('data-title') || '').indexOf(q) > -1 || String(card.getAttribute('data-desc') || '').indexOf(q) > -1;
+        var qOk = !q || decode(card.getAttribute('data-title')).indexOf(q) > -1 || decode(card.getAttribute('data-desc')).indexOf(q) > -1;
         var show = wingOk && qOk;
         card.style.display = show ? '' : 'none';
         if (show) { groupVisible += 1; totalVisible += 1; }
