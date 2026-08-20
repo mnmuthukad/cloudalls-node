@@ -223,7 +223,7 @@ export async function getPublishedFaqs(): Promise<FaqRow[]> {
   const db = getPublicDb();
   if (!db) return editableFaqs;
   try {
-    const [rows] = await db.query<FaqRow[]>("SELECT id,question,answer,expertise_id,display_order FROM faqs WHERE status = 'Published' ORDER BY display_order ASC, created_at DESC");
+    const [rows] = await db.query<FaqRow[]>("SELECT id,question,answer,expertise_id,display_order FROM faqs WHERE status = 'Published' AND id >= 1000 ORDER BY display_order ASC, id ASC");
     return rows.length ? rows : editableFaqs;
   } catch (error) {
     console.error("PUBLIC_DB FAQ query failed", error);

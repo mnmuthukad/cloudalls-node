@@ -195,6 +195,9 @@ export async function restructureBrandDatabase(pool: Pool | null): Promise<void>
       // Curated service FAQs (ids >= 1000) are fully owned by faqs.json: refresh them on
       // every startup so rewritten question/answer text is always reflected on the site.
       await pool.query(`DELETE FROM faqs WHERE id >= 1000`);
+      // Stale pre-restructure legacy rows (ids below 1000) are no longer used anywhere
+      // on the site; remove them so the FAQ listing stays clean.
+      await pool.query(`DELETE FROM faqs WHERE id < 1000`);
       for (const f of targetFaqs) {
         await pool.query(
           `INSERT INTO faqs (id, question, answer, expertise_id, display_order, status) VALUES (?, ?, ?, ?, ?, ?)`,
