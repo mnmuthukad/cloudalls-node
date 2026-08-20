@@ -1,134 +1,76 @@
 <%- include('../layouts/header', { pageTitle, pageDescription, pageKeywords, canonicalUrl, pageImage, settings, currentPage, socialLinks, schemaPhone }) %>
 <%
-  // Group curated FAQs by service division (expertise page style).
-  // Service FAQs carry expertise_id; general FAQs have expertise_id null/0.
-  var serviceByName = {};
-  expertise.forEach(function (item) { serviceByName[String(item.id)] = item; });
-
-  var generalFaqs = [];
-  var faqsByExpertise = {};
+  // Categorize FAQs by service keywords for the topic filter chips.
+  // Service FAQs carry expertise_id; global FAQs have expertise_id null.
+  var topicMap = {};
   faqs.forEach(function (faq) {
-    if (faq.id >= 1000 && faq.expertise_id) {
-      faqsByExpertise[String(faq.expertise_id)] = faqsByExpertise[String(faq.expertise_id)] || [];
-      faqsByExpertise[String(faq.expertise_id)].push(faq);
-    } else {
-      generalFaqs.push(faq);
-    }
+    // Curated FAQ rows have id >= 1000. Among them, those with an expertise_id
+    // belong to a specific service; the rest are general/company questions.
+    var tid = (faq.id >= 1000 && faq.expertise_id) ? 'service' : 'general';
+    topicMap[tid] = topicMap[tid] || [];
+    topicMap[tid].push(faq);
   });
-
-  // Deduplicate services by slug (defense-in-depth): a stale legacy row and the
-  // current catalogue row can coexist under the same ID, which would otherwise
-  // render their FAQs twice. Keep the first occurrence in display order.
-  var dedupedExpertise = [];
-  var seenSlug = {};
-  expertise.forEach(function (item) {
-    if (seenSlug[item.slug]) return;
-    seenSlug[item.slug] = true;
-    dedupedExpertise.push(item);
-  });
-
-  // Group services that have FAQs by division, ordered like the expertise page.
-  var divGroups = [];
-  var seenDiv = {};
-  dedupedExpertise.forEach(function (item) {
-    var list = faqsByExpertise[String(item.id)];
-    if (!list || !list.length) return;
-    var div = String(item.division || 'Other').trim();
-    var g = seenDiv[div];
-    if (!g) { g = { division: div, items: [], order: item.display_order || 0 }; seenDiv[div] = g; divGroups.push(g); }
-    g.items.push({ expertise: item, faqs: list });
-    if ((item.display_order || 0) < g.order) g.order = item.display_order || 0;
-  });
-  divGroups.sort(function (a, b) { return a.order - b.order; });
+  var serviceFaqs = topicMap.service || [];
+  var generalFaqs = topicMap.general || [];
+  var hasCategories = serviceFaqs.length && generalFaqs.length;
 %>
-<section class="editorial-hero"><div class="container"><p class="editorial-kicker mb-3">Help centre</p><h1 class="mb-4">Answers before you ask.</h1><p class="lead mb-0">Questions grouped by service area, with a search for anything else. Browse by division below, or find your answer in seconds.</p></div></section>
+<section class="editorial-hero"><div class="container"><p class="editorial-kicker mb-3">Help centre</p><h1 class="mb-4">Answers before you ask.</h1><p class="lead mb-0">Search our answers by keyword, or jump to a topic. Can't find what you need? Ask us directly.</p></div></section>
 
 <section class="editorial-section bg-white" id="faq-section">
   <div class="container py-lg-4">
-
-    <!-- Search: the fastest way to find an answer -->
+    <!-- Search: the fastest way to find an answer (same treatment as the expertise page) -->
     <div class="row justify-content-center mb-4">
       <div class="col-lg-8">
         <div class="position-relative">
           <i class="fa-solid fa-magnifying-glass position-absolute text-muted search-icon-left" style="top: 50%; transform: translateY(-50%);" aria-hidden="true"></i>
           <input type="search" id="faq-search" class="form-control form-control-lg ps-5 rounded-pill" placeholder="Search questions — e.g. security, payment, timeline, support..." aria-label="Search FAQs">
         </div>
-        <p class="text-muted small mt-2 mb-0 text-center" id="search-hint">Type to filter instantly, or browse the service areas below.</p>
+        <p class="text-muted small mt-2 mb-0 text-center" id="search-hint">Type to filter instantly, or browse by topic below.</p>
       </div>
     </div>
 
-    <div id="faq-list">
-    <% divGroups.forEach(function (g, gi) { %>
-      <div class="division-group mb-5" data-division="<%= String(g.division).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') %>">
-        <div class="d-flex align-items-baseline gap-3 mb-3 pt-2 border-bottom">
-          <h2 class="h4 fw-bold mb-0"><%= g.division %></h2>
-          <span class="badge rounded-pill bg-primary-subtle text-primary-emphasis fw-medium"><%= g.items.reduce(function (n, it) { return n + it.faqs.length; }, 0) %> questions</span>
-        </div>
-        <div class="row g-3">
-        <% g.items.forEach(function (it) { %>
-          <div class="col-12 col-lg-6 catalogue-card faq-card" data-title="<%= String(it.expertise.title).toLowerCase() %>" data-service-faq="1">
-            <div class="p-4 rounded-3 bg-white border h-100" style="border-color:#eef1f6;">
-              <div class="d-flex align-items-start gap-3 mb-3">
-                <span class="capability-icon mt-1"><i class="fa-solid <%= it.expertise.icon || 'fa-circle-question' %>" aria-hidden="true"></i></span>
-                <div>
-                  <p class="small text-primary fw-semibold mb-1">CloudAlls <%= it.expertise.division %></p>
-                  <h3 class="h5 fw-bold mb-0">
-                    <a class="text-decoration-none text-reset" href="/expertise/<%= encodeURIComponent(it.expertise.slug) %>"><%= it.expertise.title %></a>
-                  </h3>
-                </div>
-              </div>
-              <div class="accordion" id="faq-accordion-<%= it.expertise.id %>-<%= gi %>">
-              <% it.faqs.forEach(function (faq, qi) { %>
-                <div class="accordion-item mb-2 border rounded-2 overflow-hidden faq-row" data-q="<%= String(faq.question + ' ' + faq.answer).toLowerCase() %>">
-                  <h4 class="accordion-header" id="faq-heading-<%= faq.id %>">
-                    <button class="accordion-button <%= qi === 0 ? '' : 'collapsed' %> fw-semibold py-3" type="button" data-bs-toggle="collapse" data-bs-target="#faq-collapse-<%= faq.id %>" aria-expanded="<%= qi === 0 ? 'true' : 'false' %>" aria-controls="faq-collapse-<%= faq.id %>"><%= faq.question %></button>
-                  </h4>
-                  <div id="faq-collapse-<%= faq.id %>" class="accordion-collapse collapse <%= qi === 0 ? 'show' : '' %>" aria-labelledby="faq-heading-<%= faq.id %>" data-bs-parent="#faq-accordion-<%= it.expertise.id %>-<%= gi %>">
-                    <div class="accordion-body text-secondary small"><%= faq.answer %></div>
-                  </div>
-                </div>
-              <% }); %>
-              </div>
-            </div>
-          </div>
-        <% }); %>
-        </div>
-      </div>
-    <% }); %>
-
-    <% if (generalFaqs.length) { %>
-      <div class="division-group mb-5" data-division="general-company">
-        <div class="d-flex align-items-baseline gap-3 mb-3 pt-2 border-bottom">
-          <h2 class="h4 fw-bold mb-0">General &amp; company</h2>
-          <span class="badge rounded-pill bg-primary-subtle text-primary-emphasis fw-medium"><%= generalFaqs.length %> questions</span>
-        </div>
-        <div class="row g-3">
-          <div class="col-12 catalogue-card faq-card faq-card" data-title="general company questions" data-service-faq="0">
-            <div class="p-4 rounded-3 bg-white border" style="border-color:#eef1f6;">
-              <div class="accordion" id="faq-accordion-general">
-              <% generalFaqs.forEach(function (faq, qi) { %>
-                <div class="accordion-item mb-2 border rounded-2 overflow-hidden faq-row" data-q="<%= String(faq.question + ' ' + faq.answer).toLowerCase() %>">
-                  <h4 class="accordion-header" id="faq-heading-<%= faq.id %>">
-                    <button class="accordion-button <%= qi === 0 ? '' : 'collapsed' %> fw-semibold py-3" type="button" data-bs-toggle="collapse" data-bs-target="#faq-collapse-<%= faq.id %>" aria-expanded="<%= qi === 0 ? 'true' : 'false' %>" aria-controls="faq-collapse-<%= faq.id %>"><%= faq.question %></button>
-                  </h4>
-                  <div id="faq-collapse-<%= faq.id %>" class="accordion-collapse collapse <%= qi === 0 ? 'show' : '' %>" aria-labelledby="faq-heading-<%= faq.id %>" data-bs-parent="#faq-accordion-general">
-                    <div class="accordion-body text-secondary small"><%= faq.answer %></div>
-                  </div>
-                </div>
-              <% }); %>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    <% } %>
+    <!-- Topic chips -->
+    <div class="d-flex flex-wrap justify-content-center gap-2 mb-4" id="faq-topics">
+      <button type="button" class="btn btn-sm rounded-pill px-4 py-2 fw-semibold topic-btn active" data-topic="all">All questions <span class="opacity-50"><%= faqs.length %></span></button>
+      <% if (hasCategories) { %>
+      <button type="button" class="btn btn-sm rounded-pill px-4 py-2 fw-semibold topic-btn" data-topic="service">Service-specific <span class="opacity-50"><%= serviceFaqs.length %></span></button>
+      <button type="button" class="btn btn-sm rounded-pill px-4 py-2 fw-semibold topic-btn" data-topic="general">General &amp; company <span class="opacity-50"><%= generalFaqs.length %></span></button>
+      <% } %>
     </div>
 
-    <div class="text-center py-5" id="no-results" style="display:none;">
-      <i class="fa-solid fa-magnifying-glass fa-3x text-muted mb-3" aria-hidden="true"></i>
-      <h3 class="h5 fw-bold">Nothing matches "<span id="no-results-term"></span>"</h3>
-      <p class="text-secondary mb-3">Try a simpler word, or browse a different service area above.</p>
-      <a href="/contact" class="btn btn-primary rounded-pill px-4">Ask us directly instead</a>
+    <p class="text-center text-muted small mb-4" id="faq-count"><%= faqs.length %> questions</p>
+
+    <div class="row justify-content-center">
+      <div class="col-lg-9">
+        <div class="accordion" id="faqAccordion">
+        <% if (faqs.length) { faqs.forEach((faq, index) => { %>
+          <div class="accordion-item mb-2 border rounded-3 overflow-hidden faq-row" data-topic="<%= (faq.id >= 1000 && faq.expertise_id) ? 'service' : 'general' %>" data-q="<%= String(faq.question + ' ' + faq.answer).toLowerCase() %>">
+            <h2 class="accordion-header" id="faq-heading-<%= faq.id %>">
+              <button class="accordion-button <%= index === 0 ? '' : 'collapsed' %> fw-semibold" type="button" data-bs-toggle="collapse" data-bs-target="#faq-collapse-<%= faq.id %>" aria-expanded="<%= index === 0 ? 'true' : 'false' %>" aria-controls="faq-collapse-<%= faq.id %>"><%= faq.question %></button>
+            </h2>
+            <div id="faq-collapse-<%= faq.id %>" class="accordion-collapse collapse <%= index === 0 ? 'show' : '' %>" aria-labelledby="faq-heading-<%= faq.id %>" data-bs-parent="#faqAccordion">
+              <div class="accordion-body text-secondary"><%= faq.answer %></div>
+            </div>
+          </div>
+        <% }); } else { %><% page.sections.forEach((section, index) => { %>
+          <div class="accordion-item mb-2 border rounded-3 overflow-hidden faq-row">
+            <h2 class="accordion-header" id="faq-heading-fallback-<%= index %>">
+              <button class="accordion-button <%= index === 0 ? '' : 'collapsed' %> fw-semibold" type="button" data-bs-toggle="collapse" data-bs-target="#faq-collapse-fallback-<%= index %>" aria-expanded="<%= index === 0 ? 'true' : 'false' %>"><%= section.heading %></button>
+            </h2>
+            <div id="faq-collapse-fallback-<%= index %>" class="accordion-collapse collapse <%= index === 0 ? 'show' : '' %>" data-bs-parent="#faqAccordion">
+              <div class="accordion-body text-secondary"><%= section.body %></div>
+            </div>
+          </div>
+        <% }); %><% } %>
+        </div>
+
+        <div class="text-center py-4" id="faq-no-results" style="display:none;">
+          <i class="fa-solid fa-circle-question fa-2x text-muted mb-2" aria-hidden="true"></i>
+          <p class="mb-1 fw-semibold">No questions match your search.</p>
+          <p class="text-secondary small mb-3">Try different keywords, or reach our team.</p>
+          <a href="/contact" class="btn btn-primary rounded-pill px-4">Ask us directly</a>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -138,12 +80,13 @@
   'use strict';
   var search = document.getElementById('faq-search');
   var hint = document.getElementById('search-hint');
-  var noResults = document.getElementById('no-results');
-  var noTerm = document.getElementById('no-results-term');
-  var groups = Array.prototype.slice.call(document.querySelectorAll('.division-group'));
-  var state = { query: '' };
+  var count = document.getElementById('faq-count');
+  var noResults = document.getElementById('faq-no-results');
+  var rows = Array.prototype.slice.call(document.querySelectorAll('.faq-row'));
+  var total = rows.length;
+  var state = { topic: 'all', query: '' };
 
-  // Decode HTML entities (e.g. &amp;) in data attributes so search matches plain text.
+  // Decode HTML entities (e.g. &amp;, &#8208;) in data attributes so search matches plain text.
   var decoy = document.createElement('div');
   function decode(text) {
     decoy.innerHTML = String(text || '');
@@ -152,35 +95,29 @@
 
   function applyFilter() {
     var q = state.query.trim().toLowerCase();
-    var totalVisible = 0;
-    groups.forEach(function (group) {
-      var cards = Array.prototype.slice.call(group.querySelectorAll('.faq-card'));
-      var groupVisible = 0;
-      cards.forEach(function (card) {
-        var isServiceCard = card.getAttribute('data-service-faq') === '1';
-        var qOk = !q || decode(card.getAttribute('data-title')).indexOf(q) > -1 || (isServiceCard ? decode(card.querySelector('.accordion-item').getAttribute('data-q')).indexOf(q) > -1 : true);
-        card.style.display = qOk ? '' : 'none';
-        if (qOk) {
-          groupVisible += 1;
-          totalVisible += Array.prototype.slice.call(card.querySelectorAll('.faq-row')).filter(function (row) {
-            return !q || decode(row.getAttribute('data-q')).indexOf(q) > -1;
-          }).length;
-          // Filter rows inside the card when searching.
-          card.querySelectorAll('.faq-row').forEach(function (row) {
-            row.style.display = (!q || decode(row.getAttribute('data-q')).indexOf(q) > -1) ? '' : 'none';
-          });
-        } else {
-          card.querySelectorAll('.faq-row').forEach(function (row) { row.style.display = 'none'; });
-        }
-      });
-      group.style.display = groupVisible > 0 ? '' : 'none';
+    var visible = 0;
+    rows.forEach(function (row) {
+      var tOk = state.topic === 'all' || String(row.getAttribute('data-topic') || '') === state.topic;
+      var qOk = !q || decode(row.getAttribute('data-q')).indexOf(q) > -1;
+      var show = tOk && qOk;
+      row.style.display = show ? '' : 'none';
+      if (show) visible += 1;
     });
-    if (noResults) {
-      noResults.style.display = (totalVisible === 0 && q) ? '' : 'none';
-      noTerm.textContent = state.query;
-    }
+    if (count) count.textContent = visible + ' question' + (visible === 1 ? '' : 's') + (q ? ' matching "' + state.query + '"' : '');
+    if (noResults) noResults.style.display = (visible === 0 && q) ? '' : 'none';
     if (hint) hint.style.display = q ? 'none' : '';
+    Array.prototype.slice.call(document.querySelectorAll('.topic-btn')).forEach(function (btn) {
+      btn.classList.toggle('active', String(btn.getAttribute('data-topic') || '') === state.topic);
+    });
   }
+
+  document.querySelectorAll('.topic-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      state.topic = String(btn.getAttribute('data-topic') || 'all');
+      applyFilter();
+      if (history.replaceState) history.replaceState(null, '', '/faq' + (state.topic !== 'all' ? '?topic=' + state.topic : '') + (state.query ? (state.topic !== 'all' ? '&' : '?') + 'q=' + encodeURIComponent(state.query) : '') + '#faq-section');
+    });
+  });
 
   var timer = null;
   search.addEventListener('input', function () {
@@ -188,17 +125,13 @@
     timer = setTimeout(function () {
       state.query = search.value;
       applyFilter();
-      if (state.query && history.replaceState) {
-        history.replaceState(null, '', '/faq?q=' + encodeURIComponent(state.query) + '#faq-section');
-      } else if (!state.query && history.replaceState) {
-        history.replaceState(null, '', '/faq#faq-section');
-      }
+      if (history.replaceState) history.replaceState(null, '', '/faq' + (state.topic !== 'all' ? '?topic=' + state.topic : '') + (state.query ? (state.topic !== 'all' ? '&' : '?') + 'q=' + encodeURIComponent(state.query) : '') + '#faq-section');
     }, 120);
   });
 
   var params = new URLSearchParams(window.location.search);
-  var initQ = params.get('q');
-  if (initQ) { state.query = initQ; search.value = initQ; }
+  if (params.get('q')) { state.query = params.get('q'); search.value = params.get('q'); }
+  if (params.get('topic')) state.topic = params.get('topic');
   applyFilter();
 })();
 </script>

@@ -150,13 +150,12 @@ publicRouter.get("/portfolio_details", (req, res) => {
 
 publicRouter.get("/faq", async (_req, res, next) => {
   try {
-    const [faqs, expertise] = await Promise.all([getPublishedFaqs(), getActiveExpertise()]);
+    const faqs = await getPublishedFaqs();
     const faqPage = pages.faq!;
     res.render("pages/faq", {
       ...buildLayoutData({ currentPage: "faq", pageTitle: faqPage.title, pageDescription: faqPage.description, pageKeywords: faqPage.keywords, canonicalUrl: "/faq" }),
       page: faqPage,
       faqs,
-      expertise,
     });
   } catch (error) { next(error); }
 });
