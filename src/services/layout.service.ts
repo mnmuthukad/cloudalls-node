@@ -14,6 +14,8 @@ export interface LayoutData {
   schemaPhone: string;
   waLink: string;
   recaptchaSiteKey: string;
+  robotsMeta?: string;
+  noindex?: boolean;
 }
 
 const footerMenus: LayoutData["footerMenus"] = {
@@ -37,24 +39,29 @@ const footerMenus: LayoutData["footerMenus"] = {
   Support: { "/faq": "Help & FAQ", "/legal": "Legal Center", "/data-requests": "Data requests", "/brand": "Brand Assets" },
 };
 
-export function buildLayoutData(input: Partial<Pick<LayoutData, "currentPage" | "pageTitle" | "pageDescription" | "pageKeywords" | "pageImage" | "canonicalUrl">> = {}): LayoutData {
+export function buildLayoutData(input: Partial<Pick<LayoutData, "currentPage" | "pageTitle" | "pageDescription" | "pageKeywords" | "pageImage" | "canonicalUrl" | "robotsMeta">> & { noindex?: boolean } = {}): LayoutData {
   const settings = getSiteSettings();
   const pathPart = input.canonicalUrl || "/";
   // Sanitize relative paths before embedding in meta/link tags (guards 404-style paths):
   // allow only letters, digits, hyphens, underscores, dots and slashes; collapse and trim slashes; cap length.
   const sanitizedRelative = `/${pathPart.replace(/^\/+/, "").replace(/[^a-zA-Z0-9_\-./]/g, "").replace(/\/+/g, "/").slice(0, 200)}`;
-  const canonicalUrl = pathPart.startsWith("http") ? pathPart : `${env.APP_URL}${pathPart.startsWith("/") ? sanitizedRelative : sanitizedRelative.slice(1)}`;
+  // Never canonicalize or serve robots for error/unknown paths: route them to the site root so search engines
+  // don't index probe URLs like /pricing-malicious. Real canonicals are always absolute http(s) URLs.
+  const looksLikeErrorPath = !pathPart.startsWith("http") && (pathPart.length > 120 || /(^|\/)(404|error|undefined|null|\.\.|\.env|wp-|phpmyadmin|test|malicious)/i.test(pathPart));
+  const effectiveRelative = input.noindex || looksLikeErrorPath ? "/" : sanitizedRelative;
+  const canonicalUrl = pathPart.startsWith("http") ? pathPart : `${env.APP_URL}${effectiveRelative.startsWith("/") ? effectiveRelative : effectiveRelative.slice(1)}`;
   const socialLinks = [settings.linkedin, settings.instagram, settings.x_link, settings.github, settings.youtube]
     .filter((value): value is string => Boolean(value));
 
   return {
     settings,
     currentPage: input.currentPage || "index",
+    noindex: input.noindex ?? false,
     canonicalUrl,
     pageTitle: input.pageTitle || "AI & Web Development Expertise | Innovation Lab | CloudAlls",
     pageDescription: input.pageDescription || "Explore CloudAlls' expertise in Artificial Intelligence, Custom Web Development, and Creative Media solutions in Kerala.",
     pageKeywords: input.pageKeywords || "AI Development Kerala, Web Design India, CloudAlls Expertise, Innovation Lab, AI Integration",
-    pageImage: input.pageImage || `${env.APP_URL}/assets/img/slide/1.webp`,
+    pageImage: input.pageImage || `${env.APP_URL}/assets/img/icon-512x512.png`,
     footerMenus,
     socialLinks,
     schemaPhone: String(settings.contact_number || "+91 90482 08135"),

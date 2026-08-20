@@ -6,7 +6,7 @@
   <title><%= pageTitle %></title>
   <meta name="description" content="<%= pageDescription %>">
   <meta name="keywords" content="<%= pageKeywords %>">
-  <meta name="robots" content="<%= canonicalUrl.includes('z.cloudalls.com') ? 'noindex, nofollow, noarchive' : 'index, follow, max-image-preview:large' %>">
+  <meta name="robots" content="<% if (noindex || canonicalUrl.includes('z.cloudalls.com')) { %>noindex, nofollow, noarchive<% } else { %>index, follow, max-image-preview:large<% } %>">
   <link rel="canonical" href="<%= canonicalUrl %>">
   <% if (settings.gsc_verification) { %><meta name="google-site-verification" content="<%= settings.gsc_verification %>"><% } %>
   <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">

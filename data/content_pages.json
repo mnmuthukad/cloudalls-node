@@ -89,9 +89,10 @@
     "eyebrow": "Community and learning",
     "hero": "Ideas become useful when they are shared.",
     "sections": [
-      { "heading": "Upcoming sessions", "body": "Watch this space for technical briefings, architecture conversations, and workshops from the CloudAlls ecosystem." },
-      { "heading": "Bring your questions", "body": "Our sessions focus on practical decisions: security, AI adoption, platform design, accessibility, and sustainable delivery." }
-    ]
+      { "heading": "Format and focus", "body": "CloudAlls events are working sessions rather than marketing talks. Each session is led by the engineers who build the systems, uses real architectures from live CloudAlls deliveries, and ends with decisions your team can apply the same week.", "bullets": ["Architecture deep-dives: zero trust, API gateways, and data sovereignty", "Practical AI adoption: agents, RAG, workflow automation, and cost control", "Security and compliance: audits, incident response, and continuous assurance", "Delivery practice: accessibility, performance budgets, and observability"] },
+      { "heading": "Session types", "body": "Sessions run in three formats. Executive briefings are 45 minutes for leadership teams deciding on technology direction. Developer workshops are hands-on, 2-3 hour sessions with live environments and reference repositories. Community webinars are open, recorded, and published to the CloudAlls insights library afterward.", "bullets": ["Executive briefings — 45 minutes, leadership focus", "Developer workshops — hands-on, 2-3 hours, with reference repositories", "Community webinars — open, recorded, and published afterward"] },
+      { "heading": "Bring your questions", "body": "Every session is shaped by the audience. Share your context, constraints, and open questions when you register, and the session will be calibrated to your decision point rather than a generic agenda. Recordings and supporting documentation are shared with attendees after each session."
+}, { "heading": "Request a private session", "body": "Organizations can request a private briefing or workshop through the contact channel. Sessions are prepared against your actual architecture and roadmap, with a written summary and action list delivered within five business days." } ]
   },
   "brand": {
     "currentPage": "brand",
@@ -127,8 +128,10 @@
     "eyebrow": "News and impact",
     "hero": "Technology should leave people and systems stronger.",
     "sections": [
-      { "heading": "Responsible progress", "body": "We measure progress by the quality of the systems we create and the opportunities they open for people, teams, and communities." },
-      { "heading": "Press and media", "body": "For media enquiries, interviews, and approved statements, contact the CloudAlls communications team." }
+      { "heading": "Responsible progress", "body": "We measure progress by the quality of the systems we create and the opportunities they open for people, teams, and communities — not by output volume. Every CloudAlls delivery is assessed against user impact, operational resilience, and long-term maintainability." },
+      { "heading": "Announcements", "body": "Company milestones, product releases, partnership news, and ecosystem updates are published here and through the CloudAlls insights library as they are verified and approved for public release." },
+      { "heading": "Social impact", "body": "The CloudAlls Academy trains engineers from non-traditional backgrounds and feeds directly into hiring pipelines across the ecosystem, turning learning into employment rather than certificates alone. Community workshops and open reference architectures extend this reach beyond our own teams." },
+      { "heading": "Press and media", "body": "For media enquiries, interviews, and approved statements, contact the CloudAlls communications team through the contact channel with the subject line 'Media enquiry'." }
     ]
   },
   "responsibility": {
@@ -139,9 +142,9 @@
     "eyebrow": "Impact by design",
     "hero": "Responsibility is part of the system.",
     "sections": [
-      { "heading": "Privacy and dignity", "body": "We treat personal data, consent, accessibility, and human context as first-class engineering requirements." },
-      { "heading": "Inclusive access", "body": "We work toward interfaces and systems that remain useful across devices, abilities, languages, and levels of technical confidence." },
-      { "heading": "Community learning", "body": "We share knowledge and create pathways for people to participate in the new technology culture." }
+      { "heading": "Privacy and dignity", "body": "We treat personal data, consent, accessibility, and human context as first-class engineering requirements. Data minimization, explicit consent flows, retention limits, and deletion rights are enforced in the architecture, not just in policy. Details are published in the legal center under privacy and data-request policies." },
+      { "heading": "Inclusive access", "body": "Every CloudAlls product is built against WCAG accessibility targets with keyboard navigation, screen-reader compatibility, reduced-motion support, and readable contrast — validated during delivery, not added afterward. Systems should remain useful across devices, abilities, languages, and levels of technical confidence." },
+      { "heading": "Community learning", "body": "The CloudAlls Academy provides structured pathways in engineering, AI, and operations for learners from non-traditional backgrounds, with direct hiring pipelines across the ecosystem. Open reference architectures, documented tooling, and free community workshops extend that reach to the wider engineering community." }
     ]
   },
   "resources": {

@@ -81,7 +81,7 @@ publicRouter.get("/expertise/:slug", async (req, res, next) => {
     const slug = req.params.slug;
     const [expertise, allExpertise, serviceFaqs] = await Promise.all([getExpertiseBySlug(slug), getActiveExpertise(), getExpertiseBySlug(slug).then(e => e ? getFaqsForExpertise(e.id) : Promise.resolve([]))]);
     if (!expertise) {
-      res.status(404).render("errors/404", buildLayoutData({ pageTitle: "Expertise not found", canonicalUrl: "/expertise" }));
+      res.status(404).render("errors/404", buildLayoutData({ pageTitle: "Expertise not found", canonicalUrl: "/expertise", noindex: true }));
       return;
     }
     res.render("pages/expertise-detail", {
@@ -111,7 +111,7 @@ publicRouter.get("/insights/:slug", async (req, res, next) => {
     const insights = await getPublishedInsights();
     const insight = insights.find(item => item.slug === slug);
     if (!insight) {
-      res.status(404).render("errors/404", buildLayoutData({ pageTitle: "Insight not found", canonicalUrl: "/insights" }));
+      res.status(404).render("errors/404", buildLayoutData({ pageTitle: "Insight not found", canonicalUrl: "/insights", noindex: true }));
       return;
     }
     res.render("pages/insight-detail", { ...buildLayoutData({ currentPage: "insights", pageTitle: insight.meta_title || `${insight.title} | CloudAlls`, pageDescription: insight.meta_description || insight.excerpt || "CloudAlls insight.", pageKeywords: insight.meta_keywords || "CloudAlls insights", canonicalUrl: `/insights/${encodeURIComponent(insight.slug)}`, pageImage: insight.image_url || undefined }), insight });
@@ -136,7 +136,7 @@ publicRouter.get("/portfolio/:slug", async (req, res, next) => {
     const portfolios = await getPublishedPortfolios();
     const portfolio = portfolios.find(item => item.slug === slug);
     if (!portfolio) {
-      res.status(404).render("errors/404", buildLayoutData({ pageTitle: "Case study not found", canonicalUrl: "/portfolio" }));
+      res.status(404).render("errors/404", buildLayoutData({ pageTitle: "Case study not found", canonicalUrl: "/portfolio", noindex: true }));
       return;
     }
     res.render("pages/portfolio-detail", { ...buildLayoutData({ currentPage: "portfolio", pageTitle: `${portfolio.title} | CloudAlls Case Study`, pageDescription: portfolio.short_desc || "CloudAlls case study.", canonicalUrl: `/portfolio/${encodeURIComponent(portfolio.slug)}`, pageImage: portfolio.image_url || undefined }), portfolio });
@@ -181,7 +181,7 @@ for (const legalSlug of ["terms", "privacy", "security", "aup", "ethics", "acces
     try {
       const document = await getLegalDocumentBySlug(legalSlug);
       if (!document) {
-        res.status(404).render("errors/404", buildLayoutData({ pageTitle: "Legal document not found", canonicalUrl: `/${legalSlug}` }));
+        res.status(404).render("errors/404", buildLayoutData({ pageTitle: "Legal document not found", canonicalUrl: `/${legalSlug}`, noindex: true }));
         return;
       }
       const safeDocument = { ...document, content: sanitizeLegalHtml(document.content) };
@@ -200,7 +200,14 @@ publicRouter.get("/sitemap.xml", async (_req, res, next) => {
     const [expertise, insights, portfolios, careers] = await Promise.all([getActiveExpertise(), getPublishedInsights(), getPublishedPortfolios(), getActiveCareers()]);
     const today = new Date().toISOString().slice(0, 10);
     const entries = new Map<string, string | undefined>();
-    const add = (path: string, lastmod?: string | null) => entries.set(path, lastmod ? String(lastmod).slice(0, 10) : undefined);
+    const toIsoDate = (value: string | null | undefined) => {
+      if (!value) return undefined;
+      // Normalize any Date-like value to a strict YYYY-MM-DD (sitemaps reject malformed dates)
+      const d = new Date(value);
+      if (Number.isNaN(d.getTime())) return undefined;
+      return d.toISOString().slice(0, 10);
+    };
+    const add = (path: string, lastmod?: string | null) => entries.set(path, toIsoDate(lastmod));
 
     ["/", ...Object.keys(pages).map(slug => `/${slug}`), "/insights", "/portfolio", "/contact", "/careers", "/partnership", "/legal", "/terms", "/privacy", "/security", "/aup", "/ethics", "/accessibility", "/data-requests"].forEach(path => add(path));
     expertise.forEach(item => add(`/expertise/${encodeURIComponent(item.slug)}`));
