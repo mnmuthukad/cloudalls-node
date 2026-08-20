@@ -16,10 +16,21 @@
     }
   });
 
+  // Deduplicate services by slug (defense-in-depth): a stale legacy row and the
+  // current catalogue row can coexist under the same ID, which would otherwise
+  // render their FAQs twice. Keep the first occurrence in display order.
+  var dedupedExpertise = [];
+  var seenSlug = {};
+  expertise.forEach(function (item) {
+    if (seenSlug[item.slug]) return;
+    seenSlug[item.slug] = true;
+    dedupedExpertise.push(item);
+  });
+
   // Group services that have FAQs by division, ordered like the expertise page.
   var divGroups = [];
   var seenDiv = {};
-  expertise.forEach(function (item) {
+  dedupedExpertise.forEach(function (item) {
     var list = faqsByExpertise[String(item.id)];
     if (!list || !list.length) return;
     var div = String(item.division || 'Other').trim();

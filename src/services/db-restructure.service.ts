@@ -120,10 +120,10 @@ export async function restructureBrandDatabase(pool: Pool | null): Promise<void>
     if (await tableExists(pool, "expertise") && !(await columnExists(pool, "expertise", "wing"))) {
       await pool.query(`ALTER TABLE expertise ADD COLUMN wing VARCHAR(50) NULL AFTER division`);
     }
-    // --- expertise: full upsert of every JSON row (idempotent via INSERT IGNORE on id) ---
-    // Without this, services that exist in the JSON catalogue but are missing from the
-    // live table (e.g. the 51-row catalogue vs. the legacy rows) are never created, and
-    // any downstream reference (faqs.expertise_id, detail pages) cannot resolve them.
+    // --- expertise: full upsert of every JSON row (idempotent via INSERT ... ON DUPLICATE KEY UPDATE) ---
+    // A plain INSERT IGNORE would silently keep stale legacy rows (old titles and slugs
+    // under the same IDs as the current catalogue), which broke FAQ grouping on the
+    // question page: the same service IDs rendered twice under old and new titles.
     const targetExpertise = loadJson<ExpertiseData>("expertise.json");
     const upsertColumns = [
       "id", "title", "slug", "icon", "color", "division", "wing", "short_description",
@@ -133,20 +133,24 @@ export async function restructureBrandDatabase(pool: Pool | null): Promise<void>
     ] as const;
     if (targetExpertise.length && (await tableExists(pool, "expertise"))) {
       const liveCols = await existingColumns(pool, "expertise");
-      const cols = upsertColumns.filter(c => liveCols.includes(c));
+      const insertCols = upsertColumns.filter(c => liveCols.includes(c));
+      const updateCols = insertCols.filter(c => c !== "id");
       let inserted = 0;
+      let updated = 0;
       for (const item of targetExpertise) {
         const values: unknown[] = [];
-        for (const col of cols) {
+        for (const col of insertCols) {
           values.push((item as unknown as Record<string, unknown>)[col] ?? null);
         }
         const [result] = await pool.query(
-          `INSERT IGNORE INTO expertise (${cols.join(", ")}) VALUES (${cols.map(() => "?").join(", ")})`,
+          `INSERT INTO expertise (${insertCols.join(", ")}) VALUES (${insertCols.map(() => "?").join(", ")}) ON DUPLICATE KEY UPDATE ${updateCols.map(c => `${c} = VALUES(${c})`).join(", ")}`,
           values,
         );
-        if ((result as { affectedRows: number })?.affectedRows) inserted += 1;
+        const affected = (result as { affectedRows: number })?.affectedRows ?? 0;
+        if (affected >= 2) updated += 1;
+        else if (affected === 1) inserted += 1;
       }
-      console.log(`[db-restructure] expertise rows upserted (${inserted} inserted of ${targetExpertise.length} referenced)`);
+      console.log(`[db-restructure] expertise rows upserted (${inserted} inserted, ${updated} updated of ${targetExpertise.length} referenced)`);
     }
     if (targetExpertise.length && (await tableExists(pool, "expertise"))) {
       for (const item of targetExpertise) {
