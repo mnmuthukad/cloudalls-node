@@ -226,11 +226,14 @@ export async function restructureBrandDatabase(pool: Pool | null): Promise<void>
     const syncTable = async (table: string, file: string, idCol: string) => {
       const target = loadJson<Record<string, unknown>[]>(file);
       if (!target.length || !(await tableExists(pool, table))) return;
+      // Only upsert columns that actually exist in the table — JSON rows may carry
+      // keys (e.g. expertise_id) that the seeded schema never had.
+      const liveCols = await existingColumns(pool, table);
       let inserted = 0;
       let updated = 0;
       for (const row of target) {
         const entry: Record<string, unknown> = row as unknown as Record<string, unknown>;
-        const cols: string[] = Object.keys(entry).filter((c: string) => c !== "id");
+        const cols: string[] = Object.keys(entry).filter((c: string) => c !== "id" && liveCols.includes(c));
         const values: unknown[] = [];
         for (const col of cols) values.push(entry[col] ?? null);
         const [result] = await pool.query(
