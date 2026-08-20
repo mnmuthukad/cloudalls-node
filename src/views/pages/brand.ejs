@@ -71,55 +71,48 @@
 </section>
 
 <section class="container py-5">
-  <div class="row align-items-end g-4 mb-5"><div class="col-lg-8"><p class="section-kicker mb-3">The ecosystem</p><h2 class="display-6 fw-bold mb-3">Twelve entities. Two wings. One connected standard.</h2><p class="text-secondary lead mb-0">Eight capability divisions build and run the work; four industry verticals take that capability into specific markets. Every service sits in exactly one division, so nothing is duplicated and nothing is left unowned.</p></div><div class="col-lg-4 text-lg-end"><a class="btn btn-outline-dark rounded-pill px-4" href="/expertise">Explore all services <i class="fa-solid fa-arrow-right ms-2" aria-hidden="true"></i></a></div></div>
-  <% if (typeof expertise !== 'undefined' && expertise && expertise.length) { %>
-<% const capDivisions = divisions.filter(d => (d.wing || 'capabilities') === 'capabilities');
-   const vertDivisions = divisions.filter(d => (d.wing || '') === 'verticals');
+  <div class="row align-items-end g-4 mb-5"><div class="col-lg-8"><p class="section-kicker mb-3">The ecosystem</p><h2 class="display-6 fw-bold mb-3">Twelve entities. Two wings. One connected standard.</h2><p class="text-secondary lead mb-0">Eight capability divisions build and run the work; four industry verticals take that capability into specific markets. Each entity carries the same CloudAlls lockup, so the whole ecosystem reads as one brand.</p></div><div class="col-lg-4 text-lg-end"><a class="btn btn-outline-dark rounded-pill px-4" href="/expertise">Explore all services <i class="fa-solid fa-arrow-right ms-2" aria-hidden="true"></i></a></div></div>
+<% if (typeof expertise !== 'undefined' && expertise && expertise.length) { %>
+<% const capDivisions = divisions.filter(d => String(d.wing || 'capabilities') === 'capabilities');
+   const vertDivisions = divisions.filter(d => String(d.wing || '') === 'verticals');
    const expertiseByDivision = {};
    expertise.forEach(item => { const key = String(item.division || '').trim(); if (!expertiseByDivision[key]) expertiseByDivision[key] = []; expertiseByDivision[key].push(item); }); %>
 <section class="mb-5" data-aos="fade-up">
   <div class="d-flex align-items-center gap-3 mb-4"><span class="badge rounded-pill text-bg-primary px-3 py-2 text-uppercase small fw-bold ls-1">Wing A</span><h2 class="h3 fw-bold mb-0">Capability divisions</h2></div>
-  <% capDivisions.forEach((division, index) => {
+  <div class="row g-4">
+  <% capDivisions.forEach(division => {
     const services = expertiseByDivision[String(division.name).trim()] || [];
   %>
-  <div class="rounded-4 border bg-white shadow-sm p-4 p-lg-5 mb-4">
-    <div class="row align-items-start g-4 mb-4">
-      <div class="col-lg-8">
-        <div class="d-flex align-items-center gap-3 mb-2"><span class="text-primary fw-bold fs-5"><%= String(division.display_order || (index + 1)).padStart(2, '0') %></span><h3 class="h3 fw-bold mb-0">CloudAlls <%= division.name %></h3></div>
-        <p class="fw-semibold text-dark mb-1"><%= division.tagline %></p>
-        <p class="text-secondary mb-0" style="max-width:760px;"><%= (division.description || '').trim() ? division.description : 'Part of the CloudAlls ecosystem, delivering connected capabilities.' %></p>
+    <div class="col-md-6"><div class="rounded-4 border bg-white shadow-sm p-4 p-lg-5 h-100 d-flex flex-column">
+      <div class="d-flex align-items-center justify-content-center mb-4" style="min-height:100px;">
+        <% const lockup = 'cloudalls-' + String(division.name).toLowerCase().replace(/[^a-z0-9]+/g,'-'); %><img src="/assets/brand/<%= lockup %>.svg" alt="CloudAlls <%= division.name %>" class="img-fluid" style="max-width:100%;height:48px;width:auto;">
       </div>
-      <div class="col-lg-4 text-lg-end">
-        <a class="btn btn-primary rounded-pill px-4" href="/expertise">View <%= services.length %> capabilities <i class="fa-solid fa-arrow-right ms-2" aria-hidden="true"></i></a>
-      </div>
-    </div>
-    <div class="row g-3">
-      <% services.forEach(service => { %>
-      <div class="col-md-6 col-xl-4"><a class="text-decoration-none" href="/expertise/<%= encodeURIComponent(service.slug) %>"><div class="h-100 p-3 rounded-3 border bg-light d-flex align-items-start gap-3 hover-shadow-sm"><span class="capability-icon mt-1 flex-shrink-0"><i class="fa-solid <%= service.icon || 'fa-code' %>" aria-hidden="true"></i></span><div><h4 class="h6 fw-bold mb-1 text-dark"><%= service.title %></h4><p class="small text-secondary mb-0"><%= service.short_description || '' %></p></div></div></a></div>
-      <% }); %>
-    </div>
-  </div>
+      <h3 class="h4 fw-bold mb-1 text-center">CloudAlls <%= division.name %></h3>
+      <p class="fw-semibold text-primary text-center mb-2"><%= division.tagline %></p>
+      <p class="text-secondary text-center mb-4" style="max-width:520px;margin-left:auto;margin-right:auto;"><%= (division.description || '').trim() ? division.description : 'Part of the CloudAlls ecosystem, delivering connected capabilities.' %></p>
+      <div class="mt-auto text-center"><% if (services.length) { %><a class="btn btn-primary rounded-pill px-4" href="/expertise"><i class="fa-solid fa-arrow-right me-2" aria-hidden="true"></i>View <%= services.length %> capabilities</a><% } else { %><span class="badge rounded-pill border px-3 py-2">Services coming soon</span><% } %></div>
+    </div></div>
   <% }); %>
+  </div>
 </section>
 <section class="mb-5" data-aos="fade-up" data-aos-delay="100">
   <div class="d-flex align-items-center gap-3 mb-4"><span class="badge rounded-pill text-bg-dark px-3 py-2 text-uppercase small fw-bold ls-1">Wing B</span><h2 class="h3 fw-bold mb-0">Industry verticals</h2></div>
-  <% vertDivisions.forEach((division, index) => {
+  <div class="row g-4">
+  <% vertDivisions.forEach(division => {
     const services = expertiseByDivision[String(division.name).trim()] || [];
     const isReserved = division.status === 'Reserved';
   %>
-  <div class="rounded-4 border bg-white shadow-sm p-4 p-lg-5 mb-4 <%= isReserved ? 'opacity-75' : '' %>">
-    <div class="row align-items-start g-4">
-      <div class="col-lg-8">
-        <div class="d-flex align-items-center gap-3 mb-2"><span class="text-dark fw-bold fs-5"><%= String(division.display_order || (index + 9)).padStart(2, '0') %></span><h3 class="h3 fw-bold mb-0">CloudAlls <%= division.name %></h3><% if (isReserved) { %><span class="badge rounded-pill text-bg-secondary px-3">Reserved</span><% } %></div>
-        <p class="fw-semibold text-dark mb-1"><%= division.tagline %></p>
-        <p class="text-secondary mb-0" style="max-width:760px;"><%= (division.description || '').trim() ? division.description : 'An industry vertical of the CloudAlls ecosystem.' %></p>
+    <div class="col-md-6"><div class="rounded-4 border bg-white shadow-sm p-4 p-lg-5 h-100 d-flex flex-column <%= isReserved ? 'opacity-75' : '' %>">
+      <div class="d-flex align-items-center justify-content-center mb-4" style="min-height:100px;">
+        <% const lockup = 'cloudalls-' + String(division.name).toLowerCase().replace(/[^a-z0-9]+/g,'-'); %><img src="/assets/brand/<%= lockup %>.svg" alt="CloudAlls <%= division.name %>" class="img-fluid" style="max-width:100%;height:48px;width:auto;">
       </div>
-      <div class="col-lg-4 text-lg-end">
-        <% if (!isReserved && services.length) { %><a class="btn btn-outline-dark rounded-pill px-4" href="/expertise">View <%= services.length %> capabilities <i class="fa-solid fa-arrow-right ms-2" aria-hidden="true"></i></a><% } else if (isReserved) { %><span class="badge rounded-pill border px-3 py-2">Launching next</span><% } %>
-      </div>
-    </div>
-  </div>
+      <h3 class="h4 fw-bold mb-1 text-center">CloudAlls <%= division.name %><% if (isReserved) { %> <span class="badge rounded-pill text-bg-secondary px-3">Reserved</span><% } %></h3>
+      <p class="fw-semibold text-primary text-center mb-2"><%= division.tagline %></p>
+      <p class="text-secondary text-center mb-4" style="max-width:520px;margin-left:auto;margin-right:auto;"><%= (division.description || '').trim() ? division.description : 'An industry vertical of the CloudAlls ecosystem.' %></p>
+      <div class="mt-auto text-center"><% if (!isReserved && services.length) { %><a class="btn btn-outline-dark rounded-pill px-4" href="/expertise"><i class="fa-solid fa-arrow-right me-2" aria-hidden="true"></i>View <%= services.length %> capabilities</a><% } else if (isReserved) { %><span class="badge rounded-pill border px-3 py-2">Launching next</span><% } %></div>
+    </div></div>
   <% }); %>
+  </div>
 </section>
 <% } else { %><section class="container pb-5"><div class="rounded-4 p-5 text-center text-white" style="background:linear-gradient(135deg,#0f172a,#1d4ed8);"><p class="text-uppercase fw-bold text-info small ls-1 mb-3">Press, partnerships, and approved use</p><h2 class="display-6 fw-bold mb-3">Need a specific format or usage review?</h2><p class="lead text-white-50 mb-4 mx-auto" style="max-width:680px;">Tell us how you plan to use the CloudAlls identity and our team can share the right asset, context, or approval path.</p><a class="btn btn-light btn-lg rounded-pill px-4" href="/contact">Contact CloudAlls <i class="fa-solid fa-arrow-right ms-2" aria-hidden="true"></i></a></div></section>
 <% } %>

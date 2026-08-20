@@ -1,9 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 50" role="img" aria-labelledby="mk-title mk-desc">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="mk-title mk-desc">
   <title id="mk-title">CloudAlls circular mark</title>
-  <desc id="mk-desc">Three overlapping circles in cyan, violet, and blue</desc>
-  <g opacity="0.9">
-    <circle cx="16" cy="24" r="12" fill="#0ea5e9" style="mix-blend-mode:multiply;"/>
-    <circle cx="28" cy="14" r="14" fill="#7C3AED" style="mix-blend-mode:multiply;"/>
-    <circle cx="40" cy="24" r="12" fill="#2563EB" style="mix-blend-mode:multiply;"/>
-  </g>
+  <desc id="mk-desc">Three overlapping circles in violet, cyan, and blue</desc>
+  <circle cx="237" cy="210" r="112" fill="#894DEE"/>
+  <circle cx="138" cy="322" r="112" fill="#26AEEB"/>
+  <circle cx="351" cy="304" r="112" fill="#3A72ED"/>
 </svg>
