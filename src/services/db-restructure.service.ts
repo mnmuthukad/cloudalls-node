@@ -72,10 +72,14 @@ export async function restructureBrandDatabase(pool: Pool | null): Promise<void>
     if (targetDivisions.length && (await tableExists(pool, "brand_divisions"))) {
       await pool.query(`DELETE FROM brand_divisions WHERE status = 'Active'`);
       await pool.query(`DELETE FROM brand_divisions WHERE 1 = 1`);
+      // Ensure the description column exists so full division details reach the brand page.
+      if (!(await columnExists(pool, "brand_divisions", "description"))) {
+        await pool.query(`ALTER TABLE brand_divisions ADD COLUMN description TEXT NULL AFTER tagline`);
+      }
       for (const div of targetDivisions) {
         await pool.query(
-          `INSERT INTO brand_divisions (name, tagline, wing, display_order, status) VALUES (?, ?, ?, ?, 'Active')`,
-          [div.name, div.tagline, div.wing || "capabilities", div.display_order ?? 0],
+          `INSERT INTO brand_divisions (name, tagline, description, wing, display_order, status) VALUES (?, ?, ?, ?, ?, 'Active')`,
+          [div.name, div.tagline, div.description || null, div.wing || "capabilities", div.display_order ?? 0],
         );
       }
       console.log(`[db-restructure] brand_divisions reconciled to ${targetDivisions.length} entities`);

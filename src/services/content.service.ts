@@ -79,6 +79,8 @@ export interface BrandDivisionRow extends RowDataPacket {
   id: number;
   name: string;
   tagline: string;
+  description?: string | null;
+  wing?: string | null;
   svg_code: string | null;
   display_order: number;
   status: string;
@@ -288,7 +290,7 @@ export async function getActiveBrandDivisions(): Promise<BrandDivisionRow[]> {
   const db = getPublicDb();
   if (!db) return editableBrandDivisions;
   try {
-    const [rows] = await db.query<BrandDivisionRow[]>("SELECT id,name,tagline,svg_code,display_order,status FROM brand_divisions WHERE status = 'Active' ORDER BY display_order ASC, id ASC");
+    const [rows] = await db.query<BrandDivisionRow[]>("SELECT id,name,tagline,description,wing,display_order,status FROM brand_divisions WHERE status = 'Active' ORDER BY display_order ASC, id ASC");
     return rows.length ? rows : editableBrandDivisions;
   } catch (error) {
     console.error("PUBLIC_DB brand divisions query failed", error);
