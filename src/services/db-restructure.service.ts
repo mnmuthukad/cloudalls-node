@@ -18,6 +18,7 @@ interface BrandDivisionData {
   name: string;
   tagline: string;
   description?: string;
+  wing?: string;
   display_order?: number;
   status?: string;
 }
@@ -29,6 +30,7 @@ interface ExpertiseData {
   icon?: string;
   color?: string;
   division?: string;
+  wing?: string;
   display_order?: number;
   status?: string;
 }
@@ -72,16 +74,22 @@ export async function restructureBrandDatabase(pool: Pool | null): Promise<void>
       await pool.query(`DELETE FROM brand_divisions WHERE 1 = 1`);
       for (const div of targetDivisions) {
         await pool.query(
-          `INSERT INTO brand_divisions (name, tagline, display_order, status) VALUES (?, ?, ?, 'Active')`,
-          [div.name, div.tagline, div.display_order ?? 0],
+          `INSERT INTO brand_divisions (name, tagline, wing, display_order, status) VALUES (?, ?, ?, ?, 'Active')`,
+          [div.name, div.tagline, div.wing || "capabilities", div.display_order ?? 0],
         );
       }
-      console.log(`[db-restructure] brand_divisions reconciled to ${targetDivisions.length} subsidiaries`);
+      console.log(`[db-restructure] brand_divisions reconciled to ${targetDivisions.length} entities`);
     }
 
     // --- expertise: add `division` column if missing ---
     if (await tableExists(pool, "expertise") && !(await columnExists(pool, "expertise", "division"))) {
       await pool.query(`ALTER TABLE expertise ADD COLUMN division VARCHAR(100) NULL AFTER display_order`);
+    }
+    if (await tableExists(pool, "expertise") && !(await columnExists(pool, "expertise", "wing"))) {
+      await pool.query(`ALTER TABLE expertise ADD COLUMN wing VARCHAR(50) NULL AFTER division`);
+    }
+    if (await tableExists(pool, "brand_divisions") && !(await columnExists(pool, "brand_divisions", "wing"))) {
+      await pool.query(`ALTER TABLE brand_divisions ADD COLUMN wing VARCHAR(50) NULL AFTER display_order`);
     }
 
     // --- expertise: sync division assignments from JSON (idempotent by id) ---
@@ -90,6 +98,9 @@ export async function restructureBrandDatabase(pool: Pool | null): Promise<void>
       for (const item of targetExpertise) {
         if (item.division) {
           await pool.query(`UPDATE expertise SET division = ? WHERE id = ?`, [item.division, item.id]);
+        }
+        if (item.wing) {
+          await pool.query(`UPDATE expertise SET wing = ? WHERE id = ?`, [item.wing, item.id]);
         }
       }
       console.log(`[db-restructure] expertise division assignments synced (${targetExpertise.length} rows referenced)`);

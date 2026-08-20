@@ -56,10 +56,10 @@
   },
   "labs": {
     "currentPage": "labs",
-    "title": "CloudAlls Labs | Experiments & Open Source",
-    "description": "Explore the CloudAlls Labs, the research wing of CloudAlls Foundry, where we prototype new developer tools, automation systems, and responsible AI workflows.",
-    "keywords": "CloudAlls Labs, developer tools, open source AI, Foundry R&D",
-    "eyebrow": "Innovation lab · CloudAlls Foundry",
+    "title": "CloudAlls Labs | Deep Tech R&D & Incubation",
+    "description": "Explore CloudAlls Labs, the deep-tech R&D division of CloudAlls, where robotics, next-generation hardware, and future industry verticals are researched, prototyped, and incubated until they are ready to operate independently.",
+    "keywords": "CloudAlls Labs, deep tech R&D, robotics, hardware prototyping, vertical incubation",
+    "eyebrow": "Deep tech R&D · CloudAlls Labs",
     "hero": "Experiments with a path to reality.",
     "sections": [
       { "heading": "Agentic workflow engine", "body": "A typed, auditable orchestration layer for autonomous enterprise workflows — invoice processing, support triage, and reporting agents with explicit human-approval gates and full decision traceability.", "bullets": ["Typed tool registries and human-approval gates", "Decision-trace audit logs", "Private RAG retrieval layer"] },

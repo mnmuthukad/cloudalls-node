@@ -2,55 +2,109 @@
   {
     "id": 1,
     "name": "Foundry",
-    "tagline": "We Build Software, Apps & Hardware",
-    "description": "The product engineering arm. Every web platform, mobile application, and hardware system CloudAlls ships is forged here — from rapid prototyping through production-grade delivery, backed by cloud infrastructure that keeps everything running.",
-    "svg_code": null,
+    "tagline": "We Build Software, Apps & Products",
+    "description": "Foundry ships proven, client-ready software. From corporate web platforms to SaaS builds and API integrations, every project is engineered to a defined service level with a documented handover. Experimental products live in Labs; once they are sellable, they graduate to Foundry.",
     "display_order": 1,
+    "wing": "capabilities",
     "status": "Active"
   },
   {
     "id": 2,
     "name": "Intelligence",
-    "tagline": "We Apply AI, Data & Automation",
-    "description": "The applied intelligence arm. AI systems, research-backed innovation, and workflow automation are deployed here as measurable operational assets that remove manual work and sharpen decisions.",
-    "svg_code": null,
+    "tagline": "We Apply AI, ML & Data",
+    "description": "Intelligence develops and deploys AI models, machine learning solutions, and data science systems — from AI agents and chatbots to applied AI consulting. Security stays out of its scope; all security belongs to Infrastructure.",
     "display_order": 2,
+    "wing": "capabilities",
     "status": "Active"
   },
   {
     "id": 3,
-    "name": "Growth",
-    "tagline": "We Grow Your Market Reach",
-    "description": "The growth arm. Performance marketing, search visibility, and strategic brand consulting turn attention into measurable business results — every campaign traced from first click to signed invoice.",
-    "svg_code": null,
+    "name": "Infrastructure",
+    "tagline": "We Secure & Run Your Technology",
+    "description": "Infrastructure owns everything security and hardware: cybersecurity across network, application, and cloud; IT infrastructure setup and management; network architecture; hardware sourcing and deployment; and on-site physical security systems. All security — including data security — sits here, never split across divisions.",
     "display_order": 3,
+    "wing": "capabilities",
     "status": "Active"
   },
   {
     "id": 4,
     "name": "Studio",
-    "tagline": "We Create Brand Visuals & Media",
-    "description": "The creative arm. Visual identity systems, premium print, cinematic video, and product photography — brand work that performs equally on screen and in hand.",
-    "svg_code": null,
+    "tagline": "We Create Media, Design & Content",
+    "description": "Studio produces the output: live streaming, video production, photography, cinematography, 2D graphic design, 3D design and modeling, AR/VR content and experiences, and brand identity work. Where Labs builds AR/VR core technology, Studio makes AR/VR content.",
     "display_order": 4,
+    "wing": "capabilities",
     "status": "Active"
   },
   {
     "id": 5,
-    "name": "Operations & Security",
-    "tagline": "We Protect & Run Your Business",
-    "description": "The operations arm. Zero-trust physical security, biometric access, and end-to-end event and corporate operations management — keeping facilities safe and business moving without friction.",
-    "svg_code": null,
+    "name": "Growth",
+    "tagline": "We Grow Your Market Reach",
+    "description": "Growth is the external business engine: business and management consulting, marketing strategy and campaigns, market research, sales enablement, and brand positioning. The industry verticals consume Growth's consulting rather than duplicating it.",
     "display_order": 5,
+    "wing": "capabilities",
     "status": "Active"
   },
   {
     "id": 6,
+    "name": "Operations",
+    "tagline": "We Run the Company Inside",
+    "description": "Operations is the internal business engine: event planning and logistics, business process management, admin and back-office support, and vendor and partner coordination. Growth wins clients; Operations keeps everything running.",
+    "display_order": 6,
+    "wing": "capabilities",
+    "status": "Active"
+  },
+  {
+    "id": 7,
     "name": "Academy",
     "tagline": "We Train the Next Generation",
-    "description": "The education arm. Professional masterclasses, corporate upskilling, and structured internships with direct hiring pathways — top-performing interns are frequently offered full-time roles.",
-    "svg_code": null,
-    "display_order": 6,
+    "description": "One Academy covering both technology and business: tech courses in development, AI, and design; business and management courses; certifications; and corporate training programs.",
+    "display_order": 7,
+    "wing": "capabilities",
     "status": "Active"
+  },
+  {
+    "id": 8,
+    "name": "Labs",
+    "tagline": "We Research the Next Decade",
+    "description": "Labs incubates what is not yet sellable: deep-tech R&D in robotics and next-generation hardware, hardware prototyping, and future verticals in their experimental phase. When an experiment becomes a product, it graduates to the right division.",
+    "display_order": 8,
+    "wing": "capabilities",
+    "status": "Active"
+  },
+  {
+    "id": 9,
+    "name": "Vitality",
+    "tagline": "Healthcare & Health-Tech",
+    "description": "The CloudAlls healthcare vertical, operating under the Pulse identity. Health-tech platforms and telemedicine, hospital and clinic management software, AI-assisted diagnostics, and wellness applications — powered by Foundry's engineering, Intelligence's AI, and Growth's market consulting.",
+    "display_order": 9,
+    "wing": "verticals",
+    "status": "Active"
+  },
+  {
+    "id": 10,
+    "name": "Voyage",
+    "tagline": "Travel & Tourism",
+    "description": "The CloudAlls travel and tourism vertical, operating under the Horizon identity. Travel booking platforms, destination marketing, tourism technology and consulting, and hospitality management systems.",
+    "display_order": 10,
+    "wing": "verticals",
+    "status": "Active"
+  },
+  {
+    "id": 11,
+    "name": "Harvest",
+    "tagline": "Food Processing & Agri-Tech",
+    "description": "The CloudAlls food vertical, operating under the Foodworks identity. Food processing technology, food safety and quality systems, and agri-supply chain technology. Food processing belongs here exclusively.",
+    "display_order": 11,
+    "wing": "verticals",
+    "status": "Active"
+  },
+  {
+    "id": 12,
+    "name": "Next Vertical",
+    "tagline": "The Reserved Frontier",
+    "description": "A reserved slot for CloudAlls' next industry vertical. New markets are researched in Labs and incubated here until they are ready to operate as a full vertical.",
+    "display_order": 12,
+    "wing": "verticals",
+    "status": "Reserved"
   }
 ]
