@@ -236,13 +236,20 @@ export async function restructureBrandDatabase(pool: Pool | null): Promise<void>
         const cols: string[] = Object.keys(entry).filter((c: string) => c !== "id" && liveCols.includes(c));
         const values: unknown[] = [];
         for (const col of cols) values.push(entry[col] ?? null);
-        const [result] = await pool.query(
-          `INSERT INTO ${table} (${idCol}, ${cols.join(", ")}) VALUES (?, ${cols.map(() => "?").join(", ")}) ON DUPLICATE KEY UPDATE ${cols.map(c => `${c} = VALUES(${c})`).join(", ")}`,
-          [entry[idCol], ...values],
-        );
-        const affected = (result as { affectedRows: number })?.affectedRows ?? 0;
-        if (affected >= 2) updated += 1;
-        else if (affected === 1) inserted += 1;
+        try {
+          const [result] = await pool.query(
+            `INSERT INTO ${table} (${idCol}, ${cols.join(", ")}) VALUES (?, ${cols.map(() => "?").join(", ")}) ON DUPLICATE KEY UPDATE ${cols.map(c => `${c} = VALUES(${c})`).join(", ")}`,
+            [entry[idCol], ...values],
+          );
+          const affected = (result as { affectedRows: number })?.affectedRows ?? 0;
+          if (affected >= 2) updated += 1;
+          else if (affected === 1) inserted += 1;
+        } catch (err) {
+          // Log the exact failing row and continue — one bad row must never abort
+          // the sync for the rest of the table.
+          const msg = err instanceof Error ? err.message : String(err);
+          console.error(`[db-restructure] ${table} row ${String(entry[idCol])} upsert failed: ${msg}`);
+        }
       }
       console.log(`[db-restructure] ${table} rows upserted (${inserted} inserted, ${updated} updated of ${target.length})`);
     };
