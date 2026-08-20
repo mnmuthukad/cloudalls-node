@@ -236,7 +236,9 @@ export async function getFaqsForExpertise(expertiseId: number): Promise<FaqRow[]
   const jsonFallback = editableFaqs.filter(f => f.expertise_id === expertiseId);
   if (!db) return jsonFallback;
   try {
-    const [rows] = await db.query<FaqRow[]>("SELECT id,question,answer,expertise_id,display_order FROM faqs WHERE expertise_id = ? AND status = 'Published' ORDER BY display_order ASC", [expertiseId]);
+    // Legacy generic FAQ rows (ids below 1000) predate the per-service FAQ system and
+    // are never shown on service detail pages; the curated per-service FAQ set starts at id 1001.
+    const [rows] = await db.query<FaqRow[]>("SELECT id,question,answer,expertise_id,display_order FROM faqs WHERE expertise_id = ? AND status = 'Published' AND id >= 1000 ORDER BY display_order ASC", [expertiseId]);
     return rows.length ? rows : jsonFallback;
   } catch (error) {
     console.error("PUBLIC_DB per-service FAQ query failed", error);
