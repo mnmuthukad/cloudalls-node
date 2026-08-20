@@ -229,12 +229,12 @@ export async function restructureBrandDatabase(pool: Pool | null): Promise<void>
       let inserted = 0;
       let updated = 0;
       for (const row of target) {
-        const cols = Object.keys(row).filter(c => c !== "id");
+        const cols: string[] = Object.keys(row).filter((c: string) => c !== "id");
         const values: unknown[] = [];
-        for (const col of cols) values.push(row[col] ?? null);
+        for (const col of cols) values.push((row as Record<string, unknown>)[col] ?? null);
         const [result] = await pool.query(
           `INSERT INTO ${table} (${idCol}, ${cols.join(", ")}) VALUES (?, ${cols.map(() => "?").join(", ")}) ON DUPLICATE KEY UPDATE ${cols.map(c => `${c} = VALUES(${c})`).join(", ")}`,
-          [row[idCol], ...values],
+          [(row as Record<string, unknown>)[idCol], ...values],
         );
         const affected = (result as { affectedRows: number })?.affectedRows ?? 0;
         if (affected >= 2) updated += 1;
