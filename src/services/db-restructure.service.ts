@@ -58,6 +58,15 @@ function loadJson<T>(file: string): T[] {
   }
 }
 
+async function existingColumns(pool: Pool, table: string): Promise<string[]> {
+  try {
+    const [rows] = await pool.query(`SELECT column_name FROM information_schema.columns WHERE table_schema = DATABASE() AND table_name = ?`, [table]);
+    return (rows as { column_name: string }[]).map(r => r.column_name);
+  } catch {
+    return [];
+  }
+}
+
 async function columnExists(pool: Pool, table: string, column: string): Promise<boolean> {
   try {
     const [rows] = await pool.query(`SELECT COUNT(*) AS c FROM information_schema.columns WHERE table_schema = DATABASE() AND table_name = ? AND column_name = ?`, [table, column]);
@@ -111,8 +120,34 @@ export async function restructureBrandDatabase(pool: Pool | null): Promise<void>
     if (await tableExists(pool, "expertise") && !(await columnExists(pool, "expertise", "wing"))) {
       await pool.query(`ALTER TABLE expertise ADD COLUMN wing VARCHAR(50) NULL AFTER division`);
     }
-    // --- expertise: sync division assignments from JSON (idempotent by id) ---
+    // --- expertise: full upsert of every JSON row (idempotent via INSERT IGNORE on id) ---
+    // Without this, services that exist in the JSON catalogue but are missing from the
+    // live table (e.g. the 51-row catalogue vs. the legacy rows) are never created, and
+    // any downstream reference (faqs.expertise_id, detail pages) cannot resolve them.
     const targetExpertise = loadJson<ExpertiseData>("expertise.json");
+    const upsertColumns = [
+      "id", "title", "slug", "icon", "color", "division", "wing", "short_description",
+      "full_description", "bullet_points", "price_range", "delivery_time",
+      "sub_services", "key_benefits", "status", "display_order",
+      "what_we_deliver", "use_cases", "tech_stack", "process_detail",
+    ] as const;
+    if (targetExpertise.length && (await tableExists(pool, "expertise"))) {
+      const liveCols = await existingColumns(pool, "expertise");
+      const cols = upsertColumns.filter(c => liveCols.includes(c));
+      let inserted = 0;
+      for (const item of targetExpertise) {
+        const values: unknown[] = [];
+        for (const col of cols) {
+          values.push((item as unknown as Record<string, unknown>)[col] ?? null);
+        }
+        const [result] = await pool.query(
+          `INSERT IGNORE INTO expertise (${cols.join(", ")}) VALUES (${cols.map(() => "?").join(", ")})`,
+          values,
+        );
+        if ((result as { affectedRows: number })?.affectedRows) inserted += 1;
+      }
+      console.log(`[db-restructure] expertise rows upserted (${inserted} inserted of ${targetExpertise.length} referenced)`);
+    }
     if (targetExpertise.length && (await tableExists(pool, "expertise"))) {
       for (const item of targetExpertise) {
         if (item.division) {
@@ -125,22 +160,10 @@ export async function restructureBrandDatabase(pool: Pool | null): Promise<void>
       console.log(`[db-restructure] expertise division assignments synced (${targetExpertise.length} rows referenced)`);
     }
 
-    // --- expertise: sync rich service-detail columns (idempotent per column) ---
-    const detailColumns: [string, string][] = [
-      ["full_description", "TEXT NULL AFTER short_description"],
-      ["what_we_deliver", "TEXT NULL AFTER full_description"],
-      ["use_cases", "TEXT NULL AFTER what_we_deliver"],
-      ["tech_stack", "TEXT NULL AFTER use_cases"],
-      ["process_detail", "TEXT NULL AFTER tech_stack"],
-    ];
-    for (const [column, spec] of detailColumns) {
-      if (await tableExists(pool, "expertise") && !(await columnExists(pool, "expertise", column))) {
-        await pool.query(`ALTER TABLE expertise ADD COLUMN ${column} ${spec}`);
-      }
-    }
+    // --- expertise: refresh rich service-detail columns for existing rows (idempotent per row) ---
     if (targetExpertise.length && (await tableExists(pool, "expertise"))) {
       for (const item of targetExpertise) {
-        const values: (string | number | null)[] = [];
+        const values: unknown[] = [];
         const sets: string[] = [];
         for (const col of ["full_description", "what_we_deliver", "use_cases", "tech_stack", "process_detail"] as const) {
           const v = (item as unknown as Record<string, unknown>)[col];
@@ -169,13 +192,16 @@ export async function restructureBrandDatabase(pool: Pool | null): Promise<void>
       if (!(await columnExists(pool, "faqs", "status"))) {
         await pool.query(`ALTER TABLE faqs ADD COLUMN status VARCHAR(20) NOT NULL DEFAULT 'Published' AFTER display_order`);
       }
+      let faqInserted = 0;
+      let faqSkipped = 0;
       for (const f of targetFaqs) {
-        await pool.query(
+        const [faqResult] = await pool.query(
           `INSERT IGNORE INTO faqs (id, question, answer, expertise_id, display_order, status) VALUES (?, ?, ?, ?, ?, ?)`,
           [f.id, f.question, f.answer, f.expertise_id ?? null, f.display_order ?? 0, f.status || "Published"],
         );
+        if ((faqResult as { affectedRows: number })?.affectedRows) faqInserted += 1; else faqSkipped += 1;
       }
-      console.log(`[db-restructure] faqs service FAQs synced (${targetFaqs.length} rows referenced)`);
+      console.log(`[db-restructure] faqs service FAQs synced (${faqInserted} inserted, ${faqSkipped} already present, ${targetFaqs.length} referenced)`);
     }
   } catch (error) {
     console.error("[db-restructure] failed (non-fatal):", error);
