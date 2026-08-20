@@ -831,7 +831,31 @@ footer .cloudalls-wordmark svg { width: 170px; height: 34px; }
 .faq-row { transition: opacity .15s ease; }
 
 /* Search boxes: icon sits left with clearance, placeholder text is lighter */
-#service-search, #faq-search { padding-left: 3.6rem !important; }
-#service-search::placeholder, #faq-search::placeholder { opacity: .5 !important; color: #8a94a6 !important; }
-#service-search::-ms-input-placeholder, #faq-search::-ms-input-placeholder { opacity: .5 !important; color: #8a94a6 !important; }
-.search-icon-left { left: 1.5rem !important; }
+.search-input-wrap { position: relative !important; display: block; }
+.search-input-wrap .search-icon-left {
+  position: absolute !important;
+  left: 1.55rem !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  width: 1.25rem !important;
+  height: 1.25rem !important;
+  line-height: 1.25rem !important;
+  text-align: center !important;
+  font-size: 1rem !important;
+  color: #98a2b3 !important;
+  pointer-events: none !important;
+  z-index: 2 !important;
+}
+#service-search, #faq-search {
+  width: 100% !important;
+  padding-left: 3.6rem !important;
+  padding-right: 1.6rem !important;
+  border: 1px solid #dfe4ee !important;
+  outline: none !important;
+}
+#service-search:focus, #faq-search:focus {
+  border-color: #2a5cd9 !important;
+  box-shadow: 0 0 0 0.2rem rgba(42, 92, 217, .14) !important;
+}
+#service-search::placeholder, #faq-search::placeholder { opacity: .42 !important; color: #8a94a6 !important; }
+#service-search::-ms-input-placeholder, #faq-search::-ms-input-placeholder { opacity: .42 !important; color: #8a94a6 !important; }
