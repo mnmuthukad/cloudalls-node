@@ -2,7 +2,7 @@ import { Router, type Request, type Response } from "express";
 import { env } from "../config/env.js";
 import { buildLayoutData } from "../services/layout.service.js";
 import { loadJsonData } from "../services/data.service.js";
-import { getActiveBrandDivisions, getActiveCareers, getActiveExpertise, getExpertiseBySlug, getLegalCompliancePillars, getLegalCrisisResponse, getLegalDirectory, getLegalDocumentBySlug, getLegalFrameworks, getPublishedFaqs, getPublishedInsights, getPublishedPortfolios, sanitizeLegalHtml } from "../services/content.service.js";
+import { getActiveBrandDivisions, getActiveCareers, getActiveExpertise, getExpertiseBySlug, getFaqsForExpertise, getLegalCompliancePillars, getLegalCrisisResponse, getLegalDirectory, getLegalDocumentBySlug, getLegalFrameworks, getPublishedFaqs, getPublishedInsights, getPublishedPortfolios, sanitizeLegalHtml } from "../services/content.service.js";
 
 interface PageSection {
   heading: string;
@@ -79,7 +79,7 @@ publicRouter.get("/expertise", async (_req, res, next) => {
 publicRouter.get("/expertise/:slug", async (req, res, next) => {
   try {
     const slug = req.params.slug;
-    const [expertise, allExpertise] = await Promise.all([getExpertiseBySlug(slug), getActiveExpertise()]);
+    const [expertise, allExpertise, serviceFaqs] = await Promise.all([getExpertiseBySlug(slug), getActiveExpertise(), getExpertiseBySlug(slug).then(e => e ? getFaqsForExpertise(e.id) : Promise.resolve([]))]);
     if (!expertise) {
       res.status(404).render("errors/404", buildLayoutData({ pageTitle: "Expertise not found", canonicalUrl: "/expertise" }));
       return;
@@ -88,6 +88,7 @@ publicRouter.get("/expertise/:slug", async (req, res, next) => {
       ...buildLayoutData({ currentPage: "expertise", pageTitle: `${expertise.title} | CloudAlls Expertise`, pageDescription: expertise.short_description || "CloudAlls expertise.", canonicalUrl: `/expertise/${encodeURIComponent(expertise.slug)}` }),
       expertise,
       siblingExpertise: allExpertise,
+      serviceFaqs,
     });
   } catch (error) { next(error); }
 });

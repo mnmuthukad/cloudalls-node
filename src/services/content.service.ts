@@ -18,6 +18,10 @@ export interface ExpertiseRow extends RowDataPacket {
   delivery_time: string | null;
   sub_services: string | null;
   key_benefits: string | null;
+  what_we_deliver: string | null;
+  use_cases: string | null;
+  tech_stack: string | null;
+  process_detail: string | null;
 }
 
 export interface FaqRow extends RowDataPacket {
@@ -207,7 +211,7 @@ export async function getExpertiseBySlug(slug: string): Promise<ExpertiseRow | n
   const db = getPublicDb();
   if (!db) return editableExpertise.find(item => item.slug === slug) || null;
   try {
-    const [rows] = await db.query<ExpertiseRow[]>("SELECT id,title,slug,icon,color,short_description,full_description,bullet_points,price_range,delivery_time,sub_services,key_benefits,division,wing FROM expertise WHERE slug = ? AND status = 'Active' LIMIT 1", [slug]);
+    const [rows] = await db.query<ExpertiseRow[]>("SELECT id,title,slug,icon,color,short_description,full_description,bullet_points,price_range,delivery_time,sub_services,key_benefits,division,wing,what_we_deliver,use_cases,tech_stack,process_detail FROM expertise WHERE slug = ? AND status = 'Active' LIMIT 1", [slug]);
     return rows[0] || editableExpertise.find(item => item.slug === slug) || null;
   } catch (error) {
     console.error("PUBLIC_DB expertise detail query failed", error);
@@ -224,6 +228,19 @@ export async function getPublishedFaqs(): Promise<FaqRow[]> {
   } catch (error) {
     console.error("PUBLIC_DB FAQ query failed", error);
     return editableFaqs;
+  }
+}
+
+export async function getFaqsForExpertise(expertiseId: number): Promise<FaqRow[]> {
+  const db = getPublicDb();
+  const jsonFallback = editableFaqs.filter(f => f.expertise_id === expertiseId);
+  if (!db) return jsonFallback;
+  try {
+    const [rows] = await db.query<FaqRow[]>("SELECT id,question,answer,expertise_id,display_order FROM faqs WHERE expertise_id = ? AND status = 'Published' ORDER BY display_order ASC", [expertiseId]);
+    return rows.length ? rows : jsonFallback;
+  } catch (error) {
+    console.error("PUBLIC_DB per-service FAQ query failed", error);
+    return jsonFallback;
   }
 }
 

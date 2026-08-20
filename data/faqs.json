@@ -1,299 +1,1235 @@
 [
-  {
-    "id": 1,
-    "question": "What is the \"CloudAlls Ecosystem\" approach?",
-    "answer": "The Ecosystem approach means we don't just build isolated apps or websites. We architect interconnected digital environments where your custom software, physical hardware, cybersecurity, and marketing pipelines work together as a single, highly scalable organism.",
-    "expertise_id": null,
-    "display_order": 1,
-    "status": "Published",
-    "created_at": "2026-04-18 06:32:06"
-  },
-  {
-    "id": 2,
-    "question": "What is your standard project onboarding process?",
-    "answer": "Our onboarding begins with a comprehensive technical discovery session, followed by an architectural blueprinting phase. Once the technical specifications, timelines, and security matrices are approved by your team, we initiate agile development sprints.",
-    "expertise_id": null,
-    "display_order": 2,
-    "status": "Published",
-    "created_at": "2026-04-18 06:32:06"
-  },
-  {
-    "id": 3,
-    "question": "Do you provide post-deployment support and SLAs?",
-    "answer": "Yes, we offer tiered Service Level Agreements (SLAs) for all enterprise deployments. This includes 24/7 server monitoring, routine cybersecurity patches, and priority bug resolution through our dedicated support desk.",
-    "expertise_id": null,
-    "display_order": 3,
-    "status": "Published",
-    "created_at": "2026-04-18 06:32:06"
-  },
-  {
-    "id": 4,
-    "question": "What tech stack do you use for enterprise web applications?",
-    "answer": "We utilize a modern, highly scalable tech stack featuring PHP/Laravel or Node.js for robust backend processing, React or Vue.js for fluid frontend interfaces, and AWS/GCP for cloud-native deployment.",
-    "expertise_id": 1,
-    "display_order": 10,
-    "status": "Published",
-    "created_at": "2026-04-18 06:32:06"
-  },
-  {
-    "id": 5,
-    "question": "Can your software integrate with our existing legacy ERP systems?",
-    "answer": "Yes, our engineering team specializes in building custom API gateways and middleware that securely bridge the gap between modern cloud interfaces and legacy on-premise databases without risking data loss.",
-    "expertise_id": 1,
-    "display_order": 11,
-    "status": "Published",
-    "created_at": "2026-04-18 06:32:06"
-  },
-  {
-    "id": 6,
-    "question": "Why do you recommend Flutter for MVP mobile app development?",
-    "answer": "Flutter allows us to use a single codebase to compile natively for both iOS and Android. This drastically reduces development time and costs by up to 40% while maintaining fluid 60FPS performance, making it the perfect strategic choice for MVPs.",
-    "expertise_id": 2,
-    "display_order": 20,
-    "status": "Published",
-    "created_at": "2026-04-18 06:32:06"
-  },
-  {
-    "id": 7,
-    "question": "Will my mobile app work offline?",
-    "answer": "Depending on your project requirements, we can architect local-first data caching utilizing SQLite or Hive. This ensures core app functionalities remain accessible offline, automatically syncing to the cloud once connectivity is restored.",
-    "expertise_id": 2,
-    "display_order": 21,
-    "status": "Published",
-    "created_at": "2026-04-18 06:32:06"
-  },
-  {
-    "id": 8,
-    "question": "How secure is my data when integrating AI?",
-    "answer": "Security is our core priority. For sensitive enterprise projects, we implement Localized AI Models or Private RAG (Retrieval-Augmented Generation) architectures. Your proprietary data never leaves your secure server and is never used to train public AI models.",
-    "expertise_id": 3,
-    "display_order": 30,
-    "status": "Published",
-    "created_at": "2026-04-18 06:32:06"
-  },
-  {
-    "id": 9,
-    "question": "Can AI Agents automate our internal HR or Finance workflows?",
-    "answer": "Absolutely. We architect \"Agentic AI\" workflows that can autonomously process invoices, screen initial resumes, and route support tickets based on contextual understanding, drastically reducing manual operational overhead.",
-    "expertise_id": 3,
-    "display_order": 31,
-    "status": "Published",
-    "created_at": "2026-04-18 06:32:06"
-  },
-  {
-    "id": 10,
-    "question": "What does a Technical Feasibility Study involve?",
-    "answer": "Our feasibility studies assess the market viability, necessary technology stack, regulatory compliance, and estimated infrastructure costs of a proposed deep-tech product before you commit heavy capital to full-scale development.",
-    "expertise_id": 4,
-    "display_order": 40,
-    "status": "Published",
-    "created_at": "2026-04-18 06:32:06"
-  },
-  {
-    "id": 11,
-    "question": "Can you help us build a Proof of Concept (PoC) for investors?",
-    "answer": "Yes, our R&D division frequently partners with startups and venture capitalists to build rapid, functional PoCs and interactive wireframes designed specifically to validate ideas and secure seed funding.",
-    "expertise_id": 4,
-    "display_order": 41,
-    "status": "Published",
-    "created_at": "2026-04-18 06:32:06"
-  },
-  {
-    "id": 12,
-    "question": "What is your approach to the product development lifecycle?",
-    "answer": "We utilize Agile methodology. We break the product down into bi-weekly sprints, allowing us to deliver functional software or hardware increments regularly. This ensures continuous client feedback and rapid pivot capabilities.",
-    "expertise_id": 5,
-    "display_order": 50,
-    "status": "Published",
-    "created_at": "2026-04-18 06:32:06"
-  },
-  {
-    "id": 13,
-    "question": "Do you handle both software and hardware product development?",
-    "answer": "Yes. CloudAlls is uniquely positioned to handle end-to-end product development, managing both the digital software architecture and the physical hardware prototyping under one roof to ensure perfect integration.",
-    "expertise_id": 5,
-    "display_order": 51,
-    "status": "Published",
-    "created_at": "2026-04-18 06:32:06"
-  },
-  {
-    "id": 14,
-    "question": "Can you integrate custom hardware with existing mobile apps?",
-    "answer": "Absolutely. We specialize in bridging physical and digital worlds. Whether it's IoT sensors, biometric scanners, or custom controller boards, we can blueprint and build the firmware and APIs needed to connect them to your software ecosystem.",
-    "expertise_id": 6,
-    "display_order": 60,
-    "status": "Published",
-    "created_at": "2026-04-18 06:32:06"
-  },
-  {
-    "id": 15,
-    "question": "Do you provide custom workstations for high-end rendering or AI training?",
-    "answer": "Yes, we source, assemble, and optimize custom enterprise-grade PC builds and local server racks tailored specifically for heavy computational workloads like 3D rendering, video post-production, and local machine learning.",
-    "expertise_id": 6,
-    "display_order": 61,
-    "status": "Published",
-    "created_at": "2026-04-18 06:32:06"
-  },
-  {
-    "id": 16,
-    "question": "Does your UI/UX design process include user testing?",
-    "answer": "Yes, our UI/UX methodology relies heavily on interactive wireframing and A/B testing to ensure intuitive user flows before any actual code is written, saving significant development time down the line.",
-    "expertise_id": 7,
-    "display_order": 70,
-    "status": "Published",
-    "created_at": "2026-04-18 06:32:06"
-  },
-  {
-    "id": 17,
-    "question": "Can you handle bulk corporate printing and branding materials?",
-    "answer": "We manage the entire lifecycle from digital logo design to the physical delivery of high-quality corporate branding materials, including bound brochures, ID cards, custom notepads, and large-scale event flex banners.",
-    "expertise_id": 7,
-    "display_order": 71,
-    "status": "Published",
-    "created_at": "2026-04-18 06:32:06"
-  },
-  {
-    "id": 18,
-    "question": "Do you provide video production for corporate training or marketing?",
-    "answer": "Yes, our creative studio handles end-to-end media production. This includes scriptwriting, on-location corporate shoots, post-production editing, and integrating premium 3D motion graphics.",
-    "expertise_id": 8,
-    "display_order": 80,
-    "status": "Published",
-    "created_at": "2026-04-18 06:32:06"
-  },
-  {
-    "id": 19,
-    "question": "What are the deliverables for a standard product photography shoot?",
-    "answer": "You will receive high-resolution, color-graded raw files alongside web-optimized, compressed formats ready for immediate deployment on your e-commerce platform, digital catalog, or social media channels.",
-    "expertise_id": 8,
-    "display_order": 81,
-    "status": "Published",
-    "created_at": "2026-04-18 06:32:06"
-  },
-  {
-    "id": 20,
-    "question": "How do you measure the ROI of your digital marketing campaigns?",
-    "answer": "We implement closed-loop analytics. By connecting Google Ads, Meta Pixels, and your custom CRM, we track a user from their first ad click all the way to the final signed invoice, providing 100% transparent ROI metrics.",
-    "expertise_id": 9,
-    "display_order": 90,
-    "status": "Published",
-    "created_at": "2026-04-18 06:32:06"
-  },
-  {
-    "id": 21,
-    "question": "Do you handle SEO as part of the initial web development?",
-    "answer": "Yes, technical SEO (site speed, schema markup, mobile-first optimization) is baked into our web architecture from day one. We also offer ongoing content-driven SEO retainers to ensure long-term organic growth.",
-    "expertise_id": 9,
-    "display_order": 91,
-    "status": "Published",
-    "created_at": "2026-04-18 06:32:06"
-  },
-  {
-    "id": 22,
-    "question": "What is Zero-Trust Architecture in the context of office automation?",
-    "answer": "Zero-Trust means assuming your network is always at risk. We micro-segment your smart office devices (like IoT lighting and CCTV) away from your core financial and operational servers to prevent lateral cyber-attacks.",
-    "expertise_id": 10,
-    "display_order": 100,
-    "status": "Published",
-    "created_at": "2026-04-18 06:32:06"
-  },
-  {
-    "id": 23,
-    "question": "Can we monitor our CCTV and access control from a single dashboard?",
-    "answer": "Yes, we unify your IP-CCTV streams, environmental sensors, and biometric access logs into a single, encrypted digital portal accessible via mobile or desktop for total situational awareness.",
-    "expertise_id": 10,
-    "display_order": 101,
-    "status": "Published",
-    "created_at": "2026-04-18 06:32:06"
-  },
-  {
-    "id": 24,
-    "question": "Do you handle tech summit and corporate event coordination?",
-    "answer": "We provide end-to-end event operations, from developing digital ticketing gateways and RSVP CRMs to handling physical venue logistics, A/V setups, and live-streaming infrastructure.",
-    "expertise_id": 11,
-    "display_order": 110,
-    "status": "Published",
-    "created_at": "2026-04-18 06:32:06"
-  },
-  {
-    "id": 25,
-    "question": "What does your business management consulting involve?",
-    "answer": "We deploy experienced fractional operations managers to analyze your internal bottlenecks, implement lean agile workflows, and train your staff on adopting new enterprise software systems.",
-    "expertise_id": 11,
-    "display_order": 111,
-    "status": "Published",
-    "created_at": "2026-04-18 06:32:06"
-  },
-  {
-    "id": 26,
-    "question": "Are your academy programs suitable for corporate team upskilling?",
-    "answer": "Yes, we offer tailored corporate masterclasses designed to upskill your existing workforce in modern development frameworks, cloud infrastructure management, and AI workflow integration.",
-    "expertise_id": 12,
-    "display_order": 120,
-    "status": "Published",
-    "created_at": "2026-04-18 06:32:06"
-  },
-  {
-    "id": 27,
-    "question": "Do you hire directly from your internship programs?",
-    "answer": "We view our Academy and intensive internship programs as our primary recruitment pipeline. Top-performing interns are frequently offered full-time engineering or design roles within the CloudAlls Ecosystem.",
-    "expertise_id": 12,
-    "display_order": 121,
-    "status": "Published",
-    "created_at": "2026-04-18 06:32:06"
-  },
-  {
-    "id": 28,
-    "question": "Do you sign NDAs and support vendor security reviews?",
-    "answer": "Yes. We routinely execute mutual NDAs before discovery conversations and support standard enterprise vendor security reviews, including architecture questionnaires, source-scan summaries, and penetration-test reporting for engagements where it is required.",
-    "expertise_id": null,
-    "display_order": 130,
-    "status": "Published",
-    "created_at": "2026-08-14 00:00:00"
-  },
-  {
-    "id": 29,
-    "question": "Where is our data hosted, and how do you handle data residency?",
-    "answer": "Data hosting follows your policy. We deploy to AWS or GCP regions of your choosing (including India and UAE regions), operate private RAG and localized AI environments entirely inside your tenant, and execute documented deletion procedures at contract end.",
-    "expertise_id": null,
-    "display_order": 131,
-    "status": "Published",
-    "created_at": "2026-08-14 00:00:00"
-  },
-  {
-    "id": 30,
-    "question": "How do enterprise procurement and invoicing work?",
-    "answer": "We issue milestone-based invoices aligned to sprint reviews, support purchase-order billing, and provide formal engagement letters, statements of work, and acceptance criteria documentation suitable for corporate procurement workflows.",
-    "expertise_id": null,
-    "display_order": 132,
-    "status": "Published",
-    "created_at": "2026-08-14 00:00:00"
-  },
-  {
-    "id": 31,
-    "question": "What does your SLA structure look like?",
-    "answer": "Enterprise deployments are covered by tiered SLAs spanning 24/7 server monitoring, security patching windows, and priority defect resolution with defined response and resolution targets. SLA terms are agreed in the engagement contract and reviewed quarterly.",
-    "expertise_id": null,
-    "display_order": 133,
-    "status": "Published",
-    "created_at": "2026-08-14 00:00:00"
-  },
-  {
-    "id": 32,
-    "question": "Are you compliant with DPDP and global privacy frameworks?",
-    "answer": "Our engagements are designed around India's Digital Personal Data Protection (DPDP) Act principles — lawful processing, data minimization, consent management, and breach notification paths — alongside ISO 27001, SOC 2, and GDPR alignment practices referenced in our Trust Center documentation.",
-    "expertise_id": null,
-    "display_order": 134,
-    "status": "Published",
-    "created_at": "2026-08-14 00:00:00"
-  },
-  {
-    "id": 33,
-    "question": "Can you work within our existing cloud and tooling standards?",
-    "answer": "Yes. We integrate with enterprise environments including Azure and GCP tenants, GitLab and GitHub CI pipelines, Jira and Linear issue tracking, and your existing IAM and secrets management — we adapt to your standards rather than requiring you to adopt ours.",
-    "expertise_id": null,
-    "display_order": 135,
-    "status": "Published",
-    "created_at": "2026-08-14 00:00:00"
-  }
+ {
+  "id": 1,
+  "question": "What is the \"CloudAlls Ecosystem\" approach?",
+  "answer": "The Ecosystem approach means we don't just build isolated apps or websites. We architect interconnected digital environments where your custom software, physical hardware, cybersecurity, and marketing pipelines work together as a single, highly scalable organism.",
+  "expertise_id": null,
+  "display_order": 1,
+  "status": "Published",
+  "created_at": "2026-04-18 06:32:06"
+ },
+ {
+  "id": 2,
+  "question": "What is your standard project onboarding process?",
+  "answer": "Our onboarding begins with a comprehensive technical discovery session, followed by an architectural blueprinting phase. Once the technical specifications, timelines, and security matrices are approved by your team, we initiate agile development sprints.",
+  "expertise_id": null,
+  "display_order": 2,
+  "status": "Published",
+  "created_at": "2026-04-18 06:32:06"
+ },
+ {
+  "id": 3,
+  "question": "Do you provide post-deployment support and SLAs?",
+  "answer": "Yes, we offer tiered Service Level Agreements (SLAs) for all enterprise deployments. This includes 24/7 server monitoring, routine cybersecurity patches, and priority bug resolution through our dedicated support desk.",
+  "expertise_id": null,
+  "display_order": 3,
+  "status": "Published",
+  "created_at": "2026-04-18 06:32:06"
+ },
+ {
+  "id": 4,
+  "question": "What tech stack do you use for enterprise web applications?",
+  "answer": "We utilize a modern, highly scalable tech stack featuring PHP/Laravel or Node.js for robust backend processing, React or Vue.js for fluid frontend interfaces, and AWS/GCP for cloud-native deployment.",
+  "expertise_id": 1,
+  "display_order": 10,
+  "status": "Published",
+  "created_at": "2026-04-18 06:32:06"
+ },
+ {
+  "id": 5,
+  "question": "Can your software integrate with our existing legacy ERP systems?",
+  "answer": "Yes, our engineering team specializes in building custom API gateways and middleware that securely bridge the gap between modern cloud interfaces and legacy on-premise databases without risking data loss.",
+  "expertise_id": 1,
+  "display_order": 11,
+  "status": "Published",
+  "created_at": "2026-04-18 06:32:06"
+ },
+ {
+  "id": 6,
+  "question": "Why do you recommend Flutter for MVP mobile app development?",
+  "answer": "Flutter allows us to use a single codebase to compile natively for both iOS and Android. This drastically reduces development time and costs by up to 40% while maintaining fluid 60FPS performance, making it the perfect strategic choice for MVPs.",
+  "expertise_id": 2,
+  "display_order": 20,
+  "status": "Published",
+  "created_at": "2026-04-18 06:32:06"
+ },
+ {
+  "id": 7,
+  "question": "Will my mobile app work offline?",
+  "answer": "Depending on your project requirements, we can architect local-first data caching utilizing SQLite or Hive. This ensures core app functionalities remain accessible offline, automatically syncing to the cloud once connectivity is restored.",
+  "expertise_id": 2,
+  "display_order": 21,
+  "status": "Published",
+  "created_at": "2026-04-18 06:32:06"
+ },
+ {
+  "id": 8,
+  "question": "How secure is my data when integrating AI?",
+  "answer": "Security is our core priority. For sensitive enterprise projects, we implement Localized AI Models or Private RAG (Retrieval-Augmented Generation) architectures. Your proprietary data never leaves your secure server and is never used to train public AI models.",
+  "expertise_id": 3,
+  "display_order": 30,
+  "status": "Published",
+  "created_at": "2026-04-18 06:32:06"
+ },
+ {
+  "id": 9,
+  "question": "Can AI Agents automate our internal HR or Finance workflows?",
+  "answer": "Absolutely. We architect \"Agentic AI\" workflows that can autonomously process invoices, screen initial resumes, and route support tickets based on contextual understanding, drastically reducing manual operational overhead.",
+  "expertise_id": 3,
+  "display_order": 31,
+  "status": "Published",
+  "created_at": "2026-04-18 06:32:06"
+ },
+ {
+  "id": 10,
+  "question": "What does a Technical Feasibility Study involve?",
+  "answer": "Our feasibility studies assess the market viability, necessary technology stack, regulatory compliance, and estimated infrastructure costs of a proposed deep-tech product before you commit heavy capital to full-scale development.",
+  "expertise_id": 4,
+  "display_order": 40,
+  "status": "Published",
+  "created_at": "2026-04-18 06:32:06"
+ },
+ {
+  "id": 11,
+  "question": "Can you help us build a Proof of Concept (PoC) for investors?",
+  "answer": "Yes, our R&D division frequently partners with startups and venture capitalists to build rapid, functional PoCs and interactive wireframes designed specifically to validate ideas and secure seed funding.",
+  "expertise_id": 4,
+  "display_order": 41,
+  "status": "Published",
+  "created_at": "2026-04-18 06:32:06"
+ },
+ {
+  "id": 12,
+  "question": "What is your approach to the product development lifecycle?",
+  "answer": "We utilize Agile methodology. We break the product down into bi-weekly sprints, allowing us to deliver functional software or hardware increments regularly. This ensures continuous client feedback and rapid pivot capabilities.",
+  "expertise_id": 5,
+  "display_order": 50,
+  "status": "Published",
+  "created_at": "2026-04-18 06:32:06"
+ },
+ {
+  "id": 13,
+  "question": "Do you handle both software and hardware product development?",
+  "answer": "Yes. CloudAlls is uniquely positioned to handle end-to-end product development, managing both the digital software architecture and the physical hardware prototyping under one roof to ensure perfect integration.",
+  "expertise_id": 5,
+  "display_order": 51,
+  "status": "Published",
+  "created_at": "2026-04-18 06:32:06"
+ },
+ {
+  "id": 14,
+  "question": "Can you integrate custom hardware with existing mobile apps?",
+  "answer": "Absolutely. We specialize in bridging physical and digital worlds. Whether it's IoT sensors, biometric scanners, or custom controller boards, we can blueprint and build the firmware and APIs needed to connect them to your software ecosystem.",
+  "expertise_id": 6,
+  "display_order": 60,
+  "status": "Published",
+  "created_at": "2026-04-18 06:32:06"
+ },
+ {
+  "id": 15,
+  "question": "Do you provide custom workstations for high-end rendering or AI training?",
+  "answer": "Yes, we source, assemble, and optimize custom enterprise-grade PC builds and local server racks tailored specifically for heavy computational workloads like 3D rendering, video post-production, and local machine learning.",
+  "expertise_id": 6,
+  "display_order": 61,
+  "status": "Published",
+  "created_at": "2026-04-18 06:32:06"
+ },
+ {
+  "id": 16,
+  "question": "Does your UI/UX design process include user testing?",
+  "answer": "Yes, our UI/UX methodology relies heavily on interactive wireframing and A/B testing to ensure intuitive user flows before any actual code is written, saving significant development time down the line.",
+  "expertise_id": 7,
+  "display_order": 70,
+  "status": "Published",
+  "created_at": "2026-04-18 06:32:06"
+ },
+ {
+  "id": 17,
+  "question": "Can you handle bulk corporate printing and branding materials?",
+  "answer": "We manage the entire lifecycle from digital logo design to the physical delivery of high-quality corporate branding materials, including bound brochures, ID cards, custom notepads, and large-scale event flex banners.",
+  "expertise_id": 7,
+  "display_order": 71,
+  "status": "Published",
+  "created_at": "2026-04-18 06:32:06"
+ },
+ {
+  "id": 18,
+  "question": "Do you provide video production for corporate training or marketing?",
+  "answer": "Yes, our creative studio handles end-to-end media production. This includes scriptwriting, on-location corporate shoots, post-production editing, and integrating premium 3D motion graphics.",
+  "expertise_id": 8,
+  "display_order": 80,
+  "status": "Published",
+  "created_at": "2026-04-18 06:32:06"
+ },
+ {
+  "id": 19,
+  "question": "What are the deliverables for a standard product photography shoot?",
+  "answer": "You will receive high-resolution, color-graded raw files alongside web-optimized, compressed formats ready for immediate deployment on your e-commerce platform, digital catalog, or social media channels.",
+  "expertise_id": 8,
+  "display_order": 81,
+  "status": "Published",
+  "created_at": "2026-04-18 06:32:06"
+ },
+ {
+  "id": 20,
+  "question": "How do you measure the ROI of your digital marketing campaigns?",
+  "answer": "We implement closed-loop analytics. By connecting Google Ads, Meta Pixels, and your custom CRM, we track a user from their first ad click all the way to the final signed invoice, providing 100% transparent ROI metrics.",
+  "expertise_id": 9,
+  "display_order": 90,
+  "status": "Published",
+  "created_at": "2026-04-18 06:32:06"
+ },
+ {
+  "id": 21,
+  "question": "Do you handle SEO as part of the initial web development?",
+  "answer": "Yes, technical SEO (site speed, schema markup, mobile-first optimization) is baked into our web architecture from day one. We also offer ongoing content-driven SEO retainers to ensure long-term organic growth.",
+  "expertise_id": 9,
+  "display_order": 91,
+  "status": "Published",
+  "created_at": "2026-04-18 06:32:06"
+ },
+ {
+  "id": 22,
+  "question": "What is Zero-Trust Architecture in the context of office automation?",
+  "answer": "Zero-Trust means assuming your network is always at risk. We micro-segment your smart office devices (like IoT lighting and CCTV) away from your core financial and operational servers to prevent lateral cyber-attacks.",
+  "expertise_id": 10,
+  "display_order": 100,
+  "status": "Published",
+  "created_at": "2026-04-18 06:32:06"
+ },
+ {
+  "id": 23,
+  "question": "Can we monitor our CCTV and access control from a single dashboard?",
+  "answer": "Yes, we unify your IP-CCTV streams, environmental sensors, and biometric access logs into a single, encrypted digital portal accessible via mobile or desktop for total situational awareness.",
+  "expertise_id": 10,
+  "display_order": 101,
+  "status": "Published",
+  "created_at": "2026-04-18 06:32:06"
+ },
+ {
+  "id": 24,
+  "question": "Do you handle tech summit and corporate event coordination?",
+  "answer": "We provide end-to-end event operations, from developing digital ticketing gateways and RSVP CRMs to handling physical venue logistics, A/V setups, and live-streaming infrastructure.",
+  "expertise_id": 11,
+  "display_order": 110,
+  "status": "Published",
+  "created_at": "2026-04-18 06:32:06"
+ },
+ {
+  "id": 25,
+  "question": "What does your business management consulting involve?",
+  "answer": "We deploy experienced fractional operations managers to analyze your internal bottlenecks, implement lean agile workflows, and train your staff on adopting new enterprise software systems.",
+  "expertise_id": 11,
+  "display_order": 111,
+  "status": "Published",
+  "created_at": "2026-04-18 06:32:06"
+ },
+ {
+  "id": 26,
+  "question": "Are your academy programs suitable for corporate team upskilling?",
+  "answer": "Yes, we offer tailored corporate masterclasses designed to upskill your existing workforce in modern development frameworks, cloud infrastructure management, and AI workflow integration.",
+  "expertise_id": 12,
+  "display_order": 120,
+  "status": "Published",
+  "created_at": "2026-04-18 06:32:06"
+ },
+ {
+  "id": 27,
+  "question": "Do you hire directly from your internship programs?",
+  "answer": "We view our Academy and intensive internship programs as our primary recruitment pipeline. Top-performing interns are frequently offered full-time engineering or design roles within the CloudAlls Ecosystem.",
+  "expertise_id": 12,
+  "display_order": 121,
+  "status": "Published",
+  "created_at": "2026-04-18 06:32:06"
+ },
+ {
+  "id": 28,
+  "question": "Do you sign NDAs and support vendor security reviews?",
+  "answer": "Yes. We routinely execute mutual NDAs before discovery conversations and support standard enterprise vendor security reviews, including architecture questionnaires, source-scan summaries, and penetration-test reporting for engagements where it is required.",
+  "expertise_id": null,
+  "display_order": 130,
+  "status": "Published",
+  "created_at": "2026-08-14 00:00:00"
+ },
+ {
+  "id": 29,
+  "question": "Where is our data hosted, and how do you handle data residency?",
+  "answer": "Data hosting follows your policy. We deploy to AWS or GCP regions of your choosing (including India and UAE regions), operate private RAG and localized AI environments entirely inside your tenant, and execute documented deletion procedures at contract end.",
+  "expertise_id": null,
+  "display_order": 131,
+  "status": "Published",
+  "created_at": "2026-08-14 00:00:00"
+ },
+ {
+  "id": 30,
+  "question": "How do enterprise procurement and invoicing work?",
+  "answer": "We issue milestone-based invoices aligned to sprint reviews, support purchase-order billing, and provide formal engagement letters, statements of work, and acceptance criteria documentation suitable for corporate procurement workflows.",
+  "expertise_id": null,
+  "display_order": 132,
+  "status": "Published",
+  "created_at": "2026-08-14 00:00:00"
+ },
+ {
+  "id": 31,
+  "question": "What does your SLA structure look like?",
+  "answer": "Enterprise deployments are covered by tiered SLAs spanning 24/7 server monitoring, security patching windows, and priority defect resolution with defined response and resolution targets. SLA terms are agreed in the engagement contract and reviewed quarterly.",
+  "expertise_id": null,
+  "display_order": 133,
+  "status": "Published",
+  "created_at": "2026-08-14 00:00:00"
+ },
+ {
+  "id": 32,
+  "question": "Are you compliant with DPDP and global privacy frameworks?",
+  "answer": "Our engagements are designed around India's Digital Personal Data Protection (DPDP) Act principles — lawful processing, data minimization, consent management, and breach notification paths — alongside ISO 27001, SOC 2, and GDPR alignment practices referenced in our Trust Center documentation.",
+  "expertise_id": null,
+  "display_order": 134,
+  "status": "Published",
+  "created_at": "2026-08-14 00:00:00"
+ },
+ {
+  "id": 33,
+  "question": "Can you work within our existing cloud and tooling standards?",
+  "answer": "Yes. We integrate with enterprise environments including Azure and GCP tenants, GitLab and GitHub CI pipelines, Jira and Linear issue tracking, and your existing IAM and secrets management — we adapt to your standards rather than requiring you to adopt ours.",
+  "expertise_id": null,
+  "display_order": 135,
+  "status": "Published",
+  "created_at": "2026-08-14 00:00:00"
+ },
+ {
+  "id": 34,
+  "question": "What lead time is required for bulk hardware orders?",
+  "answer": "Standard delivery window is 1–3 weeks for most configurations. Custom specs, licensing, or high-volume OEM orders may extend lead times; a detailed timeline is provided after requirements discovery.",
+  "expertise_id": 13,
+  "display_order": 50,
+  "status": "Published"
+ },
+ {
+  "id": 35,
+  "question": "How are warranties and returns handled?",
+  "answer": "Manufacturer warranties transfer to the customer; CloudAlls manages RMA coordination, returns processing, and warranty claims administration during the coverage period, streamlining repairs or replacements on behalf of the client.",
+  "expertise_id": 13,
+  "display_order": 51,
+  "status": "Published"
+ },
+ {
+  "id": 36,
+  "question": "Can existing asset inventories and configurations be integrated?",
+  "answer": "Yes. Existing inventory and configuration baselines are imported; device mappings, serials, and imaging profiles are reconciled to ensure continuity, minimize duplication, and maintain accurate lifecycle reporting.",
+  "expertise_id": 13,
+  "display_order": 52,
+  "status": "Published"
+ },
+ {
+  "id": 37,
+  "question": "How long does network architecture delivery take?",
+  "answer": "Typical delivery is one to three weeks for standard office or campus phases. Larger deployments require additional surveys, procurement lead time, and change approvals; timeline is finalized after discovery.",
+  "expertise_id": 14,
+  "display_order": 50,
+  "status": "Published"
+ },
+ {
+  "id": 38,
+  "question": "Will the design support Wi‑Fi capacity for high-density areas?",
+  "answer": "Yes. High-density support includes Wi‑Fi 6 radios, density-optimized access point placement, channel allocation, and capacity planning. Post-deployment validation ensures client density targets and application performance are met.",
+  "expertise_id": 14,
+  "display_order": 51,
+  "status": "Published"
+ },
+ {
+  "id": 39,
+  "question": "How is network security enforced across branches and Wi‑Fi?",
+  "answer": "Security is enforced via VLAN segmentation, NAC, firewall and SD‑WAN policy controls, WPA3 enterprise authentication, and continuous monitoring with alerts. Role-based access and segregation limit lateral movement and data exposure.",
+  "expertise_id": 14,
+  "display_order": 52,
+  "status": "Published"
+ },
+ {
+  "id": 40,
+  "question": "What is the typical deployment timeline for a standard site?",
+  "answer": "Typical deployments complete within one to four weeks. Timeline varies by site size, cabling complexity, permitting, and required compliance validation; project plan includes installation, commissioning, testing, and documentation.",
+  "expertise_id": 15,
+  "display_order": 50,
+  "status": "Published"
+ },
+ {
+  "id": 41,
+  "question": "How do you handle data privacy and compliance for video and access logs?",
+  "answer": "Video and access data are encrypted in transit and at rest, retained per policy, access is role-restricted, and audit logs support compliance reporting and forensic analysis.",
+  "expertise_id": 15,
+  "display_order": 51,
+  "status": "Published"
+ },
+ {
+  "id": 42,
+  "question": "Can existing cameras and access hardware be integrated into the new system?",
+  "answer": "Existing cameras and controllers are evaluated for compatibility; many integrate via ONVIF or vendor SDKs. Migration plans include adapters, reconfiguration, and staged cutover to minimize downtime.",
+  "expertise_id": 15,
+  "display_order": 52,
+  "status": "Published"
+ },
+ {
+  "id": 43,
+  "question": "What internet bandwidth is required for a multi-camera broadcast?",
+  "answer": "Single output streams typically use 6–10 Mbps. For multi-bitrate, dual-encoder redundancy, and multiple channels, budget 25–100 Mbps upstream on a symmetrical, low-jitter connection.",
+  "expertise_id": 16,
+  "display_order": 50,
+  "status": "Published"
+ },
+ {
+  "id": 44,
+  "question": "How far in advance should the production be planned and tested?",
+  "answer": "Schedule technical planning two to six weeks before the event. Conduct on-site setup and a full technical rehearsal at least one day prior to event start.",
+  "expertise_id": 16,
+  "display_order": 51,
+  "status": "Published"
+ },
+ {
+  "id": 45,
+  "question": "How are recorded streams delivered and retained post-event?",
+  "answer": "Master recordings and proxy files are delivered via secure SFTP, cloud transfer, or private CDN link. Standard delivery includes mezzanine and web-optimized files; custom retention and archival workflows available.",
+  "expertise_id": 16,
+  "display_order": 52,
+  "status": "Published"
+ },
+ {
+  "id": 46,
+  "question": "What is the typical project timeline?",
+  "answer": "Standard delivery spans 1–4 weeks depending on scope. Pre-production, shoot days and post-production schedules are confirmed during planning to meet deadlines and approvals.",
+  "expertise_id": 17,
+  "display_order": 50,
+  "status": "Published"
+ },
+ {
+  "id": 47,
+  "question": "Which formats and file types are provided on delivery?",
+  "answer": "Final masters delivered in 4K ProRes or H.264/H.265, plus web and social versions, closed captions, and archive masters for broadcast or repurposing.",
+  "expertise_id": 17,
+  "display_order": 51,
+  "status": "Published"
+ },
+ {
+  "id": 48,
+  "question": "How are usage rights and third‑party licenses handled?",
+  "answer": "Commercial usage rights for finished films are granted to the client. Third-party costs—talent, locations, stock assets—are billed separately and documented in the production agreement.",
+  "expertise_id": 17,
+  "display_order": 52,
+  "status": "Published"
+ },
+ {
+  "id": 49,
+  "question": "What is the typical turnaround time for edited images?",
+  "answer": "Standard delivery is 3–7 days for edited images. Larger shoots or heavy retouching may extend timelines; expedited options are available for urgent deadlines.",
+  "expertise_id": 18,
+  "display_order": 50,
+  "status": "Published"
+ },
+ {
+  "id": 50,
+  "question": "How are image rights and licensing handled?",
+  "answer": "Licensing is specified in the project quote: standard commercial usage for marketing and web is included. Extended or exclusive rights are available via separate licensing agreements.",
+  "expertise_id": 18,
+  "display_order": 51,
+  "status": "Published"
+ },
+ {
+  "id": 51,
+  "question": "Can shoots be conducted on location or only in studio?",
+  "answer": "Both studio and on-location shoots are supported. On-site work includes portable strobe setups to match studio lighting; travel and location fees depend on distance and logistics.",
+  "expertise_id": 18,
+  "display_order": 52,
+  "status": "Published"
+ },
+ {
+  "id": 52,
+  "question": "What footage formats and deliverables will the client receive?",
+  "answer": "Final deliverables include color-graded master (ProRes or DNxHD), camera original raw files on request, broadcast and social encodes, and a DCP or festival-ready export when specified.",
+  "expertise_id": 19,
+  "display_order": 50,
+  "status": "Published"
+ },
+ {
+  "id": 53,
+  "question": "How is the shooting schedule and turnaround determined?",
+  "answer": "Turnaround depends on scope; typical delivery is two to six weeks. Scheduling is set after script approval, location clearance and talent bookings to guarantee technical readiness and creative priorities.",
+  "expertise_id": 19,
+  "display_order": 51,
+  "status": "Published"
+ },
+ {
+  "id": 54,
+  "question": "Do you handle permits, drones and safety on aerial shoots?",
+  "answer": "Yes. Crew sources licensed drone pilots, manages airspace permissions, insurance and on-site safety plans. Permit coordination and regulatory compliance are included in aerial production scope.",
+  "expertise_id": 19,
+  "display_order": 52,
+  "status": "Published"
+ },
+ {
+  "id": 55,
+  "question": "What file formats are provided for print and digital?",
+  "answer": "Deliverables include layered AI, PSD, INDD where applicable, SVG and high-resolution PDF exports, and web-optimized PNG/JPEG. Editable source files and export-ready assets are included for both print vendors and digital teams.",
+  "expertise_id": 20,
+  "display_order": 50,
+  "status": "Published"
+ },
+ {
+  "id": 56,
+  "question": "How does the unlimited revisions window work?",
+  "answer": "Unlimited revisions are available during the designated approval window, enabling iterative changes until final sign‑off. Substantial scope changes after delivery may require additional scheduling and fees.",
+  "expertise_id": 20,
+  "display_order": 51,
+  "status": "Published"
+ },
+ {
+  "id": 57,
+  "question": "What is the typical turnaround and pricing?",
+  "answer": "Typical delivery ranges from 3 to 10 days depending on scope. Project costs vary; indicative pricing is ₹5,000–₹30,000. A detailed estimate is provided after scoping and asset review.",
+  "expertise_id": 20,
+  "display_order": 52,
+  "status": "Published"
+ },
+ {
+  "id": 58,
+  "question": "How long does a typical 3D project take?",
+  "answer": "Typical delivery ranges from 1 to 4 weeks for standard product renders or arch‑viz. Complexity, revisions, and animation length increase timeline; a defined brief and prompt feedback accelerate completion.",
+  "expertise_id": 21,
+  "display_order": 50,
+  "status": "Published"
+ },
+ {
+  "id": 59,
+  "question": "What asset formats will I receive?",
+  "answer": "Delivered assets include native scene files (Maya/Blender/C4D), geometry exports (OBJ/FBX), PBR textures (PNG/TIFF), EXR render passes, and video exports (MP4). Additional formats available on request.",
+  "expertise_id": 21,
+  "display_order": 51,
+  "status": "Published"
+ },
+ {
+  "id": 60,
+  "question": "Can these assets be used for both marketing and manufacturing?",
+  "answer": "Yes. Assets are produced for marketing and technical uses; CAD-to-CG conversion, high-precision modeling, and annotated exploded views support manufacturing, while photoreal renders serve promotional channels. Supply CAD when available.",
+  "expertise_id": 21,
+  "display_order": 52,
+  "status": "Published"
+ },
+ {
+  "id": 61,
+  "question": "What platforms and devices will the experiences support?",
+  "answer": "Deliverables are built device-agnostic: WebAR, iOS/Android native wrappers, major social AR platforms, and common headset formats. Compatibility matrix provided during Discovery to align formats and performance budgets.",
+  "expertise_id": 22,
+  "display_order": 50,
+  "status": "Published"
+ },
+ {
+  "id": 62,
+  "question": "How are results measured and reported?",
+  "answer": "Analytics tags and SDKs are embedded to track impressions, engagement time, conversion events and AR-specific actions. Regular reports include KPI dashboards, event-level export and recommendations for optimization.",
+  "expertise_id": 22,
+  "display_order": 51,
+  "status": "Published"
+ },
+ {
+  "id": 63,
+  "question": "What are typical timelines and cost considerations?",
+  "answer": "Most projects complete in two to six weeks depending on complexity, asset readiness and platform count. Indicative budgets range from ₹20,000 to ₹1,00,000; detailed estimate follows Discovery.",
+  "expertise_id": 22,
+  "display_order": 52,
+  "status": "Published"
+ },
+ {
+  "id": 64,
+  "question": "How long does a typical identity project take?",
+  "answer": "Typical delivery ranges from two to five weeks depending on scope and approvals. Timeline covers discovery, concepting, iterations and finalization; expedited options available for tighter deadlines.",
+  "expertise_id": 23,
+  "display_order": 50,
+  "status": "Published"
+ },
+ {
+  "id": 65,
+  "question": "What files and formats are provided at handoff?",
+  "answer": "Final deliverables include editable vector master files (.ai, .eps, .svg), high-resolution PNG/JPEG exports, web-optimized SVGs, font licenses or recommendations, and a packaged source folder for implementation.",
+  "expertise_id": 23,
+  "display_order": 51,
+  "status": "Published"
+ },
+ {
+  "id": 66,
+  "question": "Will the identity scale across digital products and external vendors?",
+  "answer": "Brand scalability ensured through documented guidelines, responsive logo variants, component-based assets, and design tokens. Handoff includes templates and instructions so marketing, product, and external agencies can maintain consistent application.",
+  "expertise_id": 23,
+  "display_order": 52,
+  "status": "Published"
+ },
+ {
+  "id": 67,
+  "question": "What size of engagement and timeline should be expected?",
+  "answer": "Engagements typically run 2–8 weeks, varying by scope. Small scoping and KPI design can complete in two weeks; full operating-model and cross-functional rollout requires closer to eight weeks.",
+  "expertise_id": 24,
+  "display_order": 50,
+  "status": "Published"
+ },
+ {
+  "id": 68,
+  "question": "How are deliverables transferred and who retains ownership?",
+  "answer": "Deliverables are handed over as editable documents and dashboards; client retains ownership. Knowledge transfer sessions and a 30/60/90-day support window ensure operational handoff and adoption.",
+  "expertise_id": 24,
+  "display_order": 51,
+  "status": "Published"
+ },
+ {
+  "id": 69,
+  "question": "How is success measured after the engagement?",
+  "answer": "Success is measured by adoption of the operating model, clarity of decisions, and predefined KPI improvements tied to campaign performance and acquisition metrics.",
+  "expertise_id": 24,
+  "display_order": 52,
+  "status": "Published"
+ },
+ {
+  "id": 70,
+  "question": "How is ROI attributed across multiple channels?",
+  "answer": "ROI is attributed by instrumenting GA4 and CRM for lead-to-invoice mapping, applying multi-touch attribution, server-side event tracking and cohort analysis to validate channel contribution and incremental lift.",
+  "expertise_id": 25,
+  "display_order": 50,
+  "status": "Published"
+ },
+ {
+  "id": 71,
+  "question": "What access or assets are required from the client?",
+  "answer": "Ad account access, analytics and CRM credentials, creative assets, audience data, conversion definitions, and timely stakeholder availability for approvals and feedback.",
+  "expertise_id": 25,
+  "display_order": 51,
+  "status": "Published"
+ },
+ {
+  "id": 72,
+  "question": "How long does an engagement take and what does pricing cover?",
+  "answer": "Typical engagements run 2–6 weeks. Indicative pricing ₹15,000–₹60,000 covers strategy, campaign setup, initial creative and tracking, plus two optimization cycles and reporting.",
+  "expertise_id": 25,
+  "display_order": 52,
+  "status": "Published"
+ },
+ {
+  "id": 73,
+  "question": "What is included in the 2–5 week delivery window?",
+  "answer": "Typical engagements include scoping, instrument design, data collection, analysis, and delivery. Shorter scopes focus on secondary research and competitor mapping; primary research adds time for recruitment and responses.",
+  "expertise_id": 26,
+  "display_order": 50,
+  "status": "Published"
+ },
+ {
+  "id": 74,
+  "question": "How is data provenance and transparency maintained?",
+  "answer": "All sources are catalogued with collection dates, methodologies, and access links. Primary instruments, sampling frames, and anonymized response datasets are provided where consent and confidentiality policies permit.",
+  "expertise_id": 26,
+  "display_order": 51,
+  "status": "Published"
+ },
+ {
+  "id": 75,
+  "question": "What are typical costs and what determines the final price?",
+  "answer": "Indicative range is ₹20,000–₹75,000. Final price depends on scope complexity, sample size, primary data collection requirements, platform subscriptions, and custom analysis or dashboarding needs.",
+  "expertise_id": 26,
+  "display_order": 52,
+  "status": "Published"
+ },
+ {
+  "id": 76,
+  "question": "How long does implementation take?",
+  "answer": "Typical implementations complete within 2–4 weeks. Timelines depend on CRM complexity, volume of collateral, and stakeholder availability; a focused scope or templates-ready client can shorten delivery to the lower end.",
+  "expertise_id": 27,
+  "display_order": 50,
+  "status": "Published"
+ },
+ {
+  "id": 77,
+  "question": "Will existing CRM data and tools be integrated?",
+  "answer": "Yes. Existing CRM instances (Salesforce, HubSpot) and tools (Outreach, DocuSign) are integrated where possible. Integration scope defined during discovery to map fields, triggers, and reporting without disrupting live sales operations.",
+  "expertise_id": 27,
+  "display_order": 51,
+  "status": "Published"
+ },
+ {
+  "id": 78,
+  "question": "How are adoption and success measured?",
+  "answer": "Adoption tracked via usage metrics, CRM activity, proposal send rates, pipeline velocity, and close-rate changes. Training assessments and periodic reviews ensure adoption; success metrics agreed at project start and included in handover.",
+  "expertise_id": 27,
+  "display_order": 52,
+  "status": "Published"
+ },
+ {
+  "id": 79,
+  "question": "How long does a typical Brand Positioning engagement take?",
+  "answer": "Standard engagements run 2–4 weeks. Scope, number of stakeholders, and naming complexity affect timeline. A rapid audit or expanded naming project may extend delivery; timeline confirmed at proposal stage.",
+  "expertise_id": 28,
+  "display_order": 50,
+  "status": "Published"
+ },
+ {
+  "id": 80,
+  "question": "Will the deliverables integrate with existing marketing and sales materials?",
+  "answer": "Yes. Deliverables are formatted for easy integration into go-to-market assets, sales decks, and website content. Customization and templates are provided to accelerate adoption across marketing and sales channels.",
+  "expertise_id": 28,
+  "display_order": 51,
+  "status": "Published"
+ },
+ {
+  "id": 81,
+  "question": "How is stakeholder alignment achieved during the project?",
+  "answer": "Stakeholder workshops, review sessions, and consensus checkpoints are built into the schedule. Decisions are documented and trade-offs clarified to ensure alignment before finalizing positioning and messaging artifacts.",
+  "expertise_id": 28,
+  "display_order": 52,
+  "status": "Published"
+ },
+ {
+  "id": 82,
+  "question": "What is included in the per-event quote?",
+  "answer": "The per-event quote covers venue sourcing, vendor fees, run-of-show development, on-site crew, equipment rentals, permits, and post-event reporting. Optional services and travel expenses are itemized and approved before contracting.",
+  "expertise_id": 29,
+  "display_order": 50,
+  "status": "Published"
+ },
+ {
+  "id": 83,
+  "question": "How are vendors and venues selected and managed?",
+  "answer": "Vendors and venues undergo formal vetting for capacity, compliance, pricing, and past performance; contracts include SLAs and escalation paths, with proactive communication throughout planning and execution.",
+  "expertise_id": 29,
+  "display_order": 51,
+  "status": "Published"
+ },
+ {
+  "id": 84,
+  "question": "What happens if scope changes during planning or on event day?",
+  "answer": "Scope changes trigger a documented change order outlining cost, schedule, and risk impacts. Emergency on-site adjustments follow predefined escalation and approval procedures to minimize disruption and preserve objectives.",
+  "expertise_id": 29,
+  "display_order": 52,
+  "status": "Published"
+ },
+ {
+  "id": 85,
+  "question": "How long does a typical Business Process Management engagement take?",
+  "answer": "Typical delivery runs 2–6 weeks depending on scope and stakeholder availability. Short scoping engagements can be faster; larger transformation projects require phased workstreams beyond the initial window.",
+  "expertise_id": 30,
+  "display_order": 50,
+  "status": "Published"
+ },
+ {
+  "id": 86,
+  "question": "What documentation and deliverables will be provided?",
+  "answer": "Deliverables include detailed process maps, a searchable SOP library, automation configurations, test scripts, and an operations dashboard. All documentation is handover-ready for internal governance and future updates.",
+  "expertise_id": 30,
+  "display_order": 51,
+  "status": "Published"
+ },
+ {
+  "id": 87,
+  "question": "How are process improvement benefits measured and tracked?",
+  "answer": "Improvement is measured with KPIs defined during design—error rates, cycle time, throughput, and compliance. Dashboards visualize trends and enable weekly or monthly reviews tied to continuous improvement targets.",
+  "expertise_id": 30,
+  "display_order": 52,
+  "status": "Published"
+ },
+ {
+  "id": 88,
+  "question": "How is confidential information and data protection handled?",
+  "answer": "Access is limited by role-based permissions, end-to-end encryption, secure repositories, and contractual safeguards (NDAs, data processing agreements). Optional SOC2-compliant environments and customer-specific controls available on request.",
+  "expertise_id": 31,
+  "display_order": 50,
+  "status": "Published"
+ },
+ {
+  "id": 89,
+  "question": "What service-level agreements and reporting are included?",
+  "answer": "Standard SLAs specify response, resolution and completion windows for tasks. Monthly operational reports, SLA dashboards and periodic compliance attestations are provided as part of the retainer.",
+  "expertise_id": 31,
+  "display_order": 51,
+  "status": "Published"
+ },
+ {
+  "id": 90,
+  "question": "How does the monthly retainer adapt to changing volume or requirements?",
+  "answer": "Retainers are tiered by hours and scope; monthly reviews permit reallocation, short-term scaling, or adjustments. Additional work billed transparently at agreed rates with prior approval.",
+  "expertise_id": 31,
+  "display_order": 52,
+  "status": "Published"
+ },
+ {
+  "id": 91,
+  "question": "How long does a typical engagement take?",
+  "answer": "Standard delivery window is 2–4 weeks depending on scope, number of vendors, and integration complexity. Rapid assessments may complete sooner; complex global programmes require extended planning.",
+  "expertise_id": 32,
+  "display_order": 50,
+  "status": "Published"
+ },
+ {
+  "id": 92,
+  "question": "What inputs are required from the client?",
+  "answer": "Current vendor list, existing contracts, SLAs, organizational RACI, key stakeholder contacts, and access to procurement or service platforms. Timely inputs reduce delivery time and improve accuracy.",
+  "expertise_id": 32,
+  "display_order": 51,
+  "status": "Published"
+ },
+ {
+  "id": 93,
+  "question": "How are escalations handled and SLAs enforced?",
+  "answer": "Escalation paths are defined during design, with tiered response times, notification workflows, and ownership tracked in the communication hub; non‑compliance triggers remediation plans and executive alerts.",
+  "expertise_id": 32,
+  "display_order": 52,
+  "status": "Published"
+ },
+ {
+  "id": 94,
+  "question": "What is the typical class format and time commitment?",
+  "answer": "Courses combine weekly live workshops, asynchronous modules, and project work. Typical commitment is 6–12 hours per week, including mentor reviews and practical assignments.",
+  "expertise_id": 33,
+  "display_order": 50,
+  "status": "Published"
+ },
+ {
+  "id": 95,
+  "question": "Are certifications recognized by employers?",
+  "answer": "Certificates validate completed projects and assessed competencies aligned to industry role profiles. Employer recognition varies; accompanying portfolios and mentor recommendations improve hiring visibility.",
+  "expertise_id": 33,
+  "display_order": 51,
+  "status": "Published"
+ },
+ {
+  "id": 96,
+  "question": "Can corporate teams customize content for internal needs?",
+  "answer": "Yes. Customization options include tailored project briefs, internal tooling, upskilling modules, and private cohorts with dedicated mentors and progress reporting.",
+  "expertise_id": 33,
+  "display_order": 52,
+  "status": "Published"
+ },
+ {
+  "id": 97,
+  "question": "What is the program duration and scheduling flexibility?",
+  "answer": "Programs run 4–12 weeks with flexible scheduling and part-time options. Outcome depends on intensity; enterprise cohorts can be modularized and scheduled across quarters to suit availability.",
+  "expertise_id": 34,
+  "display_order": 50,
+  "status": "Published"
+ },
+ {
+  "id": 98,
+  "question": "What certification or credential is provided on completion?",
+  "answer": "Completion yields a competency-based certificate and digital badge; assessments validate applied skills. Certificates support internal HR recognition and can map to industry skill frameworks upon request.",
+  "expertise_id": 34,
+  "display_order": 51,
+  "status": "Published"
+ },
+ {
+  "id": 99,
+  "question": "Can the course content be customised for our industry and KPIs?",
+  "answer": "Content is customised for sector-specific challenges, KPIs, and datasets. Timeline for full customisation is typically two to four weeks depending on complexity and approvals.",
+  "expertise_id": 34,
+  "display_order": 52,
+  "status": "Published"
+ },
+ {
+  "id": 100,
+  "question": "What is the typical delivery timeframe for a certification course?",
+  "answer": "Standard delivery is 4–8 weeks from discovery to launch. Timelines vary by assessment complexity, number of roles, and LMS/HRIS integration requirements.",
+  "expertise_id": 35,
+  "display_order": 50,
+  "status": "Published"
+ },
+ {
+  "id": 101,
+  "question": "How are credentials verified by employers?",
+  "answer": "Digital badges and completion certificates include verifiable metadata and a secure verification API; employers can confirm authenticity through a direct lookup or HRIS integration.",
+  "expertise_id": 35,
+  "display_order": 51,
+  "status": "Published"
+ },
+ {
+  "id": 102,
+  "question": "What pricing model is used?",
+  "answer": "Pricing is per-course fee with optional volume discounts for batch certifications and enterprise licensing for ongoing assessment administration and integrations.",
+  "expertise_id": 35,
+  "display_order": 52,
+  "status": "Published"
+ },
+ {
+  "id": 103,
+  "question": "How long does a typical program take to implement?",
+  "answer": "Most programs deliver within 2–6 weeks from needs assessment to final impact report. Timing depends on cohort size, curriculum complexity, and scheduling; complex enterprise rollouts may require phased deployments.",
+  "expertise_id": 36,
+  "display_order": 50,
+  "status": "Published"
+ },
+ {
+  "id": 104,
+  "question": "How is training effectiveness measured?",
+  "answer": "Effectiveness is measured through pre/post assessments, practical lab performance, certification pass rates, usage and adoption metrics, and qualitative learner feedback consolidated in an impact report tied to defined success metrics.",
+  "expertise_id": 36,
+  "display_order": 51,
+  "status": "Published"
+ },
+ {
+  "id": 105,
+  "question": "Can content be aligned with internal tools and compliance requirements?",
+  "answer": "Yes. Curriculum is customized to internal platforms, vendor products, and regulatory frameworks; compliance checkpoints and role-specific scenarios ensure learners meet policy requirements and auditors can verify training records.",
+  "expertise_id": 36,
+  "display_order": 52,
+  "status": "Published"
+ },
+ {
+  "id": 106,
+  "question": "What clients are best suited for Emerging Technology R&D?",
+  "answer": "Enterprises, OEMs, and venture investors exploring robotics or advanced hardware. Best for stakeholders needing de-risked prototypes, documented research, and clear paths to integration or commercialization.",
+  "expertise_id": 37,
+  "display_order": 50,
+  "status": "Published"
+ },
+ {
+  "id": 107,
+  "question": "How is intellectual property handled?",
+  "answer": "IP terms negotiated per engagement; typical models include client ownership of deliverables, joint development agreements, or licensing arrangements. Confidentiality and transfer terms are defined in the SOW.",
+  "expertise_id": 37,
+  "display_order": 51,
+  "status": "Published"
+ },
+ {
+  "id": 108,
+  "question": "What is the typical timeline and cost model?",
+  "answer": "Delivery window 3-12 months; projects are research-quoted based on scope, complexity, and risk. Phased engagements with defined milestones enable predictable spend and go/no-go decisions.",
+  "expertise_id": 37,
+  "display_order": 52,
+  "status": "Published"
+ },
+ {
+  "id": 109,
+  "question": "What is the typical timeline, and can delivery be accelerated?",
+  "answer": "Standard delivery is two to eight weeks depending on complexity. Expedited options available for additional cost, prioritizing critical tasks while possibly limiting iteration depth.",
+  "expertise_id": 38,
+  "display_order": 50,
+  "status": "Published"
+ },
+ {
+  "id": 110,
+  "question": "What testing and documentation are included with prototypes?",
+  "answer": "Delivered prototypes include functional verification, basic environmental or EMC checks where specified, schematic and PCB files, BOM, assembly notes, and a summary test report.",
+  "expertise_id": 38,
+  "display_order": 51,
+  "status": "Published"
+ },
+ {
+  "id": 111,
+  "question": "Can prototypes be scaled into small-batch manufacturing?",
+  "answer": "Designs are produced with DFM considerations, vendor-ready BOMs and panelization options; CloudAlls Labs supports transition to small-batch fabrication and assembly.",
+  "expertise_id": 38,
+  "display_order": 52,
+  "status": "Published"
+ },
+ {
+  "id": 112,
+  "question": "What criteria determine when a vertical graduates?",
+  "answer": "Graduation is based on predefined KPIs: validated customer acquisition, recurring revenue trajectory, unit economics, regulatory compliance, operational readiness, and a sustainable go-to-market plan. The Labs team documents thresholds and exit requirements before pilots begin.",
+  "expertise_id": 39,
+  "display_order": 50,
+  "status": "Published"
+ },
+ {
+  "id": 113,
+  "question": "How long does each incubation cycle typically take?",
+  "answer": "Cycle length varies by vertical complexity; most MVP and pilot phases run three to nine months. Early discovery may be shorter; complex regulated markets require extended validation and stakeholder engagement.",
+  "expertise_id": 39,
+  "display_order": 51,
+  "status": "Published"
+ },
+ {
+  "id": 114,
+  "question": "Who owns IP and assets created during incubation?",
+  "answer": "Ownership follows the sponsoring organization's governance and contractual agreements. Labs recommends clear IP assignment, licensing, and equity terms at program initiation to protect enterprise assets and enable eventual subsidiary capitalization.",
+  "expertise_id": 39,
+  "display_order": 52,
+  "status": "Published"
+ },
+ {
+  "id": 115,
+  "question": "How is patient data secured and compliant with HIPAA?",
+  "answer": "Data is encrypted in transit and at rest, with role-based access controls, audit logging, and HIPAA-ready architecture. Business Associate Agreements (BAAs) and regular security assessments support compliance.",
+  "expertise_id": 40,
+  "display_order": 50,
+  "status": "Published"
+ },
+ {
+  "id": 116,
+  "question": "What integrations with existing EHRs and systems are supported?",
+  "answer": "Standard HL7 and FHIR-based integrations, custom API adapters, SSO via OAuth/OpenID Connect, and interface mapping for legacy systems. Integration scope is defined during discovery and quoted per platform complexity.",
+  "expertise_id": 40,
+  "display_order": 51,
+  "status": "Published"
+ },
+ {
+  "id": 117,
+  "question": "What performance and reliability guarantees apply to telemedicine video sessions?",
+  "answer": "Video uses WebRTC with adaptive bitrate, TURN/STUN fallbacks, monitoring, and auto-reconnect. Production deployments include redundancy and observability; uptime and support SLAs are defined in the platform contract.",
+  "expertise_id": 40,
+  "display_order": 52,
+  "status": "Published"
+ },
+ {
+  "id": 118,
+  "question": "How long does full implementation typically take?",
+  "answer": "Typical implementations are completed between 10 and 20 weeks, depending on facility size, existing system integrations, and custom workflow requirements. Complex data migrations can extend timelines; detailed estimates are facility-quoted.",
+  "expertise_id": 41,
+  "display_order": 50,
+  "status": "Published"
+ },
+ {
+  "id": 119,
+  "question": "What interoperability standards are supported?",
+  "answer": "Supports HL7v2 messaging and FHIR APIs for clinical data exchange, with lab (LOINC) and medication coding (RxNorm) mappings. Integrations use secure OAuth2 and TLS transport.",
+  "expertise_id": 41,
+  "display_order": 51,
+  "status": "Published"
+ },
+ {
+  "id": 120,
+  "question": "What training and support is included?",
+  "answer": "Includes role-based staff training, administrator workshops, and documented operational procedures. Post-deployment options include tiered support contracts with SLA response times, patching, and optional managed services.",
+  "expertise_id": 41,
+  "display_order": 52,
+  "status": "Published"
+ },
+ {
+  "id": 121,
+  "question": "How is clinical validation performed and reported?",
+  "answer": "Clinical validation uses retrospective and prospective cohorts, pre-specified performance metrics, and external test sets. Deliverables include performance statistics, ROC curves, confidence intervals, dataset descriptions, and a model validation report for regulatory review.",
+  "expertise_id": 42,
+  "display_order": 50,
+  "status": "Published"
+ },
+ {
+  "id": 122,
+  "question": "What integration options are supported for existing clinical systems?",
+  "answer": "Supports PACS/DICOM, HL7/FHIR, and RESTful API integrations with on-premise or cloud deployment. Integration includes worklist prioritization, image retrieval, result posting, and audit logging for clinical workflows.",
+  "expertise_id": 42,
+  "display_order": 51,
+  "status": "Published"
+ },
+ {
+  "id": 123,
+  "question": "How are explainability and human-in-the-loop implemented to support clinical decisions?",
+  "answer": "Explainability via heatmaps, saliency maps (Grad‑CAM), and feature-attribution scores; confidence intervals accompany outputs. Clinician review interfaces enable overrides, annotated feedback capture, and logged decisions for continuous improvement and retraining.",
+  "expertise_id": 42,
+  "display_order": 52,
+  "status": "Published"
+ },
+ {
+  "id": 124,
+  "question": "What is the typical delivery timeline for a wellness application?",
+  "answer": "Typical delivery runs 8–14 weeks. Scope, integrations, clinical content depth, and regulatory requirements drive schedule; discovery phase clarifies deliverables and a detailed project timeline.",
+  "expertise_id": 43,
+  "display_order": 50,
+  "status": "Published"
+ },
+ {
+  "id": 125,
+  "question": "How is user privacy and health data protected?",
+  "answer": "Privacy-first architecture, end-to-end encryption, role-based access, consent management, and support for HIPAA, GDPR, and local regulations to minimize PHI exposure and ensure auditability.",
+  "expertise_id": 43,
+  "display_order": 51,
+  "status": "Published"
+ },
+ {
+  "id": 126,
+  "question": "Can the app integrate with wearables, EHRs, and corporate HR systems?",
+  "answer": "Yes. Integrations use FHIR, secure REST APIs, OAuth2, and configurable ETL connectors for HR systems. Integration scope determines mapping, testing, and timeline.",
+  "expertise_id": 43,
+  "display_order": 52,
+  "status": "Published"
+ },
+ {
+  "id": 127,
+  "question": "What is the typical implementation timeline?",
+  "answer": "Implementation typically completes within 10–18 weeks depending on integrations, certification cycles, and supplier readiness. Complex multi-country deployments or bespoke connectors may extend timelines; phased rollouts recommended.",
+  "expertise_id": 44,
+  "display_order": 50,
+  "status": "Published"
+ },
+ {
+  "id": 128,
+  "question": "How are payments and refunds handled?",
+  "answer": "Payment processing integrates PCI-compliant gateways with multi-currency settlement, tokenization, and automated reconciliation. Refunds follow configurable business rules with support for partial refunds, supplier reimbursements, and audit trails.",
+  "expertise_id": 44,
+  "display_order": 51,
+  "status": "Published"
+ },
+ {
+  "id": 129,
+  "question": "How is inventory synchronization managed with suppliers?",
+  "answer": "Inventory sync uses real-time APIs where available, with adaptive polling and caching fallbacks. Delta updates, conflict resolution policies, and supplier adapters ensure consistency and high availability across channels.",
+  "expertise_id": 44,
+  "display_order": 52,
+  "status": "Published"
+ },
+ {
+  "id": 130,
+  "question": "What metrics define success for a destination marketing campaign?",
+  "answer": "Primary metrics include incremental visits, website sessions, booking conversions and assisted conversions. Additional KPIs cover reach, engagement, SEO rankings, cost-per-acquisition and season-specific uplift compared to historical baselines.",
+  "expertise_id": 45,
+  "display_order": 50,
+  "status": "Published"
+ },
+ {
+  "id": 131,
+  "question": "How long before peak season should a campaign begin?",
+  "answer": "Start planning and SEO work at least three to six months before peak season; paid media and influencer activations typically begin six to eight weeks prior for optimized reach.",
+  "expertise_id": 45,
+  "display_order": 51,
+  "status": "Published"
+ },
+ {
+  "id": 132,
+  "question": "What level of access is required to run tourism SEO and tracking?",
+  "answer": "Read-write access to the CMS, Google Analytics 4, Search Console and ad accounts; plus permission to deploy tags via CMS or tag manager.",
+  "expertise_id": 45,
+  "display_order": 52,
+  "status": "Published"
+ },
+ {
+  "id": 133,
+  "question": "What is the typical engagement timeline?",
+  "answer": "Typical engagements run 3–8 weeks depending on scope and integrations; scoping defines phased deliverables and exact timelines for assessment, design, and handover.",
+  "expertise_id": 46,
+  "display_order": 50,
+  "status": "Published"
+ },
+ {
+  "id": 134,
+  "question": "How are costs estimated?",
+  "answer": "Costs scale with scope, integrations and data complexity; indicative engagements range ₹20,000–₹75,000. A brief scoping exercise provides a firm fixed price and phased pricing for implementation and analytics.",
+  "expertise_id": 46,
+  "display_order": 51,
+  "status": "Published"
+ },
+ {
+  "id": 135,
+  "question": "How will visitor data privacy and compliance be handled?",
+  "answer": "Solutions include data minimisation, consent frameworks, pseudonymisation, and adherence to local regulations; architecture recommendations include secure cloud controls and vendor assessments to ensure compliance.",
+  "expertise_id": 46,
+  "display_order": 52,
+  "status": "Published"
+ },
+ {
+  "id": 136,
+  "question": "What is the typical implementation timeline?",
+  "answer": "Most deployments complete within 8–16 weeks; timeline varies with property count, custom integrations, channel certification processes, and required data migrations.",
+  "expertise_id": 47,
+  "display_order": 50,
+  "status": "Published"
+ },
+ {
+  "id": 137,
+  "question": "How does channel synchronization prevent overbookings?",
+  "answer": "Real-time inventory and rate updates via channel manager, combined with centralized reservations and OTA confirmations, maintain parity and close synchronization to minimize double bookings.",
+  "expertise_id": 47,
+  "display_order": 51,
+  "status": "Published"
+ },
+ {
+  "id": 138,
+  "question": "Can the system integrate with existing accounting and CRM platforms?",
+  "answer": "Yes. Standard integrations use RESTful APIs, SFTP data exchanges, or middleware. Integration scope and mapping are defined during discovery to ensure accurate financial posting and guest record synchronization.",
+  "expertise_id": 47,
+  "display_order": 52,
+  "status": "Published"
+ },
+ {
+  "id": 139,
+  "question": "How long does a typical Harvest processing technology deployment take?",
+  "answer": "Typical deployments complete within 6–14 weeks depending on line complexity, control system compatibility, and required serialization. Facility-scoped estimates provided after Discover assessment, with phased approaches to minimize production disruption.",
+  "expertise_id": 48,
+  "display_order": 50,
+  "status": "Published"
+ },
+ {
+  "id": 140,
+  "question": "Can Harvest integrate with existing PLCs and ERP systems?",
+  "answer": "Yes. Integrations with Siemens, Allen-Bradley PLCs and major ERPs are standard. Interfaces use OPC UA, MQTT, and APIs to synchronize production events, inventory records, and quality metrics.",
+  "expertise_id": 48,
+  "display_order": 51,
+  "status": "Published"
+ },
+ {
+  "id": 141,
+  "question": "How does Harvest support regulatory compliance and recall readiness?",
+  "answer": "Traceability systems record serialized batch history, time-stamped events, and quality parameters. Exportable audit packages and fast-query recall workflows enable rapid identification, isolation, and reporting for regulatory inspections and product withdrawals.",
+  "expertise_id": 48,
+  "display_order": 52,
+  "status": "Published"
+ },
+ {
+  "id": 142,
+  "question": "How long does deployment typically take?",
+  "answer": "Typical delivery takes 4–10 weeks depending on site count, scope of HACCP plans, and integration complexity. Pilot site implementations are often completed within the lower end of this range.",
+  "expertise_id": 49,
+  "display_order": 50,
+  "status": "Published"
+ },
+ {
+  "id": 143,
+  "question": "What is the indicative cost for this service?",
+  "answer": "Indicative pricing ranges from ₹25,000 to ₹1,00,000 depending on scope: number of sites, LIMS integration, and custom SOP automation. Final quote provided after discovery and scoping.",
+  "expertise_id": 49,
+  "display_order": 51,
+  "status": "Published"
+ },
+ {
+  "id": 144,
+  "question": "Which compliance standards and markets are supported?",
+  "answer": "Supports FSSAI compliance, HACCP plan digitization, and export-market requirements (EU/US). Implementation aligns with ISO 22000 principles and can incorporate customer-specific buyer-code or retailer audit standards.",
+  "expertise_id": 49,
+  "display_order": 52,
+  "status": "Published"
+ },
+ {
+  "id": 145,
+  "question": "How long does implementation typically take?",
+  "answer": "Typical delivery is 8–16 weeks; timeline depends on integrations, sensor rollout, number of sites, and data readiness. A scoped discovery defines the program quote and detailed project schedule.",
+  "expertise_id": 50,
+  "display_order": 50,
+  "status": "Published"
+ },
+ {
+  "id": 146,
+  "question": "How is provenance data secured and verified?",
+  "answer": "A permissioned blockchain ledger, cryptographic signatures, immutability controls, and role-based access ensure provenance integrity. Integration with sensor telemetry and supplier attestations creates an auditable chain for certification and compliance.",
+  "expertise_id": 50,
+  "display_order": 51,
+  "status": "Published"
+ },
+ {
+  "id": 147,
+  "question": "What KPIs should be tracked to measure ROI?",
+  "answer": "Track spoilage and waste reduction, on-time cold-chain deliveries, forecast accuracy versus actual sales, supplier compliance and fair-sourcing verification rates, time-to-certification, and margin improvement attributable to reduced inventory losses.",
+  "expertise_id": 50,
+  "display_order": 52,
+  "status": "Published"
+ },
+ {
+  "id": 148,
+  "question": "What industries are eligible for the Next Industry Vertical slot?",
+  "answer": "Eligibility centers on markets researched in Labs and strategic initiatives with demonstrable market signals. Selection considers commercial potential, regulatory feasibility, technical viability, and partner alignment for enterprise-scale deployment.",
+  "expertise_id": 51,
+  "display_order": 50,
+  "status": "Published"
+ },
+ {
+  "id": 149,
+  "question": "How long does incubation and pilot typically take?",
+  "answer": "Incubation and pilot duration varies by sector complexity and compliance needs; typical programs run from three to nine months, with extensions for extensive regulatory or integration requirements.",
+  "expertise_id": 51,
+  "display_order": 51,
+  "status": "Published"
+ },
+ {
+  "id": 150,
+  "question": "What outcomes will be delivered to support investment decisions?",
+  "answer": "Delivered artifacts include a market research report, pilot performance data, partner engagement agreements, risk assessments, and a prioritized launch plan to inform investment and go-to-market decisions.",
+  "expertise_id": 51,
+  "display_order": 52,
+  "status": "Published"
+ }
 ]
