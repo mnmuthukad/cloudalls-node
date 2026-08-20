@@ -1,7 +1,7 @@
 <%- include('../layouts/header', { pageTitle, pageDescription, pageKeywords, canonicalUrl, pageImage, settings, currentPage, socialLinks, schemaPhone }) %>
 <% const slugify = (name) => String(name || '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, ''); %>
 
-<section class="editorial-hero"><div class="container"><p class="editorial-kicker mb-3">Our capabilities</p><h1 class="mb-4">Find exactly what you need.</h1><p class="lead mb-0">Fifty-one services across two wings. Start by typing what you need, or browse by division.</p></div></section>
+<section class="editorial-hero"><div class="container"><p class="editorial-kicker mb-3">Our capabilities</p><h1 class="mb-4">Find exactly what you need.</h1><p class="lead mb-0">Fifty-one services across twelve divisions. Start by typing what you need, or browse by division below.</p></div></section>
 
 <section class="editorial-section bg-white" id="capabilities">
   <div class="container py-lg-4">
@@ -10,18 +10,11 @@
     <div class="row justify-content-center mb-4">
       <div class="col-lg-8">
         <div class="position-relative">
-          <i class="fa-solid fa-magnifying-glass position-absolute text-muted search-icon-left" style="top: 50%; left: 1.25rem; transform: translateY(-50%);" aria-hidden="true"></i>
+          <i class="fa-solid fa-magnifying-glass position-absolute text-muted search-icon-left" style="top: 50%; transform: translateY(-50%);" aria-hidden="true"></i>
           <input type="search" id="service-search" class="form-control form-control-lg ps-5 rounded-pill" placeholder="Search a service — e.g. e-commerce, chatbots, DevOps, security..." aria-label="Search services">
         </div>
         <p class="text-muted small mt-2 mb-0 text-center" id="search-hint">Type to filter instantly, or scroll to the divisions below.</p>
       </div>
-    </div>
-
-    <!-- Wing selector -->
-    <div class="d-flex justify-content-center gap-2 mb-5" id="wing-tabs">
-      <button type="button" class="btn btn-sm rounded-pill px-4 py-2 fw-semibold wing-btn active" data-wing="all">All services</button>
-      <button type="button" class="btn btn-sm rounded-pill px-4 py-2 fw-semibold wing-btn" data-wing="A">Wing A — Capabilities</button>
-      <button type="button" class="btn btn-sm rounded-pill px-4 py-2 fw-semibold wing-btn" data-wing="B">Wing B — Verticals</button>
     </div>
 
     <div id="catalogue-list">
@@ -71,7 +64,7 @@
   var noTerm = document.getElementById('no-results-term');
   var groups = Array.prototype.slice.call(document.querySelectorAll('.division-group'));
   var allCards = Array.prototype.slice.call(document.querySelectorAll('.catalogue-card'));
-  var state = { wing: 'all', query: '' };
+  var state = { query: '' };
 
   // Decode HTML entities (e.g. &amp;) in data attributes so search matches plain text.
   var decoy = document.createElement('div');
@@ -88,9 +81,8 @@
       var cards = Array.prototype.slice.call(group.querySelectorAll('.catalogue-card'));
       var groupVisible = 0;
       cards.forEach(function (card) {
-        var wingOk = state.wing === 'all' || String(card.getAttribute('data-wing') || '') === state.wing;
         var qOk = !q || decode(card.getAttribute('data-title')).indexOf(q) > -1 || decode(card.getAttribute('data-desc')).indexOf(q) > -1;
-        var show = wingOk && qOk;
+        var show = qOk;
         card.style.display = show ? '' : 'none';
         if (show) { groupVisible += 1; totalVisible += 1; }
       });
@@ -101,19 +93,8 @@
       noResults.style.display = (totalVisible === 0 && q) ? '' : 'none';
       noTerm.textContent = state.query;
     }
-    Array.prototype.slice.call(document.querySelectorAll('.wing-btn')).forEach(function (btn) {
-      btn.classList.toggle('active', String(btn.getAttribute('data-wing') || '') === state.wing);
-    });
     if (hint) hint.style.display = q ? 'none' : '';
   }
-
-  Array.prototype.slice.call(document.querySelectorAll('.wing-btn')).forEach(function (btn) {
-    btn.addEventListener('click', function () {
-      state.wing = String(btn.getAttribute('data-wing') || 'all');
-      applyFilter();
-      if (history.replaceState) history.replaceState(null, '', '/expertise' + (state.wing === 'all' ? '' : '?wing=' + state.wing) + '#capabilities');
-    });
-  });
 
   var timer = null;
   search.addEventListener('input', function () {
@@ -122,18 +103,16 @@
       state.query = search.value;
       applyFilter();
       if (state.query && history.replaceState) {
-        history.replaceState(null, '', '/expertise?q=' + encodeURIComponent(state.query) + (state.wing !== 'all' ? '&wing=' + state.wing : '') + '#capabilities');
+        history.replaceState(null, '', '/expertise?q=' + encodeURIComponent(state.query) + '#capabilities');
       } else if (!state.query && history.replaceState) {
-        history.replaceState(null, '', '/expertise' + (state.wing !== 'all' ? '?wing=' + state.wing : '') + '#capabilities');
+        history.replaceState(null, '', '/expertise#capabilities');
       }
     }, 120);
   });
 
   var params = new URLSearchParams(window.location.search);
   var initQ = params.get('q');
-  var initWing = params.get('wing');
   if (initQ) { state.query = initQ; search.value = initQ; }
-  if (initWing) state.wing = initWing;
   applyFilter();
 })();
 </script>
