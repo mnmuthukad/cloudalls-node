@@ -15,16 +15,46 @@
   "updated_at": "2026-08-19",
   "brand_divisions": [
     {
-      "name": "Foundry"
+      "name": "Foundry",
+      "tagline": "We Build Software, Apps & Hardware",
+      "description": "The product engineering arm. Every web platform, mobile application, and hardware system CloudAlls ships is forged here — from rapid prototyping through production-grade delivery, backed by cloud infrastructure that keeps everything running.",
+      "display_order": 1,
+      "status": "Active"
     },
     {
-      "name": "Intelligence"
+      "name": "Intelligence",
+      "tagline": "We Apply AI, Data & Automation",
+      "description": "The applied intelligence arm. AI systems, research-backed innovation, and workflow automation are deployed here as measurable operational assets.",
+      "display_order": 2,
+      "status": "Active"
     },
     {
-      "name": "Studio"
+      "name": "Growth",
+      "tagline": "We Grow Your Market Reach",
+      "description": "The growth arm. Performance marketing, search visibility, and strategic brand consulting turn attention into measurable business results.",
+      "display_order": 3,
+      "status": "Active"
     },
     {
-      "name": "Academy & Operations"
+      "name": "Studio",
+      "tagline": "We Create Brand Visuals & Media",
+      "description": "The creative arm. Visual identity systems, premium print, cinematic video, and product photography — brand work that performs equally on screen and in hand.",
+      "display_order": 4,
+      "status": "Active"
+    },
+    {
+      "name": "Operations & Security",
+      "tagline": "We Protect & Run Your Business",
+      "description": "The operations arm. Zero-trust physical security, biometric access, and end-to-end event and corporate operations management.",
+      "display_order": 5,
+      "status": "Active"
+    },
+    {
+      "name": "Academy",
+      "tagline": "We Train the Next Generation",
+      "description": "The education arm. Professional masterclasses, corporate upskilling, and structured internships with direct hiring pathways.",
+      "display_order": 6,
+      "status": "Active"
     }
   ]
 }

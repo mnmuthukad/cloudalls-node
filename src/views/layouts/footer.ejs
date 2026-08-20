@@ -1,5 +1,5 @@
 <footer class="footer-premium pt-0 mt-auto bg-white text-dark border-top border-secondary border-opacity-10 text-start w-100 position-relative z-1" aria-label="Site footer">
-  <% const divisions = Array.isArray(settings.brand_divisions) ? settings.brand_divisions.filter(item => item && item.name).slice(0, 8) : []; %>
+  <% const divisions = Array.isArray(settings.brand_divisions) ? settings.brand_divisions.filter(item => item && item.name).slice(0, 6) : []; %>
   <% if (divisions.length) { %>
   <div class="sub-brand-marquee bg-white border-bottom border-secondary border-opacity-10" aria-label="CloudAlls divisions"><div class="sub-brand-track align-items-center"><% divisions.forEach((division) => { %><div class="sub-brand-item px-3"><div class="brand-pill d-flex align-items-center justify-content-center bg-white border border-secondary border-opacity-10 rounded-pill shadow-sm px-4 py-2"><span class="text-secondary fw-bold text-uppercase ls-1" style="font-size:0.7rem;"><%= division.name %></span></div></div><% }); %></div></div>
   <% } %>

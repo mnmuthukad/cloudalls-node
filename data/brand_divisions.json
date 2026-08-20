@@ -2,8 +2,8 @@
   {
     "id": 1,
     "name": "Foundry",
-    "tagline": "Engineering the Product Layer",
-    "description": "The product engineering arm. Every web platform, mobile application, and hardware system CloudAlls ships is forged here — from rapid prototyping through production-grade delivery.",
+    "tagline": "We Build Software, Apps & Hardware",
+    "description": "The product engineering arm. Every web platform, mobile application, and hardware system CloudAlls ships is forged here — from rapid prototyping through production-grade delivery, backed by cloud infrastructure that keeps everything running.",
     "svg_code": null,
     "display_order": 1,
     "status": "Active"
@@ -11,28 +11,46 @@
   {
     "id": 2,
     "name": "Intelligence",
-    "tagline": "AI, Data, Security & Growth",
-    "description": "The applied intelligence arm. AI systems, research-backed innovation, performance marketing, and zero-trust security are deployed here as measurable operational assets.",
+    "tagline": "We Apply AI, Data & Automation",
+    "description": "The applied intelligence arm. AI systems, research-backed innovation, and workflow automation are deployed here as measurable operational assets that remove manual work and sharpen decisions.",
     "svg_code": null,
     "display_order": 2,
     "status": "Active"
   },
   {
     "id": 3,
-    "name": "Studio",
-    "tagline": "Brand & Media Craft",
-    "description": "The creative arm. Visual identity systems, premium print, cinematic video, and product photography — brand work that performs equally on screen and in hand.",
+    "name": "Growth",
+    "tagline": "We Grow Your Market Reach",
+    "description": "The growth arm. Performance marketing, search visibility, and strategic brand consulting turn attention into measurable business results — every campaign traced from first click to signed invoice.",
     "svg_code": null,
     "display_order": 3,
     "status": "Active"
   },
   {
     "id": 4,
-    "name": "Academy & Operations",
-    "tagline": "People, Training & Enterprise Operations",
-    "description": "The people and operations arm. Professional training, hiring pipelines, corporate events, and lean agile operations consulting run from this division.",
+    "name": "Studio",
+    "tagline": "We Create Brand Visuals & Media",
+    "description": "The creative arm. Visual identity systems, premium print, cinematic video, and product photography — brand work that performs equally on screen and in hand.",
     "svg_code": null,
     "display_order": 4,
+    "status": "Active"
+  },
+  {
+    "id": 5,
+    "name": "Operations & Security",
+    "tagline": "We Protect & Run Your Business",
+    "description": "The operations arm. Zero-trust physical security, biometric access, and end-to-end event and corporate operations management — keeping facilities safe and business moving without friction.",
+    "svg_code": null,
+    "display_order": 5,
+    "status": "Active"
+  },
+  {
+    "id": 6,
+    "name": "Academy",
+    "tagline": "We Train the Next Generation",
+    "description": "The education arm. Professional masterclasses, corporate upskilling, and structured internships with direct hiring pathways — top-performing interns are frequently offered full-time roles.",
+    "svg_code": null,
+    "display_order": 6,
     "status": "Active"
   }
 ]

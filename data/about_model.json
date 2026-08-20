@@ -35,7 +35,7 @@
     { "title": "Chief Operating Officer", "role": "Head of Academy & Operations", "image": "/assets/img/1.webp", "description": "Runs delivery operations across India and the Gulf — sprint governance, service-level management, enterprise client onboarding, and the academy-to-hiring talent pipeline." }
   ],
   "stats": [
-    { "value": "15", "label": "Services across four subsidiaries" },
+    { "value": "15", "label": "Services across six subsidiaries" },
     { "value": "6", "label": "Industries served — fintech, logistics, retail, healthcare, real estate, education" },
     { "value": "3", "label": "Countries served — India, UAE, USA" },
     { "value": "SLA", "label": "Tiered service-level coverage on enterprise deployments" }

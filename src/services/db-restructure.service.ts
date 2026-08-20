@@ -65,7 +65,7 @@ async function tableExists(pool: Pool, table: string): Promise<boolean> {
 export async function restructureBrandDatabase(pool: Pool | null): Promise<void> {
   if (!pool) return;
   try {
-    // --- brand_divisions: reconcile to the 4 consolidated subsidiaries ---
+    // --- brand_divisions: reconcile to the current subsidiary list from the data file ---
     const targetDivisions = loadJson<BrandDivisionData>("brand_divisions.json");
     if (targetDivisions.length && (await tableExists(pool, "brand_divisions"))) {
       await pool.query(`DELETE FROM brand_divisions WHERE status = 'Active'`);
