@@ -4,7 +4,9 @@
   // Service FAQs carry expertise_id; global FAQs have expertise_id null.
   var topicMap = {};
   faqs.forEach(function (faq) {
-    var tid = (faq.expertise_id && faq.expertise_id >= 1000) ? 'service' : 'general';
+    // Curated FAQ rows have id >= 1000. Among them, those with an expertise_id
+    // belong to a specific service; the rest are general/company questions.
+    var tid = (faq.id >= 1000 && faq.expertise_id) ? 'service' : 'general';
     topicMap[tid] = topicMap[tid] || [];
     topicMap[tid].push(faq);
   });
@@ -41,7 +43,7 @@
       <div class="col-lg-9">
         <div class="accordion" id="faqAccordion">
         <% if (faqs.length) { faqs.forEach((faq, index) => { %>
-          <div class="accordion-item mb-2 border rounded-3 overflow-hidden faq-row" data-topic="<%= (faq.expertise_id && faq.expertise_id >= 1000) ? 'service' : 'general' %>" data-q="<%= String(faq.question + ' ' + faq.answer).toLowerCase() %>">
+          <div class="accordion-item mb-2 border rounded-3 overflow-hidden faq-row" data-topic="<%= (faq.id >= 1000 && faq.expertise_id) ? 'service' : 'general' %>" data-q="<%= String(faq.question + ' ' + faq.answer).toLowerCase() %>">
             <h2 class="accordion-header" id="faq-heading-<%= faq.id %>">
               <button class="accordion-button <%= index === 0 ? '' : 'collapsed' %> fw-semibold" type="button" data-bs-toggle="collapse" data-bs-target="#faq-collapse-<%= faq.id %>" aria-expanded="<%= index === 0 ? 'true' : 'false' %>" aria-controls="faq-collapse-<%= faq.id %>"><%= faq.question %></button>
             </h2>
