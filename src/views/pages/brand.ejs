@@ -24,7 +24,7 @@
       <h2 class="display-6 fw-bold mb-3">One identity, ready for every surface.</h2>
       <p class="text-secondary lead mb-0">Choose the lockup that matches the background and available space. Use the original SVG files whenever possible so the mark remains sharp at every size.</p>
     </div>
-    <div class="col-lg-4 text-lg-end"><span class="badge rounded-pill px-3 py-2" style="background:#0A2860;color:#fff;">SVG · transparent · scalable</span></div>
+    <div class="col-lg-4 text-lg-end"><span class="badge rounded-pill px-3 py-2" style="background:#0A2860;color:#fff;">5 official brand assets</span></div>
   </div>
   <div class="row g-4">
     <div class="col-lg-6">
@@ -56,7 +56,7 @@
     <div class="col-lg-6">
       <article class="brand-asset-card h-100 border rounded-4 overflow-hidden shadow-sm">
         <div class="brand-asset-preview bg-light d-flex align-items-center justify-content-center p-4" style="min-height:160px;"><img src="/assets/brand/icon-512x512.png" alt="CloudAlls app icon 512x512" width="128" height="128"></div>
-        <div class="p-4"><p class="text-uppercase small fw-bold text-primary mb-2">App icon</p><h3 class="h4 fw-bold mb-2">Icon 512×512</h3><p class="text-secondary mb-3">Full-resolution icon for iOS app store, PWA, and large display placements.</p><a class="btn btn-outline-dark rounded-pill" href="/assets/brand/icon-512x512.png" download="icon-512x512.png">Download 512</a></div>
+        <div class="p-4"><p class="text-uppercase small fw-bold text-primary mb-2">Official icon</p><h3 class="h4 fw-bold mb-2">Icon 512×512</h3><p class="text-secondary mb-3">The official CloudAlls icon — used across the site, PWA manifest, favicons, and all large display placements.</p><a class="btn btn-outline-dark rounded-pill" href="/assets/brand/icon-512x512.png" download="icon-512x512.png">Download official icon</a></div>
       </article>
     </div>
   </div>
@@ -99,7 +99,10 @@
   %>
     <div class="col-md-6"><div class="rounded-4 border bg-white shadow-sm p-4 p-lg-5 h-100 d-flex flex-column">
       <div class="d-flex align-items-center justify-content-center mb-4" style="min-height:100px;">
-        <% const lockup = 'cloudalls-' + String(division.name).toLowerCase().replace(/[^a-z0-9]+/g,'-'); %><img src="/assets/brand/<%= lockup %>.svg" alt="CloudAlls <%= division.name %>" class="img-fluid" style="max-width:100%;height:48px;width:auto;">
+        <img src="/assets/brand/icon-512x512.png" alt="CloudAlls icon" style="width:72px;height:72px;">
+        <span class="mx-3" style="color:#0A2860;font-size:2.25rem;line-height:1;"><%- settings.logo_code %></span>
+        <span style="border-left:3px solid #d7dde6;height:44px;"></span>
+        <span class="fw-bold text-uppercase ms-3" style="color:#0A2860;letter-spacing:3px;font-size:1.05rem;white-space:nowrap;"><%= division.name %></span>
       </div>
       <h3 class="h4 fw-bold mb-1 text-center">CloudAlls <%= division.name %></h3>
       <p class="fw-semibold text-primary text-center mb-2"><%= division.tagline %></p>
@@ -118,7 +121,10 @@
   %>
     <div class="col-md-6"><div class="rounded-4 border bg-white shadow-sm p-4 p-lg-5 h-100 d-flex flex-column <%= isReserved ? 'opacity-75' : '' %>">
       <div class="d-flex align-items-center justify-content-center mb-4" style="min-height:100px;">
-        <% const lockup = 'cloudalls-' + String(division.name).toLowerCase().replace(/[^a-z0-9]+/g,'-'); %><img src="/assets/brand/<%= lockup %>.svg" alt="CloudAlls <%= division.name %>" class="img-fluid" style="max-width:100%;height:48px;width:auto;">
+        <img src="/assets/brand/icon-512x512.png" alt="CloudAlls icon" style="width:72px;height:72px;">
+        <span class="mx-3" style="color:#0A2860;font-size:2.25rem;line-height:1;"><%- settings.logo_code %></span>
+        <span style="border-left:3px solid #d7dde6;height:44px;"></span>
+        <span class="fw-bold text-uppercase ms-3" style="color:#0A2860;letter-spacing:3px;font-size:1.05rem;white-space:nowrap;"><%= division.name %></span>
       </div>
       <h3 class="h4 fw-bold mb-1 text-center">CloudAlls <%= division.name %><% if (isReserved) { %> <span class="badge rounded-pill text-bg-secondary px-3">Reserved</span><% } %></h3>
       <p class="fw-semibold text-primary text-center mb-2"><%= division.tagline %></p>
