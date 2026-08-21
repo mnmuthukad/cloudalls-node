@@ -55,15 +55,7 @@ export async function runLegacyCleanup(): Promise<MigrationResult[]> {
 
   const results: MigrationResult[] = [];
 
-  if (!env.DB_PUB_NAME || !env.DB_RESP_NAME) {
-    throw new Error("Both database names must be configured for the cross-DB copy");
-  }
-
   for (const table of LEGACY_RESPONSE_TABLES) {
-    // Qualified identifiers so the SELECT reads from the OLD database while the
-    // INSERT writes into the NEW database on the responses pool connection.
-    const oldQualified = mysql.escapeId(`${env.DB_PUB_NAME}.${table}`);
-    const newQualified = mysql.escapeId(`${env.DB_RESP_NAME}.${table}`);
     // 1. Count rows in the old (main) DB.
     const oldCount = await countRows(oldDb, table);
     if (oldCount === 0) {
@@ -72,12 +64,15 @@ export async function runLegacyCleanup(): Promise<MigrationResult[]> {
       continue;
     }
 
-    // 2. Copy rows into the new DB across databases using qualified names.
-    // The responses user is locked to its own database, so the copy must run
-    // on the old (public) connection, which can address both databases.
-    await oldDb.query(
-      `INSERT INTO ${newQualified} SELECT * FROM ${oldQualified}`,
-    );
+    // 2. Copy rows into the new DB at application level.
+    // The two MySQL users are each locked to their own database, so a
+    // cross-DB INSERT ... SELECT cannot run on either connection. Instead we
+    // fetch every old row and insert it into the new pool individually.
+    // Columns are hard-coded per table so INSERT targets match exactly.
+    const rows = await loadLegacyRows(oldDb, table);
+    for (const row of rows) {
+      await insertIntoNewDb(newDb, table, row);
+    }
 
     // 3. Verify row count in the new DB matches (old rows preserved).
     const newCount = await countRows(newDb, table);
@@ -89,8 +84,53 @@ export async function runLegacyCleanup(): Promise<MigrationResult[]> {
       dropped = true;
     }
 
-    results.push({ table, copied: oldCount, newCount, dropped });
+    results.push({ table, copied: rows.length, newCount, dropped });
   }
 
   return results;
 }
+
+interface LegacyRow {
+  [column: string]: unknown;
+}
+
+async function loadLegacyRows(pool: Pool, table: string): Promise<LegacyRow[]> {
+  const result = await pool.query<RowDataPacket[]>(`SELECT * FROM ${table}`);
+  return (result[0] ?? []) as unknown as LegacyRow[];
+}
+
+// Column mapping from the old (main-DB) response table schema to the new
+// responses-DB schema. Only columns that exist in BOTH schemas are copied;
+// the new DB computes its own status/source_path/created_at values where
+// the old DB lacks them (defaults / CURRENT_TIMESTAMP handle those).
+const OLD_TO_NEW_COLUMN_MAP: Record<string, [string, string][]> = {
+  contact_inquiries: [["name", "name"], ["email", "email"], ["phone", "whatsapp"], ["message", "message"]],
+  partnership_applications: [["company", "company"], ["website", "website"], ["email", "email"], ["proposal", "proposal"]],
+  job_applications: [["job_id", "job_id"], ["job_title", "job_title"], ["first_name", "first_name"], ["last_name", "last_name"], ["email", "email"], ["phone", "phone"], ["cover_letter", "cover_letter"]],
+  dsr_requests: [["requester_name", "requester_name"], ["requester_email", "requester_email"], ["request_type", "request_type"], ["specific_details", "specific_details"], ["request_ip", "request_ip"]],
+};
+
+// The old tables were created by the same app schema definitions (they were
+// ensured by ensureTables on whichever pool DB_RESP pointed at the time), so
+// the old and new tables share the same column layout.
+async function insertIntoNewDb(
+  pool: Pool,
+  table: string,
+  row: LegacyRow,
+): Promise<void> {
+  const columns = NEW_TABLE_COLUMNS[table];
+  if (!columns || columns.length === 0) {
+    throw new Error(`No column list defined for ${table}`);
+  }
+  const values = columns.map(col => row[col] ?? null);
+  const quoted = columns.map(() => "?").join(", ");
+  const colList = columns.map(c => mysql.escapeId(c)).join(", ");
+  await pool.query(`INSERT INTO ${table} (${colList}) VALUES (${quoted})`, values);
+}
+
+const NEW_TABLE_COLUMNS: Record<string, string[]> = {
+  contact_inquiries: ["name", "email", "whatsapp", "service", "message", "status", "source_path", "created_at", "updated_at"],
+  partnership_applications: ["company", "website", "tier", "email", "proposal", "status", "source_path", "created_at", "updated_at"],
+  job_applications: ["job_id", "job_title", "first_name", "last_name", "email", "phone", "portfolio_url", "cover_letter", "status", "source_path", "created_at", "updated_at"],
+  dsr_requests: ["requester_name", "requester_email", "request_type", "specific_details", "request_ip", "status", "source_path", "created_at", "updated_at"],
+};
