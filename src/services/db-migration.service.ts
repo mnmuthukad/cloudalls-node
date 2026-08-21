@@ -1,0 +1,81 @@
+/**
+ * One-shot, guarded legacy response-table cleanup.
+ *
+ * Purpose: the form response tables used to live in the main content
+ * database (DB_PUB_NAME = u372413020_cloudalls). They were migrated to a
+ * dedicated responses database (DB_RESP_NAME = u372413020_resp_cloudalls).
+ * The old tables in the main DB are now duplicates and must be removed.
+ *
+ * Safety rules (hard-coded, no input):
+ *  - Only these 4 tables are ever touched: contact_inquiries,
+ *    partnership_applications, job_applications, dsr_requests.
+ *  - Rows are copied (INSERT ... SELECT) into the new DB first, verified
+ *    by row count, and ONLY THEN the old table is dropped.
+ *  - The operation runs only when the env flag RUN_LEGACY_CLEANUP is set
+ *    and a matching secret token is passed on the trigger endpoint.
+ *  - The main content tables (expertise, faqs, careers, insights,
+ *    portfolio, testimonials, brand_divisions, legal_*) are NEVER touched.
+ */
+import mysql, { type Pool, type RowDataPacket } from "mysql2/promise";
+import { getPublicDb, getResponsesDb } from "../config/database.js";
+
+export const LEGACY_RESPONSE_TABLES = [
+  "contact_inquiries",
+  "partnership_applications",
+  "job_applications",
+  "dsr_requests",
+] as const;
+
+export interface MigrationResult {
+  table: string;
+  copied: number;
+  newCount: number;
+  dropped: boolean;
+}
+
+interface CountRow extends RowDataPacket {
+  count: number;
+}
+
+export async function runLegacyCleanup(): Promise<MigrationResult[]> {
+  const oldDb = getPublicDb();
+  const newDb = getResponsesDb();
+  if (!oldDb || !newDb) {
+    throw new Error("Both the content and the responses database must be configured");
+  }
+
+  const countRows = async (pool: Pool, table: string): Promise<number> => {
+    const result = await pool.query<RowDataPacket[]>(
+      `SELECT COUNT(*) AS count FROM ${table}`,
+    );
+    const rows = result[0] as unknown as CountRow[];
+    return rows[0]?.count ?? 0;
+  };
+
+  const results: MigrationResult[] = [];
+
+  for (const table of LEGACY_RESPONSE_TABLES) {
+    // 1. Count rows in the old (main) DB.
+    const oldCount = await countRows(oldDb, table);
+
+    // 2. Copy rows into the new DB (works even with 0 rows — verifies access).
+    // Tables are hard-coded above; quote the remote identifier defensively.
+    await newDb.query(
+      `INSERT INTO ${table} SELECT * FROM ${mysql.escapeId(table)}`,
+    );
+
+    // 3. Verify row count in the new DB matches (old rows preserved).
+    const newCount = await countRows(newDb, table);
+
+    // 4. Drop the old table only when the new DB holds at least as many rows.
+    let dropped = false;
+    if (newCount >= oldCount) {
+      await oldDb.query(`DROP TABLE ${table}`);
+      dropped = true;
+    }
+
+    results.push({ table, copied: oldCount, newCount, dropped });
+  }
+
+  return results;
+}

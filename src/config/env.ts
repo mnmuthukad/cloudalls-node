@@ -27,6 +27,10 @@ const envSchema = z.object({
   RECAPTCHA_SECRET_KEY: optionalString,
   RECAPTCHA_REQUIRED: z.enum(["true", "false"]).default("false").transform(value => value === "true"),
   MAX_UPLOAD_MB: z.coerce.number().positive().max(25).default(8),
+  // One-shot guard for legacy response-table cleanup (old main-DB copies of the
+  // response tables). Both flags must be set for the trigger endpoint to work.
+  LEGACY_CLEANUP_ENABLED: z.enum(["true", "false"]).default("false"),
+  LEGACY_CLEANUP_TOKEN: optionalString,
 }).superRefine((value, ctx) => {
   if (value.NODE_ENV !== "production") return;
 

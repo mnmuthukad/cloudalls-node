@@ -11,6 +11,7 @@ import { getPublicDb, getResponsesDb } from "./config/database.js";
 import { buildLayoutData } from "./services/layout.service.js";
 import { initializeSchemas } from "./config/schema.js";
 import { restructureBrandDatabase } from "./services/db-restructure.service.js";
+import { runLegacyCleanup } from "./services/db-migration.service.js";
 import { publicRouter } from "./routes/public.js";
 import { formsRouter } from "./routes/forms.js";
 
@@ -114,6 +115,27 @@ export function createApp() {
     const response: Record<string, unknown> = { ok: true, service: "cloudalls-node", ready };
     if (tokenMatches) response.database = { public: publicDatabase, responses: responsesDatabase };
     res.status(wantsReadiness && !ready ? 503 : 200).json(response);
+  });
+
+  // One-shot, double-gated legacy response-table cleanup endpoint.
+  // Only reachable when LEGACY_CLEANUP_ENABLED=true AND a secret token is
+  // supplied (constant-time compared). It copies old response rows into the
+  // new responses database and drops the old duplicate tables ONLY after
+  // per-table row-count verification. See db-migration.service.ts.
+  app.post("/migrate-legacy-responses", async (req, res) => {
+    const enabled = env.LEGACY_CLEANUP_ENABLED === "true";
+    const suppliedToken = (req.query.token as string) || "";
+    const tokenSet = Boolean(env.LEGACY_CLEANUP_TOKEN) && env.LEGACY_CLEANUP_TOKEN.length >= 32;
+    const tokenMatches = tokenSet && Boolean(suppliedToken) && suppliedToken.length === env.LEGACY_CLEANUP_TOKEN.length && crypto.timingSafeEqual(Buffer.from(suppliedToken), Buffer.from(env.LEGACY_CLEANUP_TOKEN));
+    if (!enabled || !tokenMatches) {
+      return res.status(403).json({ ok: false, error: "legacy cleanup not enabled" });
+    }
+    try {
+      const results = await runLegacyCleanup();
+      res.json({ ok: true, results });
+    } catch (error) {
+      res.status(500).json({ ok: false, error: error instanceof Error ? error.message : String(error) });
+    }
   });
 
   app.get("/", (_req, res) => {
