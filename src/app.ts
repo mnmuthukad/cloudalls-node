@@ -122,31 +122,6 @@ export function createApp() {
   // supplied (constant-time compared). It copies old response rows into the
   // new responses database and drops the old duplicate tables ONLY after
   // per-table row-count verification. See db-migration.service.ts.
-  // TEMPORARY read-only diagnostic: verifies post-migration row counts in the
-  // responses database. Removed in a follow-up commit.
-  app.get("/debug-response-rows", async (req, res) => {
-    const suppliedToken = (req.query.token as string) || "";
-    const tokenSet = Boolean(env.HEALTH_DETAILS_TOKEN) && env.HEALTH_DETAILS_TOKEN.length >= 20;
-    const tokenMatches = tokenSet && Boolean(suppliedToken) && suppliedToken.length === env.HEALTH_DETAILS_TOKEN.length && crypto.timingSafeEqual(Buffer.from(suppliedToken), Buffer.from(env.HEALTH_DETAILS_TOKEN));
-    if (!tokenMatches) {
-      return res.status(403).json({ ok: false, error: "not authorized" });
-    }
-    const pool = getResponsesDb();
-    const tables = ["contact_inquiries", "partnership_applications", "job_applications", "dsr_requests"];
-    const counts: Record<string, number> = {};
-    if (pool) {
-      for (const t of tables) {
-        try {
-          const [rows] = await pool.query(`SELECT COUNT(*) AS c FROM ${t}`);
-          counts[t] = (rows as [{ c: number }])[0].c;
-        } catch (err) {
-          counts[t] = -1;
-        }
-      }
-    }
-    return res.json({ ok: true, database: env.DB_RESP_NAME, counts });
-  });
-
   app.post("/migrate-legacy-responses", async (req, res) => {
     const enabled = env.LEGACY_CLEANUP_ENABLED === "true";
     const suppliedToken = (req.query.token as string) || "";
