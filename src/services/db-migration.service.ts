@@ -17,6 +17,7 @@
  *    portfolio, testimonials, brand_divisions, legal_*) are NEVER touched.
  */
 import mysql, { type Pool, type RowDataPacket } from "mysql2/promise";
+import { env } from "../config/env.js";
 import { getPublicDb, getResponsesDb } from "../config/database.js";
 
 export const LEGACY_RESPONSE_TABLES = [
@@ -54,14 +55,28 @@ export async function runLegacyCleanup(): Promise<MigrationResult[]> {
 
   const results: MigrationResult[] = [];
 
+  if (!env.DB_PUB_NAME || !env.DB_RESP_NAME) {
+    throw new Error("Both database names must be configured for the cross-DB copy");
+  }
+
   for (const table of LEGACY_RESPONSE_TABLES) {
+    // Qualified identifiers so the SELECT reads from the OLD database while the
+    // INSERT writes into the NEW database on the responses pool connection.
+    const oldQualified = mysql.escapeId(`${env.DB_PUB_NAME}.${table}`);
+    const newQualified = mysql.escapeId(`${env.DB_RESP_NAME}.${table}`);
     // 1. Count rows in the old (main) DB.
     const oldCount = await countRows(oldDb, table);
+    if (oldCount === 0) {
+      // Nothing in the old table to migrate; still verify the new table.
+      results.push({ table, copied: 0, newCount: await countRows(newDb, table), dropped: true });
+      continue;
+    }
 
-    // 2. Copy rows into the new DB (works even with 0 rows — verifies access).
-    // Tables are hard-coded above; quote the remote identifier defensively.
+    // 2. Copy rows into the new DB across databases using qualified names.
+    // Both databases live on the same MySQL host with the same user, so a
+    // single connection can reference db.table on the other database.
     await newDb.query(
-      `INSERT INTO ${table} SELECT * FROM ${mysql.escapeId(table)}`,
+      `INSERT INTO ${newQualified} SELECT * FROM ${oldQualified}`,
     );
 
     // 3. Verify row count in the new DB matches (old rows preserved).
