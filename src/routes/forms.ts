@@ -65,6 +65,18 @@ function isBot(trapValue: string): boolean {
   return Boolean(trapValue.trim());
 }
 
+function safeQuery(value: string | undefined | null): string | undefined {
+  if (typeof value !== "string") return undefined;
+  const trimmed = value.trim().slice(0, 2000);
+  return trimmed.length > 0 ? trimmed : undefined;
+}
+
+function buildErrorRedirect(base: string, params: Record<string, string | undefined>): string {
+  const entries = Object.entries(params).filter(([, v]) => typeof v === "string");
+  const qs = entries.map(([k, v]) => `${encodeURIComponent(k)}=${encodeURIComponent(v as string)}`).join("&");
+  return `${base}?${qs}`;
+}
+
 export const formsRouter = Router();
 
 formsRouter.get("/contact", async (req, res, next) => {
@@ -76,6 +88,13 @@ formsRouter.get("/contact", async (req, res, next) => {
       preselectedService: typeof req.query.service === "string" ? req.query.service : "",
       status: typeof req.query.status === "string" ? req.query.status : "",
       errorMsg: typeof req.query.msg === "string" ? req.query.msg : "",
+      formValues: {
+        name: safeQuery(typeof req.query.v_name === "string" ? req.query.v_name : undefined),
+        whatsapp: safeQuery(typeof req.query.v_whatsapp === "string" ? req.query.v_whatsapp : undefined),
+        email: safeQuery(typeof req.query.v_email === "string" ? req.query.v_email : undefined),
+        message: safeQuery(typeof req.query.v_message === "string" ? req.query.v_message : undefined),
+        service: safeQuery(typeof req.query.v_service === "string" ? req.query.v_service : undefined),
+      },
     });
   } catch (error) { next(error); }
 });
@@ -83,7 +102,15 @@ formsRouter.get("/contact", async (req, res, next) => {
 formsRouter.post("/contact", formLimiter, async (req, res) => {
   const parsed = contactSchema.safeParse(req.body);
   if (!parsed.success) {
-    res.redirect("/contact?status=error&msg=invalid");
+    res.redirect(buildErrorRedirect("/contact", {
+      status: "error",
+      msg: "invalid",
+      v_name: safeQuery(String(req.body.name ?? "")),
+      v_whatsapp: safeQuery(String(req.body.whatsapp ?? "")),
+      v_email: safeQuery(String(req.body.email ?? "")),
+      v_message: safeQuery(String(req.body.message ?? "")),
+      v_service: safeQuery(String(req.body.service ?? "")),
+    }));
     return;
   }
   if (isBot(parsed.data.bot_trap)) {
@@ -92,7 +119,15 @@ formsRouter.post("/contact", formLimiter, async (req, res) => {
     return;
   }
   if (!(await passesVerification(req, parsed.data.recaptcha_token, "contact"))) {
-    res.redirect("/contact?status=error&msg=verification");
+    res.redirect(buildErrorRedirect("/contact", {
+      status: "error",
+      msg: "verification",
+      v_name: safeQuery(parsed.data.name),
+      v_whatsapp: safeQuery(parsed.data.whatsapp),
+      v_email: safeQuery(parsed.data.email),
+      v_message: safeQuery(parsed.data.message),
+      v_service: safeQuery(parsed.data.service),
+    }));
     return;
   }
   try {
@@ -103,7 +138,15 @@ formsRouter.post("/contact", formLimiter, async (req, res) => {
     res.redirect("/contact?status=success");
   } catch (error) {
     console.error("CONTACT_FORM_ERROR", error);
-    res.redirect("/contact?status=error&msg=db");
+    res.redirect(buildErrorRedirect("/contact", {
+      status: "error",
+      msg: "db",
+      v_name: safeQuery(parsed.data.name),
+      v_whatsapp: safeQuery(parsed.data.whatsapp),
+      v_email: safeQuery(parsed.data.email),
+      v_message: safeQuery(parsed.data.message),
+      v_service: safeQuery(parsed.data.service),
+    }));
   }
 });
 
@@ -113,13 +156,28 @@ formsRouter.get("/partnership", (req, res) => {
     ...buildLayoutData({ currentPage: "partnership", pageTitle: "Partner with CloudAlls | Ecosystem Network", pageDescription: "Join the CloudAlls partner network and create mutual technology value.", canonicalUrl: "/partnership" }),
     status,
     errorMsg: typeof req.query.msg === "string" ? req.query.msg : "",
+    formValues: {
+      companyName: safeQuery(typeof req.query.v_company_name === "string" ? req.query.v_company_name : undefined),
+      website: safeQuery(typeof req.query.v_website === "string" ? req.query.v_website : undefined),
+      email: safeQuery(typeof req.query.v_email === "string" ? req.query.v_email : undefined),
+      partnerTier: safeQuery(typeof req.query.v_partner_tier === "string" ? req.query.v_partner_tier : undefined),
+      proposal: safeQuery(typeof req.query.v_proposal === "string" ? req.query.v_proposal : undefined),
+    },
   });
 });
 
 formsRouter.post("/process-partnership", formLimiter, async (req, res) => {
   const parsed = partnershipSchema.safeParse(req.body);
   if (!parsed.success) {
-    res.redirect("/partnership?status=error&msg=invalid#apply");
+    res.redirect(buildErrorRedirect("/partnership", {
+      status: "error",
+      msg: "invalid",
+      v_company_name: safeQuery(String(req.body.company_name ?? "")),
+      v_website: safeQuery(String(req.body.website ?? "")),
+      v_email: safeQuery(String(req.body.email ?? "")),
+      v_partner_tier: safeQuery(String(req.body.partner_tier ?? "")),
+      v_proposal: safeQuery(String(req.body.proposal ?? "")),
+    }) + "#apply");
     return;
   }
   if (isBot(parsed.data.bot_trap)) {
@@ -128,7 +186,15 @@ formsRouter.post("/process-partnership", formLimiter, async (req, res) => {
     return;
   }
   if (!(await passesVerification(req, parsed.data.recaptcha_token, "partnership"))) {
-    res.redirect("/partnership?status=error&msg=verification#apply");
+    res.redirect(buildErrorRedirect("/partnership", {
+      status: "error",
+      msg: "verification",
+      v_company_name: safeQuery(parsed.data.company_name),
+      v_website: safeQuery(parsed.data.website),
+      v_email: safeQuery(parsed.data.email),
+      v_partner_tier: safeQuery(parsed.data.partner_tier),
+      v_proposal: safeQuery(parsed.data.proposal),
+    }) + "#apply");
     return;
   }
   try {
@@ -139,7 +205,15 @@ formsRouter.post("/process-partnership", formLimiter, async (req, res) => {
     res.redirect("/partnership?status=success#apply");
   } catch (error) {
     console.error("PARTNERSHIP_FORM_ERROR", error);
-    res.redirect("/partnership?status=error&msg=db#apply");
+    res.redirect(buildErrorRedirect("/partnership", {
+      status: "error",
+      msg: "db",
+      v_company_name: safeQuery(parsed.data.company_name),
+      v_website: safeQuery(parsed.data.website),
+      v_email: safeQuery(parsed.data.email),
+      v_partner_tier: safeQuery(parsed.data.partner_tier),
+      v_proposal: safeQuery(parsed.data.proposal),
+    }) + "#apply");
   }
 });
 
@@ -167,6 +241,14 @@ formsRouter.get("/careers/:id", async (req, res, next) => {
       job,
       formStatus: typeof req.query.status === "string" ? req.query.status : "",
       formErrorMsg: typeof req.query.msg === "string" ? req.query.msg : "",
+      formValues: {
+        firstName: safeQuery(typeof req.query.v_first_name === "string" ? req.query.v_first_name : undefined),
+        lastName: safeQuery(typeof req.query.v_last_name === "string" ? req.query.v_last_name : undefined),
+        email: safeQuery(typeof req.query.v_email === "string" ? req.query.v_email : undefined),
+        phone: safeQuery(typeof req.query.v_phone === "string" ? req.query.v_phone : undefined),
+        portfolioUrl: safeQuery(typeof req.query.v_portfolio_url === "string" ? req.query.v_portfolio_url : undefined),
+        coverLetter: safeQuery(typeof req.query.v_cover_letter === "string" ? req.query.v_cover_letter : undefined),
+      },
     });
   } catch (error) { next(error); }
 });
@@ -193,8 +275,20 @@ formsRouter.post("/careers/:id", formLimiter, async (req, res) => {
   const parsed = jobSchema.safeParse(req.body);
   const roleExpired = Boolean(job?.end_date && String(job.end_date).slice(0, 10) < new Date().toISOString().slice(0, 10));
   if (!job || roleExpired || !parsed.success) {
-    const status = roleExpired ? "closed" : "error";
-    res.redirect(`/careers/${Number.isFinite(jobId) ? jobId : 0}?status=${status}`);
+    if (roleExpired) {
+      res.redirect(`/careers/${Number.isFinite(jobId) ? jobId : 0}?status=closed`);
+      return;
+    }
+    res.redirect(buildErrorRedirect(`/careers/${Number.isFinite(jobId) ? jobId : 0}`, {
+      status: "error",
+      msg: "invalid",
+      v_first_name: safeQuery(String(req.body.first_name ?? "")),
+      v_last_name: safeQuery(String(req.body.last_name ?? "")),
+      v_email: safeQuery(String(req.body.email ?? "")),
+      v_phone: safeQuery(String(req.body.phone ?? "")),
+      v_portfolio_url: safeQuery(String(req.body.portfolio_url ?? "")),
+      v_cover_letter: safeQuery(String(req.body.cover_letter ?? "")),
+    }));
     return;
   }
   if (isBot(parsed.data.bot_trap)) {
@@ -203,7 +297,16 @@ formsRouter.post("/careers/:id", formLimiter, async (req, res) => {
     return;
   }
   if (!(await passesVerification(req, parsed.data.recaptcha_token, "job_application"))) {
-    res.redirect(`/careers/${job.id}?status=error&msg=verification`);
+    res.redirect(buildErrorRedirect(`/careers/${job.id}`, {
+      status: "error",
+      msg: "verification",
+      v_first_name: safeQuery(parsed.data.first_name),
+      v_last_name: safeQuery(parsed.data.last_name),
+      v_email: safeQuery(parsed.data.email),
+      v_phone: safeQuery(parsed.data.phone),
+      v_portfolio_url: safeQuery(parsed.data.portfolio_url),
+      v_cover_letter: safeQuery(parsed.data.cover_letter),
+    }));
     return;
   }
   try {
@@ -214,7 +317,16 @@ formsRouter.post("/careers/:id", formLimiter, async (req, res) => {
     res.redirect(`/careers/${job.id}?status=success`);
   } catch (error) {
     console.error("CAREER_FORM_ERROR", error);
-    res.redirect(`/careers/${job.id}?status=error&msg=invalid`);
+    res.redirect(buildErrorRedirect(`/careers/${job.id}`, {
+      status: "error",
+      msg: "db",
+      v_first_name: safeQuery(parsed.data.first_name),
+      v_last_name: safeQuery(parsed.data.last_name),
+      v_email: safeQuery(parsed.data.email),
+      v_phone: safeQuery(parsed.data.phone),
+      v_portfolio_url: safeQuery(parsed.data.portfolio_url),
+      v_cover_letter: safeQuery(parsed.data.cover_letter),
+    }));
   }
 });
 
@@ -223,13 +335,26 @@ formsRouter.get("/data-requests", (req, res) => {
     ...buildLayoutData({ currentPage: "data-requests", pageTitle: "Data Subject Requests | CloudAlls", pageDescription: "Submit a secure request to access, modify, export, or delete personal data held by CloudAlls.", canonicalUrl: "/data-requests" }),
     status: typeof req.query.status === "string" ? req.query.status : "",
     errorMsg: typeof req.query.msg === "string" ? req.query.msg : "",
+    formValues: {
+      requesterName: safeQuery(typeof req.query.v_requester_name === "string" ? req.query.v_requester_name : undefined),
+      requesterEmail: safeQuery(typeof req.query.v_requester_email === "string" ? req.query.v_requester_email : undefined),
+      requestType: safeQuery(typeof req.query.v_request_type === "string" ? req.query.v_request_type : undefined),
+      specificDetails: safeQuery(typeof req.query.v_specific_details === "string" ? req.query.v_specific_details : undefined),
+    },
   });
 });
 
 formsRouter.post("/data-requests", formLimiter, async (req, res) => {
   const parsed = dsrSchema.safeParse(req.body);
   if (!parsed.success) {
-    res.redirect("/data-requests?status=error&msg=invalid");
+    res.redirect(buildErrorRedirect("/data-requests", {
+      status: "error",
+      msg: "invalid",
+      v_requester_name: safeQuery(String(req.body.requester_name ?? "")),
+      v_requester_email: safeQuery(String(req.body.requester_email ?? "")),
+      v_request_type: safeQuery(String(req.body.request_type ?? "")),
+      v_specific_details: safeQuery(String(req.body.specific_details ?? "")),
+    }));
     return;
   }
   if (isBot(parsed.data.bot_trap)) {
@@ -238,7 +363,14 @@ formsRouter.post("/data-requests", formLimiter, async (req, res) => {
     return;
   }
   if (!(await passesVerification(req, parsed.data.recaptcha_token, "dsr"))) {
-    res.redirect("/data-requests?status=error&msg=verification");
+    res.redirect(buildErrorRedirect("/data-requests", {
+      status: "error",
+      msg: "verification",
+      v_requester_name: safeQuery(parsed.data.requester_name),
+      v_requester_email: safeQuery(parsed.data.requester_email),
+      v_request_type: safeQuery(parsed.data.request_type),
+      v_specific_details: safeQuery(parsed.data.specific_details),
+    }));
     return;
   }
   try {
@@ -255,6 +387,13 @@ formsRouter.post("/data-requests", formLimiter, async (req, res) => {
     res.redirect("/data-requests?status=success");
   } catch (error) {
     console.error("DSR_FORM_ERROR", error);
-    res.redirect("/data-requests?status=error&msg=db");
+    res.redirect(buildErrorRedirect("/data-requests", {
+      status: "error",
+      msg: "db",
+      v_requester_name: safeQuery(parsed.data.requester_name),
+      v_requester_email: safeQuery(parsed.data.requester_email),
+      v_request_type: safeQuery(parsed.data.request_type),
+      v_specific_details: safeQuery(parsed.data.specific_details),
+    }));
   }
 });
