@@ -73,9 +73,9 @@ export async function runLegacyCleanup(): Promise<MigrationResult[]> {
     }
 
     // 2. Copy rows into the new DB across databases using qualified names.
-    // Both databases live on the same MySQL host with the same user, so a
-    // single connection can reference db.table on the other database.
-    await newDb.query(
+    // The responses user is locked to its own database, so the copy must run
+    // on the old (public) connection, which can address both databases.
+    await oldDb.query(
       `INSERT INTO ${newQualified} SELECT * FROM ${oldQualified}`,
     );
 
