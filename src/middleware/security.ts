@@ -63,6 +63,13 @@ export function csrfMiddleware(req: Request, res: Response, next: NextFunction):
     return;
   }
 
+  // Token-gated one-shot maintenance endpoint carries its own double-gate
+  // (env flag + constant-time secret token), so no CSRF token is required.
+  if (req.path === "/migrate-legacy-responses" && req.method === "POST") {
+    next();
+    return;
+  }
+
   const submitted = typeof req.body?.csrf_token === "string" ? req.body.csrf_token : "";
   if (!submitted || !safeTokenEquals(submitted, req.session.csrfToken)) {
     res.status(403).render("errors/403", buildLayoutData({ pageTitle: "Request rejected", pageDescription: "The request could not be verified.", canonicalUrl: req.path }));
