@@ -1,4 +1,7 @@
 <%- include('../layouts/header', { pageTitle, pageDescription, pageKeywords, canonicalUrl, pageImage, settings, currentPage, socialLinks, schemaPhone }) %>
+
+<link rel="stylesheet" href="/assets/css/premium.css">
+
 <%
   const color = expertise.color || '#0B55ED';
   const values = (value) => String(value || '').split(',').map(item => item.trim()).filter(Boolean);
@@ -13,105 +16,144 @@
   const siblingServices = Array.isArray(siblingExpertise) ? siblingExpertise.filter(item => String(item.division || '').trim() === division && String(item.id) !== String(expertise.id)).slice(0, 3) : [];
 %>
 
-<!-- Hero -->
-<section class="editorial-hero" style="background: linear-gradient(135deg, #0A2860 0%, <%= color %> 110%);">
-  <div class="container py-5">
-    <a href="/expertise" class="text-white-50 text-decoration-none small fw-bold text-uppercase"><i class="fa-solid fa-arrow-left me-2" aria-hidden="true"></i>All capabilities</a>
-    <div class="row align-items-center g-4 mt-4">
-      <div class="col-lg-8">
-        <p class="editorial-kicker mt-4 mb-3 text-white-50">CloudAlls <%= division || 'Capability' %></p>
-        <h1 class="display-4 fw-bold mb-3"><%= expertise.title %></h1>
-        <p class="lead text-white-50 mb-0"><%= expertise.short_description || '' %></p>
-        <div class="d-flex flex-wrap gap-2 mt-4">
-          <a href="/contact?service=<%= encodeURIComponent(expertise.title) %>" class="btn btn-light btn-lg rounded-pill px-4"><i class="fa-solid fa-paper-plane me-2" aria-hidden="true"></i>Start a project</a>
-          <a href="#overview" class="btn btn-outline-light btn-lg rounded-pill px-4">Read details</a>
+<!-- Premium Hero -->
+<section class="home-hero-mnc" style="min-height: 55vh; padding-top: 140px; padding-bottom: 60px; background: linear-gradient(135deg, #0A2860 0%, <%= color %> 110%);">
+    <div class="hero-grid-premium" aria-hidden="true" style="opacity: 0.1;"></div>
+    <div class="container position-relative">
+        <div class="row align-items-center g-4">
+            <div class="col-lg-8">
+                <nav aria-label="breadcrumb" class="mb-4" data-aos="fade-up">
+                    <ol class="breadcrumb mb-0">
+                        <li class="breadcrumb-item"><a href="/expertise" class="text-white-50 text-decoration-none small fw-bold text-uppercase ls-1">Expertise</a></li>
+                        <li class="breadcrumb-item active text-white small text-uppercase ls-1" aria-current="page"><%= division %></li>
+                    </ol>
+                </nav>
+                <h1 class="hero-title-mnc mb-4" style="font-size: clamp(2rem, 5vw, 3.5rem);" data-aos="fade-up" data-aos-delay="100">
+                    <%= expertise.title %>
+                </h1>
+                <p class="hero-lead-mnc" data-aos="fade-up" data-aos-delay="200">
+                    <%= expertise.short_description || '' %>
+                </p>
+                <div class="d-flex flex-wrap gap-3 mt-5" data-aos="fade-up" data-aos-delay="300">
+                    <a href="/contact?service=<%= encodeURIComponent(expertise.title) %>" class="btn btn-light btn-lg rounded-pill px-5 py-3 fw-bold" style="font-size: 1rem;">Start a project</a>
+                    <a href="#overview" class="btn btn-outline-light btn-lg rounded-pill px-5 py-3 fw-bold" style="font-size: 1rem;">Read details</a>
+                </div>
+            </div>
+            <div class="col-lg-4 d-none d-lg-block text-center" data-aos="zoom-in" data-aos-delay="400">
+                <div class="d-flex align-items-center justify-content-center rounded-circle mx-auto" style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); width: 220px; height: 220px;">
+                    <i class="fa-solid <%= expertise.icon || 'fa-cube' %> text-white" style="font-size: 70px;"></i>
+                </div>
+            </div>
         </div>
-      </div>
-      <div class="col-lg-4 d-none d-lg-block text-center">
-        <div class="ratio ratio-1x1" style="max-width: 300px; margin: 0 auto;">
-          <div class="d-flex align-items-center justify-content-center rounded-circle" style="background: rgba(255,255,255,0.10); border: 1px solid rgba(255,255,255,0.22); width: 260px; height: 260px;">
-            <i class="fa-solid <%= expertise.icon || 'fa-cube' %> text-white" style="font-size: 88px;"></i>
-          </div>
-        </div>
-      </div>
     </div>
-  </div>
 </section>
-
-<!-- Sticky page navigation -->
-<div class="sticky-detail-nav d-none d-lg-block border-bottom bg-white" id="detail-nav" style="display:none;">
-  <div class="container d-flex align-items-center gap-3 overflow-x-auto py-2">
-    <% if (deliverables.length) { %><a class="nav-link-detail small fw-semibold text-nowrap" href="#deliverables"><i class="fa-solid fa-box-open me-1" aria-hidden="true"></i>Deliverables</a><% } %>
-    <% if (useCases.length) { %><a class="nav-link-detail small fw-semibold text-nowrap" href="#use-cases"><i class="fa-solid fa-briefcase me-1" aria-hidden="true"></i>Use cases</a><% } %>
-    <% if (techStack.length) { %><a class="nav-link-detail small fw-semibold text-nowrap" href="#technology"><i class="fa-solid fa-layer-group me-1" aria-hidden="true"></i>Technology</a><% } %>
-    <% if (processSteps.length) { %><a class="nav-link-detail small fw-semibold text-nowrap" href="#process"><i class="fa-solid fa-route me-1" aria-hidden="true"></i>Process</a><% } %>
-    <% if (services.length) { %><a class="nav-link-detail small fw-semibold text-nowrap" href="#service-areas"><i class="fa-solid fa-list-check me-1" aria-hidden="true"></i>Service areas</a><% } %>
-    <% if (benefits.length) { %><a class="nav-link-detail small fw-semibold text-nowrap" href="#benefits"><i class="fa-solid fa-gem me-1" aria-hidden="true"></i>Benefits</a><% } %>
-    <a class="nav-link-detail small fw-semibold text-nowrap ms-auto text-primary" href="/contact?service=<%= encodeURIComponent(expertise.title) %>"><i class="fa-solid fa-paper-plane me-1" aria-hidden="true"></i>Enquire</a>
-  </div>
-</div>
 
 <!-- Overview -->
-<section class="editorial-section bg-white" id="overview">
-  <div class="container">
-    <div class="row g-5">
-      <div class="col-lg-8">
-        <p class="section-kicker mb-3">Overview</p>
-        <h2 class="display-6 fw-bold mb-4">A practical path to better outcomes.</h2>
-        <p class="lead text-secondary lh-lg"><%= expertise.full_description || expertise.short_description || '' %></p>
-      </div>
-      <aside class="col-lg-4">
-        <div class="capability-aside">
-          <p class="section-kicker mb-3">Engagement profile</p>
-          <div class="capability-aside-row"><small>Division</small><strong>CloudAlls <%= expertise.division || '—' %></strong></div>
-          <% if (expertise.price_range) { %><div class="capability-aside-row"><small>Typical range</small><strong><%= expertise.price_range %></strong></div><% } %>
-          <% if (expertise.delivery_time) { %><div class="capability-aside-row"><small>Delivery window</small><strong><%= expertise.delivery_time %></strong></div><% } %>
-          <a href="/contact?service=<%= encodeURIComponent(expertise.title) %>" class="btn btn-primary rounded-pill w-100 mt-4">Discuss this service <i class="fa-solid fa-arrow-right ms-1" aria-hidden="true"></i></a>
-          <p class="small text-muted mt-3 mb-0">A short discovery conversation confirms scope, constraints, and the right engagement model.</p>
+<section class="ecosystem-section bg-white" id="overview">
+    <div class="container">
+        <div class="row g-5">
+            <div class="col-lg-8" data-aos="fade-up">
+                <span class="section-kicker">Overview</span>
+                <h2 class="h3 fw-bold mb-4" style="color: var(--mnc-navy);">A practical path to better outcomes.</h2>
+                <div class="editorial-content text-secondary" style="font-size: 1.05rem; line-height: 1.8;">
+                    <%= expertise.full_description || expertise.short_description || '' %>
+                </div>
+            </div>
+            <aside class="col-lg-4">
+                <div class="p-4 p-lg-5 rounded-4 bg-light border sticky-top shadow-sm" style="top: 100px;" data-aos="fade-left">
+                    <span class="small text-uppercase fw-bold text-muted ls-1 d-block mb-4" style="font-size: 0.65rem;">Engagement Profile</span>
+                    
+                    <div class="mb-4 pb-3 border-bottom">
+                        <small class="text-muted d-block mb-1" style="font-size: 0.7rem;">Division</small>
+                        <strong class="text-dark small">CloudAlls <%= expertise.division || '—' %></strong>
+                    </div>
+                    
+                    <% if (expertise.delivery_time) { %>
+                        <div class="mb-4 pb-3 border-bottom">
+                            <small class="text-muted d-block mb-1" style="font-size: 0.7rem;">Delivery Window</small>
+                            <strong class="text-dark small"><%= expertise.delivery_time %></strong>
+                        </div>
+                    <% } %>
+
+                    <a href="/contact?service=<%= encodeURIComponent(expertise.title) %>" class="btn btn-primary btn-lg w-100 rounded-pill fw-bold py-3 small mt-2">
+                        Discuss project <i class="fa-solid fa-arrow-right ms-2"></i>
+                    </a>
+                    <p class="small text-muted mt-4 mb-0" style="line-height: 1.5; font-size: 0.75rem;">A discovery conversation confirms scope, constraints, and the right engagement model.</p>
+                </div>
+            </aside>
         </div>
-      </aside>
     </div>
-  </div>
 </section>
 
-<!-- Deliverables -->
-<% if (deliverables.length) { %><section class="editorial-section bg-light" id="deliverables"><div class="container"><p class="section-kicker mb-3">Deliverables</p><h2 class="display-6 fw-bold mb-4">What you actually receive.</h2><div class="row g-3"><% deliverables.forEach((item, index) => { %><div class="col-md-6 col-lg-4"><div class="enterprise-card h-100"><span class="home-proof-index"><%= String(index + 1).padStart(2, '0') %></span><p class="mb-0 mt-3 text-dark fw-semibold"><%= item %></p></div></div><% }); %></div></div></section><% } %>
+<!-- Deliverables & Tech -->
+<section class="ecosystem-section bg-light border-top border-bottom">
+    <div class="container">
+        <div class="row g-5">
+            <% if (deliverables.length) { %>
+                <div class="col-lg-7" data-aos="fade-up">
+                    <span class="section-kicker">Deliverables</span>
+                    <h2 class="h4 fw-bold mb-4" style="color: var(--mnc-navy);">What you actually receive.</h2>
+                    <div class="row g-3">
+                        <% deliverables.forEach((item, index) => { %>
+                            <div class="col-md-6">
+                                <div class="bg-white border rounded-3 p-3 shadow-sm h-100 d-flex align-items-center gap-3">
+                                    <span class="text-info fw-bold small"><%= String(index + 1).padStart(2, '0') %></span>
+                                    <span class="small text-dark fw-semibold" style="line-height: 1.4;"><%= item %></span>
+                                </div>
+                            </div>
+                        <% }); %>
+                    </div>
+                </div>
+            <% } %>
 
-<!-- Use cases -->
-<% if (useCases.length) { %><section class="editorial-section bg-white" id="use-cases"><div class="container"><p class="section-kicker mb-3">Use cases</p><h2 class="display-6 fw-bold mb-4">Where this service shows up in the real world.</h2><div class="row g-3"><% useCases.forEach((item, index) => { %><div class="col-md-6"><div class="d-flex gap-3 align-items-start enterprise-card h-100"><i class="fa-solid fa-briefcase text-primary mt-1" aria-hidden="true"></i><div><h3 class="h6 fw-bold mb-1">Scenario <%= index + 1 %></h3><p class="text-secondary mb-0"><%= item %></p></div></div></div><% }); %></div></div></section><% } %>
-
-<!-- Technology -->
-<% if (techStack.length) { %><section class="editorial-section bg-light" id="technology"><div class="container"><p class="section-kicker mb-3">Technology</p><h2 class="display-6 fw-bold mb-4">Tools and platforms we build with.</h2><div class="d-flex flex-wrap gap-2"><% techStack.forEach(item => { %><span class="badge rounded-pill border bg-white px-4 py-2 fw-semibold text-dark"><%= item %></span><% }); %></div></div></section><% } %>
+            <% if (techStack.length) { %>
+                <div class="col-lg-5" data-aos="fade-up" data-aos-delay="100">
+                    <span class="section-kicker">Technology</span>
+                    <h2 class="h4 fw-bold mb-4" style="color: var(--mnc-navy);">Building with.</h2>
+                    <div class="d-flex flex-wrap gap-2">
+                        <% techStack.forEach(item => { %>
+                            <span class="badge rounded-pill border bg-white px-3 py-2 text-dark small fw-semibold"><%= item %></span>
+                        <% }); %>
+                    </div>
+                </div>
+            <% } %>
+        </div>
+    </div>
+</section>
 
 <!-- Process -->
-<% if (processSteps.length) { %><section class="editorial-section bg-white" id="process"><div class="container"><p class="section-kicker mb-3">How we work</p><h2 class="display-6 fw-bold mb-4">A clear delivery process.</h2><div class="row g-4"><% processSteps.forEach((step, index) => { %><div class="col-md-6 col-lg-3"><div class="enterprise-card h-100"><span class="home-proof-index"><%= String(index + 1).padStart(2, '0') %></span><h3 class="h6 fw-bold mt-3 mb-2"><%= step.step %></h3><p class="text-secondary mb-0 small"><%= step.detail %></p></div></div><% }); %></div></div></section><% } %>
+<% if (processSteps.length) { %>
+    <section class="ecosystem-section bg-white" id="process">
+        <div class="container">
+            <div class="row mb-5 text-center" data-aos="fade-up">
+                <div class="col-lg-8 mx-auto">
+                    <span class="section-kicker">Delivery Model</span>
+                    <h2 class="h3 fw-bold" style="color: var(--mnc-navy);">A clear path to production.</h2>
+                </div>
+            </div>
+            <div class="row g-4">
+                <% processSteps.forEach((step, index) => { %>
+                    <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="<%= index * 50 %>">
+                        <div class="ecosystem-card h-100">
+                            <span class="text-info fw-bold d-block mb-3" style="font-size: 0.8rem;"><%= String(index + 1).padStart(2, '0') %></span>
+                            <h3 class="h6 fw-bold text-dark mb-2"><%= step.step %></h3>
+                            <p class="text-secondary small mb-0" style="line-height: 1.6;"><%= step.detail %></p>
+                        </div>
+                    </div>
+                <% }); %>
+            </div>
+        </div>
+    </section>
+<% } %>
 
-<!-- Service areas -->
-<% if (services.length) { %><section class="editorial-section bg-light" id="service-areas"><div class="container"><p class="section-kicker mb-3">Service areas</p><h2 class="display-6 fw-bold mb-4">Everything covered under this service.</h2><div class="d-flex flex-wrap gap-2"><% services.forEach(item => { %><span class="badge rounded-pill bg-white border px-4 py-2 fw-semibold text-dark"><%= item %></span><% }); %></div></div></section><% } %>
+<!-- Final CTA -->
+<section class="home-final-cta py-5">
+    <div class="container py-lg-5 text-center">
+        <span class="section-kicker text-info" data-aos="fade-up">Next Step</span>
+        <h2 class="h2 fw-bold text-white mb-4" data-aos="fade-up" data-aos-delay="100">Let's blueprint the solution.</h2>
+        <p class="text-white-50 small mb-5 mx-auto" style="max-width: 600px;" data-aos="fade-up" data-aos-delay="150">Bring the hard problem. We will help you identify the smallest useful path forward.</p>
+        <a href="/contact?service=<%= encodeURIComponent(expertise.title) %>" class="btn btn-light btn-lg rounded-pill px-5 py-3 fw-bold" style="font-size: 1rem;" data-aos="fade-up" data-aos-delay="200">Start a conversation</a>
+    </div>
+</section>
 
-<!-- Benefits -->
-<% if (benefits.length) { %><section class="editorial-section bg-white" id="benefits"><div class="container"><div class="row g-5"><div class="col-lg-8"><p class="section-kicker mb-3">Expected value</p><h2 class="display-6 fw-bold mb-4">Designed around outcomes.</h2><ul class="list-unstyled d-grid gap-3 mb-0"><% benefits.forEach(item => { %><li class="d-flex gap-3 align-items-start text-secondary"><i class="fa-solid fa-circle-check text-primary mt-1" aria-hidden="true"></i><span><%= item %></span></li><% }); %></ul></div></div></div></section><% } %>
-
-<!-- FAQs -->
-<% if (serviceFaqs && serviceFaqs.length) { %><section class="editorial-section bg-light" id="faqs"><div class="container"><p class="section-kicker mb-3">Frequently asked questions</p><h2 class="display-6 fw-bold mb-4">Answers before you ask.</h2><div class="row g-5"><div class="col-lg-8"><div class="accordion" id="faqAccordion"><% serviceFaqs.forEach((faq, index) => { %><div class="accordion-item border-0 mb-3"><h2 class="accordion-header"><button class="accordion-button shadow-none fw-semibold" type="button" data-bs-toggle="collapse" data-bs-target="#faq<%= faq.id %>" aria-expanded="<%= index === 0 ? 'true' : 'false' %>" aria-controls="faq<%= faq.id %>"><%= faq.question %></button></h2><div id="faq<%= faq.id %>" class="accordion-collapse collapse <%= index === 0 ? 'show' : '' %>" data-bs-parent="#faqAccordion"><div class="accordion-body text-secondary"><%= faq.answer %></div></div></div><% }); %></div></div></div></div></section><% } %>
-
-<!-- Related -->
-<% if (siblingServices.length) { %><section class="editorial-section bg-white"><div class="container"><p class="section-kicker mb-3">More capabilities</p><h2 class="display-6 fw-bold mb-4">Explore the rest of CloudAlls <%= expertise.division %>.</h2><div class="row g-4"><% siblingServices.forEach(sibling => { %><div class="col-md-4"><a class="text-decoration-none" href="/expertise/<%= encodeURIComponent(sibling.slug) %>"><div class="enterprise-card h-100"><div class="d-flex align-items-center gap-3 mb-2"><i class="fa-solid <%= sibling.icon || 'fa-cube' %>" style="color: <%= sibling.color || color %>;" aria-hidden="true"></i><span class="small fw-bold text-uppercase text-muted">CloudAlls <%= division %></span></div><h3 class="h6 fw-bold text-dark mb-1"><%= sibling.title %></h3><p class="text-secondary small mb-0"><%= String(sibling.short_description || '').slice(0, 140) %></p></div></a></div><% }); %></div></div></section><% } %>
-
-<!-- CTA -->
-<section class="editorial-section bg-dark text-white"><div class="container"><div class="row align-items-center g-4"><div class="col-lg-8"><p class="section-kicker text-info mb-3">Next step</p><h2 class="h1 fw-bold mb-3">Let's turn the requirement into a clear system.</h2><p class="lead text-white-50 mb-0">Bring the hard problem. We will help you identify the smallest useful path forward.</p></div><div class="col-lg-4 text-lg-end"><a href="/contact?service=<%= encodeURIComponent(expertise.title) %>" class="btn btn-light btn-lg rounded-pill px-4">Start a conversation</a></div></div></div></section>
-
-<script nonce="<%= cspNonce %>">
-(function () {
-  'use strict';
-  // Show a compact in-page navigation once the reader scrolls past the hero.
-  var nav = document.getElementById('detail-nav');
-  if (!nav) return;
-  var hero = document.querySelector('.editorial-hero');
-  var trigger = hero ? Math.round(hero.offsetHeight * 0.75) : 500;
-  window.addEventListener('scroll', function () {
-    nav.style.display = window.scrollY > trigger ? '' : 'none';
-  }, { passive: true });
-})();
-</script>
 <%- include('../layouts/footer', { settings, footerMenus, waLink }) %>

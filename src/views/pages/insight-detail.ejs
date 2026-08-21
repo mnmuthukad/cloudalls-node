@@ -1,4 +1,85 @@
 <%- include('../layouts/header', { pageTitle, pageDescription, pageKeywords, canonicalUrl, pageImage, settings, currentPage, socialLinks, schemaPhone }) %>
-<script type="application/ld+json" nonce="<%= cspNonce %>"><%- JSON.stringify({ '@context': 'https://schema.org', '@type': 'Article', '@id': `${canonicalUrl}#article`, headline: insight.title, description: insight.excerpt || pageDescription, url: canonicalUrl, image: pageImage, datePublished: insight.created_at || undefined, author: { '@type': 'Organization', name: 'CloudAlls' }, publisher: { '@type': 'Organization', name: 'CloudAlls', logo: { '@type': 'ImageObject', url: `${canonicalUrl.split('/').slice(0, 3).join('/')}/assets/img/favicon.png` } }, mainEntityOfPage: { '@type': 'WebPage', '@id': canonicalUrl } }) %></script>
-<article class="container py-5" style="max-width:900px;"><a href="/insights" class="small text-primary text-decoration-none fw-bold">&larr; Back to insights</a><p class="text-uppercase fw-bold text-info small ls-1 mt-5 mb-3">CloudAlls insight</p><h1 class="display-4 fw-black ls-tight mb-4"><%= insight.title %></h1><p class="lead text-secondary"><%= insight.excerpt || '' %></p><hr class="my-5"><div class="text-secondary" style="line-height:1.85; white-space:pre-line;"><%= (insight.content || insight.excerpt || '').replace(/<[^>]*>/g, '') %></div></article>
+
+<link rel="stylesheet" href="/assets/css/premium.css">
+
+<script type="application/ld+json" nonce="<%= cspNonce %>">
+<%- JSON.stringify({ 
+    '@context': 'https://schema.org', 
+    '@type': 'Article', 
+    '@id': `${canonicalUrl}#article`, 
+    headline: insight.title, 
+    description: insight.excerpt || pageDescription, 
+    url: canonicalUrl, 
+    image: pageImage, 
+    datePublished: insight.created_at || undefined, 
+    author: { '@type': 'Organization', name: 'CloudAlls' }, 
+    publisher: { '@type': 'Organization', name: 'CloudAlls', logo: { '@type': 'ImageObject', url: `${canonicalUrl.split('/').slice(0, 3).join('/')}/assets/brand/favicon.png` } }, 
+    mainEntityOfPage: { '@type': 'WebPage', '@id': canonicalUrl } 
+}) %>
+</script>
+
+<!-- Premium Article Hero -->
+<section class="home-hero-mnc" style="min-height: 45vh; padding-top: 140px; padding-bottom: 60px;">
+    <div class="hero-grid-premium" aria-hidden="true"></div>
+    <div class="container position-relative">
+        <div class="row">
+            <div class="col-lg-10">
+                <nav aria-label="breadcrumb" class="mb-4" data-aos="fade-up">
+                    <ol class="breadcrumb mb-0">
+                        <li class="breadcrumb-item"><a href="/insights" class="text-info text-decoration-none small fw-bold text-uppercase ls-1">Insights</a></li>
+                        <li class="breadcrumb-item active text-white-50 small text-uppercase ls-1" aria-current="page">Field Notes</li>
+                    </ol>
+                </nav>
+                <h1 class="hero-title-mnc mb-4" style="font-size: clamp(2rem, 5vw, 3.5rem);" data-aos="fade-up" data-aos-delay="100">
+                    <%= insight.title %>
+                </h1>
+                <div class="d-flex align-items-center gap-3" data-aos="fade-up" data-aos-delay="200">
+                    <div class="small text-white-50 text-uppercase ls-1" style="font-size: 0.7rem;">
+                        <i class="fa-solid fa-calendar-day me-2 text-info"></i>
+                        <%= insight.created_at ? new Date(insight.created_at).toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' }) : 'Recently Published' %>
+                    </div>
+                    <div class="vr bg-white opacity-25"></div>
+                    <div class="small text-white-50 text-uppercase ls-1" style="font-size: 0.7rem;">
+                        <i class="fa-solid fa-clock me-2 text-info"></i>
+                        5 min read
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Article Content -->
+<section class="ecosystem-section py-5 bg-white">
+    <div class="container py-lg-4">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <article class="editorial-content">
+                    <% if (insight.image_url) { %>
+                        <div class="mb-5 rounded-3 overflow-hidden shadow-sm" data-aos="fade-up">
+                            <img src="<%= insight.image_url %>" alt="<%= insight.title %>" class="w-100 h-auto">
+                        </div>
+                    <% } %>
+                    
+                    <div class="lead fw-bold text-dark mb-5" style="font-size: 1.15rem; line-height: 1.6;" data-aos="fade-up">
+                        <%= insight.excerpt || '' %>
+                    </div>
+
+                    <div class="text-secondary" style="font-size: 1.05rem; line-height: 1.8; white-space: pre-line;" data-aos="fade-up" data-aos-delay="100">
+                        <%= (insight.content || insight.excerpt || '').replace(/<[^>]*>/g, '') %>
+                    </div>
+
+                    <div class="mt-5 pt-4 border-top" data-aos="fade-up">
+                        <div class="d-flex flex-wrap gap-3 align-items-center">
+                            <span class="small text-uppercase fw-bold ls-1 text-muted" style="font-size: 0.7rem;">Share:</span>
+                            <a href="https://www.linkedin.com/sharing/share-offsite/?url=<%= encodeURIComponent(canonicalUrl) %>" target="_blank" class="btn btn-outline-dark btn-sm rounded-pill px-3 py-1 fw-bold" style="font-size: 0.75rem;"><i class="fa-brands fa-linkedin-in me-2"></i> LinkedIn</a>
+                            <a href="https://twitter.com/intent/tweet?url=<%= encodeURIComponent(canonicalUrl) %>&text=<%= encodeURIComponent(insight.title) %>" target="_blank" class="btn btn-outline-dark btn-sm rounded-pill px-3 py-1 fw-bold" style="font-size: 0.75rem;"><i class="fa-brands fa-x-twitter me-2"></i> X</a>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </div>
+</section>
+
 <%- include('../layouts/footer', { settings, footerMenus, waLink }) %>

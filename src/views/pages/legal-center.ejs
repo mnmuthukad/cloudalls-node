@@ -1,8 +1,94 @@
 <%- include('../layouts/header', { pageTitle, pageDescription, pageKeywords, canonicalUrl, pageImage, settings, currentPage, socialLinks, schemaPhone }) %>
-<section class="editorial-hero"><div class="container"><p class="editorial-kicker mb-3">Trust, governance and data rights</p><h1 class="mb-4">Legal clarity for connected systems.</h1><p class="lead mb-0">Review the policies, operating principles, incident approach, and jurisdiction-aware reference frameworks that shape the CloudAlls ecosystem.</p></div></section>
-<section class="editorial-section bg-white"><div class="container"><div class="row align-items-end g-4 mb-5"><div class="col-lg-8"><p class="section-kicker mb-3">Policy library</p><h2 class="display-6 fw-bold mb-3">The documents that set expectations.</h2><p class="text-secondary lead mb-0">Read the policies that govern public platforms, privacy, security, responsible use, ethics, and accessibility.</p></div><div class="col-lg-4 text-lg-end"><a class="btn btn-primary rounded-pill px-4" href="/data-requests">Submit a data request <i class="fa-solid fa-arrow-right ms-2" aria-hidden="true"></i></a></div></div><div class="row g-4"><% if (directory.length) { directory.forEach((item, index) => { %><div class="col-md-6 col-lg-4"><a class="enterprise-card d-block text-decoration-none" href="<%= item.link %>"><span class="d-flex align-items-center justify-content-between mb-4"><span class="capability-icon mb-0"><i class="fa-solid <%= item.icon %>" aria-hidden="true"></i></span><span class="small text-muted fw-bold"><%= String(index + 1).padStart(2, '0') %></span></span><h3 class="h5 fw-bold text-dark"><%= item.title %></h3><p class="mb-0"><%= item.description %></p></a></div><% }); } else { %><div class="col-12"><div class="alert alert-light border">The policy directory is temporarily unavailable. Please use the contact channel for an official request.</div></div><% } %></div></div></section>
-<section class="editorial-section bg-light"><div class="container"><div class="row g-5"><div class="col-lg-5"><p class="section-kicker mb-3">Operating principles</p><h2 class="display-6 fw-bold mb-3">Trust is designed into the system.</h2><p class="text-secondary lead">These imported compliance pillars describe the intended standard for data, assurance, privacy, and transparency.</p></div><div class="col-lg-7"><div class="row g-3"><% pillars.forEach((pillar) => { %><div class="col-md-6"><div class="enterprise-card"><span class="capability-icon"><i class="fa-solid <%= pillar.icon %>" aria-hidden="true"></i></span><h3 class="h5 fw-bold"><%= pillar.title %></h3><p class="mb-0"><%= pillar.description %></p></div></div><% }); %></div></div></div></div></section>
-<section class="editorial-section bg-white"><div class="container"><div class="row g-5"><div class="col-lg-5"><p class="section-kicker mb-3">Incident response</p><h2 class="display-6 fw-bold mb-3">A calm response when the unexpected happens.</h2><p class="text-secondary lead">The response model keeps containment, communication, and learning connected. Specific contractual commitments depend on the applicable engagement.</p></div><div class="col-lg-7"><div class="home-engagement-list"><% crisisResponse.forEach((step) => { %><div class="home-engagement-item"><span class="home-engagement-num"><%= String(step.step_number).padStart(2, '0') %></span><span><strong><%= step.title %></strong><small><%= step.description %></small></span><i class="fa-solid fa-arrow-right text-primary" aria-hidden="true"></i></div><% }); %></div></div></div></div></section>
-<section class="editorial-section bg-light"><div class="container"><div class="row align-items-end g-4 mb-5"><div class="col-lg-8"><p class="section-kicker mb-3">Framework register</p><h2 class="display-6 fw-bold mb-3">References by jurisdiction, not blanket claims.</h2><p class="text-secondary lead mb-0">These entries are informational references for review. They are not a statement that CloudAlls is certified, universally compliant, or legally advised in every jurisdiction.</p></div></div><div class="row g-3"><% frameworks.forEach((framework) => { %><div class="col-12"><details class="enterprise-card framework-row"><summary class="d-flex flex-column flex-lg-row gap-3 align-items-lg-center justify-content-between"><span><strong class="d-block text-dark"><%= framework.framework_name %></strong><small class="text-muted"><%= framework.jurisdiction %> · <%= framework.framework_type %> · Reviewed <%= new Date(framework.last_reviewed).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' }) %></small></span><span class="badge rounded-pill text-bg-light border"><%= framework.review_status %></span></summary><div class="row g-3 mt-2"><div class="col-lg-8"><p class="mb-0"><%= framework.scope_summary %></p></div><div class="col-lg-4 text-lg-end"><p class="small text-muted mb-2"><%= framework.authority %></p><a href="<%= framework.source_url %>" target="_blank" rel="noopener noreferrer" class="small fw-bold text-primary">Open official reference <i class="fa-solid fa-arrow-up-right-from-square ms-1" aria-hidden="true"></i></a></div></div></details></div><% }); %></div></div></section>
-<section class="editorial-section bg-dark text-white"><div class="container"><div class="row align-items-center g-4"><div class="col-lg-8"><p class="section-kicker text-info mb-3">Data subject requests</p><h2 class="h1 fw-bold mb-3">Need to access, modify, export, or delete personal data?</h2><p class="lead text-white-50 mb-0">Use the protected CloudAlls workflow. We verify identity and scope before handling a request.</p></div><div class="col-lg-4 text-lg-end"><a class="btn btn-light btn-lg rounded-pill px-4" href="/data-requests">Open DSR workflow</a></div></div></div></section>
+
+<link rel="stylesheet" href="/assets/css/premium.css">
+
+<!-- Premium Hero -->
+<section class="home-hero-mnc" style="min-height: 50vh; padding-top: 140px; padding-bottom: 60px;">
+    <div class="hero-grid-premium" aria-hidden="true"></div>
+    <div class="container position-relative">
+        <div class="row">
+            <div class="col-lg-10">
+                <span class="hero-tagline" data-aos="fade-up">Trust & Governance</span>
+                <h1 class="hero-title-mnc mb-4" style="font-size: clamp(2rem, 5vw, 3.5rem);" data-aos="fade-up" data-aos-delay="100">
+                    Legal clarity for <span>connected systems.</span>
+                </h1>
+                <p class="hero-lead-mnc" data-aos="fade-up" data-aos-delay="200">
+                    Review the policies, operating principles, and reference frameworks that shape the CloudAlls ecosystem.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Policy Library -->
+<section class="ecosystem-section bg-white">
+    <div class="container">
+        <div class="row align-items-end g-4 mb-5" data-aos="fade-up">
+            <div class="col-lg-8">
+                <span class="section-kicker">Policy Library</span>
+                <h2 class="h3 fw-bold mb-3" style="color: var(--mnc-navy);">The documents that set expectations.</h2>
+                <p class="text-secondary small mb-0" style="line-height: 1.6;">Read the policies that govern public platforms, privacy, security, and ethics.</p>
+            </div>
+            <div class="col-lg-4 text-lg-end">
+                <a class="btn btn-outline-primary rounded-pill px-4 fw-bold small" href="/data-requests">Data Request <i class="fa-solid fa-arrow-right ms-2"></i></a>
+            </div>
+        </div>
+
+        <div class="row g-4">
+            <% if (directory && directory.length) { directory.forEach((item, index) => { %>
+                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="<%= index * 50 %>">
+                    <a class="ecosystem-card d-block text-decoration-none h-100" href="<%= item.link %>">
+                        <div class="d-flex align-items-center justify-content-between mb-4">
+                            <div class="ecosystem-icon mb-0" style="width: 40px; height: 40px; font-size: 1rem;">
+                                <i class="fa-solid <%= item.icon %>"></i>
+                            </div>
+                            <span class="small text-muted fw-bold" style="font-size: 0.7rem;"><%= String(index + 1).padStart(2, '0') %></span>
+                        </div>
+                        <h3 class="h6 fw-bold text-dark mb-2"><%= item.title %></h3>
+                        <p class="text-secondary small mb-0" style="line-height: 1.5;"><%= item.description %></p>
+                    </a>
+                </div>
+            <% }); } %>
+        </div>
+    </div>
+</section>
+
+<!-- Operating Principles -->
+<section class="ecosystem-section bg-light border-top border-bottom">
+    <div class="container">
+        <div class="row g-5">
+            <div class="col-lg-5" data-aos="fade-up">
+                <span class="section-kicker">Operating Principles</span>
+                <h2 class="h3 fw-bold mb-3" style="color: var(--mnc-navy);">Trust is designed into the system.</h2>
+                <p class="text-secondary small" style="line-height: 1.7;">These compliance pillars describe the intended standard for data, assurance, privacy, and transparency.</p>
+            </div>
+            <div class="col-lg-7">
+                <div class="row g-3">
+                    <% pillars.forEach((pillar, index) => { %>
+                        <div class="col-md-6" data-aos="fade-up" data-aos-delay="<%= index * 50 %>">
+                            <div class="ecosystem-card bg-white">
+                                <div class="ecosystem-icon mb-3" style="width: 32px; height: 32px; font-size: 0.9rem;">
+                                    <i class="fa-solid <%= pillar.icon %>"></i>
+                                </div>
+                                <h3 class="h6 fw-bold text-dark mb-2"><%= pillar.title %></h3>
+                                <p class="text-secondary small mb-0" style="line-height: 1.5;"><%= pillar.description %></p>
+                            </div>
+                        </div>
+                    <% }); %>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Final CTA -->
+<section class="home-final-cta py-5">
+    <div class="container py-lg-5 text-center">
+        <span class="section-kicker text-info" data-aos="fade-up">Data Subject Requests</span>
+        <h2 class="h2 fw-bold text-white mb-4" data-aos="fade-up" data-aos-delay="100">Need to manage your personal data?</h2>
+        <p class="text-white-50 small mb-5 mx-auto" style="max-width: 600px;" data-aos="fade-up" data-aos-delay="150">Use the protected CloudAlls workflow. We verify identity and scope before handling any data request.</p>
+        <a class="btn btn-light btn-lg rounded-pill px-5 py-3 fw-bold" style="font-size: 1rem;" href="/data-requests" data-aos="fade-up" data-aos-delay="200">Open DSR Workflow</a>
+    </div>
+</section>
+
 <%- include('../layouts/footer', { settings, footerMenus, waLink }) %>

@@ -4,7 +4,7 @@
 <link rel="stylesheet" href="/assets/css/premium.css">
 
 <!-- Premium Hero -->
-<section class="home-hero-mnc" style="min-height: 60vh; padding-top: 160px; padding-bottom: 60px;">
+<section class="home-hero-mnc" style="min-height: 55vh; padding-top: 140px; padding-bottom: 60px;">
   <div class="hero-grid-premium" aria-hidden="true"></div>
   <div class="container position-relative">
     <div class="row">
@@ -21,27 +21,27 @@
   </div>
 </section>
 
-<section class="editorial-section bg-white" id="capabilities">
-  <div class="container py-lg-5">
+<section class="ecosystem-section bg-white" id="capabilities">
+  <div class="container">
     
     <!-- Strategic Pillar Navigation -->
     <div class="row mb-5" data-aos="fade-up">
       <div class="col-12">
         <div class="d-flex flex-wrap gap-2 justify-content-center">
-          <button class="btn btn-outline-primary rounded-pill px-4 py-2 fw-bold filter-pillar-btn active" data-pillar="all">All Capabilities</button>
-          <button class="btn btn-outline-primary rounded-pill px-4 py-2 fw-bold filter-pillar-btn" data-pillar="engineering">Engineering & Labs</button>
-          <button class="btn btn-outline-primary rounded-pill px-4 py-2 fw-bold filter-pillar-btn" data-pillar="intelligence">Intelligence & Growth</button>
-          <button class="btn btn-outline-primary rounded-pill px-4 py-2 fw-bold filter-pillar-btn" data-pillar="creative">Creative & Operations</button>
+          <button class="btn btn-outline-primary rounded-pill px-4 py-2 fw-bold filter-pillar-btn active" data-pillar="all" style="font-size: 0.85rem;">All Capabilities</button>
+          <button class="btn btn-outline-primary rounded-pill px-4 py-2 fw-bold filter-pillar-btn" data-pillar="engineering" style="font-size: 0.85rem;">Engineering & Labs</button>
+          <button class="btn btn-outline-primary rounded-pill px-4 py-2 fw-bold filter-pillar-btn" data-pillar="intelligence" style="font-size: 0.85rem;">Intelligence & Growth</button>
+          <button class="btn btn-outline-primary rounded-pill px-4 py-2 fw-bold filter-pillar-btn" data-pillar="creative" style="font-size: 0.85rem;">Creative & Operations</button>
         </div>
       </div>
     </div>
 
-    <!-- Search: the fastest way to find a service -->
+    <!-- Search -->
     <div class="row justify-content-center mb-5" data-aos="fade-up">
       <div class="col-lg-8">
         <div class="search-input-wrap position-relative">
-          <i class="fa-solid fa-magnifying-glass position-absolute text-muted search-icon-left" style="top: 50%; left: 20px; transform: translateY(-50%);" aria-hidden="true"></i>
-          <input type="search" id="service-search" class="form-control form-control-lg ps-5 rounded-pill border-2" placeholder="Search services (e.g. AI, DevOps, Branding...)" aria-label="Search services">
+          <i class="fa-solid fa-magnifying-glass position-absolute text-muted" style="top: 50%; left: 20px; transform: translateY(-50%);" aria-hidden="true"></i>
+          <input type="search" id="service-search" class="form-control form-control-lg ps-5 rounded-pill border-2" style="font-size: 1rem;" placeholder="Search services (e.g. AI, DevOps, Branding...)" aria-label="Search services">
         </div>
       </div>
     </div>
@@ -71,17 +71,17 @@
       <% const pillar = getPillar(div); %>
       <div class="division-group mb-5" data-division="<%= slugify(div) %>" data-pillar="<%= pillar %>">
         <div class="d-flex align-items-baseline gap-3 mb-4 pt-2 border-bottom">
-          <h2 class="h3 fw-black ls-tight mb-2"><%= div %></h2>
-          <span class="badge rounded-pill bg-primary-subtle text-primary-emphasis fw-bold px-3"><%= grouped[div].length %> SERVICES</span>
+          <h2 class="h4 fw-bold ls-tight mb-2" style="color: var(--mnc-navy);"><%= div %></h2>
+          <span class="badge rounded-pill bg-primary-subtle text-primary-emphasis fw-bold px-3" style="font-size: 0.7rem;"><%= grouped[div].length %> SERVICES</span>
         </div>
         <div class="row g-4">
         <% grouped[div].forEach(item => { %>
           <div class="col-12 col-md-6 col-lg-4 catalogue-card" data-pillar="<%= pillar %>" data-division="<%= slugify(div) %>" data-title="<%= String(item.title).toLowerCase() %>" data-desc="<%= String(item.short_description || '').toLowerCase() %>">
             <a href="/expertise/<%= encodeURIComponent(item.slug) %>" class="ecosystem-card">
               <div class="ecosystem-icon"><i class="fa-solid <%= item.icon || 'fa-code' %>"></i></div>
-              <p class="small text-primary fw-bold mb-1 text-uppercase letter-spacing-01"><%= div %></p>
-              <h3><%= item.title %></h3>
-              <p><%= String(item.short_description || '').slice(0, 120) %>...</p>
+              <p class="small text-primary fw-bold mb-1 text-uppercase ls-1" style="font-size: 0.7rem;"><%= div %></p>
+              <h3 class="h5 fw-bold text-dark mb-2"><%= item.title %></h3>
+              <p class="text-secondary" style="font-size: 0.9rem; line-height: 1.6;"><%= String(item.short_description || '').slice(0, 120) %>...</p>
             </a>
           </div>
         <% }); %>
@@ -91,10 +91,10 @@
     </div>
 
     <div class="text-center py-5" id="no-results" style="display:none;">
-      <div class="ecosystem-icon mx-auto mb-4" style="width: 80px; height: 80px; font-size: 2rem;"><i class="fa-solid fa-magnifying-glass"></i></div>
-      <h3 class="h4 fw-black">Nothing matches "<span id="no-results-term"></span>"</h3>
+      <div class="ecosystem-icon mx-auto mb-4" style="width: 60px; height: 60px; font-size: 1.5rem;"><i class="fa-solid fa-magnifying-glass"></i></div>
+      <h3 class="h5 fw-bold">Nothing matches "<span id="no-results-term"></span>"</h3>
       <p class="text-secondary mb-4">Try a different keyword or explore a strategic pillar above.</p>
-      <a href="/contact" class="btn btn-primary rounded-pill px-5 py-3 fw-bold">Start a custom project</a>
+      <a href="/contact" class="btn btn-primary rounded-pill px-5 py-3 fw-bold" style="font-size: 0.9rem;">Start a custom project</a>
     </div>
   </div>
 </section>

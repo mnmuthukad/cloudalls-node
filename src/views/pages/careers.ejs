@@ -1,39 +1,124 @@
 <%- include('../layouts/header', { pageTitle, pageDescription, pageKeywords, canonicalUrl, pageImage, settings, currentPage, socialLinks, schemaPhone }) %>
 <% const today = new Date().toISOString().slice(0, 10); const jobs = careers.filter(job => job.type !== 'Internship'); const internships = careers.filter(job => job.type === 'Internship'); %>
-<section class="container-fluid bg-dark text-white py-5">
-  <div class="container py-5">
-    <p class="text-uppercase fw-bold text-info small ls-1 mb-3">Careers and academy</p>
-    <h1 class="display-3 fw-black ls-tight mb-4">Join the <span class="text-info">mission.</span></h1>
-    <p class="lead text-white-50 mb-4" style="max-width: 760px;">Shape the future of the digital ecosystem through engineering, AI, creative systems, operations, and hands-on student programs.</p>
-    <div class="d-flex flex-wrap gap-3"><a class="btn btn-primary rounded-pill px-4" href="#open-roles">View open roles</a><a class="btn btn-outline-light rounded-pill px-4" href="#internships">Student programs</a></div>
+
+<link rel="stylesheet" href="/assets/css/premium.css">
+
+<!-- Premium Hero -->
+<section class="home-hero-mnc" style="min-height: 55vh; padding-top: 140px; padding-bottom: 60px;">
+  <div class="hero-grid-premium" aria-hidden="true"></div>
+  <div class="container position-relative">
+    <div class="row">
+      <div class="col-lg-8">
+        <span class="hero-tagline" data-aos="fade-up">Careers & Academy</span>
+        <h1 class="hero-title-mnc" data-aos="fade-up" data-aos-delay="100">
+          Join the <span>mission.</span>
+        </h1>
+        <p class="hero-lead-mnc" data-aos="fade-up" data-aos-delay="200">
+          Shape the future of the digital ecosystem through engineering, AI, and operational technology.
+        </p>
+        <div class="d-flex flex-wrap gap-3" data-aos="fade-up" data-aos-delay="300">
+          <a class="btn btn-primary btn-lg rounded-pill px-5 py-3 fw-bold" style="font-size: 1rem;" href="#open-roles">View open roles</a>
+          <a class="btn btn-outline-light btn-lg rounded-pill px-5 py-3 fw-bold" style="font-size: 1rem;" href="#internships">Student programs</a>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
-<section id="open-roles" class="container py-5" style="scroll-margin-top: 80px;">
-  <div class="d-flex align-items-center gap-3 mb-4"><div><p class="text-uppercase fw-bold text-primary small ls-1 mb-2">Professional roles</p><h2 class="display-6 fw-bold mb-0">Build the systems that matter.</h2></div><span class="badge text-bg-dark rounded-pill"><%= jobs.length %> listed</span></div>
-  <div class="row g-4">
-    <% if (jobs.length) { jobs.forEach(job => { const start = String(job.start_date || '').slice(0, 10); const end = String(job.end_date || '').slice(0, 10); const expired = end && today > end; const upcoming = start && today < start; %>
-      <article class="col-lg-4 col-md-6"><div class="h-100 p-4 rounded-4 border bg-white shadow-sm <%= expired ? 'opacity-75' : '' %>">
-        <div class="d-flex flex-wrap gap-2 mb-3"><span class="badge text-bg-light"><%= job.department %></span><span class="badge <%= expired ? 'text-bg-danger' : upcoming ? 'text-bg-warning' : 'text-bg-primary' %>"><%= expired ? 'Closed' : upcoming ? `Opens ${start}` : job.type %></span></div>
-        <h3 class="h4 fw-bold"><%= job.title %></h3><p class="small text-muted"><%= job.location_type %> · <%= job.location %></p>
-        <p class="text-secondary"><%= (job.description || '').replace(/<[^>]*>/g, '').replace(/\\r?\\n/g, ' ').slice(0, 240) %><%= (job.description || '').replace(/<[^>]*>/g, '').length > 240 ? '…' : '' %></p>
-        <a class="btn <%= expired ? 'btn-outline-secondary' : 'btn-outline-primary' %> rounded-pill" href="/careers/<%= encodeURIComponent(String(job.id)) %>"><%= expired ? 'View archive' : 'View role' %></a>
-      </div></article>
-    <% }); } else { %><div class="col-12"><div class="p-5 rounded-4 bg-light border text-center"><h3 class="h4 fw-bold">No professional roles are listed right now.</h3><p class="text-secondary mb-0">Check back soon or introduce yourself through the contact page.</p></div></div><% } %>
-  </div>
-</section>
+<!-- Professional Roles -->
+<section id="open-roles" class="ecosystem-section bg-white" style="scroll-margin-top: 80px;">
+  <div class="container">
+    <div class="row mb-5" data-aos="fade-up">
+      <div class="col-lg-7">
+        <span class="section-kicker">Professional Roles</span>
+        <h2 class="h2 fw-bold text-dark">Build the systems that matter.</h2>
+      </div>
+      <div class="col-lg-5 text-lg-end d-flex align-items-end justify-content-lg-end mt-3 mt-lg-0">
+        <span class="badge bg-dark rounded-pill px-3 py-2" style="font-size: 0.75rem;"><%= jobs.length %> POSITIONS LISTED</span>
+      </div>
+    </div>
 
-<section id="internships" class="bg-light border-top py-5" style="scroll-margin-top: 80px;">
-  <div class="container py-4"><div class="d-flex align-items-center gap-3 mb-4"><div><p class="text-uppercase fw-bold text-success small ls-1 mb-2">CloudAlls academy</p><h2 class="display-6 fw-bold mb-0">Learn through real delivery.</h2></div><span class="badge text-bg-success rounded-pill">Student programs</span></div>
     <div class="row g-4">
-      <% if (internships.length) { internships.forEach(job => { const start = String(job.start_date || '').slice(0, 10); const end = String(job.end_date || '').slice(0, 10); const expired = end && today > end; const upcoming = start && today < start; %>
-        <article class="col-lg-4 col-md-6"><div class="h-100 p-4 rounded-4 border bg-white shadow-sm <%= expired ? 'opacity-75' : '' %>">
-          <div class="d-flex flex-wrap gap-2 mb-3"><span class="badge text-bg-light"><%= job.department %></span><span class="badge <%= expired ? 'text-bg-danger' : upcoming ? 'text-bg-warning' : 'text-bg-success' %>"><%= expired ? 'Closed' : upcoming ? `Opens ${start}` : 'Internship' %></span></div>
-          <h3 class="h4 fw-bold"><%= job.title %></h3><p class="small text-muted"><%= job.location_type %> · <%= job.location %></p>
-          <p class="text-secondary"><%= (job.description || '').replace(/<[^>]*>/g, '').replace(/\\r?\\n/g, ' ').slice(0, 240) %><%= (job.description || '').replace(/<[^>]*>/g, '').length > 240 ? '…' : '' %></p>
-          <a class="btn <%= expired ? 'btn-outline-secondary' : 'btn-outline-success' %> rounded-pill" href="/careers/<%= encodeURIComponent(String(job.id)) %>"><%= expired ? 'View archive' : 'Apply for program' %></a>
-        </div></article>
-      <% }); } else { %><div class="col-12"><div class="p-5 rounded-4 bg-white border text-center"><h3 class="h4 fw-bold">No internships are listed right now.</h3><p class="text-secondary mb-0">Academy programs run seasonally. Please check back for the next cohort.</p></div></div><% } %>
+      <% if (jobs.length) { jobs.forEach((job, index) => { 
+        const start = String(job.start_date || '').slice(0, 10); 
+        const end = String(job.end_date || '').slice(0, 10); 
+        const expired = end && today > end; 
+        const upcoming = start && today < start; 
+      %>
+        <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="<%= index * 50 %>">
+          <a href="/careers/<%= encodeURIComponent(String(job.id)) %>" class="ecosystem-card text-decoration-none h-100 <%= expired ? 'opacity-75' : '' %>">
+            <div class="d-flex justify-content-between align-items-start mb-4">
+              <span class="badge bg-primary-subtle text-primary-emphasis fw-bold rounded-pill px-3" style="font-size: 0.7rem;"><%= job.department %></span>
+              <span class="badge <%= expired ? 'bg-danger-subtle text-danger' : upcoming ? 'bg-warning-subtle text-warning-emphasis' : 'bg-light text-muted' %> fw-bold rounded-pill px-3" style="font-size: 0.7rem;">
+                <%= expired ? 'Closed' : upcoming ? `Opens ${start}` : job.type %>
+              </span>
+            </div>
+            <h3 class="h5 fw-bold text-dark mb-2"><%= job.title %></h3>
+            <p class="text-secondary small mb-3" style="font-size: 0.8rem;"><%= job.location_type %> · <%= job.location %></p>
+            <p class="text-secondary small mb-4" style="line-height: 1.6;">
+              <%= (job.description || '').replace(/<[^>]*>/g, '').replace(/\\r?\\n/g, ' ').slice(0, 160) %>...
+            </p>
+            <div class="mt-auto text-primary fw-bold small">
+              <%= expired ? 'View archive' : 'View role' %> <i class="fa-solid fa-arrow-right ms-2"></i>
+            </div>
+          </a>
+        </div>
+      <% }); } else { %>
+        <div class="col-12">
+          <div class="p-5 rounded-4 bg-light border text-center">
+            <p class="text-secondary mb-0">We are not currently listing active professional roles. Check back soon.</p>
+          </div>
+        </div>
+      <% } %>
+    </div>
+  </div>
+</section>
+
+<!-- Academy Programs -->
+<section id="internships" class="ecosystem-section bg-light border-top" style="scroll-margin-top: 80px;">
+  <div class="container">
+    <div class="row mb-5" data-aos="fade-up">
+      <div class="col-lg-7">
+        <span class="section-kicker">CloudAlls Academy</span>
+        <h2 class="h2 fw-bold text-dark">Learn through real delivery.</h2>
+      </div>
+      <div class="col-lg-5 text-lg-end d-flex align-items-end justify-content-lg-end mt-3 mt-lg-0">
+        <span class="badge bg-success text-white rounded-pill px-3 py-2" style="font-size: 0.75rem;">STUDENT PROGRAMS</span>
+      </div>
+    </div>
+
+    <div class="row g-4">
+      <% if (internships.length) { internships.forEach((job, index) => { 
+        const start = String(job.start_date || '').slice(0, 10); 
+        const end = String(job.end_date || '').slice(0, 10); 
+        const expired = end && today > end; 
+        const upcoming = start && today < start; 
+      %>
+        <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="<%= index * 50 %>">
+          <a href="/careers/<%= encodeURIComponent(String(job.id)) %>" class="ecosystem-card bg-white text-decoration-none h-100 <%= expired ? 'opacity-75' : '' %>">
+            <div class="d-flex justify-content-between align-items-start mb-4">
+              <span class="badge bg-info-subtle text-info-emphasis fw-bold rounded-pill px-3" style="font-size: 0.7rem;"><%= job.department %></span>
+              <span class="badge <%= expired ? 'bg-danger-subtle text-danger' : upcoming ? 'bg-warning-subtle text-warning-emphasis' : 'bg-success-subtle text-success' %> fw-bold rounded-pill px-3" style="font-size: 0.7rem;">
+                <%= expired ? 'Closed' : upcoming ? `Opens ${start}` : 'Internship' %>
+              </span>
+            </div>
+            <h3 class="h5 fw-bold text-dark mb-2"><%= job.title %></h3>
+            <p class="text-secondary small mb-3" style="font-size: 0.8rem;"><%= job.location_type %> · <%= job.location %></p>
+            <p class="text-secondary small mb-4" style="line-height: 1.6;">
+              <%= (job.description || '').replace(/<[^>]*>/g, '').replace(/\\r?\\n/g, ' ').slice(0, 160) %>...
+            </p>
+            <div class="mt-auto text-primary fw-bold small">
+              <%= expired ? 'View archive' : 'Apply for program' %> <i class="fa-solid fa-arrow-right ms-2"></i>
+            </div>
+          </a>
+        </div>
+      <% }); } else { %>
+        <div class="col-12">
+          <div class="p-5 rounded-4 bg-white border text-center">
+            <p class="text-secondary mb-0">Student programs are currently closed for this cycle.</p>
+          </div>
+        </div>
+      <% } %>
     </div>
   </div>
 </section>

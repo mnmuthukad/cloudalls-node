@@ -1,4 +1,59 @@
 <%- include('../layouts/header', { pageTitle, pageDescription, pageKeywords, canonicalUrl, pageImage, settings, currentPage, socialLinks, schemaPhone }) %>
-<section class="container-fluid bg-dark text-white py-5"><div class="container py-5"><p class="text-uppercase fw-bold text-info small ls-1 mb-3">CloudAlls insights</p><h1 class="display-3 fw-black ls-tight mb-4">Useful ideas for the systems ahead.</h1><p class="lead text-white-50 mb-0" style="max-width:760px;">Practical thinking on AI, engineering, security, design, and operational technology.</p></div></section>
-<section class="container py-5"><div class="row g-4"><% if (insights.length) { insights.forEach(item => { %><article class="col-md-6 col-lg-4"><div class="h-100 rounded-4 border bg-white shadow-sm overflow-hidden"><% if (item.image_url) { %><img src="<%= item.image_url %>" alt="<%= (item.meta_title || item.title || '').replace(/"/g, '&quot;') %>" class="w-100" width="800" height="450" loading="lazy" decoding="async"><% } %><div class="p-4"><p class="small text-muted mb-2"><%= item.created_at ? new Date(item.created_at).toLocaleDateString('en-IN') : '' %></p><h2 class="h4 fw-bold"><%= item.title %></h2><p class="text-secondary"><%= item.excerpt || '' %></p><a class="btn btn-outline-primary rounded-pill" href="/insights/<%= encodeURIComponent(item.slug) %>">Read insight</a></div></div></article><% }); } else { %><div class="col-12"><div class="p-5 rounded-4 bg-light border text-center"><h2 class="h4 fw-bold">Insights are being prepared.</h2><p class="text-secondary mb-0">Check back soon for new CloudAlls research and field notes.</p></div></div><% } %></div></section>
+
+<link rel="stylesheet" href="/assets/css/premium.css">
+
+<!-- Premium Hero Section -->
+<section class="home-hero-mnc" style="min-height: 50vh; padding-top: 140px; padding-bottom: 60px;">
+    <div class="hero-grid-premium" aria-hidden="true"></div>
+    <div class="container position-relative">
+        <div class="row">
+            <div class="col-lg-8">
+                <span class="hero-tagline" data-aos="fade-up">CloudAlls Insights</span>
+                <h1 class="hero-title-mnc" data-aos="fade-up" data-aos-delay="100">
+                    Useful ideas for the <span>systems ahead.</span>
+                </h1>
+                <p class="hero-lead-mnc" data-aos="fade-up" data-aos-delay="200">
+                    Practical thinking on AI, engineering, security, design, and operational technology.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Editorial Grid -->
+<section class="ecosystem-section py-5">
+    <div class="container">
+        <div class="row g-4">
+            <% if (insights && insights.length) { %>
+                <% insights.forEach((item, index) => { %>
+                    <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="<%= index * 50 %>">
+                        <a href="/insights/<%= encodeURIComponent(item.slug) %>" class="ecosystem-card h-100 text-decoration-none d-flex flex-column">
+                            <% if (item.image_url) { %>
+                                <div class="mb-4 rounded-3 overflow-hidden" style="height: 180px;">
+                                    <img src="<%= item.image_url %>" alt="<%= (item.meta_title || item.title || '').replace(/"/g, '&quot;') %>" class="w-100 h-100 object-fit-cover">
+                                </div>
+                            <% } %>
+                            <div class="small text-info text-uppercase fw-bold ls-1 mb-2" style="font-size: 0.75rem;">
+                                <%= item.created_at ? new Date(item.created_at).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' }) : '' %>
+                            </div>
+                            <h3 class="h5 fw-bold text-dark mb-3" style="line-height: 1.4;"><%= item.title %></h3>
+                            <p class="text-secondary mb-4 flex-grow-1" style="font-size: 0.9rem; line-height: 1.6;"><%= item.excerpt || '' %></p>
+                            <div class="mt-auto text-primary fw-bold small">
+                                Read insight <i class="fa-solid fa-arrow-right ms-2"></i>
+                            </div>
+                        </a>
+                    </div>
+                <% }); %>
+            <% } else { %>
+                <div class="col-12 text-center py-5" data-aos="fade-up">
+                    <div class="p-5 rounded-4 border bg-light">
+                        <h2 class="h5 fw-bold text-dark">Insights are being prepared.</h2>
+                        <p class="text-secondary mb-0">Check back soon for new CloudAlls research and field notes.</p>
+                    </div>
+                </div>
+            <% } %>
+        </div>
+    </div>
+</section>
+
 <%- include('../layouts/footer', { settings, footerMenus, waLink }) %>

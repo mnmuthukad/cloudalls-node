@@ -1,4 +1,67 @@
 <%- include('../layouts/header', { pageTitle, pageDescription, pageKeywords, canonicalUrl, pageImage, settings, currentPage, socialLinks, schemaPhone }) %>
-<section class="container-fluid bg-dark text-white py-5" style="background:radial-gradient(circle at 80% 20%,rgba(37,99,235,.35),transparent 38%),#0f172a;"><div class="container py-5"><p class="text-uppercase fw-bold text-info small ls-1 mb-3">Client perspective</p><h1 class="display-3 fw-black ls-tight mb-4">Proof that useful systems compound.</h1><p class="lead text-white-50 mb-0" style="max-width:760px;">Read how organizations have used CloudAlls engineering, security, creative, and operational capabilities to move with more confidence.</p></div></section>
-<section class="container py-5"><div class="row g-4"><% testimonials.forEach((item, index) => { %><article class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="<%= index * 60 %>"><div class="h-100 p-4 rounded-4 border bg-white shadow-sm d-flex flex-column"><div class="d-flex align-items-center gap-3 mb-4"><% if (item.client_image) { %><img src="<%= item.client_image %>" alt="<%= item.client_name %>" class="rounded-circle" width="52" height="52" loading="lazy" referrerpolicy="no-referrer"><% } else { %><div class="rounded-circle bg-primary text-white d-flex align-items-center justify-content-center fw-bold" style="width:52px;height:52px;"><%= item.client_name.slice(0, 1) %></div><% } %><div><h2 class="h6 fw-bold mb-1"><%= item.client_name %></h2><p class="small text-secondary mb-0"><%= item.client_role || 'CloudAlls client' %></p></div></div><p class="text-secondary flex-grow-1 mb-4">“<%= item.review_text %>”</p><div class="text-warning" aria-label="<%= item.rating || 5 %> out of 5 stars"><% for (let star = 0; star < (item.rating || 5); star++) { %><i class="fa-solid fa-star me-1" aria-hidden="true"></i><% } %></div></div></article><% }); %></div><div class="mt-5 p-5 rounded-4 bg-light border text-center"><h2 class="h3 fw-bold">Build the next proof point.</h2><p class="text-secondary mb-4">Tell us what your organization needs to make clearer, safer, or more useful.</p><a class="btn btn-primary btn-lg rounded-pill px-4" href="/contact">Start a conversation</a></div></section>
+
+<link rel="stylesheet" href="/assets/css/premium.css">
+
+<!-- Premium Hero -->
+<section class="home-hero-mnc" style="min-height: 50vh; padding-top: 140px; padding-bottom: 60px;">
+    <div class="hero-grid-premium" aria-hidden="true"></div>
+    <div class="container position-relative">
+        <div class="row">
+            <div class="col-lg-10">
+                <span class="hero-tagline" data-aos="fade-up">Client Perspective</span>
+                <h1 class="hero-title-mnc mb-4" style="font-size: clamp(2rem, 5vw, 3.5rem);" data-aos="fade-up" data-aos-delay="100">
+                    Proof that useful <span>systems compound.</span>
+                </h1>
+                <p class="hero-lead-mnc" data-aos="fade-up" data-aos-delay="200">
+                    Read how organizations have used CloudAlls engineering, security, and operational capabilities to move with more confidence.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Testimonials Grid -->
+<section class="ecosystem-section bg-white">
+    <div class="container">
+        <div class="row g-4">
+            <% testimonials.forEach((item, index) => { %>
+                <article class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="<%= index * 50 %>">
+                    <div class="ecosystem-card h-100 d-flex flex-column">
+                        <div class="d-flex align-items-center gap-3 mb-4">
+                            <% if (item.client_image) { %>
+                                <img src="<%= item.client_image %>" alt="<%= item.client_name %>" class="rounded-circle" width="48" height="48" loading="lazy" referrerpolicy="no-referrer">
+                            <% } else { %>
+                                <div class="rounded-circle bg-primary-subtle text-primary d-flex align-items-center justify-content-center fw-bold" style="width:48px;height:48px; font-size: 0.9rem;">
+                                    <%= item.client_name.slice(0, 1) %>
+                                </div>
+                            <% } %>
+                            <div>
+                                <h2 class="h6 fw-bold text-dark mb-1"><%= item.client_name %></h2>
+                                <p class="small text-muted mb-0" style="font-size: 0.7rem;"><%= item.client_role || 'CloudAlls client' %></p>
+                            </div>
+                        </div>
+                        <p class="text-secondary small flex-grow-1 mb-4" style="line-height: 1.6; font-style: italic;">
+                            “<%= item.review_text %>”
+                        </p>
+                        <div class="text-warning small" aria-label="<%= item.rating || 5 %> out of 5 stars">
+                            <% for (let star = 0; star < (item.rating || 5); star++) { %>
+                                <i class="fa-solid fa-star me-1"></i>
+                            <% } %>
+                        </div>
+                    </div>
+                </article>
+            <% }); %>
+        </div>
+    </div>
+</section>
+
+<!-- Final CTA -->
+<section class="home-final-cta py-5">
+    <div class="container py-lg-5 text-center">
+        <h2 class="h2 fw-bold text-white mb-4" data-aos="fade-up">Build the next proof point.</h2>
+        <p class="text-white-50 small mb-5 mx-auto" style="max-width: 600px;" data-aos="fade-up" data-aos-delay="100">Tell us what your organization needs to make clearer, safer, or more useful.</p>
+        <a class="btn btn-light btn-lg rounded-pill px-5 py-3 fw-bold" style="font-size: 1rem;" href="/contact" data-aos="fade-up" data-aos-delay="200">Start a conversation</a>
+    </div>
+</section>
+
 <%- include('../layouts/footer', { settings, footerMenus, waLink }) %>

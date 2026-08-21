@@ -1,10 +1,113 @@
 <%- include('../layouts/header', { pageTitle, pageDescription, pageKeywords, canonicalUrl, pageImage, settings, currentPage, socialLinks, schemaPhone, recaptchaSiteKey }) %>
-<section class="container-fluid text-center text-white py-5" style="background: linear-gradient(135deg,#0f172a,#1e293b);"><div class="container py-5"><p class="text-uppercase fw-bold text-info small ls-1 mb-3">Initialize project</p><h1 class="display-3 fw-black ls-tight mb-3">CloudAlls <span class="text-white-50">Ecosystem.</span></h1><p class="lead opacity-75 mx-auto" style="max-width:650px;">Our architects are ready to blueprint your success. Every inquiry is routed securely to our internal response pipeline.</p></div></section>
-<section class="py-5" style="background:#fafafa;"><div class="container py-4"><div class="row g-5"><div class="col-lg-5"><h2 class="h3 fw-black mb-4">Communication channels</h2><p class="text-secondary mb-5">Reach out directly to our operations team.</p><div class="bg-white border rounded-4 p-4 shadow-sm mb-4"><small class="text-uppercase fw-bold text-muted ls-1 d-block mb-1">Official email</small><a class="h6 fw-bold text-dark text-decoration-none" href="mailto:<%= settings.email || 'info@cloudalls.com' %>"><%= settings.email || 'info@cloudalls.com' %></a></div><div class="bg-white border rounded-4 p-4 shadow-sm mb-4"><small class="text-uppercase fw-bold text-muted ls-1 d-block mb-1">WhatsApp support</small><a class="h6 fw-bold text-dark text-decoration-none" href="https://wa.me/<%= waLink %>"><%= settings.whatsapp || settings.contact_number || '+91 90482 08135' %></a></div><div class="bg-white border rounded-4 p-4 shadow-sm"><small class="text-uppercase fw-bold text-muted ls-1 d-block mb-1">Headquarters</small><span class="h6 fw-bold text-dark"><%= settings.company_address || 'Kerala, India' %></span></div></div><div class="col-lg-7"><% if (status) { %><div class="alert <%= status === 'success' ? 'alert-success' : 'alert-danger' %> border-0 rounded-4" role="status"><strong><%= status === 'success' ? 'Blueprint received.' : 'We could not submit your request.' %></strong> <%= status === 'success' ? "Our team will contact you shortly." : "" %><% if (status !== 'success' && errorMsg === 'invalid') { %>Please check the marked fields &mdash; all boxes must be filled, WhatsApp must be a number like +91 90482 08135, and the agreement checkbox is required.<% } else if (status !== 'success' && errorMsg === 'verification') { %>Security verification did not pass &mdash; please disable ad-blockers, complete the page fully, and try again.<% } else if (status !== 'success') { %>Our database was momentarily unavailable &mdash; your details are never stored until accepted; please retry in a moment.<% } %></div><% } %><div class="bg-white border rounded-4 p-4 p-md-5 shadow-sm"><form action="/contact" method="post" data-recaptcha-action="contact" id="contact-form"><input type="hidden" name="action_submit_inquiry" value="1"><input type="hidden" name="csrf_token" value="<%= csrfToken %>"><input type="hidden" name="recaptcha_token" value=""><input class="bot-trap" type="text" name="bot_trap" tabindex="-1" autocomplete="off" aria-hidden="true"><div class="row g-4"><div class="col-md-6"><label class="form-label small fw-bold text-muted text-uppercase" for="contact-name">Identity</label><input class="form-control py-3" id="contact-name" name="name" maxlength="150" autocomplete="name" required value="<%= typeof formValues !== "undefined" && formValues.name ? String(formValues.name).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;') : "" %>"></div><div class="col-md-6"><label class="form-label small fw-bold text-muted text-uppercase" for="contact-whatsapp">WhatsApp</label><input class="form-control py-3" id="contact-whatsapp"  name="whatsapp" maxlength="30" autocomplete="tel" required value="<%= typeof formValues !== "undefined" && formValues.whatsapp ? String(formValues.whatsapp).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;') : "" %>"></div><div class="col-12"><label class="form-label small fw-bold text-muted text-uppercase" for="contact-email">Digital address</label><input class="form-control py-3" id="contact-email" name="email" type="email" maxlength="320" autocomplete="email" required value="<%= typeof formValues !== "undefined" && formValues.email ? String(formValues.email).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;') : "" %>"></div><div class="col-12"><label class="form-label small fw-bold text-muted text-uppercase" for="contact-service">Project domain</label><select class="form-select py-3" id="contact-service" name="service" required>
-  <option value="" disabled <%= (preselectedService || (typeof formValues !== "undefined" ? formValues.service || "" : "")) ? "" : "selected" %>>Select category</option>
-  <% expertise.forEach(item => { %>
-    <option value="<%= item.title %>" <%= (preselectedService === item.title || (typeof formValues !== "undefined" && formValues.service === item.title)) ? "selected" : "" %>><%= item.title %></option>
-  <% }); %>
-  <option value="Custom Project" <%= (preselectedService === 'Custom Project' || (typeof formValues !== "undefined" && formValues.service === 'Custom Project')) ? "selected" : "" %>>Other / Custom requirements</option>
-</select></div><div class="col-12"><label class="form-label small fw-bold text-muted text-uppercase" for="contact-message">Project narrative</label><textarea class="form-control py-3" id="contact-message" name="message" rows="5" maxlength="5000" required><%= typeof formValues !== "undefined" && formValues.message ? String(formValues.message).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;') : "" %></textarea></div><div class="col-12"><div class="form-check"><input class="form-check-input" id="legalAgree" name="legal_consent" value="on" type="checkbox" required><label class="form-check-label small text-secondary" for="legalAgree">I agree to the <a href="https://legal.cloudalls.com/terms" target="_blank" rel="noopener noreferrer">Terms of Service</a> and <a href="https://legal.cloudalls.com/privacy" target="_blank" rel="noopener noreferrer">Privacy Policy</a>.</label></div></div><div class="col-12"><button class="btn btn-dark btn-lg w-100 rounded-pill fw-bold" type="submit">Deploy request <i class="fa-solid fa-paper-plane ms-2" aria-hidden="true"></i></button></div></div></form></div></div></div></div></section>
+
+<link rel="stylesheet" href="/assets/css/premium.css">
+
+<!-- Premium Hero -->
+<section class="home-hero-mnc" style="min-height: 50vh; padding-top: 140px; padding-bottom: 60px;">
+    <div class="hero-grid-premium" aria-hidden="true"></div>
+    <div class="container position-relative">
+        <div class="row text-center">
+            <div class="col-lg-8 mx-auto">
+                <span class="hero-tagline" data-aos="fade-up">Initialize Project</span>
+                <h1 class="hero-title-mnc mb-4" data-aos="fade-up" data-aos-delay="100">
+                    CloudAlls <span>Ecosystem.</span>
+                </h1>
+                <p class="hero-lead-mnc" data-aos="fade-up" data-aos-delay="200">
+                    Our architects are ready to blueprint your success. Every inquiry is routed securely to our internal response pipeline.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Contact Form Section -->
+<section class="ecosystem-section py-5 bg-white">
+    <div class="container py-lg-4">
+        <div class="row g-5">
+            <!-- Info Sidebar -->
+            <div class="col-lg-5" data-aos="fade-up">
+                <h2 class="h4 fw-bold mb-4" style="color: var(--mnc-navy);">Communication channels</h2>
+                <p class="text-secondary small mb-5" style="line-height: 1.7;">Reach out directly to our operations team for strategic inquiries.</p>
+                
+                <div class="bg-light border rounded-4 p-4 mb-4 shadow-sm">
+                    <span class="small text-uppercase fw-bold text-muted ls-1 d-block mb-2" style="font-size: 0.65rem;">Official Email</span>
+                    <a class="h6 fw-bold text-dark text-decoration-none" href="mailto:<%= settings.email || 'info@cloudalls.com' %>"><%= settings.email || 'info@cloudalls.com' %></a>
+                </div>
+                
+                <div class="bg-light border rounded-4 p-4 mb-4 shadow-sm">
+                    <span class="small text-uppercase fw-bold text-muted ls-1 d-block mb-2" style="font-size: 0.65rem;">WhatsApp Support</span>
+                    <a class="h6 fw-bold text-dark text-decoration-none" href="https://wa.me/<%= waLink %>"><%= settings.whatsapp || settings.contact_number || '+91 90482 08135' %></a>
+                </div>
+                
+                <div class="bg-light border rounded-4 p-4 shadow-sm">
+                    <span class="small text-uppercase fw-bold text-muted ls-1 d-block mb-2" style="font-size: 0.65rem;">Headquarters</span>
+                    <span class="h6 fw-bold text-dark"><%= settings.company_address || 'Kerala, India' %></span>
+                </div>
+            </div>
+
+            <!-- Form -->
+            <div class="col-lg-7">
+                <% if (status) { %>
+                    <div class="alert <%= status === 'success' ? 'alert-success' : 'alert-danger' %> border-0 rounded-4 p-4 shadow-sm mb-4" role="status" data-aos="fade-up">
+                        <div class="d-flex align-items-center gap-3">
+                            <i class="fa-solid <%= status === 'success' ? 'fa-circle-check' : 'fa-circle-exclamation' %> fa-2x"></i>
+                            <div>
+                                <strong class="d-block mb-1 small text-uppercase ls-1"><%= status === 'success' ? 'Blueprint received.' : 'Submission Error' %></strong>
+                                <span class="small"><%= status === 'success' ? "Our team will contact you shortly." : (errorMsg === 'invalid' ? 'Please check all required fields.' : 'Verification failed. Please try again.') %></span>
+                            </div>
+                        </div>
+                    </div>
+                <% } %>
+
+                <div class="bg-white border rounded-4 p-4 p-md-5 shadow-sm" data-aos="fade-left">
+                    <form action="/contact" method="post" data-recaptcha-action="contact" id="contact-form">
+                        <input type="hidden" name="action_submit_inquiry" value="1">
+                        <input type="hidden" name="csrf_token" value="<%= csrfToken %>">
+                        <input type="hidden" name="recaptcha_token" value="">
+                        <input class="bot-trap" type="text" name="bot_trap" tabindex="-1" autocomplete="off" aria-hidden="true">
+                        
+                        <div class="row g-4">
+                            <div class="col-md-6">
+                                <label class="form-label small fw-bold text-uppercase ls-1" style="font-size: 0.65rem;" for="contact-name">Identity</label>
+                                <input class="form-control rounded-3" style="font-size: 0.9rem;" id="contact-name" name="name" required value="<%= typeof formValues !== "undefined" && formValues.name ? String(formValues.name).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;') : "" %>">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label small fw-bold text-uppercase ls-1" style="font-size: 0.65rem;" for="contact-whatsapp">WhatsApp</label>
+                                <input class="form-control rounded-3" style="font-size: 0.9rem;" id="contact-whatsapp" name="whatsapp" required value="<%= typeof formValues !== "undefined" && formValues.whatsapp ? String(formValues.whatsapp).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;') : "" %>">
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label small fw-bold text-uppercase ls-1" style="font-size: 0.65rem;" for="contact-email">Digital Address</label>
+                                <input class="form-control rounded-3" style="font-size: 0.9rem;" id="contact-email" name="email" type="email" required value="<%= typeof formValues !== "undefined" && formValues.email ? String(formValues.email).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;') : "" %>">
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label small fw-bold text-uppercase ls-1" style="font-size: 0.65rem;" for="contact-service">Project Domain</label>
+                                <select class="form-select rounded-3" style="font-size: 0.9rem;" id="contact-service" name="service" required>
+                                    <option value="" disabled <%= (preselectedService || (typeof formValues !== "undefined" ? formValues.service || "" : "")) ? "" : "selected" %>>Select category</option>
+                                    <% expertise.forEach(item => { %>
+                                        <option value="<%= item.title %>" <%= (preselectedService === item.title || (typeof formValues !== "undefined" && formValues.service === item.title)) ? "selected" : "" %>><%= item.title %></option>
+                                    <% }); %>
+                                    <option value="Custom Project" <%= (preselectedService === 'Custom Project' || (typeof formValues !== "undefined" && formValues.service === 'Custom Project')) ? "selected" : "" %>>Other / Custom requirements</option>
+                                </select>
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label small fw-bold text-uppercase ls-1" style="font-size: 0.65rem;" for="contact-message">Project Narrative</label>
+                                <textarea class="form-control rounded-3" style="font-size: 0.9rem;" id="contact-message" name="message" rows="5" required placeholder="Describe your vision or challenge..."><%= typeof formValues !== "undefined" && formValues.message ? String(formValues.message).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;') : "" %></textarea>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-check">
+                                    <input class="form-check-input" id="legalAgree" name="legal_consent" type="checkbox" required>
+                                    <label class="form-check-label small text-secondary" for="legalAgree" style="font-size: 0.8rem;">I agree to the <a href="/legal-center" class="text-primary">Terms of Service</a> and <a href="/legal-center" class="text-primary">Privacy Policy</a>.</label>
+                                </div>
+                            </div>
+                            <div class="col-12 mt-4">
+                                <button class="btn btn-dark btn-lg w-100 rounded-pill fw-bold py-3 small" type="submit">Deploy Request <i class="fa-solid fa-paper-plane ms-2"></i></button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
 <%- include('../layouts/footer', { settings, footerMenus, waLink }) %>

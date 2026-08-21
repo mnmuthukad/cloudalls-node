@@ -69,8 +69,14 @@
     contactPoint: { '@type': 'ContactPoint', telephone: schemaPhone, contactType: 'customer service' },
     sameAs: socialLinks
   }) %></script>
+  <script nonce="<%= cspNonce %>">
+    (function() {
+      const savedScale = localStorage.getItem('mnc_font_scale') || 'md';
+      document.documentElement.classList.add('font-size-' + savedScale);
+    })();
+  </script>
 </head>
-<body>
+<body class="font-size-md">
 <a class="skip-link" href="#main-content">Skip to main content</a>
 <div class="site-utility-bar d-none d-lg-block" aria-label="Utility navigation">
   <div class="container d-flex align-items-center justify-content-between gap-3">

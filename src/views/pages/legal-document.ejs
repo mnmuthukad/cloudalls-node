@@ -1,4 +1,49 @@
 <%- include('../layouts/header', { pageTitle, pageDescription, pageKeywords, canonicalUrl, pageImage, settings, currentPage, socialLinks, schemaPhone }) %>
-<section class="container-fluid text-white py-5" style="background:linear-gradient(135deg,#0f172a,#1e293b);"><div class="container py-5"><p class="text-uppercase fw-bold text-info small ls-1 mb-3">Legal center</p><h1 class="display-4 fw-black ls-tight mb-3"><%= document.title %></h1><p class="lead opacity-75 mb-0">Version <%= document.version %> · Effective <%= new Date(document.effective_date).toLocaleDateString('en-IN', { year: 'numeric', month: 'long', day: 'numeric' }) %></p></div></section>
-<section class="py-5" style="background:#fafafa;"><div class="container py-4"><div class="row justify-content-center"><div class="col-xl-9"><article class="bg-white border rounded-4 p-4 p-md-5 shadow-sm legal-document-content"><%- document.content %></article><div class="mt-4 p-4 rounded-4 bg-light border d-flex flex-column flex-md-row align-items-md-center justify-content-between gap-3"><div><h2 class="h5 fw-bold mb-1">Need to exercise a data right?</h2><p class="text-secondary mb-0">Use the secure CloudAlls data-request workflow.</p></div><a class="btn btn-primary rounded-pill px-4" href="/data-requests">Open DSR form</a></div></div></div></div></section>
+
+<link rel="stylesheet" href="/assets/css/premium.css">
+
+<!-- Premium Hero -->
+<section class="home-hero-mnc" style="min-height: 45vh; padding-top: 140px; padding-bottom: 60px;">
+    <div class="hero-grid-premium" aria-hidden="true"></div>
+    <div class="container position-relative">
+        <div class="row">
+            <div class="col-lg-10">
+                <nav aria-label="breadcrumb" class="mb-4" data-aos="fade-up">
+                    <ol class="breadcrumb mb-0">
+                        <li class="breadcrumb-item"><a href="/legal-center" class="text-info text-decoration-none small fw-bold text-uppercase ls-1">Legal Center</a></li>
+                        <li class="breadcrumb-item active text-white-50 small text-uppercase ls-1" aria-current="page">Policy</li>
+                    </ol>
+                </nav>
+                <h1 class="hero-title-mnc mb-4" style="font-size: clamp(2rem, 5vw, 3rem);" data-aos="fade-up" data-aos-delay="100">
+                    <%= document.title %>
+                </h1>
+                <p class="hero-lead-mnc small opacity-75" data-aos="fade-up" data-aos-delay="200">
+                    Version <%= document.version %> · Effective <%= new Date(document.effective_date).toLocaleDateString('en-IN', { year: 'numeric', month: 'long', day: 'numeric' }) %>
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Document Content -->
+<section class="ecosystem-section py-5 bg-white">
+    <div class="container py-lg-4">
+        <div class="row justify-content-center">
+            <div class="col-xl-9">
+                <article class="editorial-content bg-white border rounded-4 p-4 p-md-5 shadow-sm" data-aos="fade-up">
+                    <%- document.content %>
+                </article>
+                
+                <div class="mt-5 p-4 rounded-4 bg-light border d-flex flex-column flex-md-row align-items-md-center justify-content-between gap-3 shadow-sm" data-aos="fade-up">
+                    <div>
+                        <h2 class="h6 fw-bold mb-1 text-dark">Need to exercise a data right?</h2>
+                        <p class="text-secondary small mb-0">Use the secure CloudAlls data-request workflow.</p>
+                    </div>
+                    <a class="btn btn-primary rounded-pill px-4 fw-bold small" href="/data-requests">Open DSR form</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
 <%- include('../layouts/footer', { settings, footerMenus, waLink }) %>

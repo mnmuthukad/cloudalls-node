@@ -1,11 +1,7 @@
 <%- include('../layouts/header', { pageTitle, pageDescription, pageKeywords, canonicalUrl, pageImage, settings, currentPage, socialLinks, schemaPhone }) %>
 <%
-  // Categorize FAQs by service keywords for the topic filter chips.
-  // Service FAQs carry expertise_id; global FAQs have expertise_id null.
   var topicMap = {};
   faqs.forEach(function (faq) {
-    // Curated FAQ rows have id >= 1000. Among them, those with an expertise_id
-    // belong to a specific service; the rest are general/company questions.
     var tid = (faq.id >= 1000 && faq.expertise_id) ? 'service' : 'general';
     topicMap[tid] = topicMap[tid] || [];
     topicMap[tid].push(faq);
@@ -14,61 +10,68 @@
   var generalFaqs = topicMap.general || [];
   var hasCategories = serviceFaqs.length && generalFaqs.length;
 %>
-<section class="editorial-hero"><div class="container"><p class="editorial-kicker mb-3">Help centre</p><h1 class="mb-4">Answers before you ask.</h1><p class="lead mb-0">Search our answers by keyword, or jump to a topic. Can't find what you need? Ask us directly.</p></div></section>
 
-<section class="editorial-section bg-white" id="faq-section">
-  <div class="container py-lg-4">
-    <!-- Search: the fastest way to find an answer (same treatment as the expertise page) -->
-    <div class="row justify-content-center mb-4">
+<link rel="stylesheet" href="/assets/css/premium.css">
+
+<!-- Premium Hero -->
+<section class="home-hero-mnc" style="min-height: 50vh; padding-top: 140px; padding-bottom: 60px;">
+  <div class="hero-grid-premium" aria-hidden="true"></div>
+  <div class="container position-relative">
+    <div class="row">
       <div class="col-lg-8">
-        <div class="search-input-wrap">
-          <i class="fa-solid fa-magnifying-glass position-absolute text-muted search-icon-left" style="top: 50%; transform: translateY(-50%);" aria-hidden="true"></i>
-          <input type="search" id="faq-search" class="form-control form-control-lg ps-5 rounded-pill" placeholder="Search questions — e.g. security, payment, timeline, support..." aria-label="Search FAQs">
+        <span class="hero-tagline" data-aos="fade-up">Help Centre</span>
+        <h1 class="hero-title-mnc" data-aos="fade-up" data-aos-delay="100">
+          Answers before <span>you ask.</span>
+        </h1>
+        <p class="hero-lead-mnc" data-aos="fade-up" data-aos-delay="200">
+          Search our knowledge base by keyword or jump to a strategic topic below.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="ecosystem-section bg-white" id="faq-section">
+  <div class="container">
+    <!-- Search -->
+    <div class="row justify-content-center mb-5" data-aos="fade-up">
+      <div class="col-lg-8">
+        <div class="search-input-wrap position-relative">
+          <i class="fa-solid fa-magnifying-glass position-absolute text-muted" style="top: 50%; left: 20px; transform: translateY(-50%);" aria-hidden="true"></i>
+          <input type="search" id="faq-search" class="form-control form-control-lg ps-5 rounded-pill border-2" style="font-size: 1rem;" placeholder="Search questions — e.g. security, payment, timeline..." aria-label="Search FAQs">
         </div>
-        <p class="text-muted small mt-2 mb-0 text-center" id="search-hint">Type to filter instantly, or browse by topic below.</p>
       </div>
     </div>
 
     <!-- Topic chips -->
-    <div class="d-flex flex-wrap justify-content-center gap-2 mb-4" id="faq-topics">
-      <button type="button" class="btn btn-sm rounded-pill px-4 py-2 fw-semibold topic-btn active" data-topic="all">All questions <span class="opacity-50"><%= faqs.length %></span></button>
+    <div class="d-flex flex-wrap justify-content-center gap-2 mb-5" id="faq-topics" data-aos="fade-up">
+      <button type="button" class="btn btn-outline-primary btn-sm rounded-pill px-4 py-2 fw-bold topic-btn active" data-topic="all" style="font-size: 0.8rem;">All Questions <span class="opacity-50 ms-1"><%= faqs.length %></span></button>
       <% if (hasCategories) { %>
-      <button type="button" class="btn btn-sm rounded-pill px-4 py-2 fw-semibold topic-btn" data-topic="service">Service-specific <span class="opacity-50"><%= serviceFaqs.length %></span></button>
-      <button type="button" class="btn btn-sm rounded-pill px-4 py-2 fw-semibold topic-btn" data-topic="general">General &amp; company <span class="opacity-50"><%= generalFaqs.length %></span></button>
+      <button type="button" class="btn btn-outline-primary btn-sm rounded-pill px-4 py-2 fw-bold topic-btn" data-topic="service" style="font-size: 0.8rem;">Service-specific <span class="opacity-50 ms-1"><%= serviceFaqs.length %></span></button>
+      <button type="button" class="btn btn-outline-primary btn-sm rounded-pill px-4 py-2 fw-bold topic-btn" data-topic="general" style="font-size: 0.8rem;">General & Company <span class="opacity-50 ms-1"><%= generalFaqs.length %></span></button>
       <% } %>
     </div>
 
-    <p class="text-center text-muted small mb-4" id="faq-count"><%= faqs.length %> questions</p>
-
     <div class="row justify-content-center">
       <div class="col-lg-9">
-        <div class="accordion" id="faqAccordion">
+        <div class="accordion" id="faqAccordion" data-aos="fade-up">
         <% if (faqs.length) { faqs.forEach((faq, index) => { %>
-          <div class="accordion-item mb-2 border rounded-3 overflow-hidden faq-row" data-topic="<%= (faq.id >= 1000 && faq.expertise_id) ? 'service' : 'general' %>" data-q="<%= String(faq.question + ' ' + faq.answer).toLowerCase() %>">
+          <div class="accordion-item mb-3 border rounded-4 overflow-hidden faq-row shadow-sm" data-topic="<%= (faq.id >= 1000 && faq.expertise_id) ? 'service' : 'general' %>" data-q="<%= String(faq.question + ' ' + faq.answer).toLowerCase() %>">
             <h2 class="accordion-header" id="faq-heading-<%= faq.id %>">
-              <button class="accordion-button <%= index === 0 ? '' : 'collapsed' %> fw-semibold" type="button" data-bs-toggle="collapse" data-bs-target="#faq-collapse-<%= faq.id %>" aria-expanded="<%= index === 0 ? 'true' : 'false' %>" aria-controls="faq-collapse-<%= faq.id %>"><%= faq.question %></button>
+              <button class="accordion-button <%= index === 0 ? '' : 'collapsed' %> fw-bold py-3 px-4" type="button" data-bs-toggle="collapse" data-bs-target="#faq-collapse-<%= faq.id %>" aria-expanded="<%= index === 0 ? 'true' : 'false' %>" style="font-size: 0.95rem;"><%= faq.question %></button>
             </h2>
-            <div id="faq-collapse-<%= faq.id %>" class="accordion-collapse collapse <%= index === 0 ? 'show' : '' %>" aria-labelledby="faq-heading-<%= faq.id %>" data-bs-parent="#faqAccordion">
-              <div class="accordion-body text-secondary"><%= faq.answer %></div>
+            <div id="faq-collapse-<%= faq.id %>" class="accordion-collapse collapse <%= index === 0 ? 'show' : '' %>" data-bs-parent="#faqAccordion">
+              <div class="accordion-body text-secondary py-4 px-4" style="font-size: 0.95rem; line-height: 1.7;"><%= faq.answer %></div>
             </div>
           </div>
-        <% }); } else { %><% page.sections.forEach((section, index) => { %>
-          <div class="accordion-item mb-2 border rounded-3 overflow-hidden faq-row">
-            <h2 class="accordion-header" id="faq-heading-fallback-<%= index %>">
-              <button class="accordion-button <%= index === 0 ? '' : 'collapsed' %> fw-semibold" type="button" data-bs-toggle="collapse" data-bs-target="#faq-collapse-fallback-<%= index %>" aria-expanded="<%= index === 0 ? 'true' : 'false' %>"><%= section.heading %></button>
-            </h2>
-            <div id="faq-collapse-fallback-<%= index %>" class="accordion-collapse collapse <%= index === 0 ? 'show' : '' %>" data-bs-parent="#faqAccordion">
-              <div class="accordion-body text-secondary"><%= section.body %></div>
-            </div>
-          </div>
-        <% }); %><% } %>
+        <% }); } %>
         </div>
 
-        <div class="text-center py-4" id="faq-no-results" style="display:none;">
-          <i class="fa-solid fa-circle-question fa-2x text-muted mb-2" aria-hidden="true"></i>
-          <p class="mb-1 fw-semibold">No questions match your search.</p>
-          <p class="text-secondary small mb-3">Try different keywords, or reach our team.</p>
-          <a href="/contact" class="btn btn-primary rounded-pill px-4">Ask us directly</a>
+        <div class="text-center py-5" id="faq-no-results" style="display:none;">
+          <div class="ecosystem-icon mx-auto mb-4" style="width: 60px; height: 60px; font-size: 1.5rem;"><i class="fa-solid fa-circle-question"></i></div>
+          <h3 class="h5 fw-bold">No questions match your search.</h3>
+          <p class="text-secondary mb-4">Try different keywords, or reach our team directly.</p>
+          <a href="/contact" class="btn btn-primary rounded-pill px-5 py-3 fw-bold" style="font-size: 0.9rem;">Ask us directly</a>
         </div>
       </div>
     </div>
@@ -79,14 +82,10 @@
 (function () {
   'use strict';
   var search = document.getElementById('faq-search');
-  var hint = document.getElementById('search-hint');
-  var count = document.getElementById('faq-count');
   var noResults = document.getElementById('faq-no-results');
   var rows = Array.prototype.slice.call(document.querySelectorAll('.faq-row'));
-  var total = rows.length;
   var state = { topic: 'all', query: '' };
 
-  // Decode HTML entities (e.g. &amp;, &#8208;) in data attributes so search matches plain text.
   var decoy = document.createElement('div');
   function decode(text) {
     decoy.innerHTML = String(text || '');
@@ -103,9 +102,7 @@
       row.style.display = show ? '' : 'none';
       if (show) visible += 1;
     });
-    if (count) count.textContent = visible + ' question' + (visible === 1 ? '' : 's') + (q ? ' matching "' + state.query + '"' : '');
     if (noResults) noResults.style.display = (visible === 0 && q) ? '' : 'none';
-    if (hint) hint.style.display = q ? 'none' : '';
     Array.prototype.slice.call(document.querySelectorAll('.topic-btn')).forEach(function (btn) {
       btn.classList.toggle('active', String(btn.getAttribute('data-topic') || '') === state.topic);
     });
@@ -115,7 +112,6 @@
     btn.addEventListener('click', function () {
       state.topic = String(btn.getAttribute('data-topic') || 'all');
       applyFilter();
-      if (history.replaceState) history.replaceState(null, '', '/faq' + (state.topic !== 'all' ? '?topic=' + state.topic : '') + (state.query ? (state.topic !== 'all' ? '&' : '?') + 'q=' + encodeURIComponent(state.query) : '') + '#faq-section');
     });
   });
 
@@ -125,7 +121,6 @@
     timer = setTimeout(function () {
       state.query = search.value;
       applyFilter();
-      if (history.replaceState) history.replaceState(null, '', '/faq' + (state.topic !== 'all' ? '?topic=' + state.topic : '') + (state.query ? (state.topic !== 'all' ? '&' : '?') + 'q=' + encodeURIComponent(state.query) : '') + '#faq-section');
     }, 120);
   });
 

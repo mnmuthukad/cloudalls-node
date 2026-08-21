@@ -3,7 +3,7 @@
 <link rel="stylesheet" href="/assets/css/premium.css">
 
 <!-- Premium Hero -->
-<section class="home-hero-mnc" style="min-height: 60vh; padding-top: 160px; padding-bottom: 60px;">
+<section class="home-hero-mnc" style="min-height: 55vh; padding-top: 140px; padding-bottom: 60px;">
   <div class="hero-grid-premium" aria-hidden="true"></div>
   <div class="container position-relative">
     <div class="row">
@@ -21,25 +21,29 @@
 </section>
 
 <!-- Portfolio Grid -->
-<section class="editorial-section bg-white">
-  <div class="container py-lg-5">
+<section class="ecosystem-section bg-white">
+  <div class="container">
     <div class="row g-4">
-      <% if (portfolios.length) { portfolios.forEach((item, index) => { %>
+      <% if (portfolios && portfolios.length) { portfolios.forEach((item, index) => { %>
         <div class="col-12 col-md-6" data-aos="fade-up" data-aos-delay="<%= index * 100 %>">
           <a href="/portfolio/<%= encodeURIComponent(item.slug) %>" class="ecosystem-card p-0 overflow-hidden d-block text-decoration-none">
-            <div class="position-relative overflow-hidden" style="height: 350px;">
+            <div class="position-relative overflow-hidden" style="height: 300px;">
               <% if (item.image_url) { %>
                 <img src="<%= item.image_url %>" alt="<%= (item.title || '').replace(/"/g, '&quot;') %>" class="img-fluid w-100 h-100" style="object-fit: cover; transition: transform 0.5s ease;">
+              <% } else { %>
+                <div class="w-100 h-100 bg-light d-flex align-items-center justify-content-center">
+                  <i class="fa-solid fa-briefcase text-secondary opacity-25" style="font-size: 4rem;"></i>
+                </div>
               <% } %>
-              <div class="position-absolute top-0 start-0 p-4">
-                <span class="badge rounded-pill bg-white text-dark fw-bold px-3 py-2 shadow-sm"><%= item.client_name || 'CloudAlls Ecosystem' %></span>
+              <div class="position-absolute top-0 start-0 p-3">
+                <span class="badge rounded-pill bg-white text-dark fw-bold px-3 py-2 shadow-sm" style="font-size: 0.7rem;"><%= item.client_name || 'CloudAlls Ecosystem' %></span>
               </div>
             </div>
             <div class="p-4">
-              <span class="small text-primary fw-bold mb-2 d-block text-uppercase letter-spacing-01">Case Study</span>
-              <h3 class="h4 fw-black ls-tight mb-3 text-dark"><%= item.title %></h3>
-              <p class="text-secondary mb-4"><%= item.short_desc || '' %></p>
-              <div class="d-flex align-items-center text-primary fw-bold">
+              <span class="small text-primary fw-bold mb-2 d-block text-uppercase ls-1" style="font-size: 0.7rem;">Case Study</span>
+              <h3 class="h5 fw-bold text-dark mb-3"><%= item.title %></h3>
+              <p class="text-secondary small mb-4" style="line-height: 1.6;"><%= item.short_desc || '' %></p>
+              <div class="d-flex align-items-center text-primary fw-bold small">
                 View case study <i class="fa-solid fa-arrow-right ms-2"></i>
               </div>
             </div>
@@ -48,7 +52,7 @@
       <% }); } else { %>
         <div class="col-12">
           <div class="p-5 rounded-4 bg-light border text-center">
-            <h2 class="h4 fw-bold">Case studies are being prepared.</h2>
+            <h2 class="h5 fw-bold">Case studies are being prepared.</h2>
             <p class="text-secondary mb-0">Check back soon for selected CloudAlls work.</p>
           </div>
         </div>
@@ -58,10 +62,10 @@
 </section>
 
 <!-- Final CTA -->
-<section class="home-final-cta">
+<section class="home-final-cta py-5">
   <div class="container text-center py-5">
-    <h2 class="display-4 fw-black text-white mb-4">Ready to build your system?</h2>
-    <a class="btn btn-light btn-lg rounded-pill px-5 py-3 fw-bold" href="/contact">Start a project</a>
+    <h2 class="h2 fw-bold text-white mb-5">Ready to build your system?</h2>
+    <a class="btn btn-light btn-lg rounded-pill px-5 py-3 fw-bold" style="font-size: 1rem;" href="/contact">Start a project</a>
   </div>
 </section>
 

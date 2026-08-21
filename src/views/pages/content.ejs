@@ -1,24 +1,56 @@
 <%- include('../layouts/header', { pageTitle, pageDescription, pageKeywords, canonicalUrl, pageImage, settings, currentPage, socialLinks, schemaPhone }) %>
-<section class="container-fluid bg-dark text-white py-5" style="background: radial-gradient(circle at 80% 20%, rgba(37,99,235,.35), transparent 38%), #0f172a;">
-  <div class="container py-5">
-    <p class="text-uppercase fw-bold text-info small ls-1 mb-3"><%= page.eyebrow %></p>
-    <h1 class="display-3 fw-black ls-tight mb-4" style="max-width: 900px;"><%= page.hero %></h1>
-    <p class="lead text-white-50 mb-0" style="max-width: 760px;">CloudAlls combines practical engineering, responsible AI, and clear communication to create systems people can trust.</p>
-  </div>
+
+<link rel="stylesheet" href="/assets/css/premium.css">
+
+<!-- Premium Hero -->
+<section class="home-hero-mnc" style="min-height: 50vh; padding-top: 140px; padding-bottom: 60px;">
+    <div class="hero-grid-premium" aria-hidden="true"></div>
+    <div class="container position-relative">
+        <div class="row">
+            <div class="col-lg-10">
+                <span class="hero-tagline" data-aos="fade-up"><%= page.eyebrow %></span>
+                <h1 class="hero-title-mnc mb-4" style="font-size: clamp(2rem, 5vw, 3.5rem);" data-aos="fade-up" data-aos-delay="100">
+                    <%= page.hero %>
+                </h1>
+                <p class="hero-lead-mnc" data-aos="fade-up" data-aos-delay="200">
+                    CloudAlls combines practical engineering, responsible AI, and clear communication to create systems people can trust.
+                </p>
+            </div>
+        </div>
+    </div>
 </section>
-<section class="container py-5">
-  <div class="row g-4">
-    <% page.sections.forEach((section, index) => { %>
-    <article class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="<%= index * 60 %>">
-      <div class="h-100 p-4 rounded-4 border bg-white shadow-sm">
-        <span class="text-primary fw-bold small"><%= String(index + 1).padStart(2, '0') %></span>
-        <h2 class="h4 fw-bold mt-3"><%= section.heading %></h2>
-        <p class="text-secondary mb-0"><%= section.body %></p>
-        <% if (section.bullets?.length) { %><ul class="text-secondary mt-3 mb-0 ps-3"><% section.bullets.forEach(item => { %><li class="mb-2"><%= item %></li><% }); %></ul><% } %>
-      </div>
-    </article>
-    <% }); %>
-  </div>
+
+<!-- Sections -->
+<section class="ecosystem-section bg-white">
+    <div class="container">
+        <div class="row g-4">
+            <% page.sections.forEach((section, index) => { %>
+                <article class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="<%= index * 50 %>">
+                    <div class="ecosystem-card h-100">
+                        <span class="text-info fw-bold small"><%= String(index + 1).padStart(2, '0') %></span>
+                        <h2 class="h5 fw-bold text-dark mt-3 mb-3"><%= section.heading %></h2>
+                        <p class="text-secondary small mb-3" style="line-height: 1.6;"><%= section.body %></p>
+                        <% if (section.bullets && section.bullets.length) { %>
+                            <ul class="text-secondary small mb-0 ps-3" style="line-height: 1.6;">
+                                <% section.bullets.forEach(item => { %>
+                                    <li class="mb-2"><%= item %></li>
+                                <% }); %>
+                            </ul>
+                        <% } %>
+                    </div>
+                </article>
+            <% }); %>
+        </div>
+    </div>
 </section>
-<section class="container pb-5"><div class="p-5 rounded-4 bg-light border text-center"><h2 class="h3 fw-bold">Ready to make the next system clearer?</h2><p class="text-secondary mb-4">Tell us what you are building, improving, or trying to understand.</p><a class="btn btn-primary btn-lg" href="/contact">Start a conversation</a></div></section>
+
+<!-- Final CTA -->
+<section class="home-final-cta py-5">
+    <div class="container py-lg-5 text-center">
+        <h2 class="h2 fw-bold text-white mb-4" data-aos="fade-up">Ready to make the next system clearer?</h2>
+        <p class="text-white-50 small mb-5 mx-auto" style="max-width: 600px;" data-aos="fade-up" data-aos-delay="100">Tell us what you are building, improving, or trying to understand.</p>
+        <a class="btn btn-light btn-lg rounded-pill px-5 py-3 fw-bold" style="font-size: 1rem;" href="/contact" data-aos="fade-up" data-aos-delay="200">Start a conversation</a>
+    </div>
+</section>
+
 <%- include('../layouts/footer', { settings, footerMenus, waLink }) %>

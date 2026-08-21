@@ -1,12 +1,112 @@
 <%- include('../layouts/header', { pageTitle, pageDescription, pageKeywords, canonicalUrl, pageImage, settings, currentPage, socialLinks, schemaPhone, recaptchaSiteKey }) %>
-<section class="container-fluid text-white py-5" style="background:linear-gradient(135deg,#0f172a,#1e293b);"><div class="container py-5"><p class="text-uppercase fw-bold text-info small ls-1 mb-3">Legal center</p><h1 class="display-3 fw-black ls-tight mb-3">Your data, your rights.</h1><p class="lead opacity-75 mb-0" style="max-width:760px;">Submit a secure Data Subject Request to access, modify, export, or delete personal information held by CloudAlls.</p></div></section>
-<section class="py-5" style="background:#fafafa;"><div class="container py-4"><div class="row g-5"><div class="col-lg-5"><h2 class="h3 fw-black mb-4">Data operations desk</h2><p class="text-secondary">We review every request, verify identity where necessary, and respond through the contact details you provide.</p><div class="bg-white border rounded-4 p-4 shadow-sm mt-4"><small class="text-uppercase fw-bold text-muted ls-1 d-block mb-2">Before you submit</small><ul class="text-secondary mb-0 ps-3"><li class="mb-2">Use an email address that our team can reach.</li><li class="mb-2">Describe the records or system involved.</li><li>Do not include passwords, payment details, or unnecessary sensitive data.</li></ul></div><div class="bg-white border rounded-4 p-4 shadow-sm mt-4"><small class="text-uppercase fw-bold text-muted ls-1 d-block mb-2">Response target</small><p class="text-secondary mb-0">Requests are triaged by our compliance team and handled in accordance with applicable privacy obligations.</p></div></div><div class="col-lg-7"><% if (status) { %><div class="alert <%= status === 'success' ? 'alert-success' : 'alert-danger' %> border-0 rounded-4" role="status"><strong><%= status === 'success' ? 'Request received.' : 'Request could not be submitted.' %></strong> <%= status === 'success' ? "Our compliance team will review the details and contact you." : "" %><% if (status !== 'success' && errorMsg === 'verification') { %>Security verification did not pass &mdash; please disable ad-blockers, complete the page fully, and try again.<% } else if (status !== 'success') { %>Please check all required fields: Name, Email, a valid Request Type, and Details (min. 10 chars), and confirm the agreement checkbox.<% } %></div><% } %><div class="bg-white border rounded-4 p-4 p-md-5 shadow-sm"><form action="/data-requests" method="post" data-recaptcha-action="dsr" id="dsr-form"><input type="hidden" name="csrf_token" value="<%= csrfToken %>"><input type="hidden" name="recaptcha_token" value=""><input class="bot-trap" type="text" name="bot_trap" tabindex="-1" autocomplete="off" aria-hidden="true"><div class="row g-4"><div class="col-md-6"><label class="form-label small fw-bold text-muted text-uppercase" for="requester-name">Full name</label><input class="form-control py-3" id="requester-name"  name="requester_name" maxlength="255" autocomplete="name" required value="<%= typeof formValues !== "undefined" && formValues.requesterName ? String(formValues.requesterName).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;') : "" %>"></div><div class="col-md-6"><label class="form-label small fw-bold text-muted text-uppercase" for="requester-email">Email address</label><input class="form-control py-3" id="requester-email"  name="requester_email" type="email" maxlength="320" autocomplete="email" required value="<%= typeof formValues !== "undefined" && formValues.requesterEmail ? String(formValues.requesterEmail).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;') : "" %>"></div><div class="col-12"><label class="form-label small fw-bold text-muted text-uppercase" for="request-type">Request type</label><select class="form-select py-3" id="request-type" name="request_type" required>
-  <option value="" disabled <%= (typeof formValues === "undefined" || !formValues.requestType) ? "selected" : "" %>>Select a request type</option>
-  <option value="Access" <%= typeof formValues !== "undefined" && formValues.requestType === "Access" ? "selected" : "" %>>Access</option>
-  <option value="Modification" <%= typeof formValues !== "undefined" && formValues.requestType === "Modification" ? "selected" : "" %>>Modification</option>
-  <option value="Deletion" <%= typeof formValues !== "undefined" && formValues.requestType === "Deletion" ? "selected" : "" %>>Deletion</option>
-  <option value="Portability" <%= typeof formValues !== "undefined" && formValues.requestType === "Portability" ? "selected" : "" %>>Portability</option>
-  <option value="Objection" <%= typeof formValues !== "undefined" && formValues.requestType === "Objection" ? "selected" : "" %>>Objection</option>
-  <option value="Other" <%= typeof formValues !== "undefined" && formValues.requestType === "Other" ? "selected" : "" %>>Other</option>
-</select></div><div class="col-12"><label class="form-label small fw-bold text-muted text-uppercase" for="specific-details">Request details</label><textarea class="form-control py-3" id="specific-details"  name="specific_details" rows="7" maxlength="10000" placeholder="Tell us what you would like us to review and any relevant account, inquiry, or project context." required><%= typeof formValues !== "undefined" && formValues.specificDetails ? String(formValues.specificDetails).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;') : "" %></textarea></div><div class="col-12"><div class="form-check"><input class="form-check-input" id="dsrConsent" name="legal_consent" value="on" type="checkbox" required><label class="form-check-label small text-secondary" for="dsrConsent">I confirm that the information above is accurate and agree to the <a href="/privacy">Privacy &amp; Data Policy</a>.</label></div></div><div class="col-12"><button class="btn btn-dark btn-lg w-100 rounded-pill fw-bold" type="submit">Submit data request <i class="fa-solid fa-shield-halved ms-2" aria-hidden="true"></i></button></div></div></form></div></div></div></div></section>
+
+<link rel="stylesheet" href="/assets/css/premium.css">
+
+<!-- Premium Hero -->
+<section class="home-hero-mnc" style="min-height: 50vh; padding-top: 140px; padding-bottom: 60px;">
+    <div class="hero-grid-premium" aria-hidden="true"></div>
+    <div class="container position-relative">
+        <div class="row">
+            <div class="col-lg-10">
+                <nav aria-label="breadcrumb" class="mb-4" data-aos="fade-up">
+                    <ol class="breadcrumb mb-0">
+                        <li class="breadcrumb-item"><a href="/legal-center" class="text-info text-decoration-none small fw-bold text-uppercase ls-1">Legal Center</a></li>
+                        <li class="breadcrumb-item active text-white-50 small text-uppercase ls-1" aria-current="page">DSR Workflow</li>
+                    </ol>
+                </nav>
+                <h1 class="hero-title-mnc mb-4" style="font-size: clamp(2rem, 5vw, 3.5rem);" data-aos="fade-up" data-aos-delay="100">
+                    Your data, <span>your rights.</span>
+                </h1>
+                <p class="hero-lead-mnc" data-aos="fade-up" data-aos-delay="200">
+                    Submit a secure Data Subject Request to access, modify, export, or delete personal information held by CloudAlls.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- DSR Form Section -->
+<section class="ecosystem-section py-5 bg-white">
+    <div class="container py-lg-4">
+        <div class="row g-5">
+            <div class="col-lg-5" data-aos="fade-up">
+                <h2 class="h4 fw-bold mb-4" style="color: var(--mnc-navy);">Data operations desk</h2>
+                <p class="text-secondary small mb-4" style="line-height: 1.7;">We review every request, verify identity where necessary, and respond through the contact details you provide.</p>
+                
+                <div class="bg-light border rounded-4 p-4 mb-4 shadow-sm">
+                    <span class="small text-uppercase fw-bold text-muted ls-1 d-block mb-3" style="font-size: 0.65rem;">Before you submit</span>
+                    <ul class="text-secondary small mb-0 ps-3" style="line-height: 1.6;">
+                        <li class="mb-2">Use an email address that our team can reach.</li>
+                        <li class="mb-2">Describe the records or system involved.</li>
+                        <li>Do not include passwords or payment details.</li>
+                    </ul>
+                </div>
+                
+                <div class="bg-light border rounded-4 p-4 shadow-sm">
+                    <span class="small text-uppercase fw-bold text-muted ls-1 d-block mb-3" style="font-size: 0.65rem;">Response target</span>
+                    <p class="text-secondary small mb-0" style="line-height: 1.6;">Requests are triaged by our compliance team and handled in accordance with applicable privacy obligations.</p>
+                </div>
+            </div>
+
+            <div class="col-lg-7">
+                <% if (status) { %>
+                    <div class="alert <%= status === 'success' ? 'alert-success' : 'alert-danger' %> border-0 rounded-4 p-4 shadow-sm mb-4" role="status" data-aos="fade-up">
+                        <div class="d-flex align-items-center gap-3">
+                            <i class="fa-solid <%= status === 'success' ? 'fa-circle-check' : 'fa-circle-exclamation' %> fa-2x"></i>
+                            <div>
+                                <strong class="d-block mb-1 small text-uppercase ls-1"><%= status === 'success' ? 'Request received.' : 'Submission Error' %></strong>
+                                <span class="small"><%= status === 'success' ? "Our compliance team will review the details and contact you." : (errorMsg === 'verification' ? 'Security verification failed.' : 'Please check all required fields.') %></span>
+                            </div>
+                        </div>
+                    </div>
+                <% } %>
+
+                <div class="bg-white border rounded-4 p-4 p-md-5 shadow-sm" data-aos="fade-left">
+                    <form action="/data-requests" method="post" data-recaptcha-action="dsr" id="dsr-form">
+                        <input type="hidden" name="csrf_token" value="<%= csrfToken %>">
+                        <input type="hidden" name="recaptcha_token" value="">
+                        <input class="bot-trap" type="text" name="bot_trap" tabindex="-1" autocomplete="off" aria-hidden="true">
+                        
+                        <div class="row g-4">
+                            <div class="col-md-6">
+                                <label class="form-label small fw-bold text-uppercase ls-1" style="font-size: 0.65rem;" for="requester-name">Full Name</label>
+                                <input class="form-control rounded-3" style="font-size: 0.9rem;" id="requester-name" name="requester_name" required value="<%= typeof formValues !== "undefined" && formValues.requesterName ? String(formValues.requesterName).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;') : "" %>">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label small fw-bold text-uppercase ls-1" style="font-size: 0.65rem;" for="requester-email">Email Address</label>
+                                <input class="form-control rounded-3" style="font-size: 0.9rem;" id="requester-email" name="requester_email" type="email" required value="<%= typeof formValues !== "undefined" && formValues.requesterEmail ? String(formValues.requesterEmail).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;') : "" %>">
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label small fw-bold text-uppercase ls-1" style="font-size: 0.65rem;" for="request-type">Request Type</label>
+                                <select class="form-select rounded-3" style="font-size: 0.9rem;" id="request-type" name="request_type" required>
+                                    <option value="" disabled <%= (typeof formValues === "undefined" || !formValues.requestType) ? "selected" : "" %>>Select a request type</option>
+                                    <option value="Access" <%= typeof formValues !== "undefined" && formValues.requestType === "Access" ? "selected" : "" %>>Access</option>
+                                    <option value="Modification" <%= typeof formValues !== "undefined" && formValues.requestType === "Modification" ? "selected" : "" %>>Modification</option>
+                                    <option value="Deletion" <%= typeof formValues !== "undefined" && formValues.requestType === "Deletion" ? "selected" : "" %>>Deletion</option>
+                                    <option value="Portability" <%= typeof formValues !== "undefined" && formValues.requestType === "Portability" ? "selected" : "" %>>Portability</option>
+                                    <option value="Objection" <%= typeof formValues !== "undefined" && formValues.requestType === "Objection" ? "selected" : "" %>>Objection</option>
+                                    <option value="Other" <%= typeof formValues !== "undefined" && formValues.requestType === "Other" ? "selected" : "" %>>Other</option>
+                                </select>
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label small fw-bold text-uppercase ls-1" style="font-size: 0.65rem;" for="specific-details">Request Details</label>
+                                <textarea class="form-control rounded-3" style="font-size: 0.9rem;" id="specific-details" name="specific_details" rows="6" required placeholder="Tell us what you would like us to review..."><%= typeof formValues !== "undefined" && formValues.specificDetails ? String(formValues.specificDetails).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;') : "" %></textarea>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-check">
+                                    <input class="form-check-input" id="dsrConsent" name="legal_consent" type="checkbox" required>
+                                    <label class="form-check-label small text-secondary" for="dsrConsent" style="font-size: 0.8rem;">I confirm accuracy and agree to the <a href="/privacy" class="text-primary">Privacy & Data Policy</a>.</label>
+                                </div>
+                            </div>
+                            <div class="col-12 mt-4">
+                                <button class="btn btn-dark btn-lg w-100 rounded-pill fw-bold py-3 small" type="submit">Submit Request <i class="fa-solid fa-shield-halved ms-2"></i></button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
 <%- include('../layouts/footer', { settings, footerMenus, waLink }) %>
