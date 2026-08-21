@@ -1,0 +1,190 @@
+/* =========================================
+   PREMIUM MNC-STANDARD STYLES
+   ========================================= */
+
+:root {
+    --mnc-navy: #071426;
+    --mnc-blue: #2563EB;
+    --mnc-accent: #38bdf8;
+    --mnc-glass: rgba(255, 255, 255, 0.03);
+    --mnc-border: rgba(255, 255, 255, 0.1);
+}
+
+/* 1. Hero Section Evolution */
+.home-hero-mnc {
+    min-height: 100vh;
+    padding-top: 120px;
+    background: radial-gradient(circle at 0% 0%, #0a192f 0%, #071426 50%, #050b18 100%);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-grid-premium {
+    position: absolute;
+    inset: 0;
+    background-image: linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px), 
+                      linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+    background-size: 50px 50px;
+    mask-image: radial-gradient(circle at center, black, transparent 80%);
+}
+
+.hero-tagline {
+    font-size: 0.9rem;
+    font-weight: 800;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--mnc-accent);
+    margin-bottom: 1.5rem;
+    display: block;
+}
+
+.hero-title-mnc {
+    font-size: clamp(3rem, 8vw, 6.5rem);
+    font-weight: 900;
+    line-height: 0.9;
+    letter-spacing: -0.04em;
+    margin-bottom: 2rem;
+}
+
+.hero-title-mnc span {
+    background: linear-gradient(135deg, #fff 30%, var(--mnc-accent) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.hero-lead-mnc {
+    font-size: 1.25rem;
+    color: rgba(255, 255, 255, 0.7);
+    max-width: 600px;
+    line-height: 1.6;
+    margin-bottom: 3rem;
+}
+
+/* 2. Ecosystem Grid */
+.ecosystem-section {
+    padding: 8rem 0;
+    background: #fff;
+}
+
+.ecosystem-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 4rem;
+}
+
+.ecosystem-card {
+    padding: 2.5rem;
+    border-radius: 1.5rem;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.ecosystem-card:hover {
+    transform: translateY(-8px);
+    border-color: var(--mnc-blue);
+    box-shadow: 0 20px 40px rgba(37, 99, 235, 0.08);
+}
+
+.ecosystem-icon {
+    width: 56px;
+    height: 56px;
+    background: #fff;
+    border-radius: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    color: var(--mnc-blue);
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+}
+
+.ecosystem-card h3 {
+    font-size: 1.25rem;
+    font-weight: 800;
+    margin-bottom: 0.75rem;
+}
+
+.ecosystem-card p {
+    color: #64748b;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* 3. Solution Explorer */
+.solution-explorer {
+    padding: 8rem 0;
+    background: var(--mnc-navy);
+    color: #fff;
+}
+
+.solution-tabs {
+    border: 1px solid var(--mnc-border);
+    border-radius: 1rem;
+    overflow: hidden;
+    background: var(--mnc-glass);
+}
+
+.solution-tab-btn {
+    padding: 1.5rem 2rem;
+    border: none;
+    background: transparent;
+    color: rgba(255,255,255,0.5);
+    font-weight: 700;
+    transition: all 0.3s ease;
+    text-align: left;
+    width: 100%;
+    border-bottom: 1px solid var(--mnc-border);
+}
+
+.solution-tab-btn.active {
+    color: #fff;
+    background: var(--mnc-blue);
+}
+
+/* 4. Global Footprint */
+.global-map-section {
+    padding: 6rem 0;
+    background: #f1f5f9;
+    text-align: center;
+}
+
+.metric-mnc {
+    font-size: 4rem;
+    font-weight: 900;
+    color: var(--mnc-navy);
+    line-height: 1;
+    margin-bottom: 0.5rem;
+}
+
+.metric-label {
+    font-size: 0.85rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #64748b;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 991.98px) {
+    .hero-title-mnc { font-size: 4rem; }
+    .ecosystem-grid { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 767.98px) {
+    .hero-title-mnc { font-size: 3rem; }
+    .ecosystem-grid { grid-template-columns: 1fr; }
+    .home-hero-mnc { padding-top: 100px; text-align: center; }
+    .hero-lead-mnc { margin-left: auto; margin-right: auto; }
+}

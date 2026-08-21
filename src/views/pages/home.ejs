@@ -1,107 +1,184 @@
 <%- include('../layouts/header', { pageTitle, pageDescription, pageKeywords, canonicalUrl, pageImage, settings, currentPage, socialLinks, schemaPhone }) %>
 
-<section class="home-hero home-hero-premium position-relative overflow-hidden" aria-labelledby="home-hero-title">
-  <div class="home-hero-grid" aria-hidden="true"></div>
-  <div class="home-hero-glow home-hero-glow-one" aria-hidden="true"></div>
-  <div class="home-hero-glow home-hero-glow-two" aria-hidden="true"></div>
+<link rel="stylesheet" href="/assets/css/premium.css">
+
+<!-- 1. MNC Hero Section -->
+<section class="home-hero-mnc" aria-labelledby="hero-title">
+  <div class="hero-grid-premium" aria-hidden="true"></div>
   <div class="container position-relative">
-    <div class="row align-items-center g-5">
+    <div class="row align-items-center">
+      <div class="col-lg-8">
+        <span class="hero-tagline" data-aos="fade-up">Built Wide. Built Deep.</span>
+        <h1 id="hero-title" class="hero-title-mnc" data-aos="fade-up" data-aos-delay="100">
+          Organizing the global <span>technology culture.</span>
+        </h1>
+        <p class="hero-lead-mnc" data-aos="fade-up" data-aos-delay="200">
+          CloudAlls helps ambitious teams turn complex ideas into dependable digital products, AI workflows, and global operating systems.
+        </p>
+        <div class="d-flex flex-wrap gap-3" data-aos="fade-up" data-aos-delay="300">
+          <a class="btn btn-primary btn-lg rounded-pill px-5 py-3 fw-bold" href="/contact">
+            Start a project <i class="fa-solid fa-arrow-up-right-from-square ms-2"></i>
+          </a>
+          <a class="btn btn-outline-light btn-lg rounded-pill px-5 py-3 fw-bold" href="/expertise">
+            See capabilities <i class="fa-solid fa-arrow-right ms-2"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 2. The CloudAlls Ecosystem -->
+<section class="ecosystem-section">
+  <div class="container">
+    <div class="row mb-5">
       <div class="col-lg-7">
-        <p class="home-hero-kicker"><span></span> Strategy · Engineering · Intelligent systems</p>
-        <h1 id="home-hero-title">Technology with a <span>clear next move.</span></h1>
-        <p class="home-hero-lead">CloudAlls helps ambitious teams turn complex ideas into dependable digital products, AI workflows, and operating systems.</p>
-        <div class="home-hero-actions">
-          <a class="btn btn-primary btn-lg" href="/contact">Start a project <i class="fa-solid fa-arrow-up-right-from-square ms-2" aria-hidden="true"></i></a>
-          <a class="btn btn-outline-light btn-lg" href="/expertise">See what we build <i class="fa-solid fa-arrow-right ms-2" aria-hidden="true"></i></a>
-        </div>
-        <p class="home-hero-note"><i class="fa-solid fa-circle-check" aria-hidden="true"></i> From first decision to practical handover.</p>
-      </div>
-      <div class="col-lg-5">
-        <div class="home-hero-visual" aria-label="CloudAlls delivery model">
-          <div class="home-hero-visual-top"><span>CloudAlls / delivery model</span><span class="home-live-status"><i></i> Ready to move</span></div>
-          <div class="home-path-line" aria-hidden="true"></div>
-          <div class="home-path-step"><span>01</span><div><strong>Frame</strong><small>Make the opportunity and next decision visible.</small></div></div>
-          <div class="home-path-step home-path-step-active"><span>02</span><div><strong>Build</strong><small>Turn the clearest path into a dependable system.</small></div></div>
-          <div class="home-path-step"><span>03</span><div><strong>Operate</strong><small>Leave the team with ownership and momentum.</small></div></div>
-          <div class="home-hero-visual-footer"><span>AI</span><span>WEB</span><span>DATA</span><span>OPS</span></div>
-        </div>
+        <span class="section-kicker">The CloudAlls Ecosystem</span>
+        <h2 class="display-4 fw-black ls-tight">Twelve divisions. One unified standard.</h2>
+        <p class="lead text-secondary mt-3">We redefine how technology is built and operated through specialized brand divisions that work in harmony.</p>
       </div>
     </div>
+    
+    <div class="ecosystem-grid">
+      <!-- Foundry -->
+      <a href="/expertise" class="ecosystem-card" data-aos="fade-up">
+        <div class="ecosystem-icon"><i class="fa-solid fa-fire-burner"></i></div>
+        <h3>Foundry</h3>
+        <p>Strategic product design and rapid engineering for high-stakes digital launches.</p>
+      </a>
+      
+      <!-- Intelligence -->
+      <a href="/expertise" class="ecosystem-card" data-aos="fade-up" data-aos-delay="100">
+        <div class="ecosystem-icon"><i class="fa-solid fa-brain"></i></div>
+        <h3>Intelligence</h3>
+        <p>AI strategy, custom LLM workflows, and intelligent decision-support systems.</p>
+      </a>
+      
+      <!-- Infrastructure -->
+      <a href="/engineering" class="ecosystem-card" data-aos="fade-up" data-aos-delay="200">
+        <div class="ecosystem-icon"><i class="fa-solid fa-server"></i></div>
+        <h3>Infrastructure</h3>
+        <p>Global cloud architecture, security governance, and resilient data foundations.</p>
+      </a>
+      
+      <!-- Studio -->
+      <a href="/brand" class="ecosystem-card" data-aos="fade-up" data-aos-delay="300">
+        <div class="ecosystem-icon"><i class="fa-solid fa-compass-drafting"></i></div>
+        <h3>Studio</h3>
+        <p>High-fidelity design systems, brand identity, and user experience architecture.</p>
+      </a>
+
+      <!-- Growth -->
+      <a href="/methodology" class="ecosystem-card" data-aos="fade-up">
+        <div class="ecosystem-icon"><i class="fa-solid fa-chart-line"></i></div>
+        <h3>Growth</h3>
+        <p>Performance engineering and data-driven optimization for digital scale.</p>
+      </a>
+
+      <!-- Operations -->
+      <a href="/contact" class="ecosystem-card" data-aos="fade-up" data-aos-delay="100">
+        <div class="ecosystem-icon"><i class="fa-solid fa-gears"></i></div>
+        <h3>Operations</h3>
+        <p>Improve adoption, resilience, governance, and long-term operational value.</p>
+      </a>
+
+      <!-- Academy -->
+      <a href="https://academy.cloudalls.com/" target="_blank" class="ecosystem-card" data-aos="fade-up" data-aos-delay="200">
+        <div class="ecosystem-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+        <h3>Academy</h3>
+        <p>Specialized training and talent development for the new technology culture.</p>
+      </a>
+
+      <!-- Labs -->
+      <a href="/labs" class="ecosystem-card" data-aos="fade-up" data-aos-delay="300">
+        <div class="ecosystem-icon"><i class="fa-solid fa-flask-vial"></i></div>
+        <h3>Labs <span class="badge bg-primary ms-2 small" style="font-size: 0.6rem;">BETA</span></h3>
+        <p>R&D and experimental engineering exploring the next horizon of technology.</p>
+      </a>
+    </div>
   </div>
 </section>
 
-<section class="home-proof-strip home-proof-strip-premium" aria-label="CloudAlls operating model">
-  <div class="container">
-    <div class="home-proof-intro"><span class="section-kicker">One partner. Three modes of progress.</span><p>Choose the level of support your next decision actually needs.</p></div>
-    <div class="home-proof-grid">
-      <a href="/methodology" class="home-proof-tile"><span>01</span><strong>Discover</strong><small>Clarify the opportunity, constraints, and next move.</small><i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
-      <a href="/expertise" class="home-proof-tile"><span>02</span><strong>Build</strong><small>Deliver a product, workflow, platform, or data layer.</small><i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
-      <a href="/contact" class="home-proof-tile"><span>03</span><strong>Operate</strong><small>Improve adoption, resilience, governance, and value.</small><i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a>
-    </div>
-  </div>
-</section>
-
-<section class="home-editorial-section home-editorial-light">
-  <div class="container">
-    <div class="row align-items-end g-4 home-section-heading">
-      <div class="col-lg-7"><p class="section-kicker">What we build</p><h2>Useful systems, not technology theatre.</h2></div>
-      <div class="col-lg-5"><p>CloudAlls brings strategy, design, engineering, and operational thinking together around the problem—not around a preselected stack.</p></div>
-    </div>
-    <div class="row g-3">
-      <div class="col-md-4"><a class="home-capability-panel" href="/expertise"><span class="home-panel-number">01</span><span class="home-panel-icon"><i class="fa-solid fa-brain" aria-hidden="true"></i></span><h3>Intelligent systems</h3><p>AI strategy, automation, decision support, and responsible workflows that people can trust.</p><span class="home-panel-link">Explore expertise <i class="fa-solid fa-arrow-right ms-2" aria-hidden="true"></i></span></a></div>
-      <div class="col-md-4"><a class="home-capability-panel" href="/expertise"><span class="home-panel-number">02</span><span class="home-panel-icon"><i class="fa-solid fa-window-maximize" aria-hidden="true"></i></span><h3>Digital products</h3><p>Websites, applications, portals, and customer experiences built for real adoption.</p><span class="home-panel-link">See capabilities <i class="fa-solid fa-arrow-right ms-2" aria-hidden="true"></i></span></a></div>
-      <div class="col-md-4"><a class="home-capability-panel" href="/engineering"><span class="home-panel-number">03</span><span class="home-panel-icon"><i class="fa-solid fa-layer-group" aria-hidden="true"></i></span><h3>Technology foundations</h3><p>Secure infrastructure, integrations, data, observability, and operating foundations.</p><span class="home-panel-link">Engineering &amp; trust <i class="fa-solid fa-arrow-right ms-2" aria-hidden="true"></i></span></a></div>
-    </div>
-  </div>
-</section>
-
-<section class="home-statement-section">
-  <div class="container">
-    <div class="home-statement-card">
-      <div class="row align-items-center g-4">
-        <div class="col-lg-8"><p class="section-kicker text-info">The CloudAlls difference</p><h2>Leave with more than a launch.</h2><p>Every engagement is shaped to give your team a clearer decision, a working system, and a practical path to keep improving it.</p></div>
-        <div class="col-lg-4"><div class="home-outcome-list"><div><span>01</span><strong>Visible decisions</strong></div><div><span>02</span><strong>Dependable systems</strong></div><div><span>03</span><strong>Confident teams</strong></div></div></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="home-proof-strip home-proof-strip-premium py-4" aria-label="CloudAlls operating footprint">
-  <div class="container">
-    <div class="row g-4 text-center text-lg-start justify-content-center align-items-center">
-      <div class="col-6 col-md-3"><span class="display-6 fw-black text-primary">12</span><p class="small text-secondary mb-0">Integrated capabilities under one roof</p></div>
-      <div class="col-6 col-md-3"><span class="display-6 fw-black text-primary">3</span><p class="small text-secondary mb-0">Countries served — India, UAE, USA</p></div>
-      <div class="col-6 col-md-3"><span class="display-6 fw-black text-primary">24/7</span><p class="small text-secondary mb-0">Telemetry and monitoring on deployed systems</p></div>
-      <div class="col-6 col-md-3"><span class="display-6 fw-black text-primary">SLA</span><p class="small text-secondary mb-0">Tiered service-level coverage for enterprise work</p></div>
-    </div>
-  </div>
-</section>
-
-<section class="home-editorial-section home-editorial-white">
-  <div class="container">
-    <div class="row align-items-end g-4 home-section-heading">
-      <div class="col-lg-8"><p class="section-kicker">Designed for confidence</p><h2>Built to be used, handed over, and improved.</h2><p>Good technology is clear in the moment and dependable after the launch team leaves.</p></div>
-      <div class="col-lg-4 text-lg-end"><a class="btn btn-outline-dark rounded-pill px-4" href="/engineering">How we engineer <i class="fa-solid fa-arrow-right ms-2" aria-hidden="true"></i></a></div>
-    </div>
-    <div class="row g-3 home-trust-grid">
-      <div class="col-md-4"><div class="home-trust-panel"><span><i class="fa-solid fa-shield-halved" aria-hidden="true"></i></span><h3>Secure by design</h3><p>Protected forms, session boundaries, and responsible data handling from the start.</p></div></div>
-      <div class="col-md-4"><div class="home-trust-panel"><span><i class="fa-solid fa-universal-access" aria-hidden="true"></i></span><h3>Clear for people</h3><p>Responsive, accessible interfaces that respect attention and make action obvious.</p></div></div>
-      <div class="col-md-4"><div class="home-trust-panel"><span><i class="fa-solid fa-book-open" aria-hidden="true"></i></span><h3>Ready for handover</h3><p>Documented decisions, ownership, and an operating path your team can continue.</p></div></div>
-    </div>
-  </div>
-</section>
-
-<section class="home-insight-section">
+<!-- 3. Delivery Model -->
+<section class="home-proof-strip home-proof-strip-premium" aria-label="Delivery model">
   <div class="container">
     <div class="row align-items-center g-5">
-      <div class="col-lg-7"><p class="section-kicker text-info">Start with the right question</p><h2>Bring us the hard problem.</h2><p>Whether you need clarity, a system, a partner, or a way forward, we will help shape the next decision.</p></div>
-      <div class="col-lg-5"><div class="home-question-list"><a href="/methodology"><span>I need clarity</span><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a><a href="/expertise"><span>I need a system</span><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a><a href="/partnership"><span>I need a partner</span><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a><a href="/contact"><span>I have a hard problem</span><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a></div></div>
+      <div class="col-lg-6">
+        <span class="section-kicker">Delivery Model</span>
+        <h2 class="display-5 fw-black text-white">From first decision to practical handover.</h2>
+        <div class="home-path-step mt-4 text-white opacity-75">
+          <span>01</span><div><strong>Frame</strong><small class="d-block mt-1">Make the opportunity and next decision visible.</small></div>
+        </div>
+        <div class="home-path-step mt-3 text-white">
+          <span class="bg-primary border-primary">02</span><div><strong>Build</strong><small class="d-block mt-1">Turn the clearest path into a dependable system.</small></div>
+        </div>
+        <div class="home-path-step mt-3 text-white opacity-75">
+          <span>03</span><div><strong>Operate</strong><small class="d-block mt-1">Leave the team with ownership and momentum.</small></div>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="mac-window" data-aos="zoom-in">
+          <div class="mac-header">
+            <div class="mac-dot close"></div>
+            <div class="mac-dot min"></div>
+            <div class="mac-dot max"></div>
+            <span class="ms-auto small text-secondary opacity-50">CloudAlls Engine v4.2</span>
+          </div>
+          <div class="mac-body">
+            <div class="d-flex flex-column gap-3">
+              <div class="mac-item">
+                <div class="mac-icon text-primary"><i class="fa-solid fa-shield-check"></i></div>
+                <div><h4 class="mac-title">Secure by design</h4><p class="mac-desc">SOC2-ready architecture and data handling.</p></div>
+              </div>
+              <div class="mac-item">
+                <div class="mac-icon text-success"><i class="fa-solid fa-bolt"></i></div>
+                <div><h4 class="mac-title">Performance optimized</h4><p class="mac-desc">Sub-second response times on global nodes.</p></div>
+              </div>
+              <div class="mac-item">
+                <div class="mac-icon text-info"><i class="fa-solid fa-code-merge"></i></div>
+                <div><h4 class="mac-title">Continuous delivery</h4><p class="mac-desc">Automated pipelines for zero-downtime scale.</p></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
+<!-- 4. Global Footprint -->
+<section class="global-map-section">
+  <div class="container">
+    <div class="row g-5">
+      <div class="col-md-3" data-aos="fade-up">
+        <div class="metric-mnc">3</div>
+        <div class="metric-label">Countries Served</div>
+      </div>
+      <div class="col-md-3" data-aos="fade-up" data-aos-delay="100">
+        <div class="metric-mnc">24/7</div>
+        <div class="metric-label">Active Telemetry</div>
+      </div>
+      <div class="col-md-3" data-aos="fade-up" data-aos-delay="200">
+        <div class="metric-mnc">99.9%</div>
+        <div class="metric-label">SLA Commitment</div>
+      </div>
+      <div class="col-md-3" data-aos="fade-up" data-aos-delay="300">
+        <div class="metric-mnc">12</div>
+        <div class="metric-label">Unified Divisions</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 5. Final CTA -->
 <section class="home-final-cta">
-  <div class="container"><div class="home-final-cta-inner"><div><p class="section-kicker text-info">Ready when you are</p><h2>Make the next move clearer.</h2></div><a class="btn btn-light btn-lg rounded-pill px-4" href="/contact">Start a project <i class="fa-solid fa-arrow-up-right-from-square ms-2" aria-hidden="true"></i></a></div></div>
+  <div class="container text-center py-5">
+    <span class="section-kicker text-info" data-aos="fade-up">Ready when you are</span>
+    <h2 class="display-3 fw-black text-white mb-5" data-aos="fade-up" data-aos-delay="100">Make the next move clearer.</h2>
+    <a class="btn btn-light btn-lg rounded-pill px-5 py-3 fw-bold" href="/contact" data-aos="fade-up" data-aos-delay="200">
+      Start a project <i class="fa-solid fa-arrow-up-right-from-square ms-2"></i>
+    </a>
+  </div>
 </section>
 
 <%- include('../layouts/footer') %>
