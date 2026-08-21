@@ -114,7 +114,7 @@
         <% if (status) { %>
           <div class="alert <%= status === 'success' ? 'alert-success' : 'alert-danger' %> border-0 rounded-4" role="status">
             <strong><%= status === 'success' ? 'Application received.' : 'Unable to process application.' %></strong>
-            <%= status === 'success' ? ' Our partnership team will contact you.' : ' Please review your inputs and try again.' %>
+            <%= status === 'success' ? " Our partnership team will contact you." : "" %><% if (status !== 'success' && errorMsg === 'invalid') { %> Please check the marked fields &mdash; company name, a full website URL (starting with https://), professional email, and the collaboration proposal are all required.<% } else if (status !== 'success' && errorMsg === 'verification') { %> Security verification did not pass &mdash; please disable ad-blockers, complete the page fully, and try again.<% } else if (status !== 'success') { %> Our database was momentarily unavailable &mdash; please retry in a moment.<% } %>
           </div>
         <% } %>
         <div class="p-4 p-md-5 bg-white border rounded-4 shadow-sm">

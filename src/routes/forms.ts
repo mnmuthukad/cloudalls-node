@@ -75,6 +75,7 @@ formsRouter.get("/contact", async (req, res, next) => {
       expertise,
       preselectedService: typeof req.query.service === "string" ? req.query.service : "",
       status: typeof req.query.status === "string" ? req.query.status : "",
+      errorMsg: typeof req.query.msg === "string" ? req.query.msg : "",
     });
   } catch (error) { next(error); }
 });
@@ -106,10 +107,12 @@ formsRouter.post("/contact", formLimiter, async (req, res) => {
   }
 });
 
-formsRouter.get("/partnership", (_req, res) => {
+formsRouter.get("/partnership", (req, res) => {
+  const status = typeof req.query.status === "string" ? req.query.status : "";
   res.render("pages/partnership", {
     ...buildLayoutData({ currentPage: "partnership", pageTitle: "Partner with CloudAlls | Ecosystem Network", pageDescription: "Join the CloudAlls partner network and create mutual technology value.", canonicalUrl: "/partnership" }),
-    status: "",
+    status,
+    errorMsg: typeof req.query.msg === "string" ? req.query.msg : "",
   });
 });
 
@@ -163,6 +166,7 @@ formsRouter.get("/careers/:id", async (req, res, next) => {
       ...buildLayoutData({ currentPage: "careers", pageTitle: `${job.title} | Careers at CloudAlls`, pageDescription: job.description ? job.description.replace(/<[^>]*>/g, "").slice(0, 155) : "Join CloudAlls.", canonicalUrl: `/careers/${job.id}` }),
       job,
       formStatus: typeof req.query.status === "string" ? req.query.status : "",
+      formErrorMsg: typeof req.query.msg === "string" ? req.query.msg : "",
     });
   } catch (error) { next(error); }
 });
@@ -210,7 +214,7 @@ formsRouter.post("/careers/:id", formLimiter, async (req, res) => {
     res.redirect(`/careers/${job.id}?status=success`);
   } catch (error) {
     console.error("CAREER_FORM_ERROR", error);
-    res.redirect(`/careers/${job.id}?status=error`);
+    res.redirect(`/careers/${job.id}?status=error&msg=invalid`);
   }
 });
 
@@ -218,13 +222,14 @@ formsRouter.get("/data-requests", (req, res) => {
   res.render("pages/data-requests", {
     ...buildLayoutData({ currentPage: "data-requests", pageTitle: "Data Subject Requests | CloudAlls", pageDescription: "Submit a secure request to access, modify, export, or delete personal data held by CloudAlls.", canonicalUrl: "/data-requests" }),
     status: typeof req.query.status === "string" ? req.query.status : "",
+    errorMsg: typeof req.query.msg === "string" ? req.query.msg : "",
   });
 });
 
 formsRouter.post("/data-requests", formLimiter, async (req, res) => {
   const parsed = dsrSchema.safeParse(req.body);
   if (!parsed.success) {
-    res.redirect("/data-requests?status=error");
+    res.redirect("/data-requests?status=error&msg=invalid");
     return;
   }
   if (isBot(parsed.data.bot_trap)) {
