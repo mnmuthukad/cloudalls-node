@@ -1,4 +1,68 @@
 <%- include('../layouts/header', { pageTitle, pageDescription, pageKeywords, canonicalUrl, pageImage, settings, currentPage, socialLinks, schemaPhone }) %>
-<section class="container-fluid bg-dark text-white py-5"><div class="container py-5"><p class="text-uppercase fw-bold text-info small ls-1 mb-3">Selected work</p><h1 class="display-3 fw-black ls-tight mb-4">Case studies with operational weight.</h1><p class="lead text-white-50 mb-0" style="max-width:760px;">A selection of systems, products, and experiences shaped by the CloudAlls ecosystem.</p></div></section>
-<section class="container py-5"><div class="row g-4"><% if (portfolios.length) { portfolios.forEach(item => { %><article class="col-md-6"><div class="h-100 rounded-4 border bg-white shadow-sm overflow-hidden"><% if (item.image_url) { %><img src="<%= item.image_url %>" alt="<%= (item.title || '').replace(/"/g, '&quot;') %>" class="w-100" width="1000" height="560" loading="lazy" decoding="async"><% } %><div class="p-4"><p class="small text-muted mb-2"><%= item.client_name || 'CloudAlls ecosystem' %></p><h2 class="h4 fw-bold"><%= item.title %></h2><p class="text-secondary"><%= item.short_desc || '' %></p><a class="btn btn-outline-primary rounded-pill" href="/portfolio/<%= encodeURIComponent(item.slug) %>">View case study</a></div></div></article><% }); } else { %><div class="col-12"><div class="p-5 rounded-4 bg-light border text-center"><h2 class="h4 fw-bold">Case studies are being prepared.</h2><p class="text-secondary mb-0">Check back soon for selected CloudAlls work.</p></div></div><% } %></div></section>
+
+<link rel="stylesheet" href="/assets/css/premium.css">
+
+<!-- Premium Hero -->
+<section class="home-hero-mnc" style="min-height: 60vh; padding-top: 160px; padding-bottom: 60px;">
+  <div class="hero-grid-premium" aria-hidden="true"></div>
+  <div class="container position-relative">
+    <div class="row">
+      <div class="col-lg-8">
+        <span class="hero-tagline" data-aos="fade-up">Selected Work</span>
+        <h1 class="hero-title-mnc" data-aos="fade-up" data-aos-delay="100">
+          Systems with <span>operational weight.</span>
+        </h1>
+        <p class="hero-lead-mnc" data-aos="fade-up" data-aos-delay="200">
+          A selection of systems, products, and experiences shaped by the CloudAlls ecosystem for global scale.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Portfolio Grid -->
+<section class="editorial-section bg-white">
+  <div class="container py-lg-5">
+    <div class="row g-4">
+      <% if (portfolios.length) { portfolios.forEach((item, index) => { %>
+        <div class="col-12 col-md-6" data-aos="fade-up" data-aos-delay="<%= index * 100 %>">
+          <a href="/portfolio/<%= encodeURIComponent(item.slug) %>" class="ecosystem-card p-0 overflow-hidden d-block text-decoration-none">
+            <div class="position-relative overflow-hidden" style="height: 350px;">
+              <% if (item.image_url) { %>
+                <img src="<%= item.image_url %>" alt="<%= (item.title || '').replace(/"/g, '&quot;') %>" class="img-fluid w-100 h-100" style="object-fit: cover; transition: transform 0.5s ease;">
+              <% } %>
+              <div class="position-absolute top-0 start-0 p-4">
+                <span class="badge rounded-pill bg-white text-dark fw-bold px-3 py-2 shadow-sm"><%= item.client_name || 'CloudAlls Ecosystem' %></span>
+              </div>
+            </div>
+            <div class="p-4">
+              <span class="small text-primary fw-bold mb-2 d-block text-uppercase letter-spacing-01">Case Study</span>
+              <h3 class="h4 fw-black ls-tight mb-3 text-dark"><%= item.title %></h3>
+              <p class="text-secondary mb-4"><%= item.short_desc || '' %></p>
+              <div class="d-flex align-items-center text-primary fw-bold">
+                View case study <i class="fa-solid fa-arrow-right ms-2"></i>
+              </div>
+            </div>
+          </a>
+        </div>
+      <% }); } else { %>
+        <div class="col-12">
+          <div class="p-5 rounded-4 bg-light border text-center">
+            <h2 class="h4 fw-bold">Case studies are being prepared.</h2>
+            <p class="text-secondary mb-0">Check back soon for selected CloudAlls work.</p>
+          </div>
+        </div>
+      <% } %>
+    </div>
+  </div>
+</section>
+
+<!-- Final CTA -->
+<section class="home-final-cta">
+  <div class="container text-center py-5">
+    <h2 class="display-4 fw-black text-white mb-4">Ready to build your system?</h2>
+    <a class="btn btn-light btn-lg rounded-pill px-5 py-3 fw-bold" href="/contact">Start a project</a>
+  </div>
+</section>
+
 <%- include('../layouts/footer', { settings, footerMenus, waLink }) %>

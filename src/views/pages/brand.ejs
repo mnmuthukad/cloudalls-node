@@ -1,138 +1,142 @@
 <%- include('../layouts/header', { pageTitle, pageDescription, pageKeywords, canonicalUrl, pageImage, settings, currentPage, socialLinks, schemaPhone }) %>
 
-<section class="container-fluid bg-dark text-white py-5" style="background:radial-gradient(circle at 82% 18%,rgba(37,99,235,.42),transparent 36%),radial-gradient(circle at 12% 80%,rgba(124,58,237,.25),transparent 32%),#0f172a;">
-  <div class="container py-lg-5">
-    <div class="row align-items-end g-5">
+<link rel="stylesheet" href="/assets/css/premium.css">
+
+<!-- Premium Hero -->
+<section class="home-hero-mnc" style="min-height: 70vh; padding-top: 160px;">
+  <div class="hero-grid-premium" aria-hidden="true"></div>
+  <div class="container position-relative">
+    <div class="row align-items-center">
       <div class="col-lg-8">
-        <p class="text-uppercase fw-bold text-info small ls-1 mb-3">Brand system &amp; media kit</p>
-        <h1 class="display-3 fw-black ls-tight mb-3">Make CloudAlls recognizable at a glance.</h1>
-        <p class="h5 fw-semibold text-white mb-4" style="letter-spacing:.5px;">Built Wide. Built Deep.</p>
-        <p class="lead text-white-50 mb-0" style="max-width:780px;">Use the CloudAlls identity to communicate a connected ecosystem of twelve entities — eight capability divisions and four industry verticals — each housing the services that turn strategy into delivery.</p>
+        <span class="hero-tagline" data-aos="fade-up">Brand System & Media Kit</span>
+        <h1 class="hero-title-mnc" data-aos="fade-up" data-aos-delay="100">
+          Make CloudAlls <span>recognizable.</span>
+        </h1>
+        <p class="hero-lead-mnc" data-aos="fade-up" data-aos-delay="200">
+          Built Wide. Built Deep. Use the CloudAlls identity to communicate a connected ecosystem of twelve strategic entities.
+        </p>
+        <div class="d-flex flex-wrap gap-3" data-aos="fade-up" data-aos-delay="300">
+          <a class="btn btn-primary btn-lg rounded-pill px-5 py-3 fw-bold" href="#download">Download Assets</a>
+          <a class="btn btn-outline-light btn-lg rounded-pill px-5 py-3 fw-bold" href="/contact">Media Enquiry</a>
+        </div>
       </div>
-      <div class="col-lg-4 text-lg-end">
-        <a class="btn btn-light btn-lg rounded-pill px-4 me-2 mb-2" href="#download">Download assets</a>
-        <a class="btn btn-outline-light btn-lg rounded-pill px-4 mb-2" href="/contact">Media enquiry</a>
-      </div>
     </div>
   </div>
 </section>
 
-<section class="container py-5" id="download">
-  <div class="row align-items-end g-4 mb-4">
-    <div class="col-lg-8">
-      <p class="section-kicker mb-3">Official downloads</p>
-      <h2 class="display-6 fw-bold mb-3">One identity, ready for every surface.</h2>
-      <p class="text-secondary lead mb-0">Choose the lockup that matches the background and available space. Use the original SVG files whenever possible so the mark remains sharp at every size.</p>
-    </div>
-    <div class="col-lg-4 text-lg-end"><span class="badge rounded-pill px-3 py-2" style="background:#0A2860;color:#fff;">5 official brand assets</span></div>
-  </div>
-  <div class="row g-4">
-    <div class="col-lg-6">
-      <article class="brand-asset-card h-100 border rounded-4 overflow-hidden shadow-sm">
-        <div class="brand-asset-preview bg-white d-flex align-items-center justify-content-center p-5"><img src="/assets/brand/cloudalls_light.svg" alt="CloudAlls light theme wordmark" class="img-fluid" style="max-width:300px;width:100%;height:auto;"></div>
-        <div class="p-4"><div class="d-flex justify-content-between align-items-start gap-3"><div><p class="text-uppercase small fw-bold text-primary mb-2">Primary lockup</p><h3 class="h4 fw-bold mb-2">CloudAlls wordmark (light)</h3><p class="text-secondary mb-0">For websites, documents, presentations, and light backgrounds.</p></div><a class="btn btn-primary rounded-pill flex-shrink-0" href="/assets/brand/cloudalls_light.svg" download="cloudalls_light.svg" aria-label="Download the CloudAlls light theme wordmark">Download</a></div></div>
-      </article>
-    </div>
-    <div class="col-lg-6">
-      <article class="brand-asset-card h-100 border rounded-4 overflow-hidden shadow-sm">
-        <div class="brand-asset-preview bg-dark d-flex align-items-center justify-content-center p-5"><img src="/assets/brand/cloudalls_dark.svg" alt="CloudAlls dark theme wordmark" class="img-fluid" style="max-width:300px;width:100%;height:auto;"></div>
-        <div class="p-4"><div class="d-flex justify-content-between align-items-start gap-3"><div><p class="text-uppercase small fw-bold text-primary mb-2">Dark lockup</p><h3 class="h4 fw-bold mb-2">Dark-background wordmark</h3><p class="text-secondary mb-0">For dark hero sections, video frames, events, and high-contrast layouts.</p></div><a class="btn btn-dark rounded-pill flex-shrink-0" href="/assets/brand/cloudalls_dark.svg" download="cloudalls_dark.svg" aria-label="Download the CloudAlls dark theme wordmark">Download</a></div></div>
-      </article>
-    </div>
-    <div class="col-lg-4">
-      <article class="brand-asset-card h-100 border rounded-4 overflow-hidden shadow-sm">
-        <div class="brand-asset-preview bg-light d-flex align-items-center justify-content-center p-4" style="min-height:180px;"><img src="/assets/brand/favicon.png" alt="CloudAlls favicon with background removed" width="128" height="128"></div>
-        <div class="p-4"><p class="text-uppercase small fw-bold text-primary mb-2">Favicon</p><h3 class="h4 fw-bold mb-2">Browser &amp; tab icon</h3><p class="text-secondary mb-3">The official favicon with the background fully removed — used across the whole site.</p><a class="btn btn-outline-dark rounded-pill" href="/assets/brand/favicon.png" download="favicon.png">Download favicon</a></div>
-      </article>
-    </div>
-    <div class="col-lg-4">
-      <article class="brand-asset-card h-100 border rounded-4 overflow-hidden shadow-sm">
-        <div class="brand-asset-preview bg-light d-flex align-items-center justify-content-center p-4" style="min-height:160px;"><img src="/assets/brand/icon-192x192.png" alt="CloudAlls app icon 192x192" width="100" height="100"></div>
-        <div class="p-4"><p class="text-uppercase small fw-bold text-primary mb-2">App icon</p><h3 class="h4 fw-bold mb-2">Icon 192×192</h3><p class="text-secondary mb-3">Standard icon for Android home screen, web app manifests, and medium-size placements.</p><a class="btn btn-outline-dark rounded-pill" href="/assets/brand/icon-192x192.png" download="icon-192x192.png">Download 192</a></div>
-      </article>
-    </div>
-    <div class="col-lg-4">
-      <article class="brand-asset-card h-100 border rounded-4 overflow-hidden shadow-sm">
-        <div class="brand-asset-preview bg-light d-flex align-items-center justify-content-center p-4" style="min-height:160px;"><img src="/assets/brand/icon-512x512.png" alt="CloudAlls app icon 512x512" width="118" height="118"></div>
-        <div class="p-4"><p class="text-uppercase small fw-bold text-primary mb-2">Official icon</p><h3 class="h4 fw-bold mb-2">Icon 512×512</h3><p class="text-secondary mb-3">The official CloudAlls icon — used across the site, PWA manifest, favicons, and all large display placements.</p><a class="btn btn-outline-dark rounded-pill" href="/assets/brand/icon-512x512.png" download="icon-512x512.png">Download official icon</a></div>
-      </article>
-    </div>
-  </div>
-</section>
-
-<section class="container py-5">
-  <div class="row align-items-end g-4 mb-5"><div class="col-lg-8"><p class="section-kicker mb-3">Colour palette</p><h2 class="display-6 fw-bold mb-3">The exact colours of the identity.</h2><p class="text-secondary lead mb-0">Drawn directly from the official wordmark: navy and brand blue form the CloudAlls name, cyan accents the Alls on dark surfaces, and violet carries the circular mark.</p></div></div>
-  <div class="row g-4">
-    <div class="col-6 col-md-3"><div class="rounded-4 border overflow-hidden shadow-sm"><div style="background:#0A2860;height:130px;"></div><div class="p-3 bg-white"><strong class="d-block text-dark">Navy</strong><code class="small text-secondary">#0A2860</code><p class="small text-secondary mb-0 mt-1">Primary wordmark &mdash; "Cloud"</p></div></div></div>
-    <div class="col-6 col-md-3"><div class="rounded-4 border overflow-hidden shadow-sm"><div style="background:#0B55ED;height:130px;"></div><div class="p-3 bg-white"><strong class="d-block text-dark">Brand blue</strong><code class="small text-secondary">#0B55ED</code><p class="small text-secondary mb-0 mt-1">Primary wordmark &mdash; "Alls"</p></div></div></div>
-    <div class="col-6 col-md-3"><div class="rounded-4 border overflow-hidden shadow-sm"><div style="background:#26AEEB;height:130px;"></div><div class="p-3 bg-white"><strong class="d-block text-dark">Cyan</strong><code class="small text-secondary">#26AEEB</code><p class="small text-secondary mb-0 mt-1">Light wordmark "Alls" &amp; mark circle</p></div></div></div>
-    <div class="col-6 col-md-3"><div class="rounded-4 border overflow-hidden shadow-sm"><div style="background:#7C3AED;height:130px;"></div><div class="p-3 bg-white"><strong class="d-block text-dark">Violet</strong><code class="small text-secondary">#7C3AED</code><p class="small text-secondary mb-0 mt-1">Circular mark accent</p></div></div></div>
-  </div>
-</section>
-
-<section class="editorial-section bg-light border-top border-bottom">
+<!-- Official Assets Section -->
+<section class="ecosystem-section bg-white" id="download">
   <div class="container">
-    <div class="row align-items-end g-4 mb-5"><div class="col-lg-8"><p class="section-kicker mb-3">Usage principles</p><h2 class="display-6 fw-bold mb-3">Protect the clarity of the system.</h2><p class="text-secondary lead mb-0">The identity works because it is simple, open, and connected. Keep the logo legible and let the surrounding design create the energy.</p></div></div>
+    <div class="row mb-5">
+      <div class="col-lg-8">
+        <span class="section-kicker">Official Downloads</span>
+        <h2 class="display-4 fw-black ls-tight">One identity, ready for every surface.</h2>
+      </div>
+    </div>
+
     <div class="row g-4">
-      <div class="col-md-6 col-lg-3"><div class="enterprise-card h-100"><span class="home-proof-index">01</span><h3 class="h5 fw-bold mt-3">Keep clear space</h3><p class="text-secondary mb-0">Leave breathing room around the lockup. Do not place text, borders, or busy imagery against the mark.</p></div></div>
-      <div class="col-md-6 col-lg-3"><div class="enterprise-card h-100"><span class="home-proof-index">02</span><h3 class="h5 fw-bold mt-3">Use contrast</h3><p class="text-secondary mb-0">Use the primary lockup on light surfaces and the light lockup on dark surfaces.</p></div></div>
-      <div class="col-md-6 col-lg-3"><div class="enterprise-card h-100"><span class="home-proof-index">03</span><h3 class="h5 fw-bold mt-3">Respect proportions</h3><p class="text-secondary mb-0">Scale the full logo uniformly. Never stretch, rotate, crop, recolour, or rebuild the circles.</p></div></div>
-      <div class="col-md-6 col-lg-3"><div class="enterprise-card h-100"><span class="home-proof-index">04</span><h3 class="h5 fw-bold mt-3">Choose the right lockup</h3><p class="text-secondary mb-0">Use the circular mark only where the available space cannot support the complete CloudAlls wordmark.</p></div></div>
+      <!-- Light Wordmark -->
+      <div class="col-lg-6" data-aos="fade-up">
+        <div class="ecosystem-card p-0 overflow-hidden h-100">
+          <div class="bg-light d-flex align-items-center justify-content-center p-5" style="height: 250px;">
+            <img src="/assets/brand/cloudalls_light.svg" alt="CloudAlls light wordmark" class="img-fluid" style="max-height: 80px;">
+          </div>
+          <div class="p-4">
+            <h3 class="h4 fw-black mb-2">Primary Wordmark (Light)</h3>
+            <p class="text-secondary mb-4">Optimized for light backgrounds, documents, and general web use.</p>
+            <a href="/assets/brand/cloudalls_light.svg" download class="btn btn-outline-primary rounded-pill fw-bold">Download SVG</a>
+          </div>
+        </div>
+      </div>
+      <!-- Dark Wordmark -->
+      <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
+        <div class="ecosystem-card p-0 overflow-hidden h-100">
+          <div class="bg-dark d-flex align-items-center justify-content-center p-5" style="height: 250px;">
+            <img src="/assets/brand/cloudalls_dark.svg" alt="CloudAlls dark wordmark" class="img-fluid" style="max-height: 80px;">
+          </div>
+          <div class="p-4">
+            <h3 class="h4 fw-black mb-2">Dark Wordmark</h3>
+            <p class="text-secondary mb-4">Designed for high-contrast dark surfaces and video overlays.</p>
+            <a href="/assets/brand/cloudalls_dark.svg" download class="btn btn-outline-primary rounded-pill fw-bold">Download SVG</a>
+          </div>
+        </div>
+      </div>
+      <!-- Official Icon -->
+      <div class="col-lg-4" data-aos="fade-up" data-aos-delay="200">
+        <div class="ecosystem-card text-center h-100">
+          <div class="ecosystem-icon mx-auto mb-4" style="width: 100px; height: 100px;">
+            <img src="/assets/brand/icon-512x512.png" alt="CloudAlls Icon" class="img-fluid">
+          </div>
+          <h3 class="h4 fw-black mb-2">Official Icon</h3>
+          <p class="text-secondary mb-4">The core circular mark used across PWAs and social profiles.</p>
+          <a href="/assets/brand/icon-512x512.png" download class="btn btn-outline-primary rounded-pill fw-bold">Download 512px</a>
+        </div>
+      </div>
+      <!-- Favicon -->
+      <div class="col-lg-4" data-aos="fade-up" data-aos-delay="300">
+        <div class="ecosystem-card text-center h-100">
+          <div class="ecosystem-icon mx-auto mb-4" style="width: 100px; height: 100px;">
+            <img src="/assets/brand/favicon.png" alt="CloudAlls Favicon" class="img-fluid">
+          </div>
+          <h3 class="h4 fw-black mb-2">Browser Favicon</h3>
+          <p class="text-secondary mb-4">Transparent background optimized for browser tab visibility.</p>
+          <a href="/assets/brand/favicon.png" download class="btn btn-outline-primary rounded-pill fw-bold">Download PNG</a>
+        </div>
+      </div>
+      <!-- 192 Icon -->
+      <div class="col-lg-4" data-aos="fade-up" data-aos-delay="400">
+        <div class="ecosystem-card text-center h-100">
+          <div class="ecosystem-icon mx-auto mb-4" style="width: 100px; height: 100px;">
+            <img src="/assets/brand/icon-192x192.png" alt="CloudAlls 192 Icon" class="img-fluid">
+          </div>
+          <h3 class="h4 fw-black mb-2">Web App Icon</h3>
+          <p class="text-secondary mb-4">Standard manifest icon for Android and iOS home screens.</p>
+          <a href="/assets/brand/icon-192x192.png" download class="btn btn-outline-primary rounded-pill fw-bold">Download 192px</a>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
-<section class="container py-5">
-  <div class="row align-items-end g-4 mb-5"><div class="col-lg-8"><p class="section-kicker mb-3">The ecosystem</p><h2 class="display-6 fw-bold mb-3">Twelve entities. Two wings. One connected standard.</h2><p class="text-secondary lead mb-0">Eight capability divisions build and run the work; four industry verticals take that capability into specific markets. Each entity carries the same CloudAlls lockup, so the whole ecosystem reads as one brand.</p></div><div class="col-lg-4 text-lg-end"><a class="btn btn-outline-dark rounded-pill px-4" href="/expertise">Explore all services <i class="fa-solid fa-arrow-right ms-2" aria-hidden="true"></i></a></div></div>
-<% if (typeof expertise !== 'undefined' && expertise && expertise.length) { %>
-<% const capDivisions = divisions.filter(d => String(d.wing || 'capabilities') === 'capabilities');
-   const vertDivisions = divisions.filter(d => String(d.wing || '') === 'verticals');
-   const expertiseByDivision = {};
-   expertise.forEach(item => { const key = String(item.division || '').trim(); if (!expertiseByDivision[key]) expertiseByDivision[key] = []; expertiseByDivision[key].push(item); }); %>
-<section class="mb-5" data-aos="fade-up">
-  <div class="d-flex align-items-center gap-3 mb-4"><span class="badge rounded-pill text-bg-primary px-3 py-2 text-uppercase small fw-bold ls-1">Wing A</span><h2 class="h3 fw-bold mb-0">Capability divisions</h2></div>
-  <div class="row g-4">
-  <% capDivisions.forEach(division => {
-    const services = expertiseByDivision[String(division.name).trim()] || [];
-  %>
-    <div class="col-md-6"><div class="rounded-4 border bg-white shadow-sm p-4 p-lg-5 h-100 d-flex flex-column">
-      <div class="d-flex align-items-center justify-content-center mb-4" style="min-height:100px;">
-        <img src="/assets/brand/icon-512x512.png" alt="CloudAlls icon" style="width:72px;height:72px;">
-        <span class="mx-3" style="color:#0A2860;font-size:2.25rem;line-height:1;"><%- settings.logo_code %></span>
-        <span style="border-left:3px solid #d7dde6;height:44px;"></span>
-        <span class="fw-bold text-uppercase ms-3" style="color:#0A2860;letter-spacing:3px;font-size:1.05rem;white-space:nowrap;"><%= division.name %></span>
+<!-- The Ecosystem Section -->
+<section class="solution-explorer">
+  <div class="container">
+    <div class="row mb-5 text-center">
+      <div class="col-12">
+        <span class="section-kicker text-info">The Ecosystem</span>
+        <h2 class="display-4 fw-black text-white">Twelve entities. One connected standard.</h2>
       </div>
-      <h3 class="h4 fw-bold mb-1 text-center">CloudAlls <%= division.name %></h3>
-      <p class="fw-semibold text-primary text-center mb-2"><%= division.tagline %></p>
-      <p class="text-secondary text-center mb-4" style="max-width:520px;margin-left:auto;margin-right:auto;"><%= (division.description || '').trim() ? division.description : 'Part of the CloudAlls ecosystem, delivering connected capabilities.' %></p>
-      <div class="mt-auto text-center"><% if (services.length) { %><a class="btn btn-primary rounded-pill px-4" href="/expertise?div=<%= encodeURIComponent(String(division.name).trim()) %>#capabilities"><i class="fa-solid fa-arrow-right me-2" aria-hidden="true"></i>View <%= services.length %> capabilities</a><% } else { %><span class="badge rounded-pill border px-3 py-2">Services coming soon</span><% } %></div>
-    </div></div>
-  <% }); %>
+    </div>
+
+    <% 
+      const capDivs = divisions.filter(d => String(d.wing || 'capabilities') === 'capabilities');
+      const vertDivs = divisions.filter(d => String(d.wing || '') === 'verticals');
+    %>
+
+    <div class="row g-4">
+      <div class="col-12"><h3 class="h3 fw-black text-info mb-4">Wing A: Capability Divisions</h3></div>
+      <% capDivs.forEach((division, index) => { %>
+        <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="<%= index * 50 %>">
+          <div class="p-4 rounded-4 bg-white bg-opacity-5 border border-white border-opacity-10 h-100">
+            <img src="/assets/brand/icon-512x512.png" alt="Icon" style="width: 32px; opacity: 0.5;" class="mb-3">
+            <h4 class="h5 fw-bold text-white mb-2"><%= division.name %></h4>
+            <p class="text-white opacity-50 small mb-0"><%= division.tagline %></p>
+          </div>
+        </div>
+      <% }); %>
+
+      <div class="col-12 mt-5"><h3 class="h3 fw-black text-info mb-4">Wing B: Industry Verticals</h3></div>
+      <% vertDivs.forEach((division, index) => { %>
+        <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="<%= index * 50 %>">
+          <div class="p-4 rounded-4 bg-white bg-opacity-5 border border-white border-opacity-10 h-100">
+            <img src="/assets/brand/icon-512x512.png" alt="Icon" style="width: 32px; opacity: 0.5;" class="mb-3">
+            <h4 class="h5 fw-bold text-white mb-2"><%= division.name %></h4>
+            <p class="text-white opacity-50 small mb-0"><%= division.tagline %></p>
+          </div>
+        </div>
+      <% }); %>
+    </div>
   </div>
 </section>
-<section class="mb-5" data-aos="fade-up" data-aos-delay="100">
-  <div class="d-flex align-items-center gap-3 mb-4"><span class="badge rounded-pill text-bg-dark px-3 py-2 text-uppercase small fw-bold ls-1">Wing B</span><h2 class="h3 fw-bold mb-0">Industry verticals</h2></div>
-  <div class="row g-4">
-  <% vertDivisions.forEach(division => {
-    const services = expertiseByDivision[String(division.name).trim()] || [];
-    const isReserved = division.status === 'Reserved';
-  %>
-    <div class="col-md-6"><div class="rounded-4 border bg-white shadow-sm p-4 p-lg-5 h-100 d-flex flex-column <%= isReserved ? 'opacity-75' : '' %>">
-      <div class="d-flex align-items-center justify-content-center mb-4" style="min-height:100px;">
-        <img src="/assets/brand/icon-512x512.png" alt="CloudAlls icon" style="width:72px;height:72px;">
-        <span class="mx-3" style="color:#0A2860;font-size:2.25rem;line-height:1;"><%- settings.logo_code %></span>
-        <span style="border-left:3px solid #d7dde6;height:44px;"></span>
-        <span class="fw-bold text-uppercase ms-3" style="color:#0A2860;letter-spacing:3px;font-size:1.05rem;white-space:nowrap;"><%= division.name %></span>
-      </div>
-      <h3 class="h4 fw-bold mb-1 text-center">CloudAlls <%= division.name %><% if (isReserved) { %> <span class="badge rounded-pill text-bg-secondary px-3">Reserved</span><% } %></h3>
-      <p class="fw-semibold text-primary text-center mb-2"><%= division.tagline %></p>
-      <p class="text-secondary text-center mb-4" style="max-width:520px;margin-left:auto;margin-right:auto;"><%= (division.description || '').trim() ? division.description : 'An industry vertical of the CloudAlls ecosystem.' %></p>
-      <div class="mt-auto text-center"><% if (!isReserved && services.length) { %><a class="btn btn-outline-dark rounded-pill px-4" href="/expertise?div=<%= encodeURIComponent(String(division.name).trim()) %>#capabilities"><i class="fa-solid fa-arrow-right me-2" aria-hidden="true"></i>View <%= services.length %> capabilities</a><% } else if (isReserved) { %><span class="badge rounded-pill border px-3 py-2">Launching next</span><% } %></div>
-    </div></div>
-  <% }); %>
-  </div>
-</section>
-<% } else { %><section class="container pb-5"><div class="rounded-4 p-5 text-center text-white" style="background:linear-gradient(135deg,#0f172a,#1d4ed8);"><p class="text-uppercase fw-bold text-info small ls-1 mb-3">Press, partnerships, and approved use</p><h2 class="display-6 fw-bold mb-3">Need a specific format or usage review?</h2><p class="lead text-white-50 mb-4 mx-auto" style="max-width:680px;">Tell us how you plan to use the CloudAlls identity and our team can share the right asset, context, or approval path.</p><a class="btn btn-light btn-lg rounded-pill px-4" href="/contact">Contact CloudAlls <i class="fa-solid fa-arrow-right ms-2" aria-hidden="true"></i></a></div></section>
-<% } %>
 
 <%- include('../layouts/footer', { settings, footerMenus, waLink }) %>
